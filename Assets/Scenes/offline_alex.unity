@@ -4173,7 +4173,7 @@ MonoBehaviour:
   m_PlayerPrefab: {fileID: 0}
   m_AutoCreatePlayer: 0
   m_PlayerSpawnMethod: 1
-  m_OfflineScene: offline_test
+  m_OfflineScene: offline_alex
   m_OnlineScene: 
   m_SpawnPrefabs:
   - {fileID: 107610, guid: 56f48a82cc2b10d4fa5ad7c6cb46c4b7, type: 2}
@@ -4219,7 +4219,7 @@ MonoBehaviour:
   m_LobbyPlayerPrefab: {fileID: 11454796, guid: 56f48a82cc2b10d4fa5ad7c6cb46c4b7,
     type: 2}
   m_GamePlayerPrefab: {fileID: 0}
-  m_LobbyScene: offline_test
+  m_LobbyScene: offline_alex
   m_PlayScene: online_alex
   lobbySlots: []
   addressField: 127.0.0.1

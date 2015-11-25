@@ -26,6 +26,7 @@ public class CustomOnlinePlayer : NetworkBehaviour {
 
     public float cureCarryTimeLeft = 60f;
 
+	[SyncVar]
 	public Color IndividualColor = Color.white;
 	public string IndividualName = "Player";
 
@@ -44,15 +45,15 @@ public class CustomOnlinePlayer : NetworkBehaviour {
 	void ServersideSetup()
 	{
 		Color c = new Color ( Mathf.Clamp01(Random.value + 0.25f), Mathf.Clamp01(Random.value + 0.25f), Mathf.Clamp01(Random.value + 0.25f));
-		RpcSetColor(c);
+		//RpcSetColor(c);
 		GetComponent<Renderer> ().material.color = c;
 		IndividualColor = c;
 	}
 
-	[ClientRpc]
-	public void RpcSetColor(Color c)
+	[ClientCallback]
+	public void SyncColor()
 	{
-		GetComponent<Renderer> ().material.color = c; 
+		GetComponent<Renderer> ().material.color = IndividualColor; 
 	}
 
 	// Update 
@@ -60,6 +61,7 @@ public class CustomOnlinePlayer : NetworkBehaviour {
 	{
 		CalculateIfCanSeeCure ();
         SyncCureLocation();
+		SyncColor ();
 	}
 
     [ClientCallback]
