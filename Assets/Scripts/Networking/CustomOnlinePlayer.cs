@@ -43,7 +43,7 @@ public class CustomOnlinePlayer : NetworkBehaviour {
 	[ServerCallback]
 	void ServersideSetup()
 	{
-		Color c = new Color (Random.value + 0.25f, Random.value + 0.25f, Random.value + 0.25f);
+		Color c = new Color ( Mathf.Clamp01(Random.value + 0.25f), Mathf.Clamp01(Random.value + 0.25f), Mathf.Clamp01(Random.value + 0.25f));
 		RpcSetColor(c);
 		GetComponent<Renderer> ().material.color = c;
 		IndividualColor = c;
@@ -67,8 +67,9 @@ public class CustomOnlinePlayer : NetworkBehaviour {
     {
 		if (cureisCarriedByAPlayer) 
 		{
-			clientCure.transform.parent = currentCureCarrier;
-			clientCure.transform.localPosition = new Vector3 (0, 7, 0);
+			//clientCure.transform.parent = currentCureCarrier;
+			//clientCure.transform.localPosition = new Vector3 (0, 7, 0);
+			clientCure.transform.position = currentCureCarrier.transform.position + currentCureCarrier.transform.up * 7f;
 			return;
 		} 
 		else

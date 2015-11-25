@@ -9,6 +9,10 @@ public class CureScript : NetworkBehaviour {
 	OnlineSceneReferences onlineRef;
 	Transform holder = null;
 
+	//safety for disconnects and other unpredictable events
+	//bool wasHeldPrevFrame;
+	//Vector3 lastPos;
+
 	public static float cureCarrierSpeedDebuff = 0.85f;
 
 	void Start()
@@ -54,13 +58,28 @@ public class CureScript : NetworkBehaviour {
 		if (holder != null) 
 		{
 			transform.position = holder.position + Vector3.up * 6f;
-		}
+			//lastPos = holder.position;
+			//wasHeldPrevFrame = true;
+		} 
+		/*
+		else 
+		{
+			if(wasHeldPrevFrame)
+			{
+				DetachFromHolder();
+				wasHeldPrevFrame = false;
+			}
+
+		}*/
+
 	}
 
 	public void DetachFromHolder()
 	{
 		if (holder != null)
 			transform.position = holder.transform.position;
+		//else
+		//	transform.position = lastPos;
 
 		holder = null;
 		isDropped = true;

@@ -16,6 +16,8 @@ public class OnlinePlayerInput : NetworkBehaviour {
 		MOVE_RIGHT_RELEASE,
 		SHOOT_START_HOLD_DOWN,
 		SHOOT_RELEASE,
+		SWITCH_START_HOLD_DOWN,
+		SWITCH_RELEASE
 	}
 
 	public enum PlayerControls
@@ -24,11 +26,16 @@ public class OnlinePlayerInput : NetworkBehaviour {
 		BACK,
 		LEFT,
 		RIGHT,
-		SHOOT
+		SHOOT,
+		SWITCH
 	}
 
-	float[] inputTimeStamps = new float[10];
-	bool[] inputValues = new bool[5];
+	public delegate void RawInputDelegate(PlayerControlMessage m, Vector3 direction);
+
+	public event RawInputDelegate OnServerReceiveRawInput;
+
+	float[] inputTimeStamps = new float[12];
+	bool[] inputValues = new bool[6];
 	Vector3 _storedCameraDirection;
 
 	public float GetLastTimeStamp(PlayerControlMessage targetControl)
@@ -60,6 +67,9 @@ public class OnlinePlayerInput : NetworkBehaviour {
 		//process
 		//UIConsole.Log ("Received input " + i.ToString ());
 		ProcessInputMessage (i);
+
+		if (OnServerReceiveRawInput != null)
+			OnServerReceiveRawInput (i, new Vector3(0,0,0));
 	}
 
 	[Command]
@@ -69,6 +79,8 @@ public class OnlinePlayerInput : NetworkBehaviour {
 		_storedCameraDirection = cameraDirection;
 		ProcessInputMessage (i);
 
+		if (OnServerReceiveRawInput != null)
+			OnServerReceiveRawInput (i, cameraDirection);
 		//GetComponent<PlayerCaptionController> ().RpcPushCaption ("I know you pressed space",2f);
 	}
 
@@ -139,6 +151,12 @@ public class OnlinePlayerInput : NetworkBehaviour {
 			Vector3 dir = GameObject.Find("OnlineSceneReferences").GetComponent<OnlineSceneReferences>().cameraRef.forward;
 			CmdReceiveDirectionShootInput(PlayerControlMessage.SHOOT_RELEASE, dir);
 		}
+
+		if (Input.GetKeyDown (KeyCode.Tab))
+			CmdReceiveInput (PlayerControlMessage.SWITCH_START_HOLD_DOWN);
+
+		if (Input.GetKeyUp (KeyCode.Tab))
+			CmdReceiveInput (PlayerControlMessage.SWITCH_RELEASE);
 
 	}
 
