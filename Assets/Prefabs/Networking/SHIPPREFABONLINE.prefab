@@ -1302,9 +1302,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rightSide: {fileID: 410520}
   leftSide: {fileID: 462520}
+  cannonBallPrefab: {fileID: 193654, guid: cffcceacc3f5c1f4b998adedaa55a4ce, type: 2}
+  chainCannonBallPrefab: {fileID: 0}
   forwardMovementModifier: 7.5
   steeringModifier: 250
-  trajectoryRenderer: {fileID: 12030438}
 --- !u!114 &11416900
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1658,6 +1659,10 @@ Prefab:
       propertyPath: m_CollisionDetection
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: cannonBallPrefab
+      value: 
+      objectReference: {fileID: 193654, guid: cffcceacc3f5c1f4b998adedaa55a4ce, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 163324}

@@ -29,8 +29,14 @@ public class ShipScript : NetworkBehaviour
     private enum State { Idle, Charging };
     private State currentState = State.Idle;
 
-	//[SerializeField]
+    private GameObject currentCannonBallType;
+    [SerializeField]
     private GameObject cannonBallPrefab;
+    [SerializeField]
+    private GameObject chainCannonBallPrefab;
+
+    //[SerializeField]
+    //private GameObject cannonBallPrefab;
     private OnlinePlayerInput onlineInput;
 
     //Object
@@ -52,11 +58,10 @@ public class ShipScript : NetworkBehaviour
 	[SerializeField]
 	private float steeringModifier = 250f;
 
-	[SerializeField]
-	LineRenderer trajectoryRenderer;
+    private LineRenderer trajectoryRenderer;
 
-	//client trajectory fixing
-	bool startedPreviewingTrajectory = false;
+    //client trajectory fixing
+    bool startedPreviewingTrajectory = false;
 	Vector3 storedSideForward;
 	bool storedSideIsLeft;
 
@@ -68,9 +73,9 @@ public class ShipScript : NetworkBehaviour
         objBounds = GetComponent<Collider>().bounds;
         cannonBallPrefab = (GameObject)Resources.Load("CannonBallPrefab");
         onlineInput = GetComponent<OnlinePlayerInput>();
+        trajectoryRenderer = GetComponent<LineRenderer>();
 
-
-		SetupCamera ();
+        SetupCamera ();
     }
 
 	[ClientCallback]
@@ -116,9 +121,6 @@ public class ShipScript : NetworkBehaviour
     {
         Controls();
 		UpdateState();
-
-
-
     }
 
     [ServerCallback]
@@ -142,13 +144,11 @@ public class ShipScript : NetworkBehaviour
                 currentSealsState = Seals.Closed;
             else
                 currentSealsState = Seals.Opened;
-
-            
         }
 
         prevMoveState = currMoveState;
 
-		float cureMod = (GetComponent<CustomOnlinePlayer> ().currentCureCarrier == this.transform) ? CureScript.cureCarrierSpeedDebuff : 1f;
+		float cureMod = (GetComponent<CustomOnlinePlayer> ().currentCureCarrier == transform) ? CureScript.cureCarrierSpeedDebuff : 1f;
 
         if (currentSealsState == Seals.Opened)
             objRigidBody.AddForce(forward * objRigidBody.mass * forwardMovementModifier * cureMod);

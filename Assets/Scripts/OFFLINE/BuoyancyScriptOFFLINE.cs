@@ -244,50 +244,7 @@ public class BuoyancyScriptOFFLINE : MonoBehaviour
             Gizmos.color = voxel.Color;
             Vector3 voxelWorldPos = transform.TransformPoint(voxel.Position);
             Gizmos.DrawWireSphere(voxelWorldPos, SPHERE_GIZMOS_SIZE);
-            Gizmos.DrawLine(voxelWorldPos, voxelWorldPos + voxel.Force / objRigidBody.mass); // wrong
+            Gizmos.DrawLine(voxelWorldPos, voxelWorldPos + voxel.Force / objRigidBody.mass);
         }
-    }
-}
-
-/// <summary>
-/// Voxel class
-/// </summary>
-public class Voxel
-{
-    private Vector3 position;
-    private Vector3 force;
-    private float buoyancyState;
-    private Color color;
-
-    public Voxel(Vector3 pPosition, Vector3 pForce, float pBuoyancyState, Color pColor)
-    {
-        position = pPosition;
-        force = pForce;
-        buoyancyState = pBuoyancyState;
-        color = pColor;
-    }
-
-    public Vector3 Position
-    {
-        get { return position; }
-        set { position = value; }
-    }
-
-    public Vector3 Force
-    {
-        get { return force; }
-        set { force = value; }
-    }
-
-    public float BuoyancyState
-    {
-        get { return buoyancyState; }
-        set { buoyancyState = value; }
-    }
-
-    public Color Color
-    {
-        get { return color; }
-        set { color = value; }
     }
 }

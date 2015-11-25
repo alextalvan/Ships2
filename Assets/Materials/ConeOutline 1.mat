@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: ConeOutline 1
-  m_Shader: {fileID: 4800000, guid: 91e95670c73fe4e7dba836f6f2cfa320, type: 3}
+  m_Shader: {fileID: 4800000, guid: c4f8ffbaf93b3eb4d8daaf5b2ace0060, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
   m_CustomRenderQueue: 2450
@@ -93,16 +93,40 @@ Material:
         second: .5
       data:
         first:
+          name: _Aplitude
+        second: 2
+      data:
+        first:
+          name: _SpeedMUL
+        second: 1
+      data:
+        first:
+          name: _Width
+        second: 1
+      data:
+        first:
+          name: _HorizontalMUL
+        second: 1
+      data:
+        first:
+          name: _VerticalMUL
+        second: 0
+      data:
+        first:
+          name: _Glossiness
+        second: .5
+      data:
+        first:
+          name: _Metallic
+        second: 0
+      data:
+        first:
           name: _Parallax
         second: .0199999996
       data:
         first:
           name: _ZWrite
         second: 1
-      data:
-        first:
-          name: _Glossiness
-        second: .5
       data:
         first:
           name: _BumpScale
@@ -125,32 +149,8 @@ Material:
         second: 0
       data:
         first:
-          name: _Metallic
-        second: 0
-      data:
-        first:
           name: _InvFade
         second: 1
-      data:
-        first:
-          name: _Aplitude
-        second: 2
-      data:
-        first:
-          name: _SpeedMUL
-        second: 1
-      data:
-        first:
-          name: _Width
-        second: 1
-      data:
-        first:
-          name: _HorizontalMUL
-        second: 1
-      data:
-        first:
-          name: _VerticalMUL
-        second: 0
     m_Colors:
       data:
         first:
@@ -162,9 +162,9 @@ Material:
         second: {r: .0758621693, g: 1, b: 0, a: 1}
       data:
         first:
-          name: _TintColor
-        second: {r: 0, g: .958620548, b: 1, a: .5}
-      data:
-        first:
           name: _Color2
         second: {r: .522058845, g: 1, b: .881338775, a: 1}
+      data:
+        first:
+          name: _TintColor
+        second: {r: 0, g: .958620548, b: 1, a: .5}
