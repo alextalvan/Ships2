@@ -1,16 +1,24 @@
 ﻿using UnityEngine;
+using UnityEngine.Networking;
 
-[RequireComponent(typeof(Collider))]
-public abstract class ProjectileOFFLINE : MonoBehaviour
+[RequireComponent(typeof(Rigidbody), typeof(Collider), typeof(NetworkTransform))]
+public abstract class Projectile : NetworkBehaviour
 {
+    protected float birthDate;
+
     [SerializeField]
-    protected float upwardsModifier = 1f;
+    protected float lifeTime;
+
     [SerializeField]
-    protected float hullDamage = 50f;
+    protected float upwardsModifier;
     [SerializeField]
-    protected float sailDamage = 25f;
+    protected float hullDamage;
     [SerializeField]
-    protected float damageRadius = 5f;
+    protected float sailDamage;
+    [SerializeField]
+    protected float damageRadius;
+
+    public CustomOnlinePlayer owner;
 
     public float UpwardsModifier
     {
@@ -37,22 +45,30 @@ public abstract class ProjectileOFFLINE : MonoBehaviour
     }
 
     // Use this for initialization
-    void Start()
+    protected virtual void Start()
     {
-
+        birthDate = Time.time;
     }
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-
+        if (Time.time > birthDate + lifeTime)
+        {
+            Delete();
+        }
     }
 
+    [Server]
     protected abstract void DealDamage(Collision collision);
 
     void OnCollisionEnter(Collision collision)
     {
         DealDamage(collision);
-        Destroy(gameObject);
+    }
+
+    [Server]
+    protected virtual void Delete()
+    {
+        NetworkServer.Destroy(gameObject);
     }
 }

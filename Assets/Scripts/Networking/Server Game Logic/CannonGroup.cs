@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.Networking;
 
 public class CannonGroup : MonoBehaviour
 {
@@ -11,22 +10,13 @@ public class CannonGroup : MonoBehaviour
 	
 	public int GetCannonsCount
 	{
-		get
-		{
-			return cannonsCount;
-		}
+		get { return cannonsCount; }
 	}
 	
 	public float CurrentCharge
 	{
-		get
-		{
-			return currentCharge;
-		}
-		set
-		{
-			currentCharge = value;
-		}
+		get { return currentCharge; }
+		set { currentCharge = value; }
 	}
 	
 	// Use this for initialization

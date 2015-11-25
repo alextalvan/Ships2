@@ -6,6 +6,8 @@ public class PlayerRespawn : NetworkBehaviour
 {
 
     public float respawnTime = 10f;
+
+    [SyncVar]
     bool initiatedRespawn = false;
     float spawnTime = 0f;
 
