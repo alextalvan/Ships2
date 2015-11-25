@@ -4220,9 +4220,9 @@ MonoBehaviour:
     type: 2}
   m_GamePlayerPrefab: {fileID: 0}
   m_LobbyScene: offline_test
-  m_PlayScene: online_test
+  m_PlayScene: online_danila
   lobbySlots: []
-  addressField: 192.168.0.100
+  addressField: localhost
   portField: 7777
   isHudEnabled: 0
   onlinePlayerPrefab: {fileID: 163324, guid: 551dd1b5def485242abb9579ec47cc7f, type: 2}

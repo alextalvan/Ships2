@@ -680,7 +680,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 163324}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -16.0699997}
+  m_LocalPosition: {x: -56.3121834, y: 78.9459839, z: 52.1014175}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 424394}
@@ -1302,8 +1302,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rightSide: {fileID: 410520}
   leftSide: {fileID: 462520}
-  cannonBallPrefab: {fileID: 193654, guid: cffcceacc3f5c1f4b998adedaa55a4ce, type: 2}
-  chainCannonBallPrefab: {fileID: 0}
   forwardMovementModifier: 7.5
   steeringModifier: 250
 --- !u!114 &11416900
@@ -1512,13 +1510,13 @@ LineRenderer:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 163324}
   m_Enabled: 0
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
   m_Materials:
   - {fileID: 2100000, guid: 17a32139f50cd074dbc725573c7738b3, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 1
+  m_UseLightProbes: 0
   m_ReflectionProbeUsage: 1
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
@@ -1663,6 +1661,18 @@ Prefab:
       propertyPath: cannonBallPrefab
       value: 
       objectReference: {fileID: 193654, guid: cffcceacc3f5c1f4b998adedaa55a4ce, type: 2}
+    - target: {fileID: 0}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_ReceiveShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_UseLightProbes
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 163324}

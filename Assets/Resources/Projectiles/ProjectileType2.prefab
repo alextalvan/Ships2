@@ -17,7 +17,7 @@ GameObject:
   - 114: {fileID: 11404372}
   - 114: {fileID: 11457594}
   m_Layer: 0
-  m_Name: CannonBallPrefab
+  m_Name: ProjectileType2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -160,22 +160,22 @@ MonoBehaviour:
   m_SceneId:
     m_Value: 0
   m_AssetId:
-    i0: 207
-    i1: 252
-    i2: 206
-    i3: 172
-    i4: 195
-    i5: 245
-    i6: 193
-    i7: 244
-    i8: 185
-    i9: 152
-    i10: 173
-    i11: 237
-    i12: 170
-    i13: 85
-    i14: 164
-    i15: 206
+    i0: 49
+    i1: 5
+    i2: 17
+    i3: 155
+    i4: 169
+    i5: 197
+    i6: 96
+    i7: 148
+    i8: 91
+    i9: 164
+    i10: 202
+    i11: 3
+    i12: 52
+    i13: 143
+    i14: 156
+    i15: 215
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
 --- !u!114 &11457594

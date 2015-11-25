@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class CameraScript : MonoBehaviour
 {
+    //[SerializeField]
+    //Transform debug;
+
     [SerializeField]
     Vector3 offset = new Vector3(30f, 30f, 30f);
     [SerializeField]
@@ -23,6 +26,14 @@ public class CameraScript : MonoBehaviour
         InitializeSettings(currentObject);
     }
 
+    void Update()
+    {
+        //if (Input.GetKeyDown(KeyCode.A))
+        //    AttachCameraTo(debug);
+        //if (Input.GetKeyDown(KeyCode.D))
+        //    DetachCamera();
+    }
+
     void LateUpdate()
     {
         FollowCurrentObject();
@@ -35,7 +46,7 @@ public class CameraScript : MonoBehaviour
     {
         if (currentObject)
             // Keep us at the last known relative position
-            transform.position = Vector3.MoveTowards(transform.position, currentObject.position + orbitDistance, orbitDistance.magnitude);
+            transform.position = currentObject.position + orbitDistance;
     }
 
     void RotateCamera()

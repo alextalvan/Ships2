@@ -235,16 +235,14 @@ public class BuoyancyScript : NetworkBehaviour
 
     public void UpdateTotalBuoyancy()
     {
-        float buoyancy = 0f;
+        totalBuoyancyState = 0f;
 
         foreach (Voxel voxel in voxels)
         {
-            buoyancy += voxel.BuoyancyState;
+            totalBuoyancyState += voxel.BuoyancyState;
         }
 
-        buoyancy /= voxels.Count;
-
-        totalBuoyancyState = buoyancy;
+        totalBuoyancyState /= voxels.Count;
     }
 
     public void Reset()
