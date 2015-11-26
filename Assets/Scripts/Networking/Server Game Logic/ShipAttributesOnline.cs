@@ -21,26 +21,7 @@ public class ShipAttributesOnline : NetworkBehaviour {
 	public float healthRegen;
 
 	//level
-	int _level;
-	int _currentEXP;
-	int _nextLevelEXP;
 
-	public delegate void voidvoid();
-
-	public event voidvoid OnLevelUp;
-
-	void GainEXP(int amount)
-	{
-		_currentEXP += amount;
-		if (_currentEXP >= _nextLevelEXP) 
-		{
-			if(OnLevelUp!=null)
-				OnLevelUp();
-
-			//TODO: function to calculate next level exp
-			_nextLevelEXP += 100;
-		}
-	}
 
 
 
