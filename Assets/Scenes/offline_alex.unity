@@ -4177,7 +4177,7 @@ MonoBehaviour:
   m_OnlineScene: 
   m_SpawnPrefabs:
   - {fileID: 107610, guid: 56f48a82cc2b10d4fa5ad7c6cb46c4b7, type: 2}
-  - {fileID: 170488, guid: 0b3f4e8b96fc3d74186dc6e4e2a08241, type: 2}
+  - {fileID: 170488, guid: 551dd1b5def485242abb9579ec47cc7f, type: 2}
   - {fileID: 107454, guid: 7cc19d15546aef54d86cacf78cfa2f21, type: 2}
   - {fileID: 193654, guid: cffcceacc3f5c1f4b998adedaa55a4ce, type: 2}
   - {fileID: 193654, guid: 3105119ba9c560945ba4ca03348f9cd7, type: 2}
@@ -4227,7 +4227,7 @@ MonoBehaviour:
   addressField: 127.0.0.1
   portField: 7777
   isHudEnabled: 0
-  onlinePlayerPrefab: {fileID: 170488, guid: 0b3f4e8b96fc3d74186dc6e4e2a08241, type: 2}
+  onlinePlayerPrefab: {fileID: 170488, guid: 551dd1b5def485242abb9579ec47cc7f, type: 2}
   lobbyInfoPrefab: {fileID: 107454, guid: 7cc19d15546aef54d86cacf78cfa2f21, type: 2}
   _lobbyInfo: {fileID: 0}
 --- !u!4 &1471472059
