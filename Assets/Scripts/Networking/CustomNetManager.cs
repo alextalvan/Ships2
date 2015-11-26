@@ -29,7 +29,6 @@ public class CustomNetManager : NetworkLobbyManager {
 	{
 		addressField = ip;
 	}
-	
 
 	bool SetPort(string target)
 	{
@@ -111,8 +110,6 @@ public class CustomNetManager : NetworkLobbyManager {
 	public override void OnClientSceneChanged (NetworkConnection conn)
 	{
 		//UIConsole.Log ("OnClientSceneChanged " + Application.loadedLevelName);
-
-
 		ClientScene.RemovePlayer(0);
 		ClientScene.Ready(conn);
 		//ClientScene.AddPlayer(0);
@@ -120,6 +117,8 @@ public class CustomNetManager : NetworkLobbyManager {
 		StartCoroutine (SpawnPlayerWithDelay (6f));
 
 	}
+
+
 	
 
 	public override void OnServerSceneChanged (string sceneName)

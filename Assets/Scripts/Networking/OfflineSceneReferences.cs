@@ -5,6 +5,11 @@ using UnityEngine.Networking;
 
 public class OfflineSceneReferences : MonoBehaviour {
 
+	void Start()
+	{
+		Cursor.visible = true;
+	}
+
 
 	//used by the networkManager after changing scene to offline scene to find objects
 	public GUIDialog firstMenuPage;

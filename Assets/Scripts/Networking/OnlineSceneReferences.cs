@@ -4,6 +4,12 @@ using UnityEngine.UI;
 
 public class OnlineSceneReferences : MonoBehaviour {
 
+
+	void Start()
+	{
+		Cursor.visible = false;
+	}
+
     //find lobbyplayer in all of the instances
     bool foundMyPlayer = false;
 
