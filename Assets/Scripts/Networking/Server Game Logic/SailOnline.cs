@@ -3,6 +3,7 @@
 [RequireComponent(typeof(Collider))]
 public class SailOnline : MonoBehaviour
 {
+    [SerializeField]
     private ShipAttributesOnline shipAttributes;
 
     private float currentHealth;
@@ -11,12 +12,6 @@ public class SailOnline : MonoBehaviour
     {
         get { return currentHealth; }
         set { currentHealth = value; }
-    }
-
-    // Use this for initialization
-    void Start()
-    {
-        shipAttributes = transform.parent.parent.GetComponent<ShipAttributesOnline>();
     }
 
     public void Damage(float damage)

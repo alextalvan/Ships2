@@ -10,7 +10,7 @@ public class ProjectileType1 : Projectile
         {
             hull.Damage(collision.contacts[0].point, hullDamage, damageRadius);
         }
-        else if (sails)
+        if (sails)
         {
             sails.Damage(sailDamage);
         } 
