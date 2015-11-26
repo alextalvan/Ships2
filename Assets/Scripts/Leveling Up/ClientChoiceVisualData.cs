@@ -1,0 +1,10 @@
+﻿using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine.UI;
+
+public class ClientChoiceVisualData : MonoBehaviour 
+{
+	public List<Sprite> images = new List<Sprite>();
+
+}

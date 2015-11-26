@@ -124,13 +124,6 @@ public class ShipAttributes : MonoBehaviour {
     }
     // Update is called once per frame
     void FixedUpdate () {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            ChangeSailHealth(-10,0);
-            ChangeSailHealth(-10, 1);
-            ChangeSailHealth(-10, 2);
-
-
-        }
+        
     }
 }

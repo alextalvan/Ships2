@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class SpawnCannonBall : MonoBehaviour {
-
+	/*
     // Use this for initialization
     [SerializeField]
     GameObject cannonBallPrefab;
@@ -18,4 +18,5 @@ public class SpawnCannonBall : MonoBehaviour {
             cannonBall = Instantiate(cannonBallPrefab,transform.position,transform.rotation) as GameObject;
         }
 	}
+	*/
 }
