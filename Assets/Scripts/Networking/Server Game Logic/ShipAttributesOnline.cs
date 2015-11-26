@@ -35,42 +35,51 @@ public class ShipAttributesOnline : NetworkBehaviour
 
     private bool isDead = false;
 
-    public float GetHullMaxHealth
+    public float HullMaxHealth
     {
         get { return hullMaxHealth; }
+        set { hullMaxHealth = value; }
     }
-    public float GetSailMaxHealth
+    public float SailMaxHealth
     {
         get { return sailMaxHealth; }
+        set { sailMaxHealth = value; }
     }
-    public float GetBasicSpeed
+    public float BasicSpeed
     {
         get { return basicSpeed; }
+        set { basicSpeed = value; }
     }
-    public float GetSteeringModifier
+    public float SteeringModifier
     {
         get { return steeringModifier; }
+        set { steeringModifier = value; }
     }
 
-    public float GetRangeMultiplier
+    public float RangeMultiplier
     {
         get { return shootRangeMultiplier; }
+        set { shootRangeMultiplier = value; }
     }
-    public float GetCannonChargeRate
+    public float CannonChargeRate
     {
         get { return cannonChargeRate; }
+        set { cannonChargeRate = value; }
     }
-    public float GetReloadRateModifier
+    public float ReloadRateModifier
     {
         get { return reloadRateModifier; }
+        set { reloadRateModifier = value; }
     }
-    public float GetRegenerationRate
+    public float RegenerationRate
     {
         get { return regenerationRate; }
+        set { regenerationRate = value; }
     }
-    public float GetSailSpeedModifier
+    public float SailSpeedModifier
     {
         get { return sailSpeedModifier; }
+        set { sailSpeedModifier = value; }
     }
     public bool IsDead
     {

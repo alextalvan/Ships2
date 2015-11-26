@@ -22,8 +22,7 @@ public class HullOnline : MonoBehaviour
 
     public void Reset()
     {
-        currentHealth = shipAttributes.GetHullMaxHealth;
-        UIConsole.Log(currentHealth);
+        currentHealth = shipAttributes.HullMaxHealth;
         buoyancy.Reset();
     }
 
@@ -33,10 +32,7 @@ public class HullOnline : MonoBehaviour
             return;
 
         currentHealth -= damage;
-        
-        //currentHealth = buoyancy.GetTotalBuoyancyState - buoyancy.GetBuoyancyLimit;
-
-        //buoyancy.ChangeBuoyancy(position, damage, radius);
+        buoyancy.ChangeBuoyancy(position, buoyancy.GetVoxelsCount * 1.5f, radius);
         GetComponent<PlayerCaptionController>().RpcPushDebugText("My hull got damaged for " + damage + " damage. Remaining health: " + currentHealth);
 
         if (currentHealth <= 0f)
@@ -49,13 +45,13 @@ public class HullOnline : MonoBehaviour
 
     public void Repair(float amount)
     {
-        if (currentHealth < shipAttributes.GetSailMaxHealth)
+        if (currentHealth < shipAttributes.SailMaxHealth)
         {
             currentHealth += amount;
             GetComponent<PlayerCaptionController>().RpcPushDebugText("My hull got repaired for " + amount + ". Current hull health: " + currentHealth);
 
-            if (currentHealth > shipAttributes.GetSailMaxHealth)
-                currentHealth = shipAttributes.GetSailMaxHealth;
+            if (currentHealth > shipAttributes.SailMaxHealth)
+                currentHealth = shipAttributes.SailMaxHealth;
         }
     }
 }

@@ -1,10 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 //@TODO: Seperate Leveling up to new script(handle upgrades in there as well)
 public class ShipAttributes : MonoBehaviour {
-
-
     
 	// Use this for initialization
 	void Start () {

@@ -35,9 +35,6 @@ public class BuoyancyScript : NetworkBehaviour
     private float objSize;
     private float totalBuoyancyState;
 
-
- 
-
     public float GetTotalBuoyancyState
     {
         get { return totalBuoyancyState; }
@@ -46,6 +43,11 @@ public class BuoyancyScript : NetworkBehaviour
     public float GetBuoyancyLimit
     {
         get { return buoyancyLimit; }
+    }
+
+    public float GetVoxelsCount
+    {
+        get { return voxels.Count; }
     }
 
     void Awake()

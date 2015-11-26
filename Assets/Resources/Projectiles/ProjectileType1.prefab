@@ -191,8 +191,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lifeTime: 10
   upwardsModifier: 10
-  hullDamage: 50
-  sailDamage: 10
+  hullDamage: 5
+  sailDamage: 1
   damageRadius: 5
   owner: {fileID: 0}
 --- !u!135 &13503682
@@ -272,11 +272,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: hullDamage
-      value: 50
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: sailDamage
-      value: 10
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: damageRadius
