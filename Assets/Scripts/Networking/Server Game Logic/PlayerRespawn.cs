@@ -25,11 +25,11 @@ public class PlayerRespawn : NetworkBehaviour
     {
         GetComponent<PlayerCaptionController>().RpcPushDebugText("I died");
         GetComponent<OnlinePlayerInput>().enabled = false;
-        GetComponent<BuoyancyScript>().enabled = false;
+        //GetComponent<BuoyancyScript>().enabled = false;
         GetComponent<ShipScript>().RpcChangeCameraState(false);
         //GetComponent<Rigidbody>().isKinematic = true;
 
-        if (GetComponent<CustomOnlinePlayer>().currentCureCarrier == this.transform)
+        if (GetComponent<CustomOnlinePlayer>().currentCureCarrier == transform)
             onlineRef.serverCure.DetachFromHolder();
 
         spawnTime = Time.time + respawnTime;
@@ -59,7 +59,7 @@ public class PlayerRespawn : NetworkBehaviour
         GetComponent<OnlinePlayerInput>().Reset();
         GetComponent<OnlinePlayerInput>().enabled = true;
         GetComponent<BuoyancyScript>().Reset();
-        GetComponent<BuoyancyScript>().enabled = true;
+        //GetComponent<BuoyancyScript>().enabled = true;
         GetComponent<ShipScript>().RpcChangeCameraState(true);
         GetComponent<HullOnline>().Reset();
 

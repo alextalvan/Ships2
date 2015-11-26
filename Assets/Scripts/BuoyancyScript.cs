@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Networking;
 using System.Collections.Generic;
+using System;
 
 /// <summary>
 /// Buoyancy script
@@ -23,6 +24,8 @@ public class BuoyancyScript : NetworkBehaviour
     private float voxelsYDownMod = 1f;
     [SerializeField]
     private float centerOfMassYOffset = 2f;
+    [SerializeField]
+    private float buoyancyLimit = 70f;
 
     //Object related
     private Rigidbody objRigidBody;
@@ -35,7 +38,7 @@ public class BuoyancyScript : NetworkBehaviour
     {
         if (NetworkManager.singleton != null && NetworkManager.singleton.isNetworkActive && !NetworkServer.active)
         {
-            this.enabled = false;
+            enabled = false;
             return;
         }
     }
@@ -159,6 +162,7 @@ public class BuoyancyScript : NetworkBehaviour
     private void FixedUpdate()
     {
         CalculatePhysics();
+        UpdateTotalBuoyancy();
     }
 
     /// <summary>
@@ -203,11 +207,16 @@ public class BuoyancyScript : NetworkBehaviour
         objRigidBody.AddForce(Physics.gravity * objRigidBody.mass);
     }
 
+    private void SinkDamagedVoxels()
+    {
+        foreach (Voxel voxel in voxels)
+        {
+            voxel.Sink();
+        }
+    }
+
     public void ChangeBuoyancy(Vector3 position, float damage, float radius)
     {
-        //if (totalBuoyancyState < 70f)
-        //    return;
-
         Voxel closestVoxel = null;
         float minDist = radius;
 
@@ -229,8 +238,6 @@ public class BuoyancyScript : NetworkBehaviour
             if (closestVoxel.BuoyancyState < 0f)
                 closestVoxel.BuoyancyState = 0f;
         }
-
-        UpdateTotalBuoyancy();
     }
 
     public void UpdateTotalBuoyancy()
@@ -243,6 +250,12 @@ public class BuoyancyScript : NetworkBehaviour
         }
 
         totalBuoyancyState /= voxels.Count;
+
+        if (totalBuoyancyState < buoyancyLimit)
+        {
+            GetComponent<HullOnline>().Damage(0.1f);
+            SinkDamagedVoxels();
+        }
     }
 
     public void Reset()
@@ -251,6 +264,7 @@ public class BuoyancyScript : NetworkBehaviour
         {
             voxel.BuoyancyState = 100f;
         }
+        UpdateTotalBuoyancy();
     }
 
     /// <summary>
@@ -308,5 +322,11 @@ public class Voxel
     {
         get { return color; }
         set { color = value; }
+    }
+
+    public void Sink()
+    {
+        if (buoyancyState > 0f)
+            buoyancyState-=0.1f;
     }
 }
