@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public class SmallDebrisScript : MonoBehaviour
 {
     List<Transform> smallChildren = new List<Transform>();
-
+    float existanceTime;
     Rigidbody debrisBody;
     
     // Use this for initialization
@@ -28,8 +28,11 @@ public class SmallDebrisScript : MonoBehaviour
         else debrisBody = GetComponent<Rigidbody>();
         debrisBody.useGravity = true;
         debrisBody.isKinematic = false;
-        //debrisBody.AddForce(((transform.up + transform.position) * 10) * debrisBody.mass);
-        debrisBody.AddExplosionForce(250, transform.position, 50, 25);
+
+        //magic as fuck
+        debrisBody.AddExplosionForce(390, transform.position, 200, 0.5f);
+        debrisBody.AddForce(-transform.forward * 10);
+        debrisBody.AddRelativeTorque(5, 5, 5);
 
         name = "Debris";
         transform.parent = null;
@@ -40,11 +43,16 @@ public class SmallDebrisScript : MonoBehaviour
     {
         if (col.transform.name != "Debris")
         {
-            Destroy(gameObject);
+            //Destroy(this.gameObject);
         }
     }
     void FixedUpdate()
     {
+        existanceTime += Time.fixedDeltaTime;
 
+        if (transform.position.y < 0 || existanceTime >= 5)
+        {
+            Destroy(this.gameObject);
+        }
     }
 }

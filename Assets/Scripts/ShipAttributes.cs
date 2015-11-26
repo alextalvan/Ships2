@@ -1,90 +1,128 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-
-//@TODO figure out what to do with health for sails
+//@TODO: Seperate Leveling up to new script(handle upgrades in there as well)
 public class ShipAttributes : MonoBehaviour {
+
 
     
 	// Use this for initialization
 	void Start () {
+        ChangeSailHealth(0,0);
 	}
 
+    bool sailsLifted;
 
-    //watch related health stuff
-    float sailHealth;
+    Upgrade upgrade;
+    
+    float averageSailHealth;
+
+    [SerializeField]
+    float[] sailHealth = {100,100,100};
+
+    [SerializeField]
     float sailHealthMax = 100;
-    float damage;
-    float turningSpeed;
-    float baseSpeed;
+
+    [SerializeField]
+    float hullHealth = 100;
+
+    [SerializeField]
+    float hullHealthMax = 100;
+
+    //Value used by movement!
     float sailSpeed;
-    float sailSpeedMax;
 
-    int cannons;
+    [SerializeField]
+    float reloadRate;
 
+    [SerializeField]
+    float range;
+
+    public void DoUpgrade() {
+        upgrade.ApplyUpgrade();
+    }
     //Change em
-
-    public void ChangeTurningSpeed(float Modifier)
+    public void SetSailsLifted(bool isLifted)
     {
-        turningSpeed += Modifier;
+         sailsLifted = isLifted; 
     }
-    public void ChangeDamage(float Modifier)
+    public void ChangeReloadRate(float Modifier)
     {
-        damage += Modifier;
+        reloadRate += Modifier;
     }
-    public void ChangeSailHealthMax(float Modifier)
+    public void ChangeHealthMax(float Modifier)
     {
         sailHealthMax += Modifier;
-    }
-    public void ChangeSailSpeedMax(float Modifier)
-    {
-        sailSpeedMax += Modifier;
+        hullHealthMax += Modifier;
     }
     public void ChangeSailSpeed(float Modifier)
     {
         sailSpeed += Modifier;
     }
+    public void ChangeRange(float Modifier)
+    {
+        range += Modifier;
+    }
+    public void ChangeHullHealth(float Modifier)
+    {
+        hullHealth += Modifier;
+    }
     public void ChangeSailHealth(float Modifier, int Index)
     {
-        sailHealth += Modifier;
-    }
-    public void ChangeCannons(int Modifier)
-    {
-        cannons += Modifier;
-    }
+        sailHealth[Index] += Modifier;
+        averageSailHealth = (sailHealth[0] + sailHealth[1] + sailHealth[2]) / sailHealth.Length;
+        if (sailsLifted == false)
+        {
+            sailSpeed = (averageSailHealth / sailHealthMax);
+        }
+        if (sailHealth[Index] < 0) sailHealth[Index] = 0;
 
+    }
+        
     //Get em
-    public float GetSailHealth {
+    public bool GetSailsLifted {
+        get { return sailsLifted; }
+    }
+    public float[] GetSailHealth {
         get { return sailHealth; }
+    }
+    public float GetAverageSailHealth
+    {
+        get { return averageSailHealth; }
+    }
+    public float GetRange
+    {
+        get { return range; }
     }
     public float GetSailHealthMax
     {
         get { return sailHealthMax; }
     }
-    public float GetSailSpeedMax
+    public float GetHullHealthMax
     {
-        get { return sailSpeedMax; }
+        get { return hullHealthMax; }
+    }
+    public float GetHullHealth
+    {
+        get { return hullHealth; }
     }
     public float GetSailSpeed
     {
         get { return sailSpeed; }
     }
-    public float GetDamage
+    public float GetReloadRate
     {
-        get { return damage; }
+        get { return reloadRate; }
     }
-    public float GetTurningSpeed
-    {
-        get { return turningSpeed; }
-    }
-    public int GetCannons
-    {
-        get { return cannons; }
-    }
- 
-
     // Update is called once per frame
-    void Update () {
-	
-	}
+    void FixedUpdate () {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            ChangeSailHealth(-10,0);
+            ChangeSailHealth(-10, 1);
+            ChangeSailHealth(-10, 2);
+
+
+        }
+    }
 }

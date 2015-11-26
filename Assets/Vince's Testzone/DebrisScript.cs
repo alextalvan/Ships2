@@ -2,44 +2,73 @@
 using System.Collections;
 using System.Collections.Generic;
 
+//Turns Ship's Add's into a debri (rigidbody object with force applied)
 public class DebrisScript : MonoBehaviour
 {
     Rigidbody debrisBody;
     List<Transform> smallChildren = new List<Transform>();
+    float existanceTime;
 
     void Awake()
     {
-
-        //If it has Children also turn children into Debris (Used for sails and bigger objects) 
-        if (transform.childCount > 0)
+        if (transform.CompareTag("Hull") || transform.CompareTag("Mast"))
         {
-            for (int i = 0; i < transform.childCount; i++)
+            if (transform.childCount > 0)
             {
-                if (transform.GetChild(i).name == "Small")
+                for (int i = 0; i < transform.childCount; i++)
                 {
-                    smallChildren.Add(transform.GetChild(i));
+                    if (transform.GetChild(i).name == "Small")
+                    {
+                        smallChildren.Add(transform.GetChild(i));
+
+                    }
+                }
+                foreach (Transform child in smallChildren)
+                {
+                    child.gameObject.AddComponent<SmallDebrisScript>();
                 }
             }
-            foreach (Transform child in smallChildren)
+            if (GetComponent<Rigidbody>() == null)
             {
-                child.gameObject.AddComponent<SmallDebrisScript>();
+                debrisBody = gameObject.AddComponent<Rigidbody>();
             }
+            debrisBody = gameObject.GetComponent<Rigidbody>();
+            debrisBody.useGravity = true;
+            debrisBody.isKinematic = false;
+
+            if (transform.CompareTag("Hull"))
+            {
+                //wood particle
+                //i believe it's magic
+                debrisBody.AddExplosionForce(390, transform.position, 200, 0.5f);
+                debrisBody.AddForce(-transform.forward * 100);
+                debrisBody.AddRelativeTorque(5, 5, 5);
+            }
+            else if (transform.CompareTag("Mast"))
+            {
+                //so magic
+                //sail particle
+                debrisBody.AddForce(transform.forward * 10);
+                debrisBody.AddRelativeTorque(70, 5, 5);
+            }
+
+            transform.parent = null;
+            transform.tag = "Untagged";
+            name = "Debris";
         }
+    }
+    void FixedUpdate() {
+        existanceTime += Time.fixedDeltaTime;
 
-
-        if (GetComponent<Rigidbody>() == null)
+        if (transform.position.y < 0 || existanceTime >= 5 && transform.CompareTag("Hull"))
         {
-            debrisBody = gameObject.AddComponent<Rigidbody>();
+            Destroy(this.gameObject);
         }
-        debrisBody = gameObject.GetComponent<Rigidbody>();
-        debrisBody.useGravity = true;
-        debrisBody.isKinematic = false;
-        //debrisBody.AddForce(((transform.up + transform.position) * 2) * debrisBody.mass);
-        debrisBody.AddExplosionForce(250, transform.position, 50, 25);
-        transform.parent = null;
-        name = "Debris";
-        Destroy(this);
-
+        if (transform.position.y < 0 || existanceTime >= 10 && transform.CompareTag("Mast"))
+        {
+            Destroy(this.gameObject);
+        }
 
     }
+
 }
