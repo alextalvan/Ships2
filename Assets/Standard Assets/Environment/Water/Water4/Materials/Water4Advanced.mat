@@ -181,6 +181,10 @@ Material:
         second: 1.67142856
       data:
         first:
+          name: _CustomTime
+        second: 254.944351
+      data:
+        first:
           name: _HeightDisplacement
         second: 3.27225137
       data:
@@ -199,10 +203,6 @@ Material:
         first:
           name: _RefrDistort
         second: 1.43932855
-      data:
-        first:
-          name: _CustomTime
-        second: 91.5090714
       data:
         first:
           name: _Displacement
@@ -282,6 +282,10 @@ Material:
         second: {r: 1, g: 1, b: .100000001, a: .100000001}
       data:
         first:
+          name: _ReflectionTex_ST
+        second: {r: 1, g: 1, b: 0, a: 0}
+      data:
+        first:
           name: _DistortParams
         second: {r: 1.43999994, g: .242857143, b: 1.85306406, a: -.531428456}
       data:
@@ -356,10 +360,6 @@ Material:
         first:
           name: _RefractionFog
         second: {r: .505434752, g: .505434752, b: .505434752, a: .5}
-      data:
-        first:
-          name: _ReflectionTex_ST
-        second: {r: 1, g: 1, b: 0, a: 0}
       data:
         first:
           name: _RefrColor

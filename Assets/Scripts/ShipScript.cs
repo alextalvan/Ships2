@@ -153,8 +153,8 @@ public class ShipScript : NetworkBehaviour
         Vector3 forward = new Vector3(transform.forward.x, 0f, transform.forward.z).normalized;
         float cureMod = (GetComponent<CustomOnlinePlayer>().currentCureCarrier == transform) ? CureScript.cureCarrierSpeedDebuff : 1f;
 
-        float baseWeight = shipAttributes.BasicSpeed * 1;
-        float sailWeight = shipAttributes.BasicSpeed * 0f;
+        float baseWeight = shipAttributes.BasicSpeed * 0.25f;
+        float sailWeight = shipAttributes.BasicSpeed * 0.75f;
 
         float totalSpeed = (baseWeight + sailWeight * shipAttributes.SailSpeedModifier) * cureMod;
 
@@ -272,7 +272,7 @@ public class ShipScript : NetworkBehaviour
     void DrawTraject(Vector3 startPos, Vector3 force)
     {
         int areaSegments = 25;
-        float areaRadius = 5f;
+        float areaRadius = 10f;
         List<Vector3> trajectoryPoints = new List<Vector3>();
         //List<Vector3> circumferencePoints = new List<Vector3>();
         Vector3 startVelocity = force * Time.fixedDeltaTime;
