@@ -16,12 +16,12 @@ public class GUIDialog : MonoBehaviour
 			*/
 	}
 
-	public void Disable()
+	public virtual void Disable()
 	{
 		gameObject.SetActive (false);
 	}
 
-	public void Enable()
+	public virtual void Enable()
 	{
 		gameObject.SetActive (true);
 	}

@@ -34,11 +34,22 @@ public class CustomOnlinePlayer : NetworkBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
-        onlineRef = GameObject.Find("OnlineSceneReferences").GetComponent<OnlineSceneReferences>();
-        clientCure = onlineRef.clientCure;
-
+        
+		onlineRef = GameObject.Find("OnlineSceneReferences").GetComponent<OnlineSceneReferences>();
+		//GameObject.Find ("OnlineSceneReferences").GetComponent<OnlineSceneReferences> ()
+		ClientSideSetup ();
 		//test
 		ServersideSetup ();
+	}
+
+	[ClientCallback]
+	void ClientSideSetup()
+	{
+
+		clientCure = onlineRef.clientCure;
+
+		if (isLocalPlayer)
+			onlineRef.UpgradeScreen.SetTargetPlayer (this);
 	}
 
 	[ServerCallback]

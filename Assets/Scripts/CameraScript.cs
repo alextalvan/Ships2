@@ -20,6 +20,13 @@ public class CameraScript : MonoBehaviour
     private Vector3 orbitDistance;
     private float rotation;
 
+	/*bool isRotationEnabled = true;
+
+	public void ToggleRotation(bool value)
+	{
+		isRotationEnabled = value;
+	}*/
+
     // Use this for initialization
     void Start()
     {

@@ -70,4 +70,6 @@ public class OnlineSceneReferences : MonoBehaviour {
 		UIConsole.Log ("Changed interpolation to " + interpSlider.value);
 	}
 
+	public ClientUpgradeScreen UpgradeScreen;
+
 }
