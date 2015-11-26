@@ -66,6 +66,10 @@ public class ShipAttributes : MonoBehaviour {
     public void ChangeHullHealth(float Modifier)
     {
         hullHealth += Modifier;
+        if (hullHealth > hullHealthMax)
+        {
+            hullHealth = hullHealthMax;
+        }
     }
     public void ChangeSailHealth(float Modifier, int Index)
     {
@@ -76,6 +80,10 @@ public class ShipAttributes : MonoBehaviour {
             sailSpeed = (averageSailHealth / sailHealthMax);
         }
         if (sailHealth[Index] < 0) sailHealth[Index] = 0;
+        if (sailHealth[Index] > sailHealthMax )
+        {
+            sailHealth[Index] = sailHealthMax;
+        }
 
     }
         
