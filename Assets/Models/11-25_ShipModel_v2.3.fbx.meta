@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 49619de5646fcd244b95b75800204f7e
-timeCreated: 1448536577
+guid: a8dfc8a2e6d277e48a8c0098cd89fccc
+timeCreated: 1448558453
 licenseType: Free
 ModelImporter:
   serializedVersion: 18
@@ -259,67 +259,67 @@ ModelImporter:
     3300116: Small (5)
     3300118: Small (6)
     3300120: Small (9)
-    4300000: Hull
-    4300002: Sails_Front_1
-    4300004: Sails_Front_2
-    4300006: Sails_Mid_1
-    4300008: Sails_Mid_2
-    4300010: Sails_Rare_1
-    4300012: 'Sails_Rare_2 '
-    4300014: Armor
-    4300016: Armor (2)
-    4300018: Armor (3)
-    4300020: Armor (4)
-    4300022: Armor (5)
-    4300024: Armor (6)
-    4300026: Armor (7)
-    4300028: Armor (8)
-    4300030: Armor (9)
-    4300032: Armor (10)
-    4300034: Armor (11)
-    4300036: Armor (12)
-    4300038: Armor (13)
-    4300040: Armor (14)
-    4300042: Armor (15)
-    4300044: Armor (16)
-    4300046: Armor (17)
-    4300048: Armor (18)
-    4300050: Armor (19)
-    4300052: Armor (20)
-    4300054: Armor (21)
-    4300056: Armor (22)
-    4300058: Armor (23)
-    4300060: Armor (24)
-    4300062: Armor (25)
-    4300064: Armor (26)
-    4300066: Armor (27)
-    4300068: Armor (28)
-    4300070: Front_Mast base
-    4300072: 'Front Mast '
-    4300074: Mid_Mast base
-    4300076: Mast Horiz Mid_2
-    4300078: Small (9)
-    4300080: Small (10)
-    4300082: Mast mid
-    4300084: Mast Horiz Mid_1
-    4300086: Small
-    4300088: Small (2)
-    4300090: Mast high
-    4300092: Rare_Mast base (2)
-    4300094: Mast low (2)
-    4300096: Mast Horiz Mid_2 (2)
-    4300098: Small (5)
-    4300100: Small (6)
-    4300102: Mast mid (2)
-    4300104: Mast Horiz Rare
-    4300106: Small (3)
-    4300108: Small (4)
-    4300110: Mast high (2)
-    4300112: R_front_L
-    4300114: R_front_R
-    4300116: R_middle_L
-    4300118: R_middle_R
-    4300120: R_Back
+    4300000: R_front_L
+    4300002: R_front_R
+    4300004: R_middle_L
+    4300006: R_middle_R
+    4300008: R_Back
+    4300010: Sails_Front_1
+    4300012: Sails_Front_2
+    4300014: Sails_Mid_1
+    4300016: Sails_Mid_2
+    4300018: Sails_Rare_1
+    4300020: 'Sails_Rare_2 '
+    4300022: Armor
+    4300024: Armor (2)
+    4300026: Armor (3)
+    4300028: Armor (4)
+    4300030: Armor (5)
+    4300032: Armor (6)
+    4300034: Armor (7)
+    4300036: Armor (8)
+    4300038: Armor (9)
+    4300040: Armor (10)
+    4300042: Armor (11)
+    4300044: Armor (12)
+    4300046: Armor (13)
+    4300048: Armor (14)
+    4300050: Armor (15)
+    4300052: Armor (16)
+    4300054: Armor (17)
+    4300056: Armor (18)
+    4300058: Armor (19)
+    4300060: Armor (20)
+    4300062: Armor (21)
+    4300064: Armor (22)
+    4300066: Armor (23)
+    4300068: Armor (24)
+    4300070: Armor (25)
+    4300072: Armor (26)
+    4300074: Armor (27)
+    4300076: Armor (28)
+    4300078: Front_Mast base
+    4300080: 'Front Mast '
+    4300082: Mid_Mast base
+    4300084: Mast Horiz Mid_2
+    4300086: Small (9)
+    4300088: Small (10)
+    4300090: Mast mid
+    4300092: Mast Horiz Mid_1
+    4300094: Small
+    4300096: Small (2)
+    4300098: Mast high
+    4300100: Rare_Mast base (2)
+    4300102: Mast low (2)
+    4300104: Mast Horiz Mid_2 (2)
+    4300106: Small (5)
+    4300108: Small (6)
+    4300110: Mast mid (2)
+    4300112: Mast Horiz Rare
+    4300114: Small (3)
+    4300116: Small (4)
+    4300118: Mast high (2)
+    4300120: Hull
   materials:
     importMaterials: 1
     materialName: 0

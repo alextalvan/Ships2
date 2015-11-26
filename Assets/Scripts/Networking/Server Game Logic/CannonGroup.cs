@@ -37,7 +37,7 @@ public class CannonGroup : MonoBehaviour
 	private void ReloadCannons()
 	{
 		if (currentCharge < cannonsCount)
-			currentCharge += Time.deltaTime * shipAttributes.GetReloadRateModifier;
+			currentCharge += Time.deltaTime * shipAttributes.ReloadRateModifier;
 	}
 
 	//[Client]

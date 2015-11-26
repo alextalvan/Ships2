@@ -33,18 +33,18 @@ public class SailOnline : MonoBehaviour
 
     public void Repair(float amount)
     {
-        if (currentHealth < shipAttributes.GetSailMaxHealth)
+        if (currentHealth < shipAttributes.SailMaxHealth)
         {
             currentHealth += amount;
             GetComponent<PlayerCaptionController>().RpcPushDebugText("My sail got repaired for " + amount + ". Current sail health: " + currentHealth);
 
-            if (currentHealth > shipAttributes.GetSailMaxHealth)
-                currentHealth = shipAttributes.GetSailMaxHealth;
+            if (currentHealth > shipAttributes.SailMaxHealth)
+                currentHealth = shipAttributes.SailMaxHealth;
         }
     }
 
     public void Reset()
     {
-        currentHealth = shipAttributes.GetSailMaxHealth;
+        currentHealth = shipAttributes.SailMaxHealth;
     }
 }

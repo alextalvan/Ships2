@@ -58,11 +58,8 @@ public class PlayerRespawn : NetworkBehaviour
         GetComponent<Rigidbody>().velocity = Vector3.zero;
         GetComponent<OnlinePlayerInput>().Reset();
         GetComponent<OnlinePlayerInput>().enabled = true;
-        GetComponent<BuoyancyScript>().Reset();
-        //GetComponent<BuoyancyScript>().enabled = true;
         GetComponent<ShipScript>().RpcChangeCameraState(true);
-        GetComponent<HullOnline>().Reset();
-
+        GetComponent<ShipAttributesOnline>().Reset();
 
         Vector3 spawnPos = GameObject.Find("RespawnManager").GetComponent<RespawnPointsManager>().GetRespawnPoint();
 
