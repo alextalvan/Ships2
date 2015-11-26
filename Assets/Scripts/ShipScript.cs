@@ -246,7 +246,7 @@ public class ShipScript : NetworkBehaviour
                     Transform centerCannon = leftSide.GetChild(0);
                     float projectileMass = currentProjectileType.GetComponent<Rigidbody>().mass;
                     float upwardsModifier = currentProjectileType.GetComponent<Projectile>().UpwardsModifier;
-                    UIConsole.Log(upwardsModifier.ToString());
+                    //UIConsole.Log(upwardsModifier.ToString());
                     Vector3 forwardDirection = new Vector3(centerCannon.forward.x, 0f, centerCannon.forward.z).normalized;
                     Vector3 force = (Vector3.up * upwardsModifier + (forwardDirection * 5000f)) * projectileMass;
 
@@ -260,7 +260,7 @@ public class ShipScript : NetworkBehaviour
                     Transform centerCannon = rightSide.GetChild(0);
                     float projectileMass = currentProjectileType.GetComponent<Rigidbody>().mass;
                     float upwardsModifier = currentProjectileType.GetComponent<Projectile>().UpwardsModifier;
-                    UIConsole.Log(upwardsModifier.ToString());
+                    //UIConsole.Log(upwardsModifier.ToString());
                     Vector3 forwardDirection = new Vector3(centerCannon.forward.x, 0f, centerCannon.forward.z).normalized;
                     Vector3 force = (Vector3.up * upwardsModifier + (forwardDirection * 5000f)) * projectileMass;
 
@@ -283,7 +283,7 @@ public class ShipScript : NetworkBehaviour
         int areaSegments = 25;
         float areaRadius = 5f;
         List<Vector3> trajectoryPoints = new List<Vector3>();
-        List<Vector3> circumferencePoints = new List<Vector3>();
+        //List<Vector3> circumferencePoints = new List<Vector3>();
         Vector3 startVelocity = force * Time.fixedDeltaTime;
 
         int maxVerts = 999;
@@ -365,7 +365,7 @@ public class ShipScript : NetworkBehaviour
     [ServerCallback]
     private void Shoot(Transform side)
     {
-        float rangeMultiplier = GetComponent<ShipAttributesOnline>().shootRangeMultiplier;
+        //float rangeMultiplier = GetComponent<ShipAttributesOnline>().shootRangeMultiplier;
 
         for (int i = 0; i < (int)shotPower; i++)
         {

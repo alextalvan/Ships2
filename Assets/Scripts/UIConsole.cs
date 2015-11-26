@@ -35,15 +35,15 @@ public class UIConsole : MonoBehaviour
 		Instance.hide = !enabled;
 	}
 
-	static public void Log(string message)
+	static public void Log(object message)
 	{
 		Instance.PushDebugLine (message);
 	}
 
-	public void PushDebugLine(string message)
+	public void PushDebugLine(object message)
 	{
 		Debug.Log (message);
-		_mainText += message;
+		_mainText += message.ToString();
 		_mainText += "\n";
 	}
 

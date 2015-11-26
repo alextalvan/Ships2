@@ -57,7 +57,7 @@ public class ShipAttributesOnline : NetworkBehaviour {
 		GetComponent<HullOnline> ().Reset ();
 		sailHealth = sailMaxHealth = 100f;
 		//crewCount = 20;
-		speed = 5f;
+		speed = 7.5f;
 
 		damage = 5f;
 		shootRangeMultiplier = 1.0f;

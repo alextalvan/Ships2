@@ -11,11 +11,11 @@ public class HullOnline : MonoBehaviour {
 
 	bool isDead = false;
 
-	OnlineSceneReferences onlineRef;
+	//OnlineSceneReferences onlineRef;
 	
 	void Start()
 	{
-		onlineRef = GameObject.Find ("OnlineSceneReferences").GetComponent<OnlineSceneReferences> ();
+		//onlineRef = GameObject.Find ("OnlineSceneReferences").GetComponent<OnlineSceneReferences> ();
 	}
 
 	public void Reset()
