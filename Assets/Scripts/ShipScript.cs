@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.Networking;
 using System.Collections.Generic;
-using System;
 
 /// <summary>
 /// 
@@ -9,26 +8,21 @@ using System;
 [RequireComponent(typeof(Rigidbody), typeof(Collider), typeof(ShipAttributesOnline))]
 public class ShipScript : NetworkBehaviour
 {
-    private enum Seals { Opened, Closed };
-    private Seals currentSealsState = Seals.Closed;
+    private ShipAttributesOnline shipAttributes;
 
     private const float CUBE_GIZMOS_SIZE = 0.5f;
     private const float SPHERE_GIZMOS_SIZE = 0.1f;
 
-    //    [SerializeField]
-    //    float movementSpeed = 5f;
-    //    [SerializeField]
-    //    float turningSpeed = 5f;
-    //    [SerializeField]
-    //    float chargingSpeed = 5f;
+    private enum Seals { Opened, Closed };
+    private Seals currentSealsState = Seals.Closed;
+
+    private enum State { Idle, Charging };
+    private State currentState = State.Idle;
 
     [SerializeField]
     Transform rightSide = null;
     [SerializeField]
     Transform leftSide = null;
-
-    private enum State { Idle, Charging };
-    private State currentState = State.Idle;
 
     private GameObject currentProjectileType;
     private GameObject projectileType1Prefab;
@@ -49,12 +43,6 @@ public class ShipScript : NetworkBehaviour
     private bool prevShootState = false;
     private bool prevMoveState = false;
 
-    [SerializeField]
-    private float forwardMovementModifier = 7.5f;
-
-    [SerializeField]
-    private float steeringModifier = 250f;
-
     private LineRenderer trajectoryRenderer;
 
     //client trajectory fixing
@@ -66,6 +54,7 @@ public class ShipScript : NetworkBehaviour
     // Use this for initialization
     void Start()
     {
+        shipAttributes = GetComponent<ShipAttributesOnline>();
         objRigidBody = GetComponent<Rigidbody>();
         objBounds = GetComponent<Collider>().bounds;
 
@@ -146,9 +135,6 @@ public class ShipScript : NetworkBehaviour
     [ServerCallback]
     private void ControlSails()
     {
-        //float movementSpeed = GetComponent<ShipAttributesOnline>().speed;
-        //float turningSpeed = GetComponent<ShipAttributesOnline>().speed;
-
         bool currMoveState = onlineInput.GetInputValue(OnlinePlayerInput.PlayerControls.BACK);
 
         if (currMoveState && !prevMoveState)
@@ -167,8 +153,13 @@ public class ShipScript : NetworkBehaviour
         Vector3 forward = new Vector3(transform.forward.x, 0f, transform.forward.z).normalized;
         float cureMod = (GetComponent<CustomOnlinePlayer>().currentCureCarrier == transform) ? CureScript.cureCarrierSpeedDebuff : 1f;
 
+        float baseWeight = shipAttributes.GetBasicSpeed * 1;
+        float sailWeight = shipAttributes.GetBasicSpeed * 0f;
+
+        float totalSpeed = (baseWeight + sailWeight * shipAttributes.GetSailSpeedModifier) * cureMod;
+
         if (currentSealsState == Seals.Opened)
-            objRigidBody.AddForce(forward * objRigidBody.mass * forwardMovementModifier * cureMod);
+            objRigidBody.AddForce(forward * objRigidBody.mass * totalSpeed);
     }
 
     [ServerCallback]
@@ -179,13 +170,13 @@ public class ShipScript : NetworkBehaviour
 
         if (onlineInput.GetInputValue(OnlinePlayerInput.PlayerControls.LEFT))
         {
-            objRigidBody.AddForceAtPosition(right * (objRigidBody.mass + currentHorizonSpeed * steeringModifier), transform.position - (transform.forward * objBounds.extents.z) - (transform.up * objBounds.extents.y));
-            objRigidBody.AddForceAtPosition(-right * (objRigidBody.mass + currentHorizonSpeed * steeringModifier), transform.position + (transform.forward * objBounds.extents.z) - (transform.up * objBounds.extents.y));
+            objRigidBody.AddForceAtPosition(right * (objRigidBody.mass + currentHorizonSpeed * shipAttributes.GetSteeringModifier), transform.position - (transform.forward * objBounds.extents.z) - (transform.up * objBounds.extents.y));
+            objRigidBody.AddForceAtPosition(-right * (objRigidBody.mass + currentHorizonSpeed * shipAttributes.GetSteeringModifier), transform.position + (transform.forward * objBounds.extents.z) - (transform.up * objBounds.extents.y));
         }
         if (onlineInput.GetInputValue(OnlinePlayerInput.PlayerControls.RIGHT))
         {
-            objRigidBody.AddForceAtPosition(-right * (objRigidBody.mass + currentHorizonSpeed * steeringModifier), transform.position - (transform.forward * objBounds.extents.z) - (transform.up * objBounds.extents.y));
-            objRigidBody.AddForceAtPosition(right * (objRigidBody.mass + currentHorizonSpeed * steeringModifier), transform.position + (transform.forward * objBounds.extents.z) - (transform.up * objBounds.extents.y));
+            objRigidBody.AddForceAtPosition(-right * (objRigidBody.mass + currentHorizonSpeed * shipAttributes.GetSteeringModifier), transform.position - (transform.forward * objBounds.extents.z) - (transform.up * objBounds.extents.y));
+            objRigidBody.AddForceAtPosition(right * (objRigidBody.mass + currentHorizonSpeed * shipAttributes.GetSteeringModifier), transform.position + (transform.forward * objBounds.extents.z) - (transform.up * objBounds.extents.y));
         }
     }
 
@@ -247,7 +238,7 @@ public class ShipScript : NetworkBehaviour
                     float projectileMass = currentProjectileType.GetComponent<Rigidbody>().mass;
                     float upwardsModifier = currentProjectileType.GetComponent<Projectile>().UpwardsModifier;
                     //UIConsole.Log(upwardsModifier.ToString());
-                    Vector3 forwardDirection = new Vector3(centerCannon.forward.x, 0f, centerCannon.forward.z).normalized;
+                    Vector3 forwardDirection = new Vector3(centerCannon.forward.x, 0f, centerCannon.forward.z).normalized * shipAttributes.GetRangeMultiplier;
                     Vector3 force = (Vector3.up * upwardsModifier + (forwardDirection * 5000f)) * projectileMass;
 
                     DrawTraject(centerCannon.position, force);
@@ -262,7 +253,7 @@ public class ShipScript : NetworkBehaviour
                     float upwardsModifier = currentProjectileType.GetComponent<Projectile>().UpwardsModifier;
                     //UIConsole.Log(upwardsModifier.ToString());
                     Vector3 forwardDirection = new Vector3(centerCannon.forward.x, 0f, centerCannon.forward.z).normalized;
-                    Vector3 force = (Vector3.up * upwardsModifier + (forwardDirection * 5000f)) * projectileMass;
+                    Vector3 force = (Vector3.up * upwardsModifier + (forwardDirection * 5000f)) * projectileMass * shipAttributes.GetRangeMultiplier;
 
                     DrawTraject(centerCannon.position, force);
                 }
@@ -349,7 +340,7 @@ public class ShipScript : NetworkBehaviour
                 break;
             case State.Charging:
                 CheckSide(camVec);
-                float chargingSpeed = GetComponent<ShipAttributesOnline>().cannonChargeRate;
+                float chargingSpeed = shipAttributes.GetCannonChargeRate;
 
                 if (shotPower < activeCannons.CurrentCharge)
                     shotPower += Time.deltaTime * chargingSpeed;
@@ -365,8 +356,6 @@ public class ShipScript : NetworkBehaviour
     [ServerCallback]
     private void Shoot(Transform side)
     {
-        //float rangeMultiplier = GetComponent<ShipAttributesOnline>().shootRangeMultiplier;
-
         for (int i = 0; i < (int)shotPower; i++)
         {
             Transform cannon = activeSide.GetChild(i);
@@ -375,7 +364,7 @@ public class ShipScript : NetworkBehaviour
             float upwardsModifier = currentProjectileType.GetComponent<Projectile>().UpwardsModifier;
 
             Vector3 forwardDirection = new Vector3(cannon.forward.x, 0f, cannon.forward.z).normalized;
-            Vector3 force = (Vector3.up * upwardsModifier + (forwardDirection * 5000f)) * projectileMass; //* rangeMultiplier;
+            Vector3 force = (Vector3.up * upwardsModifier + (forwardDirection * 5000f)) * projectileMass * shipAttributes.GetRangeMultiplier;
 
             projectile.GetComponent<Rigidbody>().AddForce(force);
             projectile.GetComponent<Projectile>().owner = GetComponent<CustomOnlinePlayer>();

@@ -1,51 +1,61 @@
 ﻿using UnityEngine;
-using System.Collections;
-using UnityEngine.Networking;
 
-//server only
-public class HullOnline : MonoBehaviour {
+[RequireComponent(typeof(Collider))]
+public class HullOnline : MonoBehaviour
+{
+    private BuoyancyScript buoyancy;
+    [SerializeField]
+    private ShipAttributesOnline shipAttributes;
 
+    private float currentHealth;
 
-	float currentHealth;
-	//float maxHealth;
+    public BuoyancyScript SetBuoyancy
+    {
+        set { buoyancy = value; }
+    }
 
-	bool isDead = false;
+    public float CurrentHealth
+    {
+        get { return currentHealth; }
+        set { currentHealth = value; }
+    }
 
-	//OnlineSceneReferences onlineRef;
-	
-	void Start()
-	{
-		//onlineRef = GameObject.Find ("OnlineSceneReferences").GetComponent<OnlineSceneReferences> ();
-	}
+    public void Reset()
+    {
+        currentHealth = shipAttributes.GetHullMaxHealth;
+        UIConsole.Log(currentHealth);
+        buoyancy.Reset();
+    }
 
-	public void Reset()
-	{
-		currentHealth = GetComponent<ShipAttributesOnline> ().hullMaxHealth;
-		isDead = false;
-	}
+    public void Damage(Vector3 position, float damage, float radius)
+    {
+        if (currentHealth <= 0f)
+            return;
 
+        currentHealth -= damage;
+        
+        //currentHealth = buoyancy.GetTotalBuoyancyState - buoyancy.GetBuoyancyLimit;
 
-	public void Damage(float amount)
-	{
-		if (isDead)
-			return;
+        //buoyancy.ChangeBuoyancy(position, damage, radius);
+        GetComponent<PlayerCaptionController>().RpcPushDebugText("My hull got damaged for " + damage + " damage. Remaining health: " + currentHealth);
 
+        if (currentHealth <= 0f)
+        {
+            currentHealth = 0f;
+            shipAttributes.IsDead = true;
+            shipAttributes.OnDeath();
+        }
+    }
 
+    public void Repair(float amount)
+    {
+        if (currentHealth < shipAttributes.GetSailMaxHealth)
+        {
+            currentHealth += amount;
+            GetComponent<PlayerCaptionController>().RpcPushDebugText("My hull got repaired for " + amount + ". Current hull health: " + currentHealth);
 
-		currentHealth -= amount;
-		GetComponent<PlayerCaptionController> ().RpcPushDebugText ("My hull got damaged for " + amount + " damage. Remaining health: " + currentHealth);
-		if (currentHealth <= 0.001f) 
-		{
-			isDead = true;
-			OnDeath();
-		}
-		//
-	}
-
-	void OnDeath()
-	{
-		GetComponent<PlayerRespawn> ().StartRespawn ();
-	}
-
-
+            if (currentHealth > shipAttributes.GetSailMaxHealth)
+                currentHealth = shipAttributes.GetSailMaxHealth;
+        }
+    }
 }

@@ -3,7 +3,6 @@
 public class CannonGroup : MonoBehaviour
 {
 	private LineRenderer lineRenderer;
-	[SerializeField]
 	private ShipAttributesOnline shipAttributes;
 	private int cannonsCount;
 	private float currentCharge;
@@ -22,7 +21,8 @@ public class CannonGroup : MonoBehaviour
 	// Use this for initialization
 	void Start()
 	{
-		lineRenderer = GetComponent<LineRenderer>();
+        shipAttributes = transform.parent.GetComponent<ShipAttributesOnline>();
+        lineRenderer = GetComponent<LineRenderer>();
 		currentCharge = transform.childCount;
 		cannonsCount = transform.childCount;
 	}
@@ -37,7 +37,7 @@ public class CannonGroup : MonoBehaviour
 	private void ReloadCannons()
 	{
 		if (currentCharge < cannonsCount)
-			currentCharge += Time.deltaTime * shipAttributes.reloadSpeedModifier;
+			currentCharge += Time.deltaTime * shipAttributes.GetReloadRateModifier;
 	}
 
 	//[Client]

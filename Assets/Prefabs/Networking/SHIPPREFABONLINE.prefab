@@ -231,7 +231,6 @@ GameObject:
   - 114: {fileID: 11404418}
   - 114: {fileID: 11431938}
   - 120: {fileID: 12030438}
-  - 114: {fileID: 11416900}
   - 114: {fileID: 11438872}
   - 114: {fileID: 11468060}
   - 114: {fileID: 11441766}
@@ -680,7 +679,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 163324}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 45.6299896, y: 33.2609673, z: -7.11372089}
+  m_LocalPosition: {x: 74.4963303, y: 5.40950727, z: -56.5236206}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 424394}
@@ -1289,6 +1288,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f0773ea19fac064082eee658c77658e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shipAttributes: {fileID: 11444760}
 --- !u!114 &11404418
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1302,28 +1302,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rightSide: {fileID: 410520}
   leftSide: {fileID: 462520}
-  forwardMovementModifier: 7.5
-  steeringModifier: 250
---- !u!114 &11416900
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 163324}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3b368aeb2de1d747b311a8e74661f2f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hullMaxHealth: 5
-  sailHealth: 0
-  sailMaxHealth: 100
-  speed: 1
-  damage: 5
-  shootRangeMultiplier: 2
-  cannonChargeRate: 10
-  reloadSpeedModifier: 1
-  healthRegen: 0
 --- !u!114 &11418426
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1352,6 +1330,7 @@ MonoBehaviour:
   voxelsZ: 3
   voxelsYDownMod: 3
   centerOfMassYOffset: 2
+  buoyancyLimit: 70
 --- !u!114 &11438872
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1397,15 +1376,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3b368aeb2de1d747b311a8e74661f2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hullMaxHealth: 5
-  sailHealth: 0
+  sailParent: {fileID: 406018}
+  hullMaxHealth: 100
   sailMaxHealth: 100
-  speed: 1
-  damage: 5
+  basicSpeed: 25
+  steeringModifier: 250
   shootRangeMultiplier: 1
   cannonChargeRate: 5
-  reloadSpeedModifier: 1
-  healthRegen: 0
+  reloadRateModifier: 1
+  regenerationRate: 1
 --- !u!114 &11455306
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1433,7 +1412,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94591efdee799f4499c3d684581a2a35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shipAttributes: {fileID: 11444760}
 --- !u!114 &11468060
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1456,7 +1434,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94591efdee799f4499c3d684581a2a35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shipAttributes: {fileID: 11444760}
 --- !u!114 &11473494
 MonoBehaviour:
   m_ObjectHideFlags: 1

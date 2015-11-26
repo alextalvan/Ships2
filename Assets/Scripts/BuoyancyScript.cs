@@ -8,6 +8,8 @@ using System.Collections.Generic;
 [RequireComponent(typeof(Rigidbody), typeof(Collider))]
 public class BuoyancyScript : NetworkBehaviour
 {
+    private ShipAttributesOnline shipAttributes;
+
     private const float CUBE_GIZMOS_SIZE = 0.5f;
     private const float SPHERE_GIZMOS_SIZE = 0.25f;
 
@@ -33,6 +35,19 @@ public class BuoyancyScript : NetworkBehaviour
     private float objSize;
     private float totalBuoyancyState;
 
+
+ 
+
+    public float GetTotalBuoyancyState
+    {
+        get { return totalBuoyancyState; }
+    }
+
+    public float GetBuoyancyLimit
+    {
+        get { return buoyancyLimit; }
+    }
+
     void Awake()
     {
         if (NetworkManager.singleton != null && NetworkManager.singleton.isNetworkActive && !NetworkServer.active)
@@ -50,6 +65,7 @@ public class BuoyancyScript : NetworkBehaviour
         if (!enabled)
             return;
 
+        shipAttributes = GetComponent<ShipAttributesOnline>();
         objRigidBody = GetComponent<Rigidbody>();
 
         //Store initial position and rotation
@@ -162,6 +178,7 @@ public class BuoyancyScript : NetworkBehaviour
     {
         CalculatePhysics();
         UpdateTotalBuoyancy();
+        SinkDamagedVoxels(shipAttributes.IsDead);
     }
 
     /// <summary>
@@ -206,11 +223,14 @@ public class BuoyancyScript : NetworkBehaviour
         objRigidBody.AddForce(Physics.gravity * objRigidBody.mass);
     }
 
-    private void SinkDamagedVoxels()
+    private void SinkDamagedVoxels(bool dead)
     {
-        foreach (Voxel voxel in voxels)
+        if (dead)
         {
-            voxel.Sink();
+            foreach (Voxel voxel in voxels)
+            {
+                voxel.Sink();
+            }
         }
     }
 
@@ -249,12 +269,6 @@ public class BuoyancyScript : NetworkBehaviour
         }
 
         totalBuoyancyState /= voxels.Count;
-
-        if (totalBuoyancyState < buoyancyLimit)
-        {
-            GetComponent<HullOnline>().Damage(0.1f);
-            SinkDamagedVoxels();
-        }
     }
 
     public void Reset()

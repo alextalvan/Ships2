@@ -8,11 +8,11 @@ public class ProjectileType1 : Projectile
         SailOnline sails = collision.gameObject.GetComponent<SailOnline>();
         if (hull)
         {
-            collision.gameObject.GetComponent<BuoyancyScript>().ChangeBuoyancy(collision.contacts[0].point, hullDamage, damageRadius);
+            hull.Damage(collision.contacts[0].point, hullDamage, damageRadius);
         }
         else if (sails)
         {
-            //todo + masts
+            sails.Damage(sailDamage);
         } 
         Delete();
     }
