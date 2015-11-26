@@ -20,7 +20,7 @@ public class OnlineTransform : NetworkBehaviour {
 
 	//server
 	//float nextTime = 0.0f;
-	float _timeAccumulator = 0.0f;
+	float _timeAccumulator = 0f;
 
 	public void SetInterp(float value)
 	{
@@ -44,6 +44,8 @@ public class OnlineTransform : NetworkBehaviour {
 	{
 		prevPosition = newPosition = transform.position;
 		prevRotation = newRotation = transform.rotation;
+
+		PushSnapshot ();
 	}
 
 	void Update()
@@ -77,9 +79,9 @@ public class OnlineTransform : NetworkBehaviour {
 	void PushSnapshot()
 	{
 		_timeAccumulator += Time.deltaTime;
-		while (_timeAccumulator >= _sendRate) 
+		if(_timeAccumulator >= _sendRate) 
 		{
-			_timeAccumulator -= _sendRate;
+			_timeAccumulator %= _sendRate;
 			SendSnapshot();
 		}
 

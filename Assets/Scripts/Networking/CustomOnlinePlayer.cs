@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.Networking;
+using System.Collections.Generic;
 
 public class CustomOnlinePlayer : NetworkBehaviour {
 
@@ -22,13 +23,16 @@ public class CustomOnlinePlayer : NetworkBehaviour {
 
     Transform clientCure;
 
-    int mapPieces = 1;
+    public int mapPieces = 1;
 
     public float cureCarryTimeLeft = 60f;
 
 	[SyncVar]
 	public Color IndividualColor = Color.white;
 	public string IndividualName = "Player";
+
+	[SerializeField]
+	List<Renderer> _objectsToColor = new List<Renderer>();
 
     OnlineSceneReferences onlineRef;
 	// Use this for initialization
@@ -57,14 +61,23 @@ public class CustomOnlinePlayer : NetworkBehaviour {
 	{
 		Color c = new Color ( Mathf.Clamp01(Random.value + 0.25f), Mathf.Clamp01(Random.value + 0.25f), Mathf.Clamp01(Random.value + 0.25f));
 		//RpcSetColor(c);
-		GetComponent<Renderer> ().material.color = c;
+		//GetComponent<Renderer> ().material.color = c;
+		foreach (Renderer r in _objectsToColor) 
+		{
+			r.material.color = c;
+		}
+
 		IndividualColor = c;
 	}
 
 	[ClientCallback]
 	public void SyncColor()
 	{
-		GetComponent<Renderer> ().material.color = IndividualColor; 
+		//GetComponent<Renderer> ().material.color = IndividualColor; 
+		foreach (Renderer r in _objectsToColor) 
+		{
+			r.material.color = IndividualColor;
+		}
 	}
 
 	// Update 
@@ -82,7 +95,7 @@ public class CustomOnlinePlayer : NetworkBehaviour {
 		{
 			//clientCure.transform.parent = currentCureCarrier;
 			//clientCure.transform.localPosition = new Vector3 (0, 7, 0);
-			clientCure.transform.position = currentCureCarrier.transform.position + currentCureCarrier.transform.up * 7f;
+			clientCure.transform.position = currentCureCarrier.transform.position + currentCureCarrier.transform.up * 18f;
 			return;
 		} 
 		else

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.Networking;
 
 public class GameManager : MonoBehaviour {
 
@@ -14,9 +15,15 @@ public class GameManager : MonoBehaviour {
     public bool phase1Finished {  get { return !phase1inProgress; } }
     //float phase2Time = 600f;
 
+	[SerializeField]
+	GameObject chartPrefab;
+
 	// Use this for initialization
-	void Start () {
-	
+	void Start () 
+	{
+		//test
+		GameObject chart = (GameObject)Instantiate (chartPrefab);
+		NetworkServer.Spawn (chart);
 	}
 	
 	// Update is called once per frame

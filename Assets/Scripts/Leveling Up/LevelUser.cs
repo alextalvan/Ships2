@@ -30,8 +30,8 @@ public class LevelUser : NetworkBehaviour
 
 	public const int upgradeChoiceCount = 6;
 
-	
-	void GainEXP(int amount)
+
+	public void GainEXP(int amount)
 	{
 		_currentEXP += amount;
 		if (_currentEXP >= _nextLevelEXP && _level < _maxLevel) 

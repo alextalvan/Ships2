@@ -7,10 +7,11 @@ public class OnlineSceneReferences : MonoBehaviour {
 
 	void Start()
 	{
-		Cursor.visible = false;
+		//temp disabled cause annoying
+		//Cursor.visible = false;
 	}
 
-    //find lobbyplayer in all of the instances
+    //find player in all of the instances
     bool foundMyPlayer = false;
 
     private CustomOnlinePlayer _onlinePlayer = null;

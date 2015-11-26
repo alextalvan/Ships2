@@ -341,7 +341,7 @@ public class Voxel
 
     public void Sink()
     {
-        if (buoyancyState > 0f)
-            buoyancyState-=0.1f;
+        if (buoyancyState > 30f)
+            buoyancyState-=0.2f;
     }
 }

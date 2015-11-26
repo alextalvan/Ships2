@@ -106,10 +106,14 @@ public class ShipAttributesOnline : NetworkBehaviour
     {
         isDead = false;
         hullOnline.Reset();
+
+		/*
         foreach (SailOnline sail in sails)
         {
             sail.Reset();
-        }
+        }*/
+
+
         //shootRangeMultiplier = 1.0f;
         //reloadRateModifier = 1.0f;
         //cannonChargeRate = 5f;

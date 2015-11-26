@@ -37,7 +37,7 @@ public class HullOnline : MonoBehaviour
 
         if (currentHealth <= 0f)
         {
-            currentHealth = 0f;
+            //currentHealth = 0f;
             shipAttributes.IsDead = true;
             shipAttributes.OnDeath();
         }

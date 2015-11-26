@@ -10,7 +10,7 @@ public class ShipAttributes : MonoBehaviour {
 
     bool sailsLifted;
 
-    Upgrade upgrade;
+    //Upgrade upgrade;
     
     float averageSailHealth;
 
@@ -35,9 +35,11 @@ public class ShipAttributes : MonoBehaviour {
     [SerializeField]
     float range;
 
+	/*
     public void DoUpgrade() {
         upgrade.ApplyUpgrade();
     }
+    */
     //Change em
     public void SetSailsLifted(bool isLifted)
     {
