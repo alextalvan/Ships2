@@ -41,23 +41,23 @@ public class CannonGroup : MonoBehaviour
 	}
 
 	//[Client]
-	public void DrawArea(float charge)
+	public void DrawArea(float charge, float distance)
 	{
 		lineRenderer.SetVertexCount(6);
 		
-		Vector3 center = transform.GetChild(0).localPosition;
-		float difference = (transform.GetChild(cannonsCount - 1).localPosition - transform.GetChild(cannonsCount - 2).localPosition).magnitude/2;
+		Vector3 centerCannon = transform.GetChild(0).position;
+		float difference = (transform.GetChild(cannonsCount - 1).position - transform.GetChild(cannonsCount - 2).position).magnitude/2;
 		float chargeModifier = charge / cannonsCount;
 		
-		lineRenderer.SetPosition(0, center);
+		lineRenderer.SetPosition(0, centerCannon);
 		
-		lineRenderer.SetPosition(1, center + new Vector3(difference * chargeModifier, 0f, 0f));
-		lineRenderer.SetPosition(2, center + new Vector3(difference * chargeModifier * 2f, 0f, difference * 10f));
+		lineRenderer.SetPosition(1, centerCannon - transform.right * (difference * chargeModifier));
+		lineRenderer.SetPosition(2, centerCannon - transform.right * (difference * chargeModifier * 2f) + transform.forward * distance);
 		
-		lineRenderer.SetPosition(3, center + new Vector3(-difference * chargeModifier * 2f, 0f, difference * 10f));
-		lineRenderer.SetPosition(4, center + new Vector3(-difference * chargeModifier, 0f, 0f));
+		lineRenderer.SetPosition(3, centerCannon + transform.right * (difference * chargeModifier * 2f) + transform.forward * distance);
+        lineRenderer.SetPosition(4, centerCannon + transform.right * (difference * chargeModifier));
 		
-		lineRenderer.SetPosition(5, center);
+		lineRenderer.SetPosition(5, centerCannon);
 		
 		//lineRenderer.SetPosition(6, center + new Vector3(0f, 0f, difference * chargeModifier * 15f));
 	}

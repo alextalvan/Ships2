@@ -230,14 +230,12 @@ public class ShipScript : NetworkBehaviour
 
         if (startedPreviewingTrajectory)
         {
-
             if (Vector3.Dot(Camera.main.transform.forward, storedSideForward) > 0f)
             {
                 trajectoryRenderer.enabled = true;
                 if (storedSideIsLeft)
                 {
                     leftSide.GetComponent<LineRenderer>().enabled = true;
-                    leftSide.GetComponent<CannonGroup>().DrawArea(shotPower);
                     Transform centerCannon = leftSide.GetChild(0);
                     float projectileMass = currentProjectileType.GetComponent<Rigidbody>().mass;
                     float upwardsModifier = currentProjectileType.GetComponent<Projectile>().UpwardsModifier;
@@ -245,13 +243,13 @@ public class ShipScript : NetworkBehaviour
                     Vector3 forwardDirection = new Vector3(centerCannon.forward.x, 0f, centerCannon.forward.z).normalized * shipAttributes.RangeMultiplier;
                     Vector3 force = (Vector3.up * upwardsModifier + (forwardDirection * 5000f)) * projectileMass;
 
-                    DrawTraject(centerCannon.position, force);
+                    float shotDist = GetTrajectoryDistance(centerCannon.position, force);
+                    leftSide.GetComponent<CannonGroup>().DrawArea(shotPower, shotDist);
                 }
                 else
                 {
                     rightSide.GetComponent<LineRenderer>().enabled = true;
-                    rightSide.GetComponent<CannonGroup>().DrawArea(shotPower);
-
+                    
                     Transform centerCannon = rightSide.GetChild(0);
                     float projectileMass = currentProjectileType.GetComponent<Rigidbody>().mass;
                     float upwardsModifier = currentProjectileType.GetComponent<Projectile>().UpwardsModifier;
@@ -259,7 +257,8 @@ public class ShipScript : NetworkBehaviour
                     Vector3 forwardDirection = new Vector3(centerCannon.forward.x, 0f, centerCannon.forward.z).normalized;
                     Vector3 force = (Vector3.up * upwardsModifier + (forwardDirection * 5000f)) * projectileMass * shipAttributes.RangeMultiplier;
 
-                    DrawTraject(centerCannon.position, force);
+                    float shotDist = GetTrajectoryDistance(centerCannon.position, force);
+                    rightSide.GetComponent<CannonGroup>().DrawArea(shotPower, shotDist);
                 }
             }
         }
@@ -271,58 +270,29 @@ public class ShipScript : NetworkBehaviour
 
     }
 
-
     [ClientCallback]
-    void DrawTraject(Vector3 startPos, Vector3 force)
+    float GetTrajectoryDistance(Vector3 startPos, Vector3 force)
     {
-        int areaSegments = 25;
-        float areaRadius = 10f;
-        List<Vector3> trajectoryPoints = new List<Vector3>();
-        //List<Vector3> circumferencePoints = new List<Vector3>();
+        float maxDist = 999;
         Vector3 startVelocity = force * Time.fixedDeltaTime;
-
-        int maxVerts = 999;
 
         Vector3 position = startPos;
         Vector3 velocity = startVelocity;
 
-        for (int i = 0; i < maxVerts; i++)
+        for (int i = 0; i < maxDist; i++)
         {
             velocity += Physics.gravity * Time.fixedDeltaTime;
             position += velocity * Time.fixedDeltaTime;
 
             float waterLevel = WaterHelper.GetOceanHeightAt(new Vector2(position.x, position.z));
 
-            if (waterLevel < position.y)
+            if (waterLevel > position.y)
             {
-                trajectoryPoints.Add(position);
+                float dist = Vector3.Distance(startPos, position);
+                return dist;
             }
-            else
-            {
-                trajectoryRenderer.SetVertexCount(i + areaSegments + 1);
-
-                for (int p = 0; p < trajectoryPoints.Count; p++)
-                {
-                    trajectoryRenderer.SetPosition(p, new Vector3(trajectoryPoints[p].x, trajectoryPoints[p].y, trajectoryPoints[p].z));
-                }
-
-
-                float angle = 20f;
-
-                for (int s = 0; s < areaSegments + 1; s++)
-                {
-                    float x = (Mathf.Sin(Mathf.Deg2Rad * angle) * areaRadius) + trajectoryPoints[i - 1].x;
-                    float z = (Mathf.Cos(Mathf.Deg2Rad * angle) * areaRadius) + trajectoryPoints[i - 1].z;
-
-                    trajectoryRenderer.SetPosition(i + s, new Vector3(x, trajectoryPoints[i - 1].y, z));
-
-                    angle += (360f / areaSegments);
-                }
-                break;
-            }
-
-
         }
+        return 0f;
     }
 
     [ServerCallback]
