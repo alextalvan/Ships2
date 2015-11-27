@@ -123,14 +123,14 @@ public class ShipAttributesOnline : NetworkBehaviour
     [ServerCallback]
     public void UpdateSailsState()
     {
-        float totalHealth = 100f;
+        float totalSailHealth = 100f;
         foreach (SailOnline sail in sails)
         {
-            totalHealth += sail.CurrentHealth;
+            totalSailHealth += sail.CurrentHealth;
         }
-        totalHealth /= sails.Count;
-        totalHealth /= sailMaxHealth;
-        sailSpeedModifier = totalHealth;
+        totalSailHealth /= sails.Count;
+        totalSailHealth /= sailMaxHealth;
+        sailSpeedModifier = totalSailHealth;
     }
 
     // Update 

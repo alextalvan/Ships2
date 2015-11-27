@@ -9,6 +9,7 @@ TagManager:
   - Sail
   - Mast
   - Ship
+  - Projectile
   layers:
   - Default
   - TransparentFX

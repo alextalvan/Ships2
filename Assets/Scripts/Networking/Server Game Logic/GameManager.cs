@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour {
 	void Start () 
 	{
 		//test
-		GameObject chart = (GameObject)Instantiate (chartPrefab);
+		GameObject chart = Instantiate (chartPrefab);
 		NetworkServer.Spawn (chart);
 	}
 	

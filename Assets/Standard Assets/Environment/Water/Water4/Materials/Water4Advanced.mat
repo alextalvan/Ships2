@@ -169,6 +169,10 @@ Material:
         second: 313.218384
       data:
         first:
+          name: _InvFade
+        second: .628782988
+      data:
+        first:
           name: _FresnelScale
         second: .657142818
       data:
@@ -178,11 +182,7 @@ Material:
       data:
         first:
           name: _CustomTime
-        second: 183.314972
-      data:
-        first:
-          name: _InvFade
-        second: .628782988
+        second: 44.1435356
       data:
         first:
           name: _HeightDisplacement
@@ -266,11 +266,23 @@ Material:
         second: {r: 1, g: 1, b: 0, a: 0}
       data:
         first:
-          name: _ReflectionTex_ST
+          name: _BumpMap_ST
         second: {r: 1, g: 1, b: 0, a: 0}
       data:
         first:
-          name: _BumpMap_ST
+          name: _WaveScale
+        second: {r: .100000001, g: 1, b: .100000001, a: 0}
+      data:
+        first:
+          name: _Displacement
+        second: {r: 6.6371665, g: 20.3539829, b: -1, a: -.681415975}
+      data:
+        first:
+          name: _ShoreTiling
+        second: {r: 1, g: 1, b: .100000001, a: .100000001}
+      data:
+        first:
+          name: _ReflectionTex_ST
         second: {r: 1, g: 1, b: 0, a: 0}
       data:
         first:
@@ -340,18 +352,6 @@ Material:
         first:
           name: _GDirectionCD
         second: {r: .70338881, g: -.679999888, b: .717573524, a: -.200000003}
-      data:
-        first:
-          name: _WaveScale
-        second: {r: .100000001, g: 1, b: .100000001, a: 0}
-      data:
-        first:
-          name: _Displacement
-        second: {r: 6.6371665, g: 20.3539829, b: -1, a: -.681415975}
-      data:
-        first:
-          name: _ShoreTiling
-        second: {r: 1, g: 1, b: .100000001, a: .100000001}
       data:
         first:
           name: _DepthColor
