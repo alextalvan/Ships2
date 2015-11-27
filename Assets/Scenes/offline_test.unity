@@ -4173,11 +4173,11 @@ MonoBehaviour:
   m_PlayerPrefab: {fileID: 0}
   m_AutoCreatePlayer: 0
   m_PlayerSpawnMethod: 1
-  m_OfflineScene: offline_test
+  m_OfflineScene: 
   m_OnlineScene: 
   m_SpawnPrefabs:
   - {fileID: 107610, guid: 56f48a82cc2b10d4fa5ad7c6cb46c4b7, type: 2}
-  - {fileID: 163324, guid: 551dd1b5def485242abb9579ec47cc7f, type: 2}
+  - {fileID: 0}
   - {fileID: 107454, guid: 7cc19d15546aef54d86cacf78cfa2f21, type: 2}
   - {fileID: 193654, guid: cffcceacc3f5c1f4b998adedaa55a4ce, type: 2}
   - {fileID: 193654, guid: 3105119ba9c560945ba4ca03348f9cd7, type: 2}
@@ -4220,8 +4220,8 @@ MonoBehaviour:
   m_LobbyPlayerPrefab: {fileID: 11454796, guid: 56f48a82cc2b10d4fa5ad7c6cb46c4b7,
     type: 2}
   m_GamePlayerPrefab: {fileID: 0}
-  m_LobbyScene: offline_test
-  m_PlayScene: online_danila
+  m_LobbyScene: 
+  m_PlayScene: 
   lobbySlots: []
   addressField: localhost
   portField: 7777
