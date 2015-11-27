@@ -6715,6 +6715,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 606260338}
   - 20: {fileID: 606260337}
+  - 45: {fileID: 606260339}
   m_Layer: 0
   m_Name: SeaReflectionSceneCamera
   m_TagString: Untagged
@@ -6762,12 +6763,20 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 606260336}
-  m_LocalRotation: {x: -.0707796812, y: .926318347, z: .220805481, w: .296933681}
-  m_LocalPosition: {x: -603.169678, y: -157.84996, z: 793.493164}
+  m_LocalRotation: {x: -.382683456, y: 0, z: 0, w: .923879504}
+  m_LocalPosition: {x: 0, y: -29.960001, z: -26.8999996}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 18
+--- !u!45 &606260339
+Skybox:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 606260336}
+  m_Enabled: 1
+  m_CustomSkybox: {fileID: 0}
 --- !u!1 &607441724
 GameObject:
   m_ObjectHideFlags: 0
@@ -14588,7 +14597,7 @@ Transform:
   - {fileID: 1636548222}
   - {fileID: 877660435}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
 --- !u!1 &1065147559
 GameObject:
   m_ObjectHideFlags: 0
@@ -14687,10 +14696,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15c3a75830bc92344b0aae4f8a366d70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offset: {x: 30, y: 30, z: 30}
+  offset: {x: 30, y: 85, z: 30}
   rotationSpeed: 5
   rotationSpeedLimit: 25
-  angleOffset: 15
+  angleOffset: 20
   currentObject: {fileID: 2011414046}
 --- !u!1 &1065303707
 GameObject:

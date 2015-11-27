@@ -1,0 +1,398 @@
+fileFormatVersion: 2
+guid: bb06b2cf39ad940b0a9342b04939e769
+timeCreated: 1448552359
+licenseType: Free
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Armor
+    100004: Armor (10)
+    100006: Armor (11)
+    100008: Armor (12)
+    100010: Armor (13)
+    100012: Armor (14)
+    100014: Armor (15)
+    100016: Armor (16)
+    100018: Armor (17)
+    100020: Armor (18)
+    100022: Armor (19)
+    100024: Armor (2)
+    100026: Armor (20)
+    100028: Armor (21)
+    100030: Armor (22)
+    100032: Armor (23)
+    100034: Armor (24)
+    100036: Armor (25)
+    100038: Armor (26)
+    100040: Armor (27)
+    100042: Armor (28)
+    100044: Armor (3)
+    100046: Armor (4)
+    100048: Armor (5)
+    100050: Armor (6)
+    100052: Armor (7)
+    100054: Armor (8)
+    100056: Armor (9)
+    100058: Armors
+    100060: Cannon_L
+    100062: Cannon_R
+    100064: Cannons
+    100066: 'Front Mast '
+    100068: Front_Mast base
+    100070: Hull
+    100072: Mast high
+    100074: Mast high (2)
+    100076: Mast Horiz Mid_1
+    100078: Mast Horiz Mid_2
+    100080: Mast Horiz Mid_2 (2)
+    100082: Mast Horiz Rare
+    100084: Mast low (2)
+    100086: Mast mid
+    100088: Mast mid (2)
+    100090: Masts
+    100092: Mid_Mast base
+    100094: R_Back
+    100096: R_front_L
+    100098: R_front_R
+    100100: R_middle_L
+    100102: R_middle_R
+    100104: Railings
+    100106: Rare_Mast base (2)
+    100108: Sails
+    100110: Sails_Front_1
+    100112: Sails_Front_2
+    100114: Sails_Mid_1
+    100116: Sails_Mid_2
+    100118: Sails_Rare_1
+    100120: 'Sails_Rare_2 '
+    100122: Small
+    100124: Small (10)
+    100126: Small (2)
+    100128: Small (3)
+    100130: Small (4)
+    100132: Small (5)
+    100134: Small (6)
+    100136: Small (9)
+    400000: //RootNode
+    400002: Armor
+    400004: Armor (10)
+    400006: Armor (11)
+    400008: Armor (12)
+    400010: Armor (13)
+    400012: Armor (14)
+    400014: Armor (15)
+    400016: Armor (16)
+    400018: Armor (17)
+    400020: Armor (18)
+    400022: Armor (19)
+    400024: Armor (2)
+    400026: Armor (20)
+    400028: Armor (21)
+    400030: Armor (22)
+    400032: Armor (23)
+    400034: Armor (24)
+    400036: Armor (25)
+    400038: Armor (26)
+    400040: Armor (27)
+    400042: Armor (28)
+    400044: Armor (3)
+    400046: Armor (4)
+    400048: Armor (5)
+    400050: Armor (6)
+    400052: Armor (7)
+    400054: Armor (8)
+    400056: Armor (9)
+    400058: Armors
+    400060: Cannon_L
+    400062: Cannon_R
+    400064: Cannons
+    400066: 'Front Mast '
+    400068: Front_Mast base
+    400070: Hull
+    400072: Mast high
+    400074: Mast high (2)
+    400076: Mast Horiz Mid_1
+    400078: Mast Horiz Mid_2
+    400080: Mast Horiz Mid_2 (2)
+    400082: Mast Horiz Rare
+    400084: Mast low (2)
+    400086: Mast mid
+    400088: Mast mid (2)
+    400090: Masts
+    400092: Mid_Mast base
+    400094: R_Back
+    400096: R_front_L
+    400098: R_front_R
+    400100: R_middle_L
+    400102: R_middle_R
+    400104: Railings
+    400106: Rare_Mast base (2)
+    400108: Sails
+    400110: Sails_Front_1
+    400112: Sails_Front_2
+    400114: Sails_Mid_1
+    400116: Sails_Mid_2
+    400118: Sails_Rare_1
+    400120: 'Sails_Rare_2 '
+    400122: Small
+    400124: Small (10)
+    400126: Small (2)
+    400128: Small (3)
+    400130: Small (4)
+    400132: Small (5)
+    400134: Small (6)
+    400136: Small (9)
+    2300000: Armor
+    2300002: Armor (10)
+    2300004: Armor (11)
+    2300006: Armor (12)
+    2300008: Armor (13)
+    2300010: Armor (14)
+    2300012: Armor (15)
+    2300014: Armor (16)
+    2300016: Armor (17)
+    2300018: Armor (18)
+    2300020: Armor (19)
+    2300022: Armor (2)
+    2300024: Armor (20)
+    2300026: Armor (21)
+    2300028: Armor (22)
+    2300030: Armor (23)
+    2300032: Armor (24)
+    2300034: Armor (25)
+    2300036: Armor (26)
+    2300038: Armor (27)
+    2300040: Armor (28)
+    2300042: Armor (3)
+    2300044: Armor (4)
+    2300046: Armor (5)
+    2300048: Armor (6)
+    2300050: Armor (7)
+    2300052: Armor (8)
+    2300054: Armor (9)
+    2300056: Cannon_L
+    2300058: Cannon_R
+    2300060: 'Front Mast '
+    2300062: Front_Mast base
+    2300064: Hull
+    2300066: Mast high
+    2300068: Mast high (2)
+    2300070: Mast Horiz Mid_1
+    2300072: Mast Horiz Mid_2
+    2300074: Mast Horiz Mid_2 (2)
+    2300076: Mast Horiz Rare
+    2300078: Mast low (2)
+    2300080: Mast mid
+    2300082: Mast mid (2)
+    2300084: Mid_Mast base
+    2300086: R_Back
+    2300088: R_front_L
+    2300090: R_front_R
+    2300092: R_middle_L
+    2300094: R_middle_R
+    2300096: Rare_Mast base (2)
+    2300098: Sails_Front_1
+    2300100: Sails_Front_2
+    2300102: Sails_Mid_1
+    2300104: Sails_Mid_2
+    2300106: Sails_Rare_1
+    2300108: 'Sails_Rare_2 '
+    2300110: Small
+    2300112: Small (10)
+    2300114: Small (2)
+    2300116: Small (3)
+    2300118: Small (4)
+    2300120: Small (5)
+    2300122: Small (6)
+    2300124: Small (9)
+    3300000: Armor
+    3300002: Armor (10)
+    3300004: Armor (11)
+    3300006: Armor (12)
+    3300008: Armor (13)
+    3300010: Armor (14)
+    3300012: Armor (15)
+    3300014: Armor (16)
+    3300016: Armor (17)
+    3300018: Armor (18)
+    3300020: Armor (19)
+    3300022: Armor (2)
+    3300024: Armor (20)
+    3300026: Armor (21)
+    3300028: Armor (22)
+    3300030: Armor (23)
+    3300032: Armor (24)
+    3300034: Armor (25)
+    3300036: Armor (26)
+    3300038: Armor (27)
+    3300040: Armor (28)
+    3300042: Armor (3)
+    3300044: Armor (4)
+    3300046: Armor (5)
+    3300048: Armor (6)
+    3300050: Armor (7)
+    3300052: Armor (8)
+    3300054: Armor (9)
+    3300056: Cannon_L
+    3300058: Cannon_R
+    3300060: 'Front Mast '
+    3300062: Front_Mast base
+    3300064: Hull
+    3300066: Mast high
+    3300068: Mast high (2)
+    3300070: Mast Horiz Mid_1
+    3300072: Mast Horiz Mid_2
+    3300074: Mast Horiz Mid_2 (2)
+    3300076: Mast Horiz Rare
+    3300078: Mast low (2)
+    3300080: Mast mid
+    3300082: Mast mid (2)
+    3300084: Mid_Mast base
+    3300086: R_Back
+    3300088: R_front_L
+    3300090: R_front_R
+    3300092: R_middle_L
+    3300094: R_middle_R
+    3300096: Rare_Mast base (2)
+    3300098: Sails_Front_1
+    3300100: Sails_Front_2
+    3300102: Sails_Mid_1
+    3300104: Sails_Mid_2
+    3300106: Sails_Rare_1
+    3300108: 'Sails_Rare_2 '
+    3300110: Small
+    3300112: Small (10)
+    3300114: Small (2)
+    3300116: Small (3)
+    3300118: Small (4)
+    3300120: Small (5)
+    3300122: Small (6)
+    3300124: Small (9)
+    4300000: R_front_L
+    4300002: R_front_R
+    4300004: R_middle_L
+    4300006: R_middle_R
+    4300008: R_Back
+    4300010: Sails_Front_1
+    4300012: Sails_Front_2
+    4300014: Sails_Mid_1
+    4300016: Sails_Mid_2
+    4300018: Sails_Rare_1
+    4300020: 'Sails_Rare_2 '
+    4300022: Armor
+    4300024: Armor (2)
+    4300026: Armor (3)
+    4300028: Armor (4)
+    4300030: Armor (5)
+    4300032: Armor (6)
+    4300034: Armor (7)
+    4300036: Armor (8)
+    4300038: Armor (9)
+    4300040: Armor (10)
+    4300042: Armor (11)
+    4300044: Armor (12)
+    4300046: Armor (13)
+    4300048: Armor (14)
+    4300050: Armor (15)
+    4300052: Armor (16)
+    4300054: Armor (17)
+    4300056: Armor (18)
+    4300058: Armor (19)
+    4300060: Armor (20)
+    4300062: Armor (21)
+    4300064: Armor (22)
+    4300066: Armor (23)
+    4300068: Armor (24)
+    4300070: Armor (25)
+    4300072: Armor (26)
+    4300074: Armor (27)
+    4300076: Armor (28)
+    4300078: Front_Mast base
+    4300080: 'Front Mast '
+    4300082: Mid_Mast base
+    4300084: Mast Horiz Mid_2
+    4300086: Small (9)
+    4300088: Small (10)
+    4300090: Mast mid
+    4300092: Mast Horiz Mid_1
+    4300094: Small
+    4300096: Small (2)
+    4300098: Mast high
+    4300100: Rare_Mast base (2)
+    4300102: Mast low (2)
+    4300104: Mast Horiz Mid_2 (2)
+    4300106: Small (5)
+    4300108: Small (6)
+    4300110: Mast mid (2)
+    4300112: Mast Horiz Rare
+    4300114: Small (3)
+    4300116: Small (4)
+    4300118: Mast high (2)
+    4300120: Cannon_R
+    4300122: Cannon_L
+    4300124: Hull
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
