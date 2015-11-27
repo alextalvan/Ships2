@@ -13,11 +13,11 @@ public class ShipScript : NetworkBehaviour
     private const float CUBE_GIZMOS_SIZE = 0.5f;
     private const float SPHERE_GIZMOS_SIZE = 0.1f;
 
-    private enum Seals { Opened, Closed };
-    private Seals currentSealsState = Seals.Closed;
+    private enum Sails { Opened, Closed };
+    private Sails currentSailsState = Sails.Closed;
 
-    private enum State { Idle, Charging };
-    private State currentState = State.Idle;
+    private enum Charge { Idle, Charging };
+    private Charge currentChargeState = Charge.Idle;
 
     [SerializeField]
     Transform rightSide = null;
@@ -139,10 +139,10 @@ public class ShipScript : NetworkBehaviour
 
         if (currMoveState && !prevMoveState)
         {
-            if (currentSealsState == Seals.Opened)
-                currentSealsState = Seals.Closed;
+            if (currentSailsState == Sails.Opened)
+                currentSailsState = Sails.Closed;
             else
-                currentSealsState = Seals.Opened;
+                currentSailsState = Sails.Opened;
         }
 
         prevMoveState = currMoveState;
@@ -158,7 +158,7 @@ public class ShipScript : NetworkBehaviour
 
         float totalSpeed = (baseWeight + sailWeight * shipAttributes.SailSpeedModifier) * cureMod;
 
-        if (currentSealsState == Seals.Opened)
+        if (currentSailsState == Sails.Opened)
             objRigidBody.AddForce(forward * objRigidBody.mass * totalSpeed);
     }
 
@@ -330,15 +330,15 @@ public class ShipScript : NetworkBehaviour
 
         prevShootState = shootReqThisFrame;
 
-        switch (currentState)
+        switch (currentChargeState)
         {
-            case State.Idle:
+            case Charge.Idle:
                 if (shootReqThisFrame && !shootReqLastFrame)
                 {
-                    currentState = State.Charging;
+                    currentChargeState = Charge.Charging;
                 }
                 break;
-            case State.Charging:
+            case Charge.Charging:
                 CheckSide(camVec);
                 float chargingSpeed = shipAttributes.CannonChargeRate;
 
@@ -346,7 +346,7 @@ public class ShipScript : NetworkBehaviour
                     shotPower += Time.deltaTime * chargingSpeed;
                 if (!shootReqThisFrame)
                 {
-                    currentState = State.Idle;
+                    currentChargeState = Charge.Idle;
                     Shoot(activeSide);
                 }
                 break;

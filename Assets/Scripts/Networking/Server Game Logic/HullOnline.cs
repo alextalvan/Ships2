@@ -37,7 +37,7 @@ public class HullOnline : MonoBehaviour
 
         if (currentHealth <= Mathf.Epsilon)
         {
-            //currentHealth = 0f;
+            currentHealth = 0f;
             shipAttributes.IsDead = true;
             shipAttributes.OnDeath();
 
@@ -59,6 +59,29 @@ public class HullOnline : MonoBehaviour
 
             if (currentHealth > shipAttributes.SailMaxHealth)
                 currentHealth = shipAttributes.SailMaxHealth;
+        }
+    }
+
+    //Rammimg
+    void OnCollisionEnter(Collision collision)
+    {
+        HullOnline hull = collision.collider.GetComponent<HullOnline>();
+
+        if (hull)
+        {
+            Rigidbody thisRb = GetComponent<Rigidbody>();
+            Rigidbody enemyRb = collision.collider.GetComponent<Rigidbody>();
+
+            if (thisRb.velocity.magnitude > enemyRb.velocity.magnitude)
+            {
+                hull.Damage(collision.contacts[0].point, collision.relativeVelocity.magnitude, 10f);
+                Damage(collision.contacts[0].point, collision.relativeVelocity.magnitude / 3f, 10f);
+            }
+            else
+            {
+                Damage(collision.contacts[0].point, collision.relativeVelocity.magnitude, 10f);
+                hull.Damage(collision.contacts[0].point, collision.relativeVelocity.magnitude / 3f, 10f);
+            }
         }
     }
 }
