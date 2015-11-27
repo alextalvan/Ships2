@@ -6,7 +6,7 @@ Properties {
 }
 
 Category {
-	Tags { "Queue"="Transparent" "IgnoreProjector"="True" "RenderType"="Transparent" }
+	Tags { "Queue"="Transparent" "IgnoreProjector"="True" "RenderType"="Transparent+100" }
 	Blend SrcAlpha OneMinusSrcAlpha
 	ColorMask RGB
 	Cull Off Lighting Off ZWrite Off

@@ -13,8 +13,13 @@ public class ShipScript : NetworkBehaviour
     private const float CUBE_GIZMOS_SIZE = 0.5f;
     private const float SPHERE_GIZMOS_SIZE = 0.1f;
 
-    private enum Sails { Opened, Closed };
-    private Sails currentSailsState = Sails.Closed;
+    //private enum Sails { Opened, Closed };
+    //private Sails currentSailsState = Sails.Closed;
+
+	[SyncVar][SerializeField]
+	private float sailState = 0f;
+	[SerializeField]
+	float sailAccelerationPerFrame = 0.0075f;
 
     private enum Charge { Idle, Charging };
     private Charge currentChargeState = Charge.Idle;
@@ -41,7 +46,7 @@ public class ShipScript : NetworkBehaviour
     [SyncVar]
     private float shotPower = 0f;
     private bool prevShootState = false;
-    private bool prevMoveState = false;
+    //private bool prevMoveState = false;
 
     private LineRenderer trajectoryRenderer;
 
@@ -135,17 +140,16 @@ public class ShipScript : NetworkBehaviour
     [ServerCallback]
     private void ControlSails()
     {
-        bool currMoveState = onlineInput.GetInputValue(OnlinePlayerInput.PlayerControls.BACK);
+        
+		if (onlineInput.GetInputValue(OnlinePlayerInput.PlayerControls.FORWARD))
+			sailState += sailAccelerationPerFrame;
 
-        if (currMoveState && !prevMoveState)
-        {
-            if (currentSailsState == Sails.Opened)
-                currentSailsState = Sails.Closed;
-            else
-                currentSailsState = Sails.Opened;
-        }
+		if (onlineInput.GetInputValue(OnlinePlayerInput.PlayerControls.BACK))
+			sailState -= sailAccelerationPerFrame;
 
-        prevMoveState = currMoveState;
+		sailState = Mathf.Clamp01 (sailState);
+
+        //prevMoveState = currMoveState;
     }
 
     private void Move()
@@ -156,10 +160,10 @@ public class ShipScript : NetworkBehaviour
         float baseWeight = shipAttributes.BasicSpeed * 1f;
         float sailWeight = shipAttributes.BasicSpeed * 0f;
 
-        float totalSpeed = (baseWeight + sailWeight * shipAttributes.SailSpeedModifier) * cureMod;
+        float totalSpeed = (baseWeight + sailWeight * shipAttributes.SailSpeedModifier) * cureMod * sailState;
 
-        if (currentSailsState == Sails.Opened)
-            objRigidBody.AddForce(forward * objRigidBody.mass * totalSpeed);
+        //if (currentSailsState == Sails.Opened)
+        objRigidBody.AddForce(forward * objRigidBody.mass * totalSpeed);
     }
 
     [ServerCallback]
@@ -368,6 +372,9 @@ public class ShipScript : NetworkBehaviour
 
             projectile.GetComponent<Rigidbody>().AddForce(force);
             projectile.GetComponent<Projectile>().owner = GetComponent<CustomOnlinePlayer>();
+			projectile.GetComponent<Projectile>().HullDamage *= shipAttributes.DamageModifier;
+			projectile.GetComponent<Projectile>().SailDamage *= shipAttributes.DamageModifier;
+
             NetworkServer.Spawn(projectile);
         }
         activeCannons.CurrentCharge -= (int)shotPower;

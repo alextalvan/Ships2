@@ -28,11 +28,11 @@ public class HullOnline : MonoBehaviour
 
     public void Damage(Vector3 position, float damage, float radius, GameObject source = null)
     {
-        if (currentHealth <= Mathf.Epsilon)
+        if (currentHealth < Mathf.Epsilon)
             return;
 
         currentHealth -= damage;
-        buoyancy.ChangeBuoyancy(position, buoyancy.GetVoxelsCount * 2f, radius);
+        buoyancy.ChangeBuoyancy(position, buoyancy.GetVoxelsCount * 1.5f, radius);
         GetComponent<PlayerCaptionController>().RpcPushDebugText("My hull got damaged for " + damage + " damage. Remaining health: " + currentHealth);
 
         if (currentHealth <= Mathf.Epsilon)

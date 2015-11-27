@@ -6,11 +6,11 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: SailTest
-  m_Shader: {fileID: 4800000, guid: 9256884f5ff1d46c9ac63c5610490249, type: 3}
+  m_Name: 11-27_ShipModel_v3_AlbedoTransparency
+  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
-  m_CustomRenderQueue: 2450
+  m_CustomRenderQueue: -1
   stringTagMap: {}
   m_SavedProperties:
     serializedVersion: 2
@@ -19,7 +19,7 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 0}
+          m_Texture: {fileID: 2800000, guid: 38da9c9b6fe102142a27a1ea646912f2, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -78,34 +78,6 @@ Material:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _Noise
-        second:
-          m_Texture: {fileID: 2800000, guid: 36dd0b22da8874ed38075789055ca664, type: 3}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _Ramp
-        second:
-          m_Texture: {fileID: 2800000, guid: 0e675a08c985440e5869b3e14278db8d, type: 3}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _0mm
-        second:
-          m_Texture: {fileID: 2800000, guid: 55e2334423fefa34fb4916f6780413d3, type: 3}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _Texture
-        second:
-          m_Texture: {fileID: 2800000, guid: c688b8230f338954e977969bd4457584, type: 3}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
     m_Floats:
       data:
         first:
@@ -155,30 +127,6 @@ Material:
         first:
           name: _Mode
         second: 0
-      data:
-        first:
-          name: _Dissolveamount
-        second: 0
-      data:
-        first:
-          name: _Value
-        second: 4
-      data:
-        first:
-          name: _Frequency
-        second: .565028012
-      data:
-        first:
-          name: _Amplitude
-        second: .212668896
-      data:
-        first:
-          name: _Gloss
-        second: 0
-      data:
-        first:
-          name: _Folds
-        second: .131044596
     m_Colors:
       data:
         first:

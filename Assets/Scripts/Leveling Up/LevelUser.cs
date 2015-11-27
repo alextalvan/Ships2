@@ -8,7 +8,7 @@ public class LevelUser : NetworkBehaviour
 
 	int _level = 0;
 	int _currentEXP;
-	int _nextLevelEXP;
+	int _nextLevelEXP = 1000;
 
 	[SerializeField]
 	int _maxLevel = 10;

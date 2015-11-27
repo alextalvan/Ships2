@@ -31,6 +31,9 @@ public class ShipAttributesOnline : NetworkBehaviour
     [SerializeField]
     private float regenerationRate;
 
+	[SerializeField]
+	private float damageModifier;
+
     private float sailSpeedModifier;
 
     private bool isDead = false;
@@ -85,6 +88,13 @@ public class ShipAttributesOnline : NetworkBehaviour
         get { return sailSpeedModifier; }
         set { sailSpeedModifier = value; }
     }
+
+	public float DamageModifier
+	{
+		get { return damageModifier; }
+		set { damageModifier = value; }
+	}
+
     public bool IsDead
     {
         get { return isDead; }

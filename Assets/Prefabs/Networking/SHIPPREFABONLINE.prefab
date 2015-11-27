@@ -4635,7 +4635,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sailParent: {fileID: 427192}
-  hullMaxHealth: 100
+  hullMaxHealth: 200
   sailMaxHealth: 100
   basicSpeed: 7.5
   steeringModifier: 250
@@ -4643,6 +4643,7 @@ MonoBehaviour:
   cannonChargeRate: 5
   reloadRateModifier: 1
   regenerationRate: 0
+  damageModifier: 1
   _wreckagePickupPrefabs:
   - {fileID: 197478, guid: a116f3da3268e804c8acd63e338df450, type: 2}
 --- !u!114 &11440810
@@ -4702,6 +4703,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d825e5eb85efcc2439391967ae0c65af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sailState: 0
+  sailAccelerationPerFrame: .00749999983
   rightSide: {fileID: 476844}
   leftSide: {fileID: 465380}
 --- !u!114 &11456816
@@ -4952,6 +4955,18 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: regenerationRate
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: hullMaxHealth
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: damageModifier
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: sailAccelerationPerFrame
+      value: .00749999983
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
