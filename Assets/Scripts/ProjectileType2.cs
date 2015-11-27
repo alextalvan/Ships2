@@ -8,7 +8,7 @@ public class ProjectileType2 : Projectile
         SailOnline sails = collision.gameObject.GetComponent<SailOnline>();
         if (hull)
         {
-            hull.Damage(collision.contacts[0].point, hullDamage, damageRadius);
+            hull.Damage(collision.contacts[0].point, hullDamage, damageRadius, this.gameObject);
         }
         if (sails)
         {

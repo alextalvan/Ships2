@@ -1,0 +1,141 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Water4Advanced 2
+  m_Shader: {fileID: 4800000, guid: 6436746d39ddadc41af87c0f7fac8ae0, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 5
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  m_SavedProperties:
+    serializedVersion: 2
+    m_TexEnvs:
+      data:
+        first:
+          name: _MainTex
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _BumpMap
+        second:
+          m_Texture: {fileID: 2800000, guid: 2dd3788f8589b40bf82a92d76ffc5091, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _ReflectionTex
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _ShoreTex
+        second:
+          m_Texture: {fileID: 2800000, guid: 36dd0b22da8874ed38075789055ca664, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _ShoreTex2
+        second:
+          m_Texture: {fileID: 2800000, guid: 36dd0b22da8874ed38075789055ca664, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+    m_Floats:
+      data:
+        first:
+          name: _Shininess
+        second: 2
+      data:
+        first:
+          name: _FresnelScale
+        second: 1
+      data:
+        first:
+          name: _GerstnerIntensity
+        second: 1.38999999
+      data:
+        first:
+          name: _CustomTime
+        second: 322.315338
+    m_Colors:
+      data:
+        first:
+          name: _DistortParams
+        second: {r: .25, g: 1.12, b: 3.92000008, a: -.310000002}
+      data:
+        first:
+          name: _InvFadeParemeter
+        second: {r: .300000012, g: .389999986, b: 1.15999997, a: 3.22000003}
+      data:
+        first:
+          name: _AnimationTiling
+        second: {r: .0458255298, g: 0, b: .0457144715, a: .0271296892}
+      data:
+        first:
+          name: _AnimationDirection
+        second: {r: 2, g: 4, b: 2, a: -1}
+      data:
+        first:
+          name: _BumpTiling
+        second: {r: .00999999978, g: 2.17000008, b: .0799999982, a: .0599999987}
+      data:
+        first:
+          name: _BumpDirection
+        second: {r: 40, g: 54.7999992, b: 40.7000008, a: -40}
+      data:
+        first:
+          name: _BaseColor
+        second: {r: .00700000022, g: .0500000007, b: .0390000008, a: .73299998}
+      data:
+        first:
+          name: _ReflectionColor
+        second: {r: 1, g: 1, b: 1, a: .351999998}
+      data:
+        first:
+          name: _SpecularColor
+        second: {r: .0469999984, g: .551999986, b: .49000001, a: 1}
+      data:
+        first:
+          name: _WorldLightDir
+        second: {r: -.0303751379, g: -.201390833, b: -.979039967, a: 0}
+      data:
+        first:
+          name: _Foam
+        second: {r: 3.08999991, g: .389999986, b: -.25999999, a: .980000019}
+      data:
+        first:
+          name: _GAmplitude
+        second: {r: .140000001, g: .230000004, b: .174999997, a: .224999994}
+      data:
+        first:
+          name: _GFrequency
+        second: {r: .779999971, g: .769999981, b: .589999974, a: .600000024}
+      data:
+        first:
+          name: _GSteepness
+        second: {r: 7.32999992, g: 2, b: 6, a: 2}
+      data:
+        first:
+          name: _GSpeed
+        second: {r: -3, g: 2, b: 1, a: 3}
+      data:
+        first:
+          name: _GDirectionAB
+        second: {r: .469143599, g: .349999994, b: -.200000003, a: .100000001}
+      data:
+        first:
+          name: _GDirectionCD
+        second: {r: .70338881, g: -.679999888, b: .717573524, a: -.200000003}
+--- !u!1002 &2100001
+EditorExtensionImpl:
+  serializedVersion: 6

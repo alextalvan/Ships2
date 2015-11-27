@@ -42,7 +42,7 @@ public class Pickup : NetworkBehaviour {
 
 		PlayerPickupHitbox hitbox = other.GetComponent<PlayerPickupHitbox> ();
 
-		if (hitbox != null) 
+		if (hitbox != null && !hitbox.GetComponentInParent<ShipAttributesOnline>().IsDead) 
 		{
 			OnPickup(hitbox.GetComponentInParent<CustomOnlinePlayer>());
 			taken = true;

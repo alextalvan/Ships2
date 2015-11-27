@@ -180,7 +180,9 @@ public class BuoyancyScript : NetworkBehaviour
     {
         CalculatePhysics();
         UpdateTotalBuoyancy();
-        SinkDamagedVoxels(shipAttributes.IsDead);
+
+		if(shipAttributes!=null)
+        	SinkDamagedVoxels(shipAttributes.IsDead);
     }
 
     /// <summary>
@@ -341,7 +343,7 @@ public class Voxel
 
     public void Sink()
     {
-        if (buoyancyState > 30f)
-            buoyancyState-=0.2f;
+        if (buoyancyState > 40f)
+            buoyancyState-=0.175f;
     }
 }

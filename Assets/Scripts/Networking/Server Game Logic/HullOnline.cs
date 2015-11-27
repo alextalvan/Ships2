@@ -26,20 +26,27 @@ public class HullOnline : MonoBehaviour
         buoyancy.Reset();
     }
 
-    public void Damage(Vector3 position, float damage, float radius)
+    public void Damage(Vector3 position, float damage, float radius, GameObject source = null)
     {
-        if (currentHealth <= 0f)
+        if (currentHealth <= Mathf.Epsilon)
             return;
 
         currentHealth -= damage;
-        buoyancy.ChangeBuoyancy(position, buoyancy.GetVoxelsCount * 1.5f, radius);
+        buoyancy.ChangeBuoyancy(position, buoyancy.GetVoxelsCount * 2f, radius);
         GetComponent<PlayerCaptionController>().RpcPushDebugText("My hull got damaged for " + damage + " damage. Remaining health: " + currentHealth);
 
-        if (currentHealth <= 0f)
+        if (currentHealth <= Mathf.Epsilon)
         {
             //currentHealth = 0f;
             shipAttributes.IsDead = true;
             shipAttributes.OnDeath();
+
+			if(source!=null)
+			{
+				Projectile p = source.GetComponent<Projectile>();
+				if(p!=null)
+					p.owner.GetComponent<LevelUser>().GainEXP(500);
+			}
         }
     }
 

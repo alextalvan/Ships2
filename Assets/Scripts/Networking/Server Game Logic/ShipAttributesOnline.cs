@@ -35,6 +35,10 @@ public class ShipAttributesOnline : NetworkBehaviour
 
     private bool isDead = false;
 
+
+	[SerializeField]
+	List<GameObject> _wreckagePickupPrefabs = new List<GameObject> (); 
+
     public float HullMaxHealth
     {
         get { return hullMaxHealth; }
@@ -139,8 +143,19 @@ public class ShipAttributesOnline : NetworkBehaviour
 
     }
 
+	[ServerCallback]
     public void OnDeath()
     {
         playerRespawn.StartRespawn();
+
+		if (_wreckagePickupPrefabs.Count > 0) 
+		{
+			int index = Random.Range(0,_wreckagePickupPrefabs.Count);
+
+			GameObject o = (GameObject)Instantiate(_wreckagePickupPrefabs[index],this.transform.position,Quaternion.identity);
+
+			NetworkServer.Spawn(o);
+		}
+
     }
 }

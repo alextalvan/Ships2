@@ -4643,6 +4643,8 @@ MonoBehaviour:
   cannonChargeRate: 5
   reloadRateModifier: 1
   regenerationRate: 0
+  _wreckagePickupPrefabs:
+  - {fileID: 197478, guid: a116f3da3268e804c8acd63e338df450, type: 2}
 --- !u!114 &11440810
 MonoBehaviour:
   m_ObjectHideFlags: 1
