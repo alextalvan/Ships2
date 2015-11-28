@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Networking;
 
 [RequireComponent(typeof(Collider))]
 public class SailOnline : MonoBehaviour
@@ -6,6 +7,7 @@ public class SailOnline : MonoBehaviour
     [SerializeField]
     private ShipAttributesOnline shipAttributes;
 
+    [SerializeField]
     private float currentHealth;
 
     public float CurrentHealth
@@ -16,14 +18,17 @@ public class SailOnline : MonoBehaviour
 
     public void Damage(float damage)
     {
-        if (currentHealth > 0f)
-        {
-            currentHealth -= damage;
-            GetComponent<PlayerCaptionController>().RpcPushDebugText("My sail got damaged for " + damage + " damage. Remaining sail health: " + currentHealth);
+        currentHealth -= damage;
+        shipAttributes.gameObject.GetComponent<PlayerCaptionController>().RpcPushDebugText("My sail got damaged for " + damage + " damage. Remaining sail health: " + currentHealth);
 
-            if (currentHealth < 0f)
-                currentHealth = 0f;
+        if (currentHealth <= Mathf.Epsilon)
+        {
+            currentHealth = 0f;
+            GetComponent<Collider>().enabled = false;
         }
+
+        SendShaderUpdate();
+        shipAttributes.UpdateSailsState();
     }
 
     public void Repair(float amount)
@@ -31,15 +36,28 @@ public class SailOnline : MonoBehaviour
         if (currentHealth < shipAttributes.SailMaxHealth)
         {
             currentHealth += amount;
-            GetComponent<PlayerCaptionController>().RpcPushDebugText("My sail got repaired for " + amount + ". Current sail health: " + currentHealth);
+            shipAttributes.gameObject.GetComponent<PlayerCaptionController>().RpcPushDebugText("My sail got repaired for " + amount + ". Current sail health: " + currentHealth);
 
             if (currentHealth > shipAttributes.SailMaxHealth)
                 currentHealth = shipAttributes.SailMaxHealth;
+
+            SendShaderUpdate();
+            shipAttributes.UpdateSailsState();
         }
+    }
+
+
+    private void SendShaderUpdate()
+    {
+        int myIndex = shipAttributes.sails.IndexOf(this);
+        shipAttributes.RpcChangeSailDissolve(myIndex, 1f - currentHealth / shipAttributes.SailMaxHealth);
     }
 
     public void Reset()
     {
         currentHealth = shipAttributes.SailMaxHealth;
+        GetComponent<Collider>().enabled = true;
+        SendShaderUpdate();
+        shipAttributes.UpdateSailsState();
     }
 }

@@ -11,7 +11,7 @@ public class ShipAttributesOnline : NetworkBehaviour
     [SerializeField]
     private Transform sailParent;
 
-    private List<SailOnline> sails = new List<SailOnline>();
+    public List<SailOnline> sails = new List<SailOnline>();
 
     [SerializeField]
     private float hullMaxHealth;
@@ -107,11 +107,13 @@ public class ShipAttributesOnline : NetworkBehaviour
         playerRespawn = GetComponent<PlayerRespawn>();
         hullOnline = GetComponent<HullOnline>();
         hullOnline.SetBuoyancy = GetComponent<BuoyancyScript>();
+
         foreach (Transform child in sailParent)
         {
             SailOnline sail = child.GetComponent<SailOnline>();
             sails.Add(sail);
         }
+        
         Reset();
     }
 
@@ -120,18 +122,13 @@ public class ShipAttributesOnline : NetworkBehaviour
     {
         isDead = false;
         hullOnline.Reset();
-
-		/*
+        
         foreach (SailOnline sail in sails)
         {
             sail.Reset();
-        }*/
+        }
 
-
-        //shootRangeMultiplier = 1.0f;
-        //reloadRateModifier = 1.0f;
-        //cannonChargeRate = 5f;
-        //regenerationRate = 0f;
+        UpdateSailsState();
     }
 
     [ServerCallback]
@@ -147,13 +144,18 @@ public class ShipAttributesOnline : NetworkBehaviour
         sailSpeedModifier = totalSailHealth;
     }
 
-    // Update 
-    void FixedUpdate()
+    void Update()
     {
-
+        
     }
 
-	[ServerCallback]
+    [ClientRpc]
+    public void RpcChangeSailDissolve(int index, float amount)
+    {
+        sails[index].GetComponent<Renderer>().material.SetFloat("_Dissolveamount", amount);
+    }
+    
+    [ServerCallback]
     public void OnDeath()
     {
         playerRespawn.StartRespawn();

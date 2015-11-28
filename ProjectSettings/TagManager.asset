@@ -10,6 +10,7 @@ TagManager:
   - Mast
   - Ship
   - Projectile
+  - Small
   layers:
   - Default
   - TransparentFX
@@ -22,7 +23,7 @@ TagManager:
   - PickupHitbox
   - Pickup
   - RespawnPoint
-  - 
+  - Empty
   - 
   - 
   - 

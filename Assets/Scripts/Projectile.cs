@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Networking;
 
-[RequireComponent(typeof(Rigidbody), typeof(Collider), typeof(NetworkTransform))]
+[RequireComponent(typeof(Rigidbody), typeof(Collider))]
 public abstract class Projectile : NetworkBehaviour
 {
     protected float birthDate;
@@ -50,6 +50,19 @@ public abstract class Projectile : NetworkBehaviour
         birthDate = Time.time;
     }
 
+    /*
+    void Awake()
+    {
+
+        if (NetworkManager.singleton != null && NetworkManager.singleton.isNetworkActive && !NetworkServer.active)
+        {
+            GetComponent<Rigidbody>().isKinematic = true;
+            GetComponent<Collider>().enabled = false;
+            return;
+        }
+    }
+    */
+
     void FixedUpdate()
     {
         if (Time.time > birthDate + lifeTime)
@@ -58,7 +71,7 @@ public abstract class Projectile : NetworkBehaviour
         }
     }
 
-    [Server]
+    [ServerCallback]
     protected abstract void DealDamage(Collision collision);
 
     void OnCollisionEnter(Collision collision)
@@ -66,7 +79,7 @@ public abstract class Projectile : NetworkBehaviour
         DealDamage(collision);
     }
 
-    [Server]
+    [ServerCallback]
     protected virtual void Delete()
     {
         NetworkServer.Destroy(gameObject);

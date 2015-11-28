@@ -58,16 +58,16 @@ public class DebrisScript : MonoBehaviour
         }
     }
     void FixedUpdate() {
-        existanceTime += Time.fixedDeltaTime;
+        //existanceTime += Time.fixedDeltaTime;
 
-        if (transform.position.y < 0 || existanceTime >= 5 && transform.CompareTag("Hull"))
-        {
-            Destroy(this.gameObject);
-        }
-        if (transform.position.y < 0 || existanceTime >= 10 && transform.CompareTag("Mast"))
-        {
-            Destroy(this.gameObject);
-        }
+        //if (transform.position.y < 0 || existanceTime >= 5 && transform.CompareTag("Hull"))
+        //{
+        //    Destroy(this.gameObject);
+        //}
+        //if (transform.position.y < 0 || existanceTime >= 10 && transform.CompareTag("Mast"))
+        //{
+        //    Destroy(this.gameObject);
+        //}
 
     }
 

@@ -168,8 +168,8 @@ public class ShipScript : NetworkBehaviour
         Vector3 forward = new Vector3(transform.forward.x, 0f, transform.forward.z).normalized;
         float cureMod = (GetComponent<CustomOnlinePlayer>().currentCureCarrier == transform) ? CureScript.cureCarrierSpeedDebuff : 1f;
 
-        float baseWeight = shipAttributes.BasicSpeed * 1f;
-        float sailWeight = shipAttributes.BasicSpeed * 0f;
+        float baseWeight = shipAttributes.BasicSpeed * 0.25f;
+        float sailWeight = shipAttributes.BasicSpeed * 0.75f;
 
         float totalSpeed = (baseWeight + sailWeight * shipAttributes.SailSpeedModifier) * cureMod * sailState;
 
