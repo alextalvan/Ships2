@@ -25,9 +25,8 @@ public class PlayerRespawn : NetworkBehaviour
     {
         GetComponent<PlayerCaptionController>().RpcPushDebugText("I died");
         GetComponent<OnlinePlayerInput>().enabled = false;
-        //GetComponent<BuoyancyScript>().enabled = false;
+		GetComponent<ShipScript>().ResetShootAndMovement ();
         GetComponent<ShipScript>().RpcChangeCameraState(false);
-        //GetComponent<Rigidbody>().isKinematic = true;
 
         if (GetComponent<CustomOnlinePlayer>().currentCureCarrier == transform)
             onlineRef.serverCure.DetachFromHolder();

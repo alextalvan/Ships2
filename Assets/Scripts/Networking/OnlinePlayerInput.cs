@@ -17,7 +17,9 @@ public class OnlinePlayerInput : NetworkBehaviour {
 		SHOOT_START_HOLD_DOWN,
 		SHOOT_RELEASE,
 		SWITCH_START_HOLD_DOWN,
-		SWITCH_RELEASE
+		SWITCH_RELEASE,
+		CANCEL_START_HOLD,
+		CANCEL_RELEASE
 	}
 
 	public enum PlayerControls
@@ -34,8 +36,8 @@ public class OnlinePlayerInput : NetworkBehaviour {
 
 	public event RawInputDelegate OnServerReceiveRawInput;
 
-	float[] inputTimeStamps = new float[12];
-	bool[] inputValues = new bool[6];
+	float[] inputTimeStamps = new float[14];
+	bool[] inputValues = new bool[7];
 	Vector3 _storedCameraDirection;
 
 	public float GetLastTimeStamp(PlayerControlMessage targetControl)
@@ -157,6 +159,12 @@ public class OnlinePlayerInput : NetworkBehaviour {
 
 		if (Input.GetKeyUp (KeyCode.Tab))
 			CmdReceiveInput (PlayerControlMessage.SWITCH_RELEASE);
+
+		if (Input.GetKeyDown (KeyCode.Q))
+			CmdReceiveInput (PlayerControlMessage.CANCEL_START_HOLD);
+		
+		if (Input.GetKeyUp (KeyCode.Q))
+			CmdReceiveInput (PlayerControlMessage.CANCEL_RELEASE);
 
 	}
 

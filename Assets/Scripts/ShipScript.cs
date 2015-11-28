@@ -19,10 +19,10 @@ public class ShipScript : NetworkBehaviour
 	[SyncVar][SerializeField]
 	private float sailState = 0f;
 	[SerializeField]
-	float sailAccelerationPerFrame = 0.0075f;
+	float sailAccelerationPerFrame = 0.01f;
 
-    private enum Charge { Idle, Charging };
-    private Charge currentChargeState = Charge.Idle;
+    private enum ShootInputState { Idle, Ready };
+    private ShootInputState currentShootInputState = ShootInputState.Idle;
 
     [SerializeField]
     Transform rightSide = null;
@@ -44,15 +44,13 @@ public class ShipScript : NetworkBehaviour
     private CannonGroup activeCannons;
 
     [SyncVar]
-    private float shotPower = 0f;
-    private bool prevShootState = false;
-    //private bool prevMoveState = false;
+    private float shotPowerLeft = 0f;
 
-    private LineRenderer trajectoryRenderer;
-
+	[SyncVar]
+	private float shotPowerRight = 0f;
+   
     //client trajectory fixing
     bool startedPreviewingTrajectory = false;
-    Vector3 storedSideForward;
     bool storedSideIsLeft;
 
 
@@ -69,11 +67,14 @@ public class ShipScript : NetworkBehaviour
         currentProjectileType = projectileType1Prefab;
 
         onlineInput = GetComponent<OnlinePlayerInput>();
-        trajectoryRenderer = GetComponent<LineRenderer>();
+        
 
         SetupCamera();
 
         GetComponent<OnlinePlayerInput>().OnServerReceiveRawInput += ChangeAmmoType;
+		GetComponent<OnlinePlayerInput>().OnServerReceiveRawInput += HandleShootInput;
+
+		ResetShootAndMovement ();
     }
 
     [ClientCallback]
@@ -100,6 +101,16 @@ public class ShipScript : NetworkBehaviour
             _camera.GetComponent<CameraScript>().DetachCamera();
     }
 
+	[ServerCallback]
+	public void ResetShootAndMovement()
+	{
+		sailState = 0f;
+		currentShootInputState = ShootInputState.Idle;
+		shotPowerLeft = leftSide.transform.childCount;
+		shotPowerRight = rightSide.transform.childCount;
+	}
+
+
     void Update()
     {
         SwitchClientAmmoType();
@@ -111,7 +122,7 @@ public class ShipScript : NetworkBehaviour
         ControlSails();
         Move();
         Rotate();
-        UpdateState();
+        UpdateShootState();
     }
 
     private void ChangeAmmoType(OnlinePlayerInput.PlayerControlMessage m, Vector3 dir)
@@ -149,7 +160,7 @@ public class ShipScript : NetworkBehaviour
 
 		sailState = Mathf.Clamp01 (sailState);
 
-        //prevMoveState = currMoveState;
+       
     }
 
     private void Move()
@@ -162,7 +173,7 @@ public class ShipScript : NetworkBehaviour
 
         float totalSpeed = (baseWeight + sailWeight * shipAttributes.SailSpeedModifier) * cureMod * sailState;
 
-        //if (currentSailsState == Sails.Opened)
+        
         objRigidBody.AddForce(forward * objRigidBody.mass * totalSpeed);
     }
 
@@ -184,24 +195,6 @@ public class ShipScript : NetworkBehaviour
         }
     }
 
-    private void CheckSide(Vector3 camVec)
-    {
-        Transform newActiveSide = null;
-
-        if (Vector3.Angle(camVec, rightSide.forward) < Vector3.Angle(camVec, leftSide.forward))
-            newActiveSide = rightSide;
-        else
-            newActiveSide = leftSide;
-
-        if (newActiveSide != activeSide)
-        {
-            shotPower = 0f;
-        }
-
-        activeSide = newActiveSide;
-        activeCannons = activeSide.GetComponent<CannonGroup>();
-    }
-
     [ClientCallback]
     private void PreviewTrajectory()
     {
@@ -211,59 +204,51 @@ public class ShipScript : NetworkBehaviour
 
         rightSide.GetComponent<LineRenderer>().enabled = false;
         leftSide.GetComponent<LineRenderer>().enabled = false;
-        trajectoryRenderer.enabled = false;
+       
 
         if (Input.GetKeyDown(KeyCode.Space) && !startedPreviewingTrajectory)
         {
             startedPreviewingTrajectory = true;
-            if (Vector3.Dot(Camera.main.transform.forward, leftSide.forward) > 0f)
-            {
-                storedSideForward = leftSide.forward;
+            if (Vector3.Dot(Camera.main.transform.forward, leftSide.forward) > 0f)   
                 storedSideIsLeft = true;
-            }
-            else
-            {
-                storedSideForward = rightSide.forward;
+            else             
                 storedSideIsLeft = false;
-            }
         }
 
         if (startedPreviewingTrajectory)
         {
-            if (Vector3.Dot(Camera.main.transform.forward, storedSideForward) > 0f)
+
+            if (storedSideIsLeft)
             {
-                trajectoryRenderer.enabled = true;
-                if (storedSideIsLeft)
-                {
-                    leftSide.GetComponent<LineRenderer>().enabled = true;
-                    Transform centerCannon = leftSide.GetChild(0);
-                    float projectileMass = currentProjectileType.GetComponent<Rigidbody>().mass;
-                    float upwardsModifier = currentProjectileType.GetComponent<Projectile>().UpwardsModifier;
-                    //UIConsole.Log(upwardsModifier.ToString());
-                    Vector3 forwardDirection = new Vector3(centerCannon.forward.x, 0f, centerCannon.forward.z).normalized * shipAttributes.RangeMultiplier;
-                    Vector3 force = (Vector3.up * upwardsModifier + (forwardDirection * 5000f)) * projectileMass;
+                leftSide.GetComponent<LineRenderer>().enabled = true;
+                Transform centerCannon = leftSide.GetChild(0);
+                float projectileMass = currentProjectileType.GetComponent<Rigidbody>().mass;
+                float upwardsModifier = currentProjectileType.GetComponent<Projectile>().UpwardsModifier;
+         
+                Vector3 forwardDirection = new Vector3(centerCannon.forward.x, 0f, centerCannon.forward.z).normalized * shipAttributes.RangeMultiplier;
+                Vector3 force = (Vector3.up * upwardsModifier + (forwardDirection * 5000f)) * projectileMass;
 
-                    float shotDist = GetTrajectoryDistance(centerCannon.position, force);
-                    leftSide.GetComponent<CannonGroup>().DrawArea(shotPower, shotDist);
-                }
-                else
-                {
-                    rightSide.GetComponent<LineRenderer>().enabled = true;
-                    
-                    Transform centerCannon = rightSide.GetChild(0);
-                    float projectileMass = currentProjectileType.GetComponent<Rigidbody>().mass;
-                    float upwardsModifier = currentProjectileType.GetComponent<Projectile>().UpwardsModifier;
-                    //UIConsole.Log(upwardsModifier.ToString());
-                    Vector3 forwardDirection = new Vector3(centerCannon.forward.x, 0f, centerCannon.forward.z).normalized;
-                    Vector3 force = (Vector3.up * upwardsModifier + (forwardDirection * 5000f)) * projectileMass * shipAttributes.RangeMultiplier;
+                float shotDist = GetTrajectoryDistance(centerCannon.position, force);
+                leftSide.GetComponent<CannonGroup>().DrawArea(shotPowerLeft, shotDist);
+            }
+            else
+            {
+                rightSide.GetComponent<LineRenderer>().enabled = true;
+                
+                Transform centerCannon = rightSide.GetChild(0);
+                float projectileMass = currentProjectileType.GetComponent<Rigidbody>().mass;
+                float upwardsModifier = currentProjectileType.GetComponent<Projectile>().UpwardsModifier;
+               
+                Vector3 forwardDirection = new Vector3(centerCannon.forward.x, 0f, centerCannon.forward.z).normalized;
+                Vector3 force = (Vector3.up * upwardsModifier + (forwardDirection * 5000f)) * projectileMass * shipAttributes.RangeMultiplier;
 
-                    float shotDist = GetTrajectoryDistance(centerCannon.position, force);
-                    rightSide.GetComponent<CannonGroup>().DrawArea(shotPower, shotDist);
-                }
+                float shotDist = GetTrajectoryDistance(centerCannon.position, force);
+                rightSide.GetComponent<CannonGroup>().DrawArea(shotPowerRight, shotDist);
+              
             }
         }
 
-        if (Input.GetKeyUp(KeyCode.Space) || GetComponent<PlayerRespawn>().IsDead)
+        if (Input.GetKeyUp(KeyCode.Space) || Input.GetKeyDown(KeyCode.Q) || GetComponent<PlayerRespawn>().IsDead)
         {
             startedPreviewingTrajectory = false;
         }
@@ -295,40 +280,65 @@ public class ShipScript : NetworkBehaviour
         return 0f;
     }
 
+	private void HandleShootInput(OnlinePlayerInput.PlayerControlMessage m, Vector3 dir)
+	{
+		if (m == OnlinePlayerInput.PlayerControlMessage.SHOOT_START_HOLD_DOWN && currentShootInputState == ShootInputState.Idle) 
+		{
+			//shotPower = 0f;
+			currentShootInputState = ShootInputState.Ready;
+			activeSide = (Vector3.Dot(dir,leftSide.forward) > 0f) ? leftSide : rightSide;
+			activeCannons = activeSide.GetComponent<CannonGroup>();
+			return;
+		}
+
+		if (m == OnlinePlayerInput.PlayerControlMessage.SHOOT_RELEASE && currentShootInputState == ShootInputState.Ready) 
+		{
+			currentShootInputState = ShootInputState.Idle;
+
+
+			if(activeSide == leftSide)
+			{
+				Shoot(leftSide,shotPowerLeft);
+				shotPowerLeft = 0f;
+			}
+			else
+			{
+				Shoot(rightSide,shotPowerRight);
+				shotPowerRight = 0f;
+			}
+
+			return;
+		}
+
+		if (m == OnlinePlayerInput.PlayerControlMessage.CANCEL_START_HOLD && currentShootInputState == ShootInputState.Ready) 
+		{
+			currentShootInputState = ShootInputState.Idle;
+			return;
+		}
+
+	}
+
+
+
     [ServerCallback]
-    private void UpdateState()
+    private void UpdateShootState()
     {
-        Vector3 camVec;
-        bool shootReqThisFrame = onlineInput.GetInputValue(OnlinePlayerInput.PlayerControls.SHOOT, out camVec);
-        bool shootReqLastFrame = prevShootState;
+		CannonGroup leftCannon = leftSide.GetComponent<CannonGroup> ();
+		CannonGroup rightCannon = rightSide.GetComponent<CannonGroup> ();
 
-        prevShootState = shootReqThisFrame;
+        float chargingSpeed = shipAttributes.CannonChargeRate * Time.deltaTime;
 
-        switch (currentChargeState)
-        {
-            case Charge.Idle:
-                if (shootReqThisFrame && !shootReqLastFrame)
-                {
-                    currentChargeState = Charge.Charging;
-                }
-                break;
-            case Charge.Charging:
-                CheckSide(camVec);
-                float chargingSpeed = shipAttributes.CannonChargeRate;
+        shotPowerLeft += chargingSpeed;
+		if(shotPowerLeft > leftCannon.CurrentCharge)
+			shotPowerLeft =  leftCannon.CurrentCharge;
 
-                if (shotPower < activeCannons.CurrentCharge)
-                    shotPower += Time.deltaTime * chargingSpeed;
-                if (!shootReqThisFrame)
-                {
-                    currentChargeState = Charge.Idle;
-                    Shoot(activeSide);
-                }
-                break;
-        }
+		shotPowerRight += chargingSpeed;
+		if (shotPowerRight > rightCannon.CurrentCharge)
+			shotPowerRight = rightCannon.CurrentCharge;   
     }
 
     [ServerCallback]
-    private void Shoot(Transform side)
+    private void Shoot(Transform side, float shotPower)
     {
         for (int i = 0; i < (int)shotPower; i++)
         {
@@ -348,7 +358,7 @@ public class ShipScript : NetworkBehaviour
             NetworkServer.Spawn(projectile);
         }
         activeCannons.CurrentCharge -= (int)shotPower;
-        shotPower = 0f;
+        
     }
 
     private void OnDrawGizmos()

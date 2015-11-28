@@ -4812,7 +4812,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sailState: 0
-  sailAccelerationPerFrame: .00749999983
+  sailAccelerationPerFrame: .00999999978
   rightSide: {fileID: 465380}
   leftSide: {fileID: 461398}
 --- !u!114 &11453000
@@ -4966,7 +4966,7 @@ LineRenderer:
     m_EndColor:
       serializedVersion: 2
       rgba: 4294967295
-  m_UseWorldSpace: 0
+  m_UseWorldSpace: 1
 --- !u!120 &12015206
 LineRenderer:
   m_ObjectHideFlags: 1
@@ -5003,7 +5003,7 @@ LineRenderer:
     m_EndColor:
       serializedVersion: 2
       rgba: 4294967295
-  m_UseWorldSpace: 0
+  m_UseWorldSpace: 1
 --- !u!120 &12090232
 LineRenderer:
   m_ObjectHideFlags: 1
@@ -5074,7 +5074,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: sailAccelerationPerFrame
-      value: .00749999983
+      value: .00999999978
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

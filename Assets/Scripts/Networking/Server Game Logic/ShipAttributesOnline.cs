@@ -22,7 +22,7 @@ public class ShipAttributesOnline : NetworkBehaviour
     [SerializeField]
     private float steeringModifier;
 
-    [SerializeField]
+    [SerializeField][SyncVar]
     private float shootRangeMultiplier;
     [SerializeField]
     private float cannonChargeRate;

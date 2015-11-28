@@ -142,7 +142,7 @@ public class CustomOnlinePlayer : NetworkBehaviour {
 	[ServerCallback]
 	void OnDestroyedOnServer()
 	{
-		if (onlineRef.serverCure.GetComponent<GameManager> ().cureCarrier == this)
+		if (onlineRef.serverCure !=null && onlineRef.serverCure.GetComponent<GameManager> ().cureCarrier == this)
 			onlineRef.serverCure.DetachFromHolder ();
 	}
 
