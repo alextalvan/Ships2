@@ -182,7 +182,7 @@ Material:
       data:
         first:
           name: _CustomTime
-        second: 1.00537753
+        second: 327.920868
       data:
         first:
           name: _HeightDisplacement
@@ -266,26 +266,6 @@ Material:
         second: {r: 1, g: 1, b: 0, a: 0}
       data:
         first:
-          name: _WaveScale
-        second: {r: .100000001, g: 1, b: .100000001, a: 0}
-      data:
-        first:
-          name: _Displacement
-        second: {r: 6.6371665, g: 20.3539829, b: -1, a: -.681415975}
-      data:
-        first:
-          name: _ShoreTiling
-        second: {r: 1, g: 1, b: .100000001, a: .100000001}
-      data:
-        first:
-          name: _ReflectionTex_ST
-        second: {r: 1, g: 1, b: 0, a: 0}
-      data:
-        first:
-          name: _BumpMap_ST
-        second: {r: 1, g: 1, b: 0, a: 0}
-      data:
-        first:
           name: _DistortParams
         second: {r: 1.43999994, g: .242857143, b: 1.85306406, a: -.531428456}
       data:
@@ -354,6 +334,30 @@ Material:
         second: {r: .70338881, g: -.679999888, b: .717573524, a: -.200000003}
       data:
         first:
+          name: _ReflectionTex_ST
+        second: {r: 1, g: 1, b: 0, a: 0}
+      data:
+        first:
+          name: _BumpMap_ST
+        second: {r: 1, g: 1, b: 0, a: 0}
+      data:
+        first:
+          name: _RefractionTex_ST
+        second: {r: 1, g: 1, b: 0, a: 0}
+      data:
+        first:
+          name: _WaveScale
+        second: {r: .100000001, g: 1, b: .100000001, a: 0}
+      data:
+        first:
+          name: _Displacement
+        second: {r: 6.6371665, g: 20.3539829, b: -1, a: -.681415975}
+      data:
+        first:
+          name: _ShoreTiling
+        second: {r: 1, g: 1, b: .100000001, a: .100000001}
+      data:
+        first:
           name: _DepthColor
         second: {r: .0275116973, g: .141791046, b: .132267773, a: .4627451}
       data:
@@ -380,10 +384,6 @@ Material:
         first:
           name: _HorizonColor
         second: {r: .052907113, g: .244867355, b: .283582091, a: 1}
-      data:
-        first:
-          name: _RefractionTex_ST
-        second: {r: 1, g: 1, b: 0, a: 0}
       data:
         first:
           name: _ReflectiveColorCube_ST

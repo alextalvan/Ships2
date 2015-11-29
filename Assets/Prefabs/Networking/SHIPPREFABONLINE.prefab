@@ -3461,6 +3461,7 @@ MonoBehaviour:
   sailAccelerationPerFrame: .0199999996
   rightSide: {fileID: 465380}
   leftSide: {fileID: 461398}
+  cannonRecoil: 100000
 --- !u!114 &11453000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3491,7 +3492,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 170488}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02ad2b0166ff02c408e13279efccb92f, type: 3}
+  m_Script: {fileID: 11500000, guid: 9a594a9ec5868184f951e9292ce30723, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _soundList:
@@ -3549,9 +3550,11 @@ MonoBehaviour:
   - {fileID: 2398574}
   - {fileID: 2398606}
   - {fileID: 2352894}
-  - {fileID: 0}
+  - {fileID: 2336438}
   - {fileID: 2391720}
-  - {fileID: 0}
+  - {fileID: 2382324}
+  - {fileID: 2366560}
+  - {fileID: 2362870}
 --- !u!114 &11484312
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3747,6 +3750,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: sailAccelerationPerFrame
       value: .00999999978
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: debugVal
+      value: 100000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

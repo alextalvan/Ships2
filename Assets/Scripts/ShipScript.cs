@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.Networking;
 using System.Collections.Generic;
 
@@ -52,6 +52,9 @@ public class ShipScript : NetworkBehaviour
     //client trajectory fixing
     bool startedPreviewingTrajectory = false;
     bool storedSideIsLeft;
+
+	[SerializeField]
+	float cannonRecoil = 100000f;
 
 
     // Use this for initialization
@@ -340,9 +343,21 @@ public class ShipScript : NetworkBehaviour
     [ServerCallback]
     private void Shoot(Transform side, float shotPower)
     {
+		float cannonRatio = (int)shotPower / (float)side.childCount;
 
-		if((int)shotPower>0)
-			GetComponent<PlayerSound>().RpcPlaySound(PlayerSound.PLAYER_SOUNDS.FIRE_CANNON1);
+		//recoil
+		float recoilDirection = (side == leftSide) ? -1f : 1f;
+		objRigidBody.AddRelativeTorque (0f, 0f, recoilDirection * cannonRecoil * cannonRatio,ForceMode.Impulse);
+
+
+		//push audio and visual feedback to client
+		PlayerFX fx = GetComponent<PlayerFX> ();
+
+		if ((int)shotPower > 0) 
+		{
+			fx.RpcPlaySound (PlayerFX.PLAYER_SOUNDS.FIRE_CANNON1);
+			fx.RpcCameraShake(0.375f, 1.5f * cannonRatio);
+		}
 
         for (int i = 0; i < (int)shotPower; i++)
         {
@@ -364,7 +379,7 @@ public class ShipScript : NetworkBehaviour
         activeCannons.CurrentCharge -= (int)shotPower;
         
     }
-
+	
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;

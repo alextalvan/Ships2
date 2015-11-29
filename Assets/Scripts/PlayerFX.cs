@@ -5,7 +5,7 @@ using UnityEngine.Networking;
 
 
 [RequireComponent(typeof(AudioSource))]
-public class PlayerSound : NetworkBehaviour {
+public class PlayerFX : NetworkBehaviour {
 
 	[SerializeField]
 	private List<AudioClip> _soundList = new List<AudioClip>();
@@ -39,6 +39,20 @@ public class PlayerSound : NetworkBehaviour {
 	{
 		PlaySound (s);
 	}
+
+	public void CameraShake(float duration, float strength)
+	{
+		Camera.main.GetComponent<CameraShake> ().Shake (duration, strength);
+	}
+
+	[ClientRpc]
+	public void RpcCameraShake(float duration, float strength)
+	{
+		CameraShake (duration, strength);
+	}
+
+
+
 
 	// Use this for initialization
 	void Start () 

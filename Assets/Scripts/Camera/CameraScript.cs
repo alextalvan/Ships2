@@ -20,6 +20,8 @@ public class CameraScript : MonoBehaviour
     private Vector3 orbitDistance;
     private float rotation;
 
+	private GameObject _parent;
+
 	/*bool isRotationEnabled = true;
 
 	public void ToggleRotation(bool value)
@@ -28,8 +30,14 @@ public class CameraScript : MonoBehaviour
 	}*/
 
     // Use this for initialization
+	
     void Start()
     {
+		_parent = new GameObject ("Camera parent");
+		transform.parent = _parent.transform;
+		transform.localPosition = Vector3.zero;
+		transform.localRotation = Quaternion.identity;
+
         InitializeSettings(currentObject);
     }
 
@@ -53,7 +61,7 @@ public class CameraScript : MonoBehaviour
     {
         if (currentObject)
             // Keep us at the last known relative position
-            transform.position = currentObject.position + orbitDistance;
+			_parent.transform.position = currentObject.position + orbitDistance;
     }
 
     void RotateCamera()
@@ -80,12 +88,12 @@ public class CameraScript : MonoBehaviour
     {
         if (currentObject)
             // Reset relative position after rotate
-            orbitDistance = transform.position - currentObject.position;
+			orbitDistance = _parent.transform.position - currentObject.position;
     }
 
     void RotateCameraAround(Vector3 point, Vector3 axis, float rotationSpeed)
     {
-        transform.RotateAround(point, axis, Mathf.SmoothStep(rotationSpeed, 0f, Time.deltaTime));
+		_parent.transform.RotateAround(point, axis, Mathf.SmoothStep(rotationSpeed, 0f, Time.deltaTime));
         FadeRotation();
     }
 
@@ -111,10 +119,10 @@ public class CameraScript : MonoBehaviour
     {
         if (obj)
         {
-            transform.position = currentObject.position + offset;
-            transform.LookAt(currentObject);
-            transform.Rotate(Vector3.right, -angleOffset);
-            orbitDistance = transform.position - currentObject.position;
+            _parent.transform.position = currentObject.position + offset;
+			_parent.transform.LookAt(currentObject);
+			_parent.transform.Rotate(Vector3.right, -angleOffset);
+			orbitDistance = _parent.transform.position - currentObject.position;
         }
     }
 }
