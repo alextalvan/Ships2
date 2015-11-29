@@ -9,8 +9,7 @@ public class HullOnline : NetworkBehaviour
     private ShipAttributesOnline shipAttributes;
     [SerializeField]
     private Renderer hpRend;
-
-    [SyncVar]
+    
     private float currentHealth;
 
     public BuoyancyScript SetBuoyancy
@@ -27,7 +26,7 @@ public class HullOnline : NetworkBehaviour
     public void Reset()
     {
         currentHealth = shipAttributes.HullMaxHealth;
-        RpcUpdateHP();
+        RpcUpdateHP(currentHealth / shipAttributes.HullMaxHealth);
         buoyancy.Reset();
     }
 
@@ -39,7 +38,7 @@ public class HullOnline : NetworkBehaviour
         currentHealth -= damage;
         buoyancy.ChangeBuoyancy(position, buoyancy.GetVoxelsCount, radius);
         GetComponent<PlayerCaptionController>().RpcPushDebugText("My hull got damaged for " + damage + " damage. Remaining health: " + currentHealth);
-        RpcUpdateHP();
+        RpcUpdateHP(currentHealth / shipAttributes.HullMaxHealth);
 
         if (currentHealth <= Mathf.Epsilon)
         {
@@ -62,7 +61,7 @@ public class HullOnline : NetworkBehaviour
         {
             currentHealth += amount;
             GetComponent<PlayerCaptionController>().RpcPushDebugText("My hull got repaired for " + amount + ". Current hull health: " + currentHealth);
-            RpcUpdateHP();
+            RpcUpdateHP(currentHealth / shipAttributes.HullMaxHealth);
 
             if (currentHealth > shipAttributes.SailMaxHealth)
                 currentHealth = shipAttributes.SailMaxHealth;
@@ -93,8 +92,8 @@ public class HullOnline : NetworkBehaviour
     }
 
     [ClientRpc]
-    void RpcUpdateHP()
+    void RpcUpdateHP(float hp)
     {
-        hpRend.material.SetFloat("_Health", currentHealth / shipAttributes.HullMaxHealth);
+        hpRend.material.SetFloat("_Health", hp);
     }
 }

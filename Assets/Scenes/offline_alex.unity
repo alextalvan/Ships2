@@ -4181,6 +4181,7 @@ MonoBehaviour:
   - {fileID: 107454, guid: 7cc19d15546aef54d86cacf78cfa2f21, type: 2}
   - {fileID: 193654, guid: cffcceacc3f5c1f4b998adedaa55a4ce, type: 2}
   - {fileID: 193654, guid: 3105119ba9c560945ba4ca03348f9cd7, type: 2}
+  - {fileID: 193654, guid: 4c8fb58df81565d458680f1dbe4c2f9a, type: 2}
   - {fileID: 115790, guid: 814df63f498e01c479e716e6e33f4e99, type: 2}
   - {fileID: 197478, guid: a116f3da3268e804c8acd63e338df450, type: 2}
   m_CustomConfig: 0
