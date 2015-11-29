@@ -8,7 +8,6 @@ public class UpgradeHelper  {
 		switch (up) 
 		{
 		case LevelUser.UPGRADES.ANGLE_CORRECTION:
-			//TODO:fill these
 			target.RangeMultiplier += 0.2f;
 			break;
 
@@ -16,12 +15,10 @@ public class UpgradeHelper  {
 			target.DamageModifier +=0.2f;
 			target.RangeMultiplier += 0.2f;
 			target.HullMaxHealth -= 50f;
-
 			break;
 
 		case LevelUser.UPGRADES.DEFENCE_EXPERT:
 			target.HullMaxHealth += 50f;
-			target.GetComponent<HullOnline>().CurrentHealth += 50f;
 			target.RangeMultiplier -=0.2f;
 
 			break;
@@ -37,8 +34,6 @@ public class UpgradeHelper  {
 
 		case LevelUser.UPGRADES.REINFORCED_PLANKS:
 			target.HullMaxHealth += 25f;
-			target.GetComponent<HullOnline>().CurrentHealth += 25f;
-
 			break;
 		}
 

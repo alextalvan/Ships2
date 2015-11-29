@@ -285,6 +285,9 @@ public class ShipScript : NetworkBehaviour
 
 	private void HandleShootInput(OnlinePlayerInput.PlayerControlMessage m, Vector3 dir)
 	{
+		if (shipAttributes.IsDead)
+			return;
+
 		if (m == OnlinePlayerInput.PlayerControlMessage.SHOOT_START_HOLD_DOWN && currentShootInputState == ShootInputState.Idle) 
 		{
 			//shotPower = 0f;
@@ -357,6 +360,7 @@ public class ShipScript : NetworkBehaviour
 		{
 			fx.RpcPlaySound (PlayerFX.PLAYER_SOUNDS.FIRE_CANNON1);
 			fx.RpcCameraShake(0.375f, 1.5f * cannonRatio);
+			fx.RpcEmitCannonSmoke((side==leftSide),(int)shotPower);
 		}
 
         for (int i = 0; i < (int)shotPower; i++)

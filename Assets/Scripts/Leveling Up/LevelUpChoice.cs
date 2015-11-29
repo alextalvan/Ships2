@@ -16,12 +16,12 @@ public struct LevelUpChoice
 			choices.Add(i);
 		}
 
-		choice1 = Random.Range (0, choices.Count);
+		choice1 = choices[Random.Range (0, choices.Count)];
 		choices.Remove (choice1);
 
-		choice2 = Random.Range (0, choices.Count);
+		choice2 = choices[Random.Range (0, choices.Count)];
 		choices.Remove (choice2);
 
-		choice3 = Random.Range (0, choices.Count);
+		choice3 = choices[Random.Range (0, choices.Count)];
 	}
 }

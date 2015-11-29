@@ -10,6 +10,12 @@ public class PlayerFX : NetworkBehaviour {
 	[SerializeField]
 	private List<AudioClip> _soundList = new List<AudioClip>();
 
+	[SerializeField]
+	private List<ParticleSystem> _leftSideSmokes = new List<ParticleSystem> ();
+
+	[SerializeField]
+	private List<ParticleSystem> _rightSideSmokes = new List<ParticleSystem> ();
+
 	AudioSource _source;
 
 	public enum PLAYER_SOUNDS
@@ -37,6 +43,7 @@ public class PlayerFX : NetworkBehaviour {
 	[ClientRpc]
 	public void RpcPlaySound(PLAYER_SOUNDS s)
 	{
+		//if(isLocalPlayer)
 		PlaySound (s);
 	}
 
@@ -48,10 +55,30 @@ public class PlayerFX : NetworkBehaviour {
 	[ClientRpc]
 	public void RpcCameraShake(float duration, float strength)
 	{
-		CameraShake (duration, strength);
+		if(isLocalPlayer)
+			CameraShake (duration, strength);
 	}
 
-
+	[ClientRpc]
+	public void RpcEmitCannonSmoke(bool leftSide, int cannonCount)
+	{
+		if (leftSide) 
+		{
+			for (int i=0; i<cannonCount; ++i) 
+			{
+				_leftSideSmokes [i].Stop ();
+				_leftSideSmokes [i].Play ();
+			}
+		} 
+		else 
+		{
+			for (int i=0; i<cannonCount; ++i) 
+			{
+				_rightSideSmokes [i].Stop ();
+				_rightSideSmokes [i].Play ();
+			}
+		}
+	}
 
 
 	// Use this for initialization
