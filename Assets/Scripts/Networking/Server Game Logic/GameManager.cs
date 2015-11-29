@@ -1,13 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.Networking;
 
 public class GameManager : MonoBehaviour {
 
-    float phase1Time = 60f;
+    float phase1Time = 120f;
 
 	//temp
-    bool phase1inProgress = false;
+    bool phase1inProgress = true;
 	bool finishedGame = false;
 
     public CustomOnlinePlayer cureCarrier = null;
@@ -18,12 +19,17 @@ public class GameManager : MonoBehaviour {
 	[SerializeField]
 	GameObject chartPrefab;
 
+	[SerializeField]
+	GameObject pickupRespawnPointsParent;
+
+	[SerializeField]
+	int initialScrollCount = 10;
+
 	// Use this for initialization
-	void Start () 
+	void OnEnable () 
 	{
 		//test
-		GameObject chart = Instantiate (chartPrefab);
-		NetworkServer.Spawn (chart);
+		ArrangeArena ();
 	}
 	
 	// Update is called once per frame
@@ -33,7 +39,10 @@ public class GameManager : MonoBehaviour {
         {
             phase1Time -= Time.fixedDeltaTime;
             if (phase1Time <= 0.0f)
+			{
+				PlayerCaptionController.BroadcastCaption("The cure may now be picked up", 5f);
                 phase1inProgress = false;
+			}
         }
 
         if(cureCarrier!=null)
@@ -48,6 +57,28 @@ public class GameManager : MonoBehaviour {
         }
 	}
 
+	void ArrangeArena()
+	{
+
+		List<Transform> _spawnPoints = new List<Transform> ();
+		pickupRespawnPointsParent.GetComponentsInChildren<Transform> (_spawnPoints);
+
+		//first put ourself (cure) to a random pickup node
+		int index = Random.Range (1, _spawnPoints.Count);
+
+		transform.position = _spawnPoints [index].position;
+		_spawnPoints.RemoveAt (index);
+
+		for (int i=0; i< initialScrollCount; ++i) 
+		{
+			index = Random.Range (1, _spawnPoints.Count);
+
+			GameObject chart = (GameObject) Instantiate (chartPrefab,_spawnPoints[index].position,Quaternion.identity);
+			NetworkServer.Spawn (chart);
+			_spawnPoints.RemoveAt (index);
+		}
+
+	}
 
     void WinAction(CustomOnlinePlayer winner)
     {

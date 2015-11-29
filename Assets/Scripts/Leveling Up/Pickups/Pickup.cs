@@ -53,7 +53,6 @@ public class Pickup : NetworkBehaviour {
 	protected virtual void OnPickup(CustomOnlinePlayer player)
 	{
 		player.GetComponent<LevelUser>().GainEXP(EXP_Reward);
-		player.GetComponent<PlayerCaptionController>().RpcPushCaption("<color=#41DD92>+" + EXP_Reward + " EXP</color>",3f);
 	}
 
 
