@@ -14696,10 +14696,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15c3a75830bc92344b0aae4f8a366d70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offset: {x: 30, y: 85, z: 30}
+  offset: {x: 35, y: 85, z: 35}
   rotationSpeed: 5
   rotationSpeedLimit: 25
-  angleOffset: 20
+  angleOffset: 25
   currentObject: {fileID: 2011414046}
 --- !u!1 &1065303707
 GameObject:

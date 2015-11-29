@@ -340,6 +340,10 @@ public class ShipScript : NetworkBehaviour
     [ServerCallback]
     private void Shoot(Transform side, float shotPower)
     {
+
+		if((int)shotPower>0)
+			GetComponent<PlayerSound>().RpcPlaySound(PlayerSound.PLAYER_SOUNDS.FIRE_CANNON1);
+
         for (int i = 0; i < (int)shotPower; i++)
         {
             Transform cannon = activeSide.GetChild(i);
