@@ -1577,6 +1577,7 @@ MonoBehaviour:
   cameraRef: {fileID: 1065147564}
   middleCaption: {fileID: 1070353711}
   interpSlider: {fileID: 45621136}
+  UpgradeScreen: {fileID: 0}
 --- !u!4 &993481044
 Transform:
   m_ObjectHideFlags: 0
@@ -1773,12 +1774,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6e2ea625e273a74891bcf7afd042a3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 2011414045}
-  rotationSpeed: 2
-  heightOffset: 43
-  horizontalOffset: 41.0999985
-  verticalAngle: -22.6000004
-  reserve: {fileID: 2011414045}
 --- !u!114 &1065147566
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2180,6 +2175,7 @@ MonoBehaviour:
   voxelsZ: 2
   voxelsYDownMod: 1
   centerOfMassYOffset: 2
+  buoyancyLimit: 70
 --- !u!54 &1164424232
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3329,8 +3325,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1781470865}
-  m_LocalRotation: {x: .00469488977, y: .841699123, z: .539876878, w: -.00732031185}
-  m_LocalPosition: {x: 5.17721415, y: -185.323425, z: 117.685966}
+  m_LocalRotation: {x: .151085615, y: .557710826, z: .104088366, w: -.809504449}
+  m_LocalPosition: {x: -36.094574, y: -84.1360016, z: -82.9001312}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -3477,6 +3473,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cureCarrier: {fileID: 0}
+  chartPrefab: {fileID: 0}
 --- !u!114 &1848034371
 MonoBehaviour:
   m_ObjectHideFlags: 0

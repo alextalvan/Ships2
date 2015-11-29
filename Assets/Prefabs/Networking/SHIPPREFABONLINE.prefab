@@ -245,6 +245,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &118814
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 442344}
+  - 33: {fileID: 3372976}
+  - 23: {fileID: 2336308}
+  m_Layer: 0
+  m_Name: HP
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &119858
 GameObject:
   m_ObjectHideFlags: 1
@@ -1425,6 +1442,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 461398}
   m_RootOrder: 4
+--- !u!4 &442344
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 118814}
+  m_LocalRotation: {x: .707106829, y: 0, z: 0, w: .707106709}
+  m_LocalPosition: {x: 0, y: -1.5, z: 0}
+  m_LocalScale: {x: 30, y: 30, z: 1}
+  m_Children: []
+  m_Father: {fileID: 491658}
+  m_RootOrder: 9
 --- !u!4 &442770
 Transform:
   m_ObjectHideFlags: 1
@@ -1849,7 +1878,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 170488}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 46.1033401, y: 6.19758415, z: -111.472054}
+  m_LocalPosition: {x: 29.3289871, y: 46.3644447, z: 129.052139}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 460718}
@@ -1861,6 +1890,7 @@ Transform:
   - {fileID: 447984}
   - {fileID: 461398}
   - {fileID: 465380}
+  - {fileID: 442344}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &492600
@@ -2065,6 +2095,30 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
+  m_ImportantGI: 0
+  m_AutoUVMaxDistance: .5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+--- !u!23 &2336308
+MeshRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 118814}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_Materials:
+  - {fileID: 2100000, guid: 7e5ad82f57c6dd447a6d3625f200b566, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 1
+  m_ReflectionProbeUsage: 1
+  m_ProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 1
   m_ImportantGI: 0
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
@@ -3021,6 +3075,13 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 151704}
   m_Mesh: {fileID: 4300018, guid: bb06b2cf39ad940b0a9342b04939e769, type: 3}
+--- !u!33 &3372976
+MeshFilter:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 118814}
+  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &3373364
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -3323,6 +3384,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sailParent: {fileID: 424600}
+  hpBar: {fileID: 0}
   sails: []
   hullMaxHealth: 200
   sailMaxHealth: 100
@@ -3399,6 +3461,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shipAttributes: {fileID: 11419726}
+  hpRend: {fileID: 2336308}
 --- !u!114 &11441198
 MonoBehaviour:
   m_ObjectHideFlags: 1

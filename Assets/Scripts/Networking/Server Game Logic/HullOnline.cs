@@ -1,12 +1,16 @@
 ﻿using UnityEngine;
+using UnityEngine.Networking;
 
 [RequireComponent(typeof(Collider))]
-public class HullOnline : MonoBehaviour
+public class HullOnline : NetworkBehaviour
 {
     private BuoyancyScript buoyancy;
     [SerializeField]
     private ShipAttributesOnline shipAttributes;
+    [SerializeField]
+    private Renderer hpRend;
 
+    [SyncVar]
     private float currentHealth;
 
     public BuoyancyScript SetBuoyancy
@@ -23,6 +27,7 @@ public class HullOnline : MonoBehaviour
     public void Reset()
     {
         currentHealth = shipAttributes.HullMaxHealth;
+        RpcUpdateHP();
         buoyancy.Reset();
     }
 
@@ -34,6 +39,7 @@ public class HullOnline : MonoBehaviour
         currentHealth -= damage;
         buoyancy.ChangeBuoyancy(position, buoyancy.GetVoxelsCount, radius);
         GetComponent<PlayerCaptionController>().RpcPushDebugText("My hull got damaged for " + damage + " damage. Remaining health: " + currentHealth);
+        RpcUpdateHP();
 
         if (currentHealth <= Mathf.Epsilon)
         {
@@ -41,12 +47,12 @@ public class HullOnline : MonoBehaviour
             shipAttributes.IsDead = true;
             shipAttributes.OnDeath();
 
-			if(source!=null)
-			{
-				Projectile p = source.GetComponent<Projectile>();
-				if(p!=null)
-					p.owner.GetComponent<LevelUser>().GainEXP(500);
-			}
+            if (source != null)
+            {
+                Projectile p = source.GetComponent<Projectile>();
+                if (p != null)
+                    p.owner.GetComponent<LevelUser>().GainEXP(500);
+            }
         }
     }
 
@@ -56,6 +62,7 @@ public class HullOnline : MonoBehaviour
         {
             currentHealth += amount;
             GetComponent<PlayerCaptionController>().RpcPushDebugText("My hull got repaired for " + amount + ". Current hull health: " + currentHealth);
+            RpcUpdateHP();
 
             if (currentHealth > shipAttributes.SailMaxHealth)
                 currentHealth = shipAttributes.SailMaxHealth;
@@ -83,5 +90,11 @@ public class HullOnline : MonoBehaviour
                 hull.Damage(collision.contacts[0].point, collision.relativeVelocity.magnitude / 3f, 10f);
             }
         }
+    }
+
+    [ClientRpc]
+    void RpcUpdateHP()
+    {
+        hpRend.material.SetFloat("_Health", currentHealth / shipAttributes.HullMaxHealth);
     }
 }

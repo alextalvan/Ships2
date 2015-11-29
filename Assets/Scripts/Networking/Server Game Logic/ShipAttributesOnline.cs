@@ -10,6 +10,8 @@ public class ShipAttributesOnline : NetworkBehaviour
 
     [SerializeField]
     private Transform sailParent;
+    [SerializeField]
+    private Transform hpBar;
 
     public List<SailOnline> sails = new List<SailOnline>();
 
@@ -42,6 +44,10 @@ public class ShipAttributesOnline : NetworkBehaviour
 	[SerializeField]
 	List<GameObject> _wreckagePickupPrefabs = new List<GameObject> (); 
 
+    public Transform HpBar
+    {
+        get { return hpBar; }
+    }
     public float HullMaxHealth
     {
         get { return hullMaxHealth; }
