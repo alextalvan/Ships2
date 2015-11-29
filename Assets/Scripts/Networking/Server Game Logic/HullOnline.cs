@@ -9,7 +9,11 @@ public class HullOnline : NetworkBehaviour
     private ShipAttributesOnline shipAttributes;
     [SerializeField]
     private Renderer hpRend;
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> 7c58a6c6db3fd9d9194b53f353e7c33f618bc9ad
     private float currentHealth;
 
     public BuoyancyScript SetBuoyancy
@@ -26,7 +30,12 @@ public class HullOnline : NetworkBehaviour
     public void Reset()
     {
         currentHealth = shipAttributes.HullMaxHealth;
+<<<<<<< HEAD
         RpcUpdateHP(currentHealth / shipAttributes.HullMaxHealth);
+=======
+		shipAttributes.IsDead = false;
+		RpcUpdateHealthBar(1f);
+>>>>>>> 7c58a6c6db3fd9d9194b53f353e7c33f618bc9ad
         buoyancy.Reset();
     }
 
@@ -37,9 +46,13 @@ public class HullOnline : NetworkBehaviour
 
         currentHealth -= damage;
         buoyancy.ChangeBuoyancy(position, buoyancy.GetVoxelsCount, radius);
+<<<<<<< HEAD
         GetComponent<PlayerCaptionController>().RpcPushDebugText("My hull got damaged for " + damage + " damage. Remaining health: " + currentHealth);
         RpcUpdateHP(currentHealth / shipAttributes.HullMaxHealth);
 
+=======
+       
+>>>>>>> 7c58a6c6db3fd9d9194b53f353e7c33f618bc9ad
         if (currentHealth <= Mathf.Epsilon)
         {
             currentHealth = 0f;
@@ -53,20 +66,29 @@ public class HullOnline : NetworkBehaviour
                     p.owner.GetComponent<LevelUser>().GainEXP(500);
             }
         }
+
+		GetComponent<PlayerCaptionController>().RpcPushDebugText("My hull got damaged for " + damage + " damage. Remaining health: " + currentHealth);
+		SendHealthBarRefresh ();
     }
 
     public void Repair(float amount)
     {
+<<<<<<< HEAD
         if (currentHealth < shipAttributes.SailMaxHealth)
         {
             currentHealth += amount;
             GetComponent<PlayerCaptionController>().RpcPushDebugText("My hull got repaired for " + amount + ". Current hull health: " + currentHealth);
             RpcUpdateHP(currentHealth / shipAttributes.HullMaxHealth);
+=======
+        currentHealth += amount;
+        if (currentHealth > shipAttributes.HullMaxHealth)
+            currentHealth = shipAttributes.HullMaxHealth;
+>>>>>>> 7c58a6c6db3fd9d9194b53f353e7c33f618bc9ad
 
-            if (currentHealth > shipAttributes.SailMaxHealth)
-                currentHealth = shipAttributes.SailMaxHealth;
-        }
-    }
+		GetComponent<PlayerCaptionController>().RpcPushDebugText("My hull got repaired for " + amount + ". Current hull health: " + currentHealth);
+		SendHealthBarRefresh ();
+    
+}
 
     //Rammimg
     void OnCollisionEnter(Collision collision)
@@ -91,9 +113,21 @@ public class HullOnline : NetworkBehaviour
         }
     }
 
+	[ServerCallback]
+	public void SendHealthBarRefresh()
+	{
+		RpcUpdateHealthBar (currentHealth / shipAttributes.HullMaxHealth);
+	}
+
     [ClientRpc]
+<<<<<<< HEAD
     void RpcUpdateHP(float hp)
     {
         hpRend.material.SetFloat("_Health", hp);
+=======
+    void RpcUpdateHealthBar(float healthRatio)
+    {
+        hpRend.material.SetFloat("_Health", healthRatio);
+>>>>>>> 7c58a6c6db3fd9d9194b53f353e7c33f618bc9ad
     }
 }

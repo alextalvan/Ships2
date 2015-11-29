@@ -22,9 +22,9 @@ public class LevelUser : NetworkBehaviour
 	{
 		ANGLE_CORRECTION,
 		CRAZY_GUNNERS,
-		PRECISION,
 		DEFENCE_EXPERT,
 		POWDER_MONKEY,
+		PRECISION,
 		REINFORCED_PLANKS,
 	}
 

@@ -22,6 +22,12 @@ public abstract class Projectile : NetworkBehaviour
 
     public CustomOnlinePlayer owner;
 
+	//splash
+	[SerializeField]
+	GameObject splashPrefab;
+
+	private bool spawnedSplash = false;
+
     public float UpwardsModifier
     {
         get { return upwardsModifier; }
@@ -57,26 +63,22 @@ public abstract class Projectile : NetworkBehaviour
         birthDate = Time.time;
     }
 
-    /*
-    void Awake()
-    {
-
-        if (NetworkManager.singleton != null && NetworkManager.singleton.isNetworkActive && !NetworkServer.active)
-        {
-            GetComponent<Rigidbody>().isKinematic = true;
-            GetComponent<Collider>().enabled = false;
-            return;
-        }
-    }
-    */
-
     void FixedUpdate()
     {
-        if (Time.time > birthDate + lifeTime)
-        {
-            Delete();
-        }
+		ProcessDeath ();
+		ProcessSplash ();
     }
+
+	[ClientCallback]
+	void ProcessSplash()
+	{
+		Vector3 pos = transform.position;
+		if(!spawnedSplash && pos.y <= WaterHelper.GetOceanHeightAt(new Vector2(pos.x,pos.z)))
+		{
+			spawnedSplash = true;
+			Instantiate(splashPrefab,pos,Quaternion.identity);
+		}
+	}
 
     [ServerCallback]
     protected abstract void DealDamage(Collision collision);
@@ -85,6 +87,15 @@ public abstract class Projectile : NetworkBehaviour
     {
         DealDamage(collision);
     }
+
+	[ServerCallback]
+	void ProcessDeath()
+	{
+		if (Time.time > birthDate + lifeTime)
+		{
+			Delete();
+		}
+	}
 
     [ServerCallback]
     protected virtual void Delete()

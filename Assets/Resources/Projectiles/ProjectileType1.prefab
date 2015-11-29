@@ -171,7 +171,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sendRate: .0500000007
   _interpRate: .100000001
-  _snapThreshold: 30
+  _snapThreshold: 100
 --- !u!114 &11470354
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -189,6 +189,7 @@ MonoBehaviour:
   sailDamage: 1
   damageRadius: 5
   owner: {fileID: 0}
+  splashPrefab: {fileID: 148626, guid: a7709fac6f50ef145a702f827ae67eaf, type: 2}
 --- !u!135 &13503682
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -282,8 +283,12 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: _snapThreshold
-      value: 30
+      value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: splashPrefab
+      value: 
+      objectReference: {fileID: 148626, guid: a7709fac6f50ef145a702f827ae67eaf, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 193654}
