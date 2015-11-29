@@ -174,6 +174,7 @@ MonoBehaviour:
   damageRadius: 25
   coolDown: 15
   owner: {fileID: 0}
+  splashPrefab: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -260,6 +261,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: coolDown
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: splashPrefab
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

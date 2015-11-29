@@ -24,7 +24,8 @@ public class ShipAttributesOnline : NetworkBehaviour
     [SerializeField]
     private float steeringModifier;
 
-    [SerializeField][SyncVar]
+    [SerializeField]
+    [SyncVar]
     private float shootRangeMultiplier;
     [SerializeField]
     private float cannonChargeRate;
@@ -33,16 +34,16 @@ public class ShipAttributesOnline : NetworkBehaviour
     [SerializeField]
     private float regenerationRate;
 
-	[SerializeField]
-	private float damageModifier;
+    [SerializeField]
+    private float damageModifier;
 
     private float sailSpeedModifier;
 
     private bool isDead = false;
 
 
-	[SerializeField]
-	List<GameObject> _wreckagePickupPrefabs = new List<GameObject> (); 
+    [SerializeField]
+    List<GameObject> _wreckagePickupPrefabs = new List<GameObject>();
 
     public Transform HpBar
     {
@@ -51,20 +52,7 @@ public class ShipAttributesOnline : NetworkBehaviour
     public float HullMaxHealth
     {
         get { return hullMaxHealth; }
-        set 
-		{
-			HullOnline hull = GetComponent<HullOnline>();
-			float delta = value - hullMaxHealth;
-			hullMaxHealth = value; 
-
-			if(hull.CurrentHealth > hullMaxHealth)
-				hull.CurrentHealth = hullMaxHealth;
-
-			if(delta > 0f)
-				hull.CurrentHealth += delta;
-
-			hull.SendHealthBarRefresh();
-		}
+        set { hullMaxHealth = value; }
     }
     public float SailMaxHealth
     {
@@ -108,11 +96,11 @@ public class ShipAttributesOnline : NetworkBehaviour
         set { sailSpeedModifier = value; }
     }
 
-	public float DamageModifier
-	{
-		get { return damageModifier; }
-		set { damageModifier = value; }
-	}
+    public float DamageModifier
+    {
+        get { return damageModifier; }
+        set { damageModifier = value; }
+    }
 
     public bool IsDead
     {
@@ -132,7 +120,7 @@ public class ShipAttributesOnline : NetworkBehaviour
             SailOnline sail = child.GetComponent<SailOnline>();
             sails.Add(sail);
         }
-        
+
         Reset();
     }
 
@@ -141,7 +129,7 @@ public class ShipAttributesOnline : NetworkBehaviour
     {
         isDead = false;
         hullOnline.Reset();
-        
+
         foreach (SailOnline sail in sails)
         {
             sail.Reset();
@@ -165,7 +153,7 @@ public class ShipAttributesOnline : NetworkBehaviour
 
     void Update()
     {
-        
+
     }
 
     [ClientRpc]
@@ -173,20 +161,19 @@ public class ShipAttributesOnline : NetworkBehaviour
     {
         sails[index].GetComponent<Renderer>().material.SetFloat("_Dissolveamount", amount);
     }
-    
+
     [ServerCallback]
     public void OnDeath()
     {
         playerRespawn.StartRespawn();
 
-		if (_wreckagePickupPrefabs.Count > 0) 
-		{
-			int index = Random.Range(0,_wreckagePickupPrefabs.Count);
+        if (_wreckagePickupPrefabs.Count > 0)
+        {
+            int index = Random.Range(0, _wreckagePickupPrefabs.Count);
 
-			GameObject o = (GameObject)Instantiate(_wreckagePickupPrefabs[index],this.transform.position,Quaternion.identity);
+            GameObject o = (GameObject)Instantiate(_wreckagePickupPrefabs[index], transform.position, Quaternion.identity);
 
-			NetworkServer.Spawn(o);
-		}
-
+            NetworkServer.Spawn(o);
+        }
     }
 }

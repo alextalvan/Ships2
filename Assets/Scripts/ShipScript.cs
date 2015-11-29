@@ -123,7 +123,7 @@ public class ShipScript : NetworkBehaviour
         shotPowerLeft = leftSide.transform.childCount;
         shotPowerRight = rightSide.transform.childCount;
     }
-    
+
     void Update()
     {
         SwitchClientAmmoType();
@@ -291,9 +291,11 @@ public class ShipScript : NetworkBehaviour
         return 0f;
     }
 
-<<<<<<< HEAD
     private void HandleShootInput(OnlinePlayerInput.PlayerControlMessage m, Vector3 dir)
     {
+        if (shipAttributes.IsDead)
+            return;
+
         if (currentProjectileType == projectileType3Prefab)
         {
             if (m == OnlinePlayerInput.PlayerControlMessage.SHOOT_START_HOLD_DOWN && currentShootInputState == ShootInputState.Idle)
@@ -311,54 +313,12 @@ public class ShipScript : NetworkBehaviour
         {
             if (m == OnlinePlayerInput.PlayerControlMessage.SHOOT_START_HOLD_DOWN && currentShootInputState == ShootInputState.Idle)
             {
+                //shotPower = 0f;
                 currentShootInputState = ShootInputState.Ready;
                 activeSide = (Vector3.Dot(dir, leftSide.forward) > 0f) ? leftSide : rightSide;
                 activeCannons = activeSide.GetComponent<CannonGroup>();
                 return;
             }
-=======
-	private void HandleShootInput(OnlinePlayerInput.PlayerControlMessage m, Vector3 dir)
-	{
-		if (shipAttributes.IsDead)
-			return;
-
-		if (m == OnlinePlayerInput.PlayerControlMessage.SHOOT_START_HOLD_DOWN && currentShootInputState == ShootInputState.Idle) 
-		{
-			//shotPower = 0f;
-			currentShootInputState = ShootInputState.Ready;
-			activeSide = (Vector3.Dot(dir,leftSide.forward) > 0f) ? leftSide : rightSide;
-			activeCannons = activeSide.GetComponent<CannonGroup>();
-			return;
-		}
-
-		if (m == OnlinePlayerInput.PlayerControlMessage.SHOOT_RELEASE && currentShootInputState == ShootInputState.Ready) 
-		{
-			currentShootInputState = ShootInputState.Idle;
-
-
-			if(activeSide == leftSide)
-			{
-				Shoot(leftSide,shotPowerLeft);
-				shotPowerLeft = 0f;
-			}
-			else
-			{
-				Shoot(rightSide,shotPowerRight);
-				shotPowerRight = 0f;
-			}
-
-			return;
-		}
-
-		if (m == OnlinePlayerInput.PlayerControlMessage.CANCEL_START_HOLD && currentShootInputState == ShootInputState.Ready) 
-		{
-			currentShootInputState = ShootInputState.Idle;
-			return;
-		}
-
-	}
->>>>>>> 7c58a6c6db3fd9d9194b53f353e7c33f618bc9ad
-
             if (m == OnlinePlayerInput.PlayerControlMessage.SHOOT_RELEASE && currentShootInputState == ShootInputState.Ready)
             {
                 currentShootInputState = ShootInputState.Idle;
@@ -376,12 +336,12 @@ public class ShipScript : NetworkBehaviour
 
                 return;
             }
+        }
 
-            if (m == OnlinePlayerInput.PlayerControlMessage.CANCEL_START_HOLD && currentShootInputState == ShootInputState.Ready)
-            {
-                currentShootInputState = ShootInputState.Idle;
-                return;
-            }
+        if (m == OnlinePlayerInput.PlayerControlMessage.CANCEL_START_HOLD && currentShootInputState == ShootInputState.Ready)
+        {
+            currentShootInputState = ShootInputState.Idle;
+            return;
         }
     }
 
@@ -444,20 +404,17 @@ public class ShipScript : NetworkBehaviour
             //push audio and visual feedback to client
             PlayerFX fx = GetComponent<PlayerFX>();
 
-<<<<<<< HEAD
             if ((int)shotPower > 0)
             {
                 fx.RpcPlaySound(PlayerFX.PLAYER_SOUNDS.FIRE_CANNON1);
                 fx.RpcCameraShake(0.375f, 1.5f * cannonRatio);
             }
-=======
-		if ((int)shotPower > 0) 
-		{
-			fx.RpcPlaySound (PlayerFX.PLAYER_SOUNDS.FIRE_CANNON1);
-			fx.RpcCameraShake(0.375f, 1.5f * cannonRatio);
-			fx.RpcEmitCannonSmoke((side==leftSide),(int)shotPower);
-		}
->>>>>>> 7c58a6c6db3fd9d9194b53f353e7c33f618bc9ad
+            if ((int)shotPower > 0)
+            {
+                fx.RpcPlaySound(PlayerFX.PLAYER_SOUNDS.FIRE_CANNON1);
+                fx.RpcCameraShake(0.375f, 1.5f * cannonRatio);
+                fx.RpcEmitCannonSmoke((side == leftSide), (int)shotPower);
+            }
 
             for (int i = 0; i < (int)shotPower; i++)
             {
