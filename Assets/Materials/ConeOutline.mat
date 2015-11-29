@@ -93,32 +93,8 @@ Material:
         second: .5
       data:
         first:
-          name: _Aplitude
-        second: 15
-      data:
-        first:
-          name: _SpeedMUL
-        second: .200000003
-      data:
-        first:
-          name: _Width
+          name: _InvFade
         second: 1
-      data:
-        first:
-          name: _HorizontalMUL
-        second: .100000001
-      data:
-        first:
-          name: _VerticalMUL
-        second: 1
-      data:
-        first:
-          name: _Glossiness
-        second: .5
-      data:
-        first:
-          name: _Metallic
-        second: 0
       data:
         first:
           name: _Parallax
@@ -127,6 +103,10 @@ Material:
         first:
           name: _ZWrite
         second: 1
+      data:
+        first:
+          name: _Glossiness
+        second: .5
       data:
         first:
           name: _BumpScale
@@ -149,7 +129,27 @@ Material:
         second: 0
       data:
         first:
-          name: _InvFade
+          name: _Metallic
+        second: 0
+      data:
+        first:
+          name: _Width
+        second: 1
+      data:
+        first:
+          name: _Aplitude
+        second: 5
+      data:
+        first:
+          name: _SpeedMUL
+        second: .200000003
+      data:
+        first:
+          name: _HorizontalMUL
+        second: .100000001
+      data:
+        first:
+          name: _VerticalMUL
         second: 1
     m_Colors:
       data:
