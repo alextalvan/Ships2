@@ -8,7 +8,7 @@ public class GameManager : NetworkBehaviour {
     float phase1Time = 120f;
 
 	//temp
-    bool phase1inProgress = false;
+    bool phase1inProgress = true;
 	bool finishedGame = false;
 
     public CustomOnlinePlayer cureCarrier = null;
