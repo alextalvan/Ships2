@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 using UnityEngine.Networking;
 
 [RequireComponent(typeof(Rigidbody), typeof(Collider))]
@@ -22,11 +23,19 @@ public abstract class Projectile : NetworkBehaviour
 
     public CustomOnlinePlayer owner;
 
-	//splash
-	[SerializeField]
+    private List<GameObject> debris = new List<GameObject>();
+    [SerializeField]
+    GameObject crate;
+    [SerializeField]
+    GameObject barrel;
+    [SerializeField]
+    GameObject plank;
+
+    //splash
+    [SerializeField]
 	GameObject splashPrefab;
 
-	private bool spawnedSplash = false;
+    private bool spawnedSplash = false;
 
     public float UpwardsModifier
     {
@@ -60,6 +69,10 @@ public abstract class Projectile : NetworkBehaviour
     // Use this for initialization
     protected virtual void Start()
     {
+        debris.Add(crate);
+        debris.Add(barrel);
+        debris.Add(plank);
+
         birthDate = Time.time;
     }
 
@@ -81,7 +94,32 @@ public abstract class Projectile : NetworkBehaviour
 	}
 
     [ServerCallback]
-    protected abstract void DealDamage(Collision collision);
+    protected virtual void DealDamage(Collision collision)
+    {
+        int randomNmb = Random.Range(0, 2);
+
+        if (randomNmb != 1)
+            return;
+
+        int rndDebris = Random.Range(0, debris.Count);
+
+        float rndForce = Random.Range(50f, 100f);
+
+        Vector3 dir = collision.contacts[0].point + collision.contacts[0].normal * 5f;
+
+        GameObject debrisObj = (GameObject)Instantiate(debris[rndDebris], dir, Random.rotation);
+        Rigidbody debrisObjRB = debrisObj.GetComponent<Rigidbody>();
+
+        float debrisMass = debrisObjRB.mass;
+        
+        Vector3 force = (Vector3.up * upwardsModifier + dir.normalized * rndForce) * debrisMass;
+
+        debrisObjRB.AddForce(force);
+
+        debrisObj.GetComponent<Pickup>().owner = collision.collider.GetComponent<CustomOnlinePlayer>();
+
+        NetworkServer.Spawn(debrisObj);
+    }
 
     void OnCollisionEnter(Collision collision)
     {

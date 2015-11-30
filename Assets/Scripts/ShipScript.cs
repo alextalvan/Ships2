@@ -292,12 +292,10 @@ public class ShipScript : NetworkBehaviour
         Vector3 position = startPos;
         Vector3 velocity = startVelocity;
 
-        int step = 5;
-
-        for (int i = 0; i < maxDist; i+=step)
+        for (int i = 0; i < maxDist; i++)
         {
             velocity += Physics.gravity * Time.fixedDeltaTime;
-            position += velocity * Time.fixedDeltaTime * step;
+            position += velocity * Time.fixedDeltaTime;
 
             float waterLevel = WaterHelper.GetOceanHeightAt(new Vector2(position.x, position.z));
 
@@ -392,7 +390,7 @@ public class ShipScript : NetworkBehaviour
                     Vector3 rndPos = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f));
                     float rndForce = Random.Range(250f, 500f);
 
-                    GameObject barrel = (GameObject)Instantiate(currentProjectileType, transform.position + rndPos - (transform.forward * objBounds.size.z), Quaternion.identity);
+                    GameObject barrel = (GameObject)Instantiate(currentProjectileType, transform.position + rndPos - (transform.forward * objBounds.size.z), Random.rotation);
                     Rigidbody barrelRB = barrel.GetComponent<Rigidbody>();
                     Projectile barrelProj = barrel.GetComponent<Projectile>();
 
@@ -441,7 +439,7 @@ public class ShipScript : NetworkBehaviour
             for (int i = 0; i < (int)shotPower; i++)
             {
                 Transform cannon = activeSide.GetChild(i);
-                GameObject projectile = (GameObject)Instantiate(currentProjectileType, cannon.position, Quaternion.identity);
+                GameObject projectile = (GameObject)Instantiate(currentProjectileType, cannon.position, Random.rotation);
                 Rigidbody projRB = projectile.GetComponent<Rigidbody>();
                 Projectile projProj = projectile.GetComponent<Projectile>();
 

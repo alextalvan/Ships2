@@ -9,6 +9,7 @@ public class HullOnline : NetworkBehaviour
     private ShipAttributesOnline shipAttributes;
     [SerializeField]
     private Renderer hpRend;
+    PlayerFX fx;
 
     private float currentHealth;
 
@@ -25,6 +26,7 @@ public class HullOnline : NetworkBehaviour
 
     public void Reset()
     {
+        fx = GetComponent<PlayerFX>();
         currentHealth = shipAttributes.HullMaxHealth;
         buoyancy.Reset();
         SendHealthBarRefresh();
@@ -34,6 +36,8 @@ public class HullOnline : NetworkBehaviour
     {
         if (currentHealth < Mathf.Epsilon)
             return;
+
+        fx.RpcCameraShake(0.375f, damage/2f);
 
         currentHealth -= damage;
         buoyancy.ChangeBuoyancy(position, buoyancy.GetVoxelsCount, radius);
@@ -80,12 +84,15 @@ public class HullOnline : NetworkBehaviour
             {
                 hull.Damage(collision.contacts[0].point, collision.relativeVelocity.magnitude, 10f);
                 Damage(collision.contacts[0].point, collision.relativeVelocity.magnitude / 3f, 10f);
+                fx.RpcCameraShake(0.375f, collision.relativeVelocity.magnitude / 3f);
             }
             else
             {
                 Damage(collision.contacts[0].point, collision.relativeVelocity.magnitude, 10f);
                 hull.Damage(collision.contacts[0].point, collision.relativeVelocity.magnitude / 3f, 10f);
+                fx.RpcCameraShake(0.375f, collision.relativeVelocity.magnitude);
             }
+            SendHealthBarRefresh();
         }
     }
 
