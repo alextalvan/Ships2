@@ -93,9 +93,7 @@ public class CustomOnlinePlayer : NetworkBehaviour {
     {
 		if (cureisCarriedByAPlayer) 
 		{
-			//clientCure.transform.parent = currentCureCarrier;
-			//clientCure.transform.localPosition = new Vector3 (0, 7, 0);
-			clientCure.transform.position = currentCureCarrier.transform.position + currentCureCarrier.transform.up * 18f;
+			clientCure.transform.position = currentCureCarrier.transform.position + currentCureCarrier.transform.up * 20f;
 			return;
 		} 
 		else

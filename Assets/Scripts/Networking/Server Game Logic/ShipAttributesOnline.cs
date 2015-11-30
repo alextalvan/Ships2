@@ -49,11 +49,25 @@ public class ShipAttributesOnline : NetworkBehaviour
     {
         get { return hpBar; }
     }
-    public float HullMaxHealth
-    {
-        get { return hullMaxHealth; }
-        set { hullMaxHealth = value; }
-    }
+	public float HullMaxHealth
+	{
+		get { return hullMaxHealth; }
+		set 
+		{
+			HullOnline hull = GetComponent<HullOnline>();
+			float delta = value - hullMaxHealth;
+			hullMaxHealth = value; 
+			
+			if(hull.CurrentHealth > hullMaxHealth)
+				hull.CurrentHealth = hullMaxHealth;
+			
+			if(delta > 0f)
+				hull.CurrentHealth += delta;
+			
+			hull.SendHealthBarRefresh();
+		}
+	}
+
     public float SailMaxHealth
     {
         get { return sailMaxHealth; }

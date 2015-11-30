@@ -33,6 +33,8 @@ public class LevelUser : NetworkBehaviour
 
 	public void GainEXP(int amount)
 	{
+		GetComponent<PlayerCaptionController>().RpcPushCaption("<color=#41DD92>+" + amount + " EXP</color>",3f);
+
 		_currentEXP += amount;
 		if (_currentEXP >= _nextLevelEXP && _level < _maxLevel) 
 		{
