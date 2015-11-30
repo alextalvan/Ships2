@@ -15,5 +15,6 @@ public class ProjectileType1 : Projectile
             sails.Damage(sailDamage);
         }
         Delete();
+        base.DealDamage(collision);
     }
 }

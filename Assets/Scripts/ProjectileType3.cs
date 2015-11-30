@@ -13,5 +13,6 @@ public class ProjectileType3 : Projectile
             hull.Damage(collision.contacts[0].point, hullDamage, damageRadius, this.gameObject);
         }
         Delete();
+        base.DealDamage(collision);
     }
 }
