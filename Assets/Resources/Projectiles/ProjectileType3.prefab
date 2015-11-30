@@ -177,6 +177,7 @@ MonoBehaviour:
   crate: {fileID: 106812, guid: f6c917cc8175d1e4582a63d5365b0714, type: 2}
   barrel: {fileID: 193054, guid: 82978177c31e3ae40a37913cc2ce2717, type: 2}
   plank: {fileID: 185838, guid: 73092ba537f6d83429603d0f830339dc, type: 2}
+  crossHit: {fileID: 108002, guid: e0c3bef3433ca2d4d8c08c450b4f6caf, type: 2}
   splashPrefab: {fileID: 148626, guid: a7709fac6f50ef145a702f827ae67eaf, type: 2}
 --- !u!1001 &100100000
 Prefab:
@@ -285,6 +286,10 @@ Prefab:
       propertyPath: m_Layer
       value: 13
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: crossHit
+      value: 
+      objectReference: {fileID: 108002, guid: e0c3bef3433ca2d4d8c08c450b4f6caf, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 193654}
