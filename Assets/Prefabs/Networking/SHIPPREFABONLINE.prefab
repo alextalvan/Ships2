@@ -4010,7 +4010,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sailParent: {fileID: 424600}
   hpBar: {fileID: 442344}
-  sails: []
+  sails:
+  - {fileID: 11446004}
+  - {fileID: 11440728}
+  - {fileID: 11431000}
+  - {fileID: 11439672}
+  - {fileID: 11495188}
+  - {fileID: 11426624}
   hullMaxHealth: 200
   sailMaxHealth: 100
   basicSpeed: 7.5
@@ -4259,6 +4265,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5207842f82218e3439c327946ce51290, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canSeeCure: 0
   cureisCarriedByAPlayer: 0
   currentCureCarrier: {fileID: 0}
   mapPieces: 1

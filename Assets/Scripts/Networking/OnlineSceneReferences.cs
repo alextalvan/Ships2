@@ -79,8 +79,8 @@ public class OnlineSceneReferences : MonoBehaviour {
 
 	public ClientUpgradeScreen UpgradeScreen;
 
-	public Transform UI_cure;
+	public Image UI_cure;
 
-	public Transform UI_cureArrow;
+	public Image UI_cureArrow;
 
 }

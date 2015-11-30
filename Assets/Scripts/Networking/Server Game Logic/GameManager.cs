@@ -3,12 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Networking;
 
-public class GameManager : MonoBehaviour {
+public class GameManager : NetworkBehaviour {
 
     float phase1Time = 120f;
 
 	//temp
-    bool phase1inProgress = true;
+    bool phase1inProgress = false;
 	bool finishedGame = false;
 
     public CustomOnlinePlayer cureCarrier = null;
@@ -26,10 +26,12 @@ public class GameManager : MonoBehaviour {
 	int initialScrollCount = 10;
 
 	// Use this for initialization
-	void OnEnable () 
+	void Start () 
 	{
 		//test
-		ArrangeArena ();
+
+		if(NetworkServer.active)
+			ArrangeArena ();
 	}
 	
 	// Update is called once per frame
@@ -57,6 +59,7 @@ public class GameManager : MonoBehaviour {
         }
 	}
 
+	[ServerCallback]
 	void ArrangeArena()
 	{
 

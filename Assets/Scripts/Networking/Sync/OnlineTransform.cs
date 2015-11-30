@@ -33,8 +33,11 @@ public class OnlineTransform : NetworkBehaviour {
 		
 		if (NetworkManager.singleton != null && NetworkManager.singleton.isNetworkActive && !NetworkServer.active)
 		{
-			GetComponent<Rigidbody>().isKinematic = true;
-			GetComponent<Collider>().enabled = false;
+			if(GetComponent<Rigidbody>())
+				GetComponent<Rigidbody>().isKinematic = true;
+
+			if(GetComponent<Collider>())
+				GetComponent<Collider>().enabled = false;
 			return;
 		}
 	}
