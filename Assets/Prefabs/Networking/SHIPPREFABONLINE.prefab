@@ -4019,7 +4019,7 @@ MonoBehaviour:
   - {fileID: 11426624}
   hullMaxHealth: 200
   sailMaxHealth: 100
-  basicSpeed: 7.5
+  basicSpeed: 10
   steeringModifier: 250
   shootRangeMultiplier: 1
   cannonChargeRate: 5
@@ -4265,7 +4265,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5207842f82218e3439c327946ce51290, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canSeeCure: 0
   cureisCarriedByAPlayer: 0
   currentCureCarrier: {fileID: 0}
   mapPieces: 1

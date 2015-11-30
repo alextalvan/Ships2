@@ -50,7 +50,7 @@ public class CustomOnlinePlayer : NetworkBehaviour {
 	[ClientCallback]
 	void ClientSideSetup()
 	{
-
+		onlineRef.UI_cure.enabled = true;
 		clientCure = onlineRef.clientCure;
 
 		if (isLocalPlayer)
