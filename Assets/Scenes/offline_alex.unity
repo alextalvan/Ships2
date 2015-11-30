@@ -395,11 +395,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a654cf835fbab174ead110589f9a2992, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstMenuPage: {fileID: 1772032168}
-  lobbyMenuPage: {fileID: 1450582143}
-  socketInputField: {fileID: 652728456}
-  portInputField: {fileID: 691716101}
-  playersReadyCountText: {fileID: 814091132}
+  firstMenuPage: {fileID: 0}
+  lobbyMenuPage: {fileID: 0}
+  socketInputField: {fileID: 0}
+  portInputField: {fileID: 0}
+  playersReadyCountText: {fileID: 0}
 --- !u!4 &207005242
 Transform:
   m_ObjectHideFlags: 0
@@ -527,7 +527,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74717573870f70245a6f7d9f4772e0cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetText: {fileID: 397613538}
+  targetText: {fileID: 0}
 --- !u!114 &267831243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -735,8 +735,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00ee46cb262cabe47a47a994c3d1ec2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _thisDropdown: {fileID: 305904537}
-  _targetToClampTo: {fileID: 1382793440}
+  _thisDropdown: {fileID: 0}
+  _targetToClampTo: {fileID: 0}
 --- !u!114 &305904537
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4169,24 +4169,13 @@ MonoBehaviour:
   m_ScriptCRCCheck: 1
   m_SendPeerInfo: 0
   m_MaxDelay: .00999999978
-  m_LogLevel: 4
+  m_LogLevel: 2
   m_PlayerPrefab: {fileID: 0}
-  m_AutoCreatePlayer: 0
-  m_PlayerSpawnMethod: 1
-  m_OfflineScene: offline_alex
+  m_AutoCreatePlayer: 1
+  m_PlayerSpawnMethod: 0
+  m_OfflineScene: 
   m_OnlineScene: 
-  m_SpawnPrefabs:
-  - {fileID: 107610, guid: 56f48a82cc2b10d4fa5ad7c6cb46c4b7, type: 2}
-  - {fileID: 170488, guid: 551dd1b5def485242abb9579ec47cc7f, type: 2}
-  - {fileID: 107454, guid: 7cc19d15546aef54d86cacf78cfa2f21, type: 2}
-  - {fileID: 193654, guid: cffcceacc3f5c1f4b998adedaa55a4ce, type: 2}
-  - {fileID: 193654, guid: 3105119ba9c560945ba4ca03348f9cd7, type: 2}
-  - {fileID: 193654, guid: 4c8fb58df81565d458680f1dbe4c2f9a, type: 2}
-  - {fileID: 115790, guid: 814df63f498e01c479e716e6e33f4e99, type: 2}
-  - {fileID: 197478, guid: a116f3da3268e804c8acd63e338df450, type: 2}
-  - {fileID: 106812, guid: f6c917cc8175d1e4582a63d5365b0714, type: 2}
-  - {fileID: 193054, guid: 82978177c31e3ae40a37913cc2ce2717, type: 2}
-  - {fileID: 185838, guid: 73092ba537f6d83429603d0f830339dc, type: 2}
+  m_SpawnPrefabs: []
   m_CustomConfig: 0
   m_MaxConnections: 4
   m_ConnectionConfig:
@@ -4208,7 +4197,7 @@ MonoBehaviour:
     m_MaxSentMessageQueueSize: 128
     m_IsAcksLong: 0
     m_Channels: []
-  m_Channels: 0500000000000000
+  m_Channels: 
   m_UseWebSockets: 0
   m_UseSimulator: 0
   m_SimulatedLatency: 1
@@ -4219,21 +4208,20 @@ MonoBehaviour:
   matchMaker: {fileID: 0}
   matchName: default
   matchSize: 4
-  m_ShowLobbyGUI: 0
+  m_ShowLobbyGUI: 1
   m_MaxPlayers: 4
   m_MaxPlayersPerConnection: 1
-  m_MinPlayers: 2
-  m_LobbyPlayerPrefab: {fileID: 11454796, guid: 56f48a82cc2b10d4fa5ad7c6cb46c4b7,
-    type: 2}
+  m_MinPlayers: 0
+  m_LobbyPlayerPrefab: {fileID: 0}
   m_GamePlayerPrefab: {fileID: 0}
-  m_LobbyScene: offline_alex
-  m_PlayScene: online_alex
+  m_LobbyScene: 
+  m_PlayScene: 
   lobbySlots: []
-  addressField: 127.0.0.1
+  addressField: 192.168.0.100
   portField: 7777
   isHudEnabled: 0
-  onlinePlayerPrefab: {fileID: 170488, guid: 551dd1b5def485242abb9579ec47cc7f, type: 2}
-  lobbyInfoPrefab: {fileID: 107454, guid: 7cc19d15546aef54d86cacf78cfa2f21, type: 2}
+  onlinePlayerPrefab: {fileID: 0}
+  lobbyInfoPrefab: {fileID: 0}
   _lobbyInfo: {fileID: 0}
 --- !u!4 &1471472059
 Transform:
@@ -4833,7 +4821,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6673bd92a06b80498cf9bc46ff88112, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEnabled: 1
+  isEnabled: 0
 --- !u!114 &1772032169
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -31,6 +31,9 @@ public abstract class Projectile : NetworkBehaviour
     [SerializeField]
     GameObject plank;
 
+    [SerializeField]
+    GameObject crossHit;
+
     //splash
     [SerializeField]
 	GameObject splashPrefab;
@@ -139,5 +142,11 @@ public abstract class Projectile : NetworkBehaviour
     protected virtual void Delete()
     {
         NetworkServer.Destroy(gameObject);
+    }
+
+    [ClientRpc]
+    protected void RpcSpawnHit(Vector3 pos)
+    {
+        Instantiate(Resources.Load("CrossHit"), pos, Quaternion.LookRotation(Camera.main.transform.position - pos));
     }
 }
