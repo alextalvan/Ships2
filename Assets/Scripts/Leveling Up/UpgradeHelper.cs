@@ -8,28 +8,28 @@ public class UpgradeHelper  {
 		switch (up) 
 		{
 		case LevelUser.UPGRADES.ANGLE_CORRECTION:
-			target.RangeMultiplier += 0.2f;
+			target.RangeMultiplier += 0.1f;
 			break;
 
 		case LevelUser.UPGRADES.CRAZY_GUNNERS:
-			target.DamageModifier +=0.2f;
-			target.RangeMultiplier += 0.2f;
-			target.HullMaxHealth -= 50f;
+			target.DamageModifier +=0.1f;
+			target.RangeMultiplier += 0.1f;
+			target.HullMaxHealth -= 25f;
 			break;
 
 		case LevelUser.UPGRADES.DEFENCE_EXPERT:
 			target.HullMaxHealth += 50f;
-			target.RangeMultiplier -=0.2f;
+			target.RangeMultiplier -=0.1f;
 
 			break;
 
 		case LevelUser.UPGRADES.POWDER_MONKEY:
-			target.ReloadRateModifier += 0.2f;
+			target.ReloadRateModifier += 0.1f;
 			break;
 
 		case LevelUser.UPGRADES.PRECISION:
-			target.RangeMultiplier +=0.4f;
-			target.ReloadRateModifier -= 0.2f;
+			target.RangeMultiplier +=0.2f;
+			target.ReloadRateModifier -= 0.1f;
 			break;
 
 		case LevelUser.UPGRADES.REINFORCED_PLANKS:

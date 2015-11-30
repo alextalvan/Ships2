@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.Networking;
 
 [RequireComponent(typeof(Collider))]
 public class SailOnline : MonoBehaviour

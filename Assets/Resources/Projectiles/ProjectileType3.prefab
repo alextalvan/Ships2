@@ -9,15 +9,15 @@ GameObject:
   m_Component:
   - 4: {fileID: 452454}
   - 33: {fileID: 3313014}
-  - 135: {fileID: 13503682}
   - 23: {fileID: 2338828}
   - 54: {fileID: 5496096}
-  - 96: {fileID: 9639940}
-  - 114: {fileID: 11442474}
-  - 114: {fileID: 11489172}
-  - 114: {fileID: 11472308}
+  - 64: {fileID: 6493816}
+  - 114: {fileID: 11421960}
+  - 114: {fileID: 11411282}
+  - 114: {fileID: 11430308}
+  - 114: {fileID: 11439766}
   m_Layer: 0
-  m_Name: ProjectileType2
+  m_Name: ProjectileType3
   m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,8 +30,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 193654}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 61.183609, y: 44.3781281, z: -5.9693718}
-  m_LocalScale: {x: .5, y: .5, z: .5}
+  m_LocalPosition: {x: 80.7900009, y: 61.1269989, z: 172.759995}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -45,7 +45,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: b25815883f6c87344b550daf1f342aa3, type: 2}
+  - {fileID: 2100000, guid: 0ebb122b989daf64c90f900a887abf8a, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -65,7 +65,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 193654}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 4300000, guid: e41ff4be42f310d479cf6b0a7915770b, type: 3}
 --- !u!54 &5496096
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -81,52 +81,33 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 2
---- !u!96 &9639940
-TrailRenderer:
+--- !u!64 &6493816
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 193654}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 1
+  m_Mesh: {fileID: 4300000, guid: e41ff4be42f310d479cf6b0a7915770b, type: 3}
+--- !u!114 &11411282
+MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 193654}
   m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_Materials:
-  - {fileID: 2100000, guid: b25815883f6c87344b550daf1f342aa3, type: 2}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 1
-  m_ReflectionProbeUsage: 1
-  m_ProbeAnchor: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_ImportantGI: 0
-  m_AutoUVMaxDistance: .5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
-  m_Time: .100000001
-  m_StartWidth: .5
-  m_EndWidth: .0500000007
-  m_Colors:
-    m_Color[0]:
-      serializedVersion: 2
-      rgba: 4278190080
-    m_Color[1]:
-      serializedVersion: 2
-      rgba: 4278190080
-    m_Color[2]:
-      serializedVersion: 2
-      rgba: 4281677109
-    m_Color[3]:
-      serializedVersion: 2
-      rgba: 4283716692
-    m_Color[4]:
-      serializedVersion: 2
-      rgba: 7171437
-  m_MinVertexDistance: .100000001
-  m_Autodestruct: 0
---- !u!114 &11442474
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 716f183b3c96e994eaabcbfb2ff9ac5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sendRate: .0500000007
+  _interpRate: .100000001
+  _snapThreshold: 20
+--- !u!114 &11421960
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -140,25 +121,25 @@ MonoBehaviour:
   m_SceneId:
     m_Value: 0
   m_AssetId:
-    i0: 49
-    i1: 5
-    i2: 17
-    i3: 155
-    i4: 169
-    i5: 197
-    i6: 96
-    i7: 148
-    i8: 91
-    i9: 164
-    i10: 202
-    i11: 3
-    i12: 52
-    i13: 143
-    i14: 156
-    i15: 215
+    i0: 76
+    i1: 143
+    i2: 181
+    i3: 141
+    i4: 248
+    i5: 21
+    i6: 101
+    i7: 212
+    i8: 88
+    i9: 104
+    i10: 15
+    i11: 29
+    i12: 190
+    i13: 76
+    i14: 47
+    i15: 154
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
---- !u!114 &11472308
+--- !u!114 &11430308
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -166,13 +147,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 193654}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 716f183b3c96e994eaabcbfb2ff9ac5e, type: 3}
+  m_Script: {fileID: 11500000, guid: d1a05fdbb5b152642b023a72a31b395c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sendRate: .0500000007
-  _interpRate: .100000001
-  _snapThreshold: 100
---- !u!114 &11489172
+  voxelsX: 2
+  voxelsY: 2
+  voxelsZ: 2
+  voxelsYDownMod: 1
+  centerOfMassYOffset: 1
+  buoyancyLimit: 100
+--- !u!114 &11439766
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -180,29 +164,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 193654}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6b8db1d5be7bed4b929f04e7a9047c0, type: 3}
+  m_Script: {fileID: 11500000, guid: 064eda4e8cfdeb24eb071f7f96a203fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifeTime: 10
-  upwardsModifier: 600
-  hullDamage: 1
-  sailDamage: 10
-  damageRadius: 3
-  coolDown: 0
+  lifeTime: 30
+  upwardsModifier: 500
+  hullDamage: 50
+  sailDamage: 0
+  damageRadius: 25
+  coolDown: 15
   owner: {fileID: 0}
   splashPrefab: {fileID: 0}
---- !u!135 &13503682
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 193654}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: .5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -268,7 +240,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: hullDamage
-      value: 1
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: sailDamage
@@ -284,7 +256,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: _snapThreshold
-      value: 100
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: coolDown
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: splashPrefab

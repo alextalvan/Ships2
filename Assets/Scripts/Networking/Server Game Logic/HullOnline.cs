@@ -26,9 +26,8 @@ public class HullOnline : NetworkBehaviour
     public void Reset()
     {
         currentHealth = shipAttributes.HullMaxHealth;
-		shipAttributes.IsDead = false;
-		RpcUpdateHealthBar(1f);
         buoyancy.Reset();
+        SendHealthBarRefresh();
     }
 
     public void Damage(Vector3 position, float damage, float radius, GameObject source = null)
@@ -38,7 +37,7 @@ public class HullOnline : NetworkBehaviour
 
         currentHealth -= damage;
         buoyancy.ChangeBuoyancy(position, buoyancy.GetVoxelsCount, radius);
-       
+
         if (currentHealth <= Mathf.Epsilon)
         {
             currentHealth = 0f;
@@ -53,8 +52,8 @@ public class HullOnline : NetworkBehaviour
             }
         }
 
-		GetComponent<PlayerCaptionController>().RpcPushDebugText("My hull got damaged for " + damage + " damage. Remaining health: " + currentHealth);
-		SendHealthBarRefresh ();
+        GetComponent<PlayerCaptionController>().RpcPushDebugText("My hull got damaged for " + damage + " damage. Remaining health: " + currentHealth);
+        SendHealthBarRefresh();
     }
 
     public void Repair(float amount)
@@ -63,10 +62,9 @@ public class HullOnline : NetworkBehaviour
         if (currentHealth > shipAttributes.HullMaxHealth)
             currentHealth = shipAttributes.HullMaxHealth;
 
-		GetComponent<PlayerCaptionController>().RpcPushDebugText("My hull got repaired for " + amount + ". Current hull health: " + currentHealth);
-		SendHealthBarRefresh ();
-    
-}
+        GetComponent<PlayerCaptionController>().RpcPushDebugText("My hull got repaired for " + amount + ". Current hull health: " + currentHealth);
+        SendHealthBarRefresh();
+    }
 
     //Rammimg
     void OnCollisionEnter(Collision collision)
@@ -91,14 +89,14 @@ public class HullOnline : NetworkBehaviour
         }
     }
 
-	[ServerCallback]
-	public void SendHealthBarRefresh()
-	{
-		RpcUpdateHealthBar (currentHealth / shipAttributes.HullMaxHealth);
-	}
+    [ServerCallback]
+    public void SendHealthBarRefresh()
+    {
+        RpcUpdateHP(currentHealth / shipAttributes.HullMaxHealth);
+    }
 
     [ClientRpc]
-    void RpcUpdateHealthBar(float healthRatio)
+    void RpcUpdateHP(float healthRatio)
     {
         hpRend.material.SetFloat("_Health", healthRatio);
     }

@@ -17,6 +17,8 @@ public abstract class Projectile : NetworkBehaviour
     protected float sailDamage;
     [SerializeField]
     protected float damageRadius;
+    [SerializeField]
+    protected float coolDown;
 
     public CustomOnlinePlayer owner;
 
@@ -48,6 +50,11 @@ public abstract class Projectile : NetworkBehaviour
     {
         get { return damageRadius; }
         set { damageRadius = value; }
+    }
+
+    public float GetCoolDown
+    {
+        get { return coolDown; }
     }
 
     // Use this for initialization
