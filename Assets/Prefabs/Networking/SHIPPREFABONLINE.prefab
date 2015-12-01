@@ -1069,7 +1069,6 @@ GameObject:
   - 114: {fileID: 11487396}
   - 114: {fileID: 11441198}
   - 114: {fileID: 11499540}
-  - 82: {fileID: 8270866}
   - 114: {fileID: 11459346}
   m_Layer: 0
   m_Name: SHIPPREFABONLINE
@@ -3976,86 +3975,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!82 &8270866
-AudioSource:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 170488}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 89.1168365
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 2
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: .178233668
-      value: .99452734
-      inSlope: -5.61285591
-      outSlope: -5.61285591
-      tangentMode: 0
-    - time: .356467336
-      value: .49452734
-      inSlope: -1.40321398
-      outSlope: -1.40321398
-      tangentMode: 0
-    - time: .712934673
-      value: .24452734
-      inSlope: -.350803494
-      outSlope: -.350803494
-      tangentMode: 0
-    - time: 1
-      value: .172761008
-      inSlope: -.178304687
-      outSlope: -.178304687
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
 --- !u!114 &11400158
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4312,7 +4231,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _soundList:
-  - {fileID: 8300000, guid: 48a307581bb12c546b5fa42ad07f0b4b, type: 3}
+  - event:/Shoot
+  - event:/Hit
+  - event:/Collision
+  - event:/LevelUp
+  - event:/Pickup
+  - event:/Upgrade
+  - event:/GameState
   _leftSideSmokes:
   - {fileID: 19874832}
   - {fileID: 19895726}
