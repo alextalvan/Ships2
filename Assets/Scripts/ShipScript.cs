@@ -14,7 +14,7 @@ public class ShipScript : NetworkBehaviour
     private const float SPHERE_GIZMOS_SIZE = 0.1f;
 
     [SyncVar]
-    [SerializeField]
+    //[SerializeField]
     private float sailState = 0f;
     [SerializeField]
     float sailAccelerationPerFrame = 0.01f;
@@ -68,9 +68,13 @@ public class ShipScript : NetworkBehaviour
     private CustomOnlinePlayer customOnlinePlayer;
     private PlayerRespawn playerRespawn;
 
+	private OnlineSceneReferences onlineRef;
+
     // Use this for initialization
     void Start()
     {
+		onlineRef = GameObject.Find ("OnlineSceneReferences").GetComponent<OnlineSceneReferences> ();
+
         shipAttributes = GetComponent<ShipAttributesOnline>();
         objRigidBody = GetComponent<Rigidbody>();
         objBounds = GetComponent<Collider>().bounds;
@@ -99,7 +103,7 @@ public class ShipScript : NetworkBehaviour
         if (!isLocalPlayer)
             return;
 
-        Transform _camera = GameObject.Find("OnlineSceneReferences").GetComponent<OnlineSceneReferences>().cameraRef;
+        Transform _camera = onlineRef.cameraRef;
         _camera.GetComponent<CameraScript>().AttachCameraTo(transform);
     }
 
@@ -109,7 +113,7 @@ public class ShipScript : NetworkBehaviour
         if (!isLocalPlayer)
             return;
 
-        Transform _camera = GameObject.Find("OnlineSceneReferences").GetComponent<OnlineSceneReferences>().cameraRef;
+        Transform _camera = onlineRef.cameraRef;
 
         if (attached)
             _camera.GetComponent<CameraScript>().AttachCameraTo(transform);
@@ -132,6 +136,8 @@ public class ShipScript : NetworkBehaviour
     {
         SwitchClientAmmoType();
         PreviewTrajectory();
+		UpdateSailUI ();
+		UpdateShootState();
     }
 
     void FixedUpdate()
@@ -139,13 +145,13 @@ public class ShipScript : NetworkBehaviour
         ControlSails();
         Move();
         Rotate();
-        UpdateShootState();
+        
     }
 
     private void ChangeAmmoType(OnlinePlayerInput.PlayerControlMessage m, Vector3 dir)
     {
-        if (playerRespawn.IsDead)
-            return;
+		//if (playerRespawn.IsDead) //disabled - this can create networking bugs with this implementeation
+        //    return;
 
         if (m == OnlinePlayerInput.PlayerControlMessage.SWITCH_START_HOLD_DOWN)
         {
@@ -159,15 +165,22 @@ public class ShipScript : NetworkBehaviour
     [ClientCallback]
     private void SwitchClientAmmoType()
     {
-        if (playerRespawn.IsDead)
-            return;
+        //if (playerRespawn.IsDead) //disabled - this can create networking bugs with this implementeation
+        //    return;
+
+		if (!isLocalPlayer)
+			return;
 
         if (Input.GetKeyDown(KeyCode.Tab))
         {
+			onlineRef.AmmoIcons[currentProjIndex].SetActive(false);
+
             currentProjIndex++;
 
             if (currentProjIndex > projectiles.Count - 1)
                 currentProjIndex = 0;
+
+			onlineRef.AmmoIcons[currentProjIndex].SetActive(true);
         }
     }
 
@@ -471,6 +484,19 @@ public class ShipScript : NetworkBehaviour
             activeCannons.CurrentCharge -= (int)shotPower;
         }
     }
+
+
+	[ClientCallback]
+	void UpdateSailUI()
+	{
+		if (!isLocalPlayer)
+			return;
+
+		onlineRef.SailSpeedText.text = "Speed: " + (int)(sailState * 100) + "%";
+
+		onlineRef.BarrelCd.text = "Barrel: " + (int)((1f - barrelCoolDown / projectiles[2].GetComponent<ProjectileType3>().GetCoolDown) * 100) +"%";
+	}
+
 
     private void OnDrawGizmos()
     {

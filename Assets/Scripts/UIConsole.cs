@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class UIConsole : MonoBehaviour 
 {
 	public int charSize = 16;
-	public Rect containerInfo = new Rect(0,0,768,256);
+	public Rect containerInfo = new Rect(0,Screen.height - 256,768,256);
 
 	string _mainText = "";
 	GUIStyle _consoleStyle = new GUIStyle();

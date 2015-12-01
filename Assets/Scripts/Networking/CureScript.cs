@@ -21,6 +21,9 @@ public class CureScript : NetworkBehaviour {
 
     void OnTriggerStay(Collider col)
     {
+		if (!GetComponent<GameManager> ().phase1Finished)
+			return;
+
         PlayerPickupHitbox hitbox = col.gameObject.GetComponent<PlayerPickupHitbox>();
         if (!hitbox||!isDropped)
             return;
