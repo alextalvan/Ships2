@@ -1070,6 +1070,7 @@ GameObject:
   - 114: {fileID: 11441198}
   - 114: {fileID: 11499540}
   - 114: {fileID: 11459346}
+  - 82: {fileID: 8297486}
   m_Layer: 0
   m_Name: SHIPPREFABONLINE
   m_TagString: Untagged
@@ -3975,6 +3976,76 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!82 &8297486
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 170488}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 57.4002838
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!114 &11400158
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4230,14 +4301,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a594a9ec5868184f951e9292ce30723, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _soundList:
-  - event:/Shoot
-  - event:/Hit
-  - event:/Collision
-  - event:/LevelUp
-  - event:/Pickup
-  - event:/Upgrade
-  - event:/GameState
+  _audioClips:
+  - {fileID: 8300000, guid: d4b6c985bd9031f4588f009d67bb7c29, type: 3}
+  - {fileID: 8300000, guid: 96447de8ae3fbcf4392dba442c9db643, type: 3}
+  - {fileID: 8300000, guid: 66ded9aeedc4cd24bb04c42b2b6769af, type: 3}
+  - {fileID: 8300000, guid: 9e87a057ea447e04aabcc9faaa07e4db, type: 3}
+  - {fileID: 8300000, guid: d74f0c02961f33a44a19be2ad502c6d0, type: 3}
+  - {fileID: 8300000, guid: 599e703f1999a4f49a325d76c3fd0710, type: 3}
+  - {fileID: 8300000, guid: d9dfd139fa42e2a4aaaee3b10ea6cc7b, type: 3}
+  - {fileID: 8300000, guid: 327459dffdee9254a8d314944f523d14, type: 3}
+  - {fileID: 8300000, guid: 37b8672789f8d22458012053d19d804b, type: 3}
+  - {fileID: 8300000, guid: f7a989e0ce05b3946b8b73c89fb611c2, type: 3}
+  - {fileID: 8300000, guid: 7cd40e1b57042c643afce28c31b93732, type: 3}
   _leftSideSmokes:
   - {fileID: 19874832}
   - {fileID: 19895726}
@@ -22894,6 +22969,10 @@ Prefab:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 0}
+      propertyPath: _fmodSounds.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
       propertyPath: m_CollisionDetection
       value: 1
       objectReference: {fileID: 0}
@@ -22928,6 +23007,30 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: cannonRecoil
       value: 80000
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _fmodSounds.Array.data[0]
+      value: event:/LevelUp
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _fmodSounds.Array.data[3]
+      value: event:/Shoot
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _fmodSounds.Array.data[4]
+      value: event:/Shoot
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _fmodSounds.Array.data[5]
+      value: event:/Shoot
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _fmodSounds.Array.data[1]
+      value: event:/Pickup
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _fmodSounds.Array.data[2]
+      value: event:/Upgrade
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

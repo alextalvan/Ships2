@@ -2,15 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine.Networking;
-using FMODUnity;
-using FMOD;
 
 public class OfflineSceneReferences : MonoBehaviour {
 
-	StudioEventEmitter _soundEmitter;
+	AudioSource _soundEmitter;
 
-	[SerializeField]
-	List<string> _soundList = new List<string>();
+	public List<AudioClip> sounds = new List<AudioClip> ();
 
 	public enum MENU_SOUNDS
 	{
@@ -20,13 +17,12 @@ public class OfflineSceneReferences : MonoBehaviour {
 	void Start()
 	{
 		Cursor.visible = true;
-		_soundEmitter = GetComponent<StudioEventEmitter> ();
+		_soundEmitter = GetComponent<AudioSource> ();
 	}
 
 	public void PlaySound(MENU_SOUNDS s)
 	{
-		_soundEmitter.Event = _soundList [(int)s];
-		_soundEmitter.Play ();
+		_soundEmitter.PlayOneShot(sounds[(int)s]);
 	}
 
 	public void PlayClick()
