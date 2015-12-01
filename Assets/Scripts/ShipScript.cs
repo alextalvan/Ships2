@@ -133,7 +133,6 @@ public class ShipScript : NetworkBehaviour
     {
         sailState = 0f;
         barrelCoolDown = 0f;
-        currentProjIndex = 0;
         currentShootInputState = ShootInputState.Idle;
         shotPowerLeft = leftSide.transform.childCount;
         shotPowerRight = rightSide.transform.childCount;
