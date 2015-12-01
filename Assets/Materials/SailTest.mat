@@ -10,81 +10,11 @@ Material:
   m_Shader: {fileID: 4800000, guid: 9256884f5ff1d46c9ac63c5610490249, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
-  m_CustomRenderQueue: 2450
+  m_CustomRenderQueue: -1
   stringTagMap: {}
   m_SavedProperties:
     serializedVersion: 2
     m_TexEnvs:
-      data:
-        first:
-          name: _MainTex
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _BumpMap
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _DetailNormalMap
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _ParallaxMap
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _OcclusionMap
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _EmissionMap
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _DetailMask
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _DetailAlbedoMap
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _MetallicGlossMap
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _Noise
-        second:
-          m_Texture: {fileID: 2800000, guid: 36dd0b22da8874ed38075789055ca664, type: 3}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
       data:
         first:
           name: _Ramp
@@ -94,34 +24,43 @@ Material:
           m_Offset: {x: 0, y: 0}
       data:
         first:
-          name: _0mm
+          name: _Texture_main
         second:
-          m_Texture: {fileID: 2800000, guid: 55e2334423fefa34fb4916f6780413d3, type: 3}
+          m_Texture: {fileID: 2800000, guid: ee07ea8cb1a00c844b4048d37dcfe712, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
         first:
-          name: _Texture
+          name: _Normalmap
         second:
-          m_Texture: {fileID: 2800000, guid: c688b8230f338954e977969bd4457584, type: 3}
+          m_Texture: {fileID: 2800000, guid: 276a54cad51984ff89da8445c52523c7, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _Noise_for_dissolve
+        second:
+          m_Texture: {fileID: 2800000, guid: 36dd0b22da8874ed38075789055ca664, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _Mask_for_controls
+        second:
+          m_Texture: {fileID: 2800000, guid: aad29a4cc7dc94eb8ad469382532fa80, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _Ramp2
+        second:
+          m_Texture: {fileID: 2800000, guid: 0e675a08c985440e5869b3e14278db8d, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
     m_Floats:
       data:
         first:
-          name: _SrcBlend
-        second: 1
-      data:
-        first:
-          name: _DstBlend
-        second: 0
-      data:
-        first:
           name: _Cutoff
-        second: .5
-      data:
-        first:
-          name: _Glossiness
         second: .5
       data:
         first:
@@ -129,62 +68,34 @@ Material:
         second: 0
       data:
         first:
-          name: _Parallax
-        second: .0199999996
-      data:
-        first:
-          name: _ZWrite
-        second: 1
-      data:
-        first:
-          name: _BumpScale
-        second: 1
-      data:
-        first:
-          name: _OcclusionStrength
-        second: 1
-      data:
-        first:
-          name: _DetailNormalMapScale
-        second: 1
-      data:
-        first:
-          name: _UVSec
-        second: 0
-      data:
-        first:
-          name: _Mode
-        second: 0
-      data:
-        first:
           name: _Dissolveamount
         second: 0
       data:
         first:
-          name: _Value
-        second: 4
-      data:
-        first:
           name: _Frequency
-        second: .565028012
+        second: .200000003
       data:
         first:
           name: _Amplitude
-        second: .212668896
+        second: 2
       data:
         first:
           name: _Gloss
         second: 0
       data:
         first:
-          name: _Folds
-        second: .131044596
+          name: _SailControls
+        second: 0
+      data:
+        first:
+          name: _Foldsamount
+        second: 2
     m_Colors:
       data:
         first:
-          name: _EmissionColor
-        second: {r: 0, g: 0, b: 0, a: 1}
+          name: _MainColor
+        second: {r: 1, g: 1, b: 1, a: 1}
       data:
         first:
-          name: _Color
-        second: {r: 1, g: 1, b: 1, a: 1}
+          name: _Overlaycolor
+        second: {r: .352941155, g: .352941155, b: .352941155, a: 1}

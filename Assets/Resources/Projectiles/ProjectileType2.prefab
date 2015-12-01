@@ -9,13 +9,13 @@ GameObject:
   m_Component:
   - 4: {fileID: 452454}
   - 33: {fileID: 3313014}
-  - 135: {fileID: 13503682}
   - 23: {fileID: 2338828}
   - 54: {fileID: 5496096}
   - 96: {fileID: 9639940}
   - 114: {fileID: 11442474}
   - 114: {fileID: 11489172}
   - 114: {fileID: 11472308}
+  - 64: {fileID: 6486150}
   m_Layer: 13
   m_Name: ProjectileType2
   m_TagString: Projectile
@@ -30,8 +30,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 193654}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 61.183609, y: 44.3781281, z: -5.9693718}
-  m_LocalScale: {x: .5, y: .5, z: .5}
+  m_LocalPosition: {x: 27.7758026, y: -6.55856371, z: -24.4688587}
+  m_LocalScale: {x: 50, y: 50, z: 50}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -45,7 +45,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: b25815883f6c87344b550daf1f342aa3, type: 2}
+  - {fileID: 2100000, guid: 04106a2d0cb7b4c079d914a47a49e96f, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -65,7 +65,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 193654}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 4300000, guid: b3b155359f0c3134ab8673e5ab5873a1, type: 3}
 --- !u!54 &5496096
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -81,13 +81,25 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 2
+--- !u!64 &6486150
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 193654}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 1
+  m_Mesh: {fileID: 4300000, guid: b3b155359f0c3134ab8673e5ab5873a1, type: 3}
 --- !u!96 &9639940
 TrailRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 193654}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
@@ -196,18 +208,6 @@ MonoBehaviour:
   - {fileID: 185838, guid: 73092ba537f6d83429603d0f830339dc, type: 2}
   crossHit: {fileID: 108002, guid: e0c3bef3433ca2d4d8c08c450b4f6caf, type: 2}
   splashPrefab: {fileID: 148626, guid: a7709fac6f50ef145a702f827ae67eaf, type: 2}
---- !u!135 &13503682
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 193654}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: .5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

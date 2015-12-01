@@ -77,6 +77,10 @@ public class ShipScript : NetworkBehaviour
     {
         get { return barrelCoolDown; }
     }
+    public float GetSailState
+    {
+        get { return sailState; }
+    }
 
     // Use this for initialization
     void Start()

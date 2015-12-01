@@ -7,5 +7,4 @@ public class PickupRespawn : MonoBehaviour {
 	void Start () {
 	
 	}
-
 }

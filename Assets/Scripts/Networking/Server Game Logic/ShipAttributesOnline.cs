@@ -8,6 +8,8 @@ public class ShipAttributesOnline : NetworkBehaviour
     private PlayerRespawn playerRespawn;
     private HullOnline hullOnline;
     private PlayerFX pfx;
+    private Rigidbody rb;
+    private ShipScript shipScript;
 
     [SerializeField]
     private Transform sailParent;
@@ -40,16 +42,16 @@ public class ShipAttributesOnline : NetworkBehaviour
 
     private float sailSpeedModifier;
 
-	[SyncVar]
+    [SyncVar]
     private bool isDead = false;
-    
+
     [SerializeField]
     List<GameObject> pickUps = new List<GameObject>();
     [SerializeField]
     private int minDrop;
     [SerializeField]
     private int maxDrop;
-    
+
     public PlayerFX GetPlayerFX
     {
         get { return pfx; }
@@ -122,22 +124,26 @@ public class ShipAttributesOnline : NetworkBehaviour
         get { return sailSpeedModifier; }
         set { sailSpeedModifier = value; }
     }
-
     public float DamageModifier
     {
         get { return damageModifier; }
         set { damageModifier = value; }
     }
-
     public bool IsDead
     {
         get { return isDead; }
         set { isDead = value; }
     }
+    public float GetCurrentSpeed
+    {
+        get { return rb.velocity.magnitude; }
+    }
 
     // Use this for initialization
     void Start()
     {
+        shipScript = GetComponent<ShipScript>();
+        rb = GetComponent<Rigidbody>();
         pfx = GetComponent<PlayerFX>();
         playerRespawn = GetComponent<PlayerRespawn>();
         hullOnline = GetComponent<HullOnline>();
@@ -181,7 +187,7 @@ public class ShipAttributesOnline : NetworkBehaviour
 
     void Update()
     {
-
+        ChangeSailsShaking();
     }
 
     public void DamageAllSails(float damage)
@@ -191,6 +197,21 @@ public class ShipAttributesOnline : NetworkBehaviour
         foreach (SailOnline sail in sails)
         {
             sail.Damage(damage);
+        }
+    }
+
+    [ClientCallback]
+    private void ChangeSailsShaking()
+    {
+        foreach(SailOnline sail in sails)
+        {
+            Material sailsMat = sail.GetComponent<Renderer>().material;
+            float currentSailVal = sailsMat.GetFloat("_SailControls");
+            float lerpedSailVal = Mathf.Lerp(currentSailVal, 1 - shipScript.GetSailState, Time.deltaTime);
+            sailsMat.SetFloat("_SailControls", lerpedSailVal);
+
+            //sailsMat.SetFloat("_Frequency", 1f - (GetCurrentSpeed / 20f)); //still working on it
+            //sailsMat.SetFloat("_Amplitude", 1f - (GetCurrentSpeed / 20f));
         }
     }
 
