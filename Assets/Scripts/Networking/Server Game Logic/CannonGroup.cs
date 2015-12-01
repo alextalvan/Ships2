@@ -1,9 +1,16 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 
 public class CannonGroup : MonoBehaviour
 {
+    [SerializeField]
+    private List<Material> materials = new List<Material>();
+    [SerializeField]
+    private Transform anotherSide;
+    private Transform ship;
     private LineRenderer lineRenderer;
     private ShipAttributesOnline shipAttributes;
+    private ShipScript shipScript;
     private int cannonsCount;
     private float currentCharge;
 
@@ -22,6 +29,8 @@ public class CannonGroup : MonoBehaviour
     void Start()
     {
         shipAttributes = transform.parent.GetComponent<ShipAttributesOnline>();
+        ship = transform.parent;
+        shipScript = ship.GetComponent<ShipScript>();
         lineRenderer = GetComponent<LineRenderer>();
         currentCharge = transform.childCount;
         cannonsCount = transform.childCount;
@@ -36,64 +45,48 @@ public class CannonGroup : MonoBehaviour
     //[Server]
     private void ReloadCannons()
     {
-
         currentCharge += Time.deltaTime * shipAttributes.ReloadRateModifier;
         if (currentCharge > cannonsCount)
             currentCharge = cannonsCount;
     }
 
     //[Client]
-    public void DrawArea(float charge, float distance, bool side)
+    public void DrawArea(float charge, float distance, bool side, int matIndex)
     {
         lineRenderer.SetVertexCount(4);
+        lineRenderer.material = materials[matIndex];
 
-        Vector3 centerCannon = transform.GetChild(0).position;
+        Vector3 nullYforward = new Vector3(transform.forward.x, 0f, transform.forward.z).normalized;
+        Vector3 nullYright = new Vector3(transform.right.x, 0f, transform.right.z).normalized;
 
         if (side)
         {
-            float difference = (transform.GetChild(cannonsCount - 1).position - transform.GetChild(cannonsCount - 2).position).magnitude / 2;
+            Vector3 centerCannon = transform.GetChild(0).position;
+
+            float difference = (transform.GetChild(cannonsCount - 1).position - transform.GetChild(cannonsCount - 2).position).magnitude * 0.5f;
             float chargeModifier = charge / cannonsCount;
 
-            lineRenderer.SetPosition(0, centerCannon - transform.right * (difference * chargeModifier * 2f) + transform.forward * distance);
-            lineRenderer.SetPosition(1, centerCannon - transform.right * (difference * chargeModifier));
+            lineRenderer.SetPosition(0, centerCannon - nullYright * (difference * chargeModifier * 2f) + nullYforward * distance);
+            lineRenderer.SetPosition(1, centerCannon - nullYright * (difference * chargeModifier));
 
-            lineRenderer.SetPosition(2, centerCannon + transform.right * (difference * chargeModifier));
-            lineRenderer.SetPosition(3, centerCannon + transform.right * (difference * chargeModifier * 2f) + transform.forward * distance);
+            lineRenderer.SetPosition(2, centerCannon + nullYright * (difference * chargeModifier));
+            lineRenderer.SetPosition(3, centerCannon + nullYright * (difference * chargeModifier * 2f) + nullYforward * distance);
         }
         else
         {
-            //Vector3 lastCannon = transform.GetChild(cannonsCount - 1).position;
-            //Vector3 localLastCannon = transform.GetChild(cannonsCount - 1).localPosition;
-            //Vector3 localOppCannon = new Vector3(localLastCannon.x, localLastCannon.y, localLastCannon.z * 2f);
-            //Vector3 oppositeCannon = transform.TransformPoint(localOppCannon);
+            Vector3 lastCannon = transform.GetChild(cannonsCount - 1).position;
+            Vector3 oppositeCannon = anotherSide.GetChild(cannonsCount - 1).position;
+            Vector3 centerCannon = oppositeCannon + (lastCannon - oppositeCannon) * 0.5f;
 
-            //lineRenderer.SetPosition(0, lastCannon + transform.forward * 2f - transform.right * distance);
-            //lineRenderer.SetPosition(1, lastCannon);
+            float difference = (lastCannon - oppositeCannon).magnitude * 0.5f;
 
-            //lineRenderer.SetPosition(2, oppositeCannon);
-            //lineRenderer.SetPosition(3, oppositeCannon - transform.forward * 2f - transform.right * distance);
+            float coolDownModifier = 1 - (shipScript.GetCurrentBarrelCoolDown / shipScript.GetMaxBarrelCoolDown);
+
+            lineRenderer.SetPosition(0, centerCannon + nullYforward * (difference * coolDownModifier * 2f) - nullYright * distance);
+            lineRenderer.SetPosition(1, centerCannon + nullYforward * (difference * coolDownModifier));
+
+            lineRenderer.SetPosition(2, centerCannon - nullYforward * (difference * coolDownModifier));
+            lineRenderer.SetPosition(3, centerCannon - nullYforward * (difference * coolDownModifier * 2f) - nullYright * distance);
         }
-		
-        //without outer limit showing
-
-        //distance = 50f;
-
-        //lineRenderer.SetVertexCount(5);
-
-        //Vector3 centerCannon = transform.GetChild(0).position;
-        //float difference = (transform.GetChild(cannonsCount - 1).position - transform.GetChild(cannonsCount - 2).position).magnitude / 2;
-        //float chargeModifier = charge / cannonsCount;
-
-        //lineRenderer.SetPosition(2, centerCannon);
-
-        //lineRenderer.SetPosition(1, centerCannon - transform.right * (difference * chargeModifier));
-        //lineRenderer.SetPosition(0, centerCannon - transform.right * (difference * chargeModifier * 2f) + new Vector3(transform.forward.x, 0f, transform.forward.z) * distance);
-
-        //lineRenderer.SetPosition(4, centerCannon + transform.right * (difference * chargeModifier * 2f) + new Vector3(transform.forward.x, 0f, transform.forward.z) * distance);
-        //lineRenderer.SetPosition(3, centerCannon + transform.right * (difference * chargeModifier));
-
-        //lineRenderer.SetPosition(5, centerCannon);
-
-        //lineRenderer.SetPosition(6, center + new Vector3(0f, 0f, difference * chargeModifier * 15f));
     }
 }

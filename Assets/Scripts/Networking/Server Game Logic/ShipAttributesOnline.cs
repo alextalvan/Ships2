@@ -42,16 +42,14 @@ public class ShipAttributesOnline : NetworkBehaviour
 
 	[SyncVar]
     private bool isDead = false;
-
-
+    
     [SerializeField]
     List<GameObject> pickUps = new List<GameObject>();
     [SerializeField]
     private int minDrop;
     [SerializeField]
     private int maxDrop;
-
-
+    
     public PlayerFX GetPlayerFX
     {
         get { return pfx; }
