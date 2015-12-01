@@ -8,4 +8,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/offline_alex.unity
   - enabled: 1
-    path: Assets/Scenes/online_alex.unity
+    path: Assets/Scenes/online_alex2.unity

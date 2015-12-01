@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 8922227f7d27e7142b807c856ce68e2e
+timeCreated: 1449004261
+licenseType: Free
+ShaderImporter:
+  defaultTextures:
+  - _AlphaWave2: {fileID: 2800000, guid: 28c7aad1372ff114b90d330f8a2dd938, type: 3}
+  - _AlphaWave: {fileID: 2800000, guid: cee2491bf9f104825a5ca3ffd00453aa, type: 3}
+  - _WaveTexture: {fileID: 2800000, guid: 36dd0b22da8874ed38075789055ca664, type: 3}
+  - _Normalforrefl: {fileID: 2800000, guid: 276a54cad51984ff89da8445c52523c7, type: 3}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
