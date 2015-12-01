@@ -7,13 +7,14 @@ public class ShipAttributesOnline : NetworkBehaviour
 {
     private PlayerRespawn playerRespawn;
     private HullOnline hullOnline;
+    private PlayerFX pfx;
 
     [SerializeField]
     private Transform sailParent;
     [SerializeField]
     private Transform hpBar;
 
-    public List<SailOnline> sails = new List<SailOnline>();
+    private List<SailOnline> sails = new List<SailOnline>();
 
     [SerializeField]
     private float hullMaxHealth;
@@ -43,30 +44,43 @@ public class ShipAttributesOnline : NetworkBehaviour
 
 
     [SerializeField]
-    List<GameObject> _wreckagePickupPrefabs = new List<GameObject>();
+    List<GameObject> pickUps = new List<GameObject>();
+    [SerializeField]
+    private int minDrop;
+    [SerializeField]
+    private int maxDrop;
 
+
+    public PlayerFX GetPlayerFX
+    {
+        get { return pfx; }
+    }
+    public List<SailOnline> GetSailsList
+    {
+        get { return sails; }
+    }
     public Transform HpBar
     {
         get { return hpBar; }
     }
-	public float HullMaxHealth
-	{
-		get { return hullMaxHealth; }
-		set 
-		{
-			HullOnline hull = GetComponent<HullOnline>();
-			float delta = value - hullMaxHealth;
-			hullMaxHealth = value; 
-			
-			if(hull.CurrentHealth > hullMaxHealth)
-				hull.CurrentHealth = hullMaxHealth;
-			
-			if(delta > 0f)
-				hull.CurrentHealth += delta;
-			
-			hull.SendHealthBarRefresh();
-		}
-	}
+    public float HullMaxHealth
+    {
+        get { return hullMaxHealth; }
+        set
+        {
+            HullOnline hull = GetComponent<HullOnline>();
+            float delta = value - hullMaxHealth;
+            hullMaxHealth = value;
+
+            if (hull.CurrentHealth > hullMaxHealth)
+                hull.CurrentHealth = hullMaxHealth;
+
+            if (delta > 0f)
+                hull.CurrentHealth += delta;
+
+            hull.SendHealthBarRefresh();
+        }
+    }
 
     public float SailMaxHealth
     {
@@ -125,6 +139,7 @@ public class ShipAttributesOnline : NetworkBehaviour
     // Use this for initialization
     void Start()
     {
+        pfx = GetComponent<PlayerFX>();
         playerRespawn = GetComponent<PlayerRespawn>();
         hullOnline = GetComponent<HullOnline>();
         hullOnline.SetBuoyancy = GetComponent<BuoyancyScript>();
@@ -170,6 +185,16 @@ public class ShipAttributesOnline : NetworkBehaviour
 
     }
 
+    public void DamageAllSails(float damage)
+    {
+        pfx.RpcCameraShake(0.375f, damage / 3f);
+
+        foreach (SailOnline sail in sails)
+        {
+            sail.Damage(damage);
+        }
+    }
+
     [ClientRpc]
     public void RpcChangeSailDissolve(int index, float amount)
     {
@@ -181,13 +206,15 @@ public class ShipAttributesOnline : NetworkBehaviour
     {
         playerRespawn.StartRespawn();
 
-        if (_wreckagePickupPrefabs.Count > 0)
+        int amount = Random.Range(minDrop, maxDrop);
+
+        for (int i = 0; i < amount; i++)
         {
-            int index = Random.Range(0, _wreckagePickupPrefabs.Count);
+            int index = Random.Range(0, pickUps.Count);
+            Vector3 rndOffset = new Vector3(Random.Range(-3f, 3f), Random.Range(-3f, 3f), Random.Range(-3f, 3f));
+            GameObject debris = (GameObject)Instantiate(pickUps[index], transform.position + rndOffset, Random.rotation);
 
-            GameObject o = (GameObject)Instantiate(_wreckagePickupPrefabs[index], transform.position, Quaternion.identity);
-
-            NetworkServer.Spawn(o);
+            NetworkServer.Spawn(debris);
         }
     }
 }

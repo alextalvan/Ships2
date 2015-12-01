@@ -9,13 +9,13 @@ public class ProjectileType2 : Projectile
 
         if (hull)
         {
-            hull.Damage(collision.contacts[0].point, hullDamage, damageRadius, this.gameObject);
+            hull.Damage(collision.contacts[0].point, hullDamage, damageRadius, gameObject);
             RpcSpawnHit(collision.contacts[0].point);
             base.DealDamage(collision);
         }
         if (sails)
         {
-            sails.Damage(sailDamage);
+            collision.gameObject.GetComponent<ShipAttributesOnline>().DamageAllSails(sailDamage);
             RpcSpawnHit(collision.contacts[0].point);
         }
         Delete();

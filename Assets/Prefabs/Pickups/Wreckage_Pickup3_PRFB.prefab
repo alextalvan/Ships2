@@ -10,7 +10,6 @@ GameObject:
   - 4: {fileID: 459418}
   - 33: {fileID: 3388862}
   - 23: {fileID: 2301236}
-  - 95: {fileID: 9587348}
   m_Layer: 0
   m_Name: Crate_PRFB
   m_TagString: Untagged
@@ -28,7 +27,6 @@ GameObject:
   - 4: {fileID: 464068}
   - 33: {fileID: 3325108}
   - 23: {fileID: 2345200}
-  - 95: {fileID: 9500242}
   m_Layer: 0
   m_Name: Plank_PRFB
   m_TagString: Untagged
@@ -46,7 +44,6 @@ GameObject:
   - 4: {fileID: 452480}
   - 33: {fileID: 3328054}
   - 23: {fileID: 2361336}
-  - 95: {fileID: 9502308}
   m_Layer: 0
   m_Name: Barrel_PRFB
   m_TagString: Untagged
@@ -113,7 +110,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 192358}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 273.204926, y: 0, z: 314.119507}
+  m_LocalPosition: {x: 26.6441612, y: 267.17038, z: -354.706055}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 459418}
@@ -206,7 +203,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 191432}
-  m_Mesh: {fileID: 4300000, guid: e41ff4be42f310d479cf6b0a7915770b, type: 3}
+  m_Mesh: {fileID: 4300000, guid: a1a68cde8f78d5e40b7d475cb4cd34e5, type: 3}
 --- !u!33 &3388862
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -226,57 +223,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.34802246, y: 1, z: 3.78726697}
   m_Center: {x: .153106689, y: 0, z: .188140869}
---- !u!95 &9500242
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 172738}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: e4f4f0d3e7a9c5f4a909ff87f59d73e1, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
---- !u!95 &9502308
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 191432}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 4f39fb651202f5949a9977cac338d736, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
---- !u!95 &9587348
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 162706}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: cfc58501d7e9e674686f42f944a65891, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

@@ -93,10 +93,6 @@ Material:
         second: .5
       data:
         first:
-          name: _InvFade
-        second: 1
-      data:
-        first:
           name: _Parallax
         second: .0199999996
       data:
@@ -133,24 +129,28 @@ Material:
         second: 0
       data:
         first:
+          name: _InvFade
+        second: 1
+      data:
+        first:
           name: _Width
         second: 1
       data:
         first:
           name: _Aplitude
-        second: 5
+        second: 10
       data:
         first:
           name: _SpeedMUL
-        second: .200000003
+        second: .25
       data:
         first:
           name: _HorizontalMUL
-        second: .100000001
+        second: 1
       data:
         first:
           name: _VerticalMUL
-        second: 1
+        second: 0
     m_Colors:
       data:
         first:
@@ -159,11 +159,11 @@ Material:
       data:
         first:
           name: _Color
-        second: {r: .0758621693, g: 1, b: 0, a: 1}
+        second: {r: 0, g: .917241335, b: 1, a: 1}
       data:
         first:
           name: _Color2
-        second: {r: .522058845, g: 1, b: .881338775, a: 1}
+        second: {r: .522058845, g: .762677372, b: 1, a: 1}
       data:
         first:
           name: _TintColor

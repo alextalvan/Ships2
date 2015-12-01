@@ -18,7 +18,6 @@ public class SailOnline : MonoBehaviour
     public void Damage(float damage)
     {
         currentHealth -= damage;
-        shipAttributes.gameObject.GetComponent<PlayerCaptionController>().RpcPushDebugText("My sail got damaged for " + damage + " damage. Remaining sail health: " + currentHealth);
 
         if (currentHealth <= Mathf.Epsilon)
         {
@@ -26,6 +25,7 @@ public class SailOnline : MonoBehaviour
             GetComponent<Collider>().enabled = false;
         }
 
+        shipAttributes.gameObject.GetComponent<PlayerCaptionController>().RpcPushDebugText("My sail got damaged for " + damage + " damage. Remaining sail health: " + currentHealth);
         SendShaderUpdate();
         shipAttributes.UpdateSailsState();
     }
@@ -35,20 +35,19 @@ public class SailOnline : MonoBehaviour
         if (currentHealth < shipAttributes.SailMaxHealth)
         {
             currentHealth += amount;
-            shipAttributes.gameObject.GetComponent<PlayerCaptionController>().RpcPushDebugText("My sail got repaired for " + amount + ". Current sail health: " + currentHealth);
 
             if (currentHealth > shipAttributes.SailMaxHealth)
                 currentHealth = shipAttributes.SailMaxHealth;
 
+            shipAttributes.gameObject.GetComponent<PlayerCaptionController>().RpcPushDebugText("My sail got repaired for " + amount + ". Current sail health: " + currentHealth);
             SendShaderUpdate();
             shipAttributes.UpdateSailsState();
         }
     }
 
-
     private void SendShaderUpdate()
     {
-        int myIndex = shipAttributes.sails.IndexOf(this);
+        int myIndex = shipAttributes.GetSailsList.IndexOf(this);
         shipAttributes.RpcChangeSailDissolve(myIndex, 1f - currentHealth / shipAttributes.SailMaxHealth);
     }
 

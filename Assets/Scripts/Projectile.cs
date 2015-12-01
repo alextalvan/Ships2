@@ -23,13 +23,8 @@ public abstract class Projectile : NetworkBehaviour
 
     public CustomOnlinePlayer owner;
 
+    [SerializeField]
     private List<GameObject> debris = new List<GameObject>();
-    [SerializeField]
-    GameObject crate;
-    [SerializeField]
-    GameObject barrel;
-    [SerializeField]
-    GameObject plank;
 
     [SerializeField]
     GameObject crossHit;
@@ -72,10 +67,6 @@ public abstract class Projectile : NetworkBehaviour
     // Use this for initialization
     protected virtual void Start()
     {
-        debris.Add(crate);
-        debris.Add(barrel);
-        debris.Add(plank);
-
         birthDate = Time.time;
     }
 

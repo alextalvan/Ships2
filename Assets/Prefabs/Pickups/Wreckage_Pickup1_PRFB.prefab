@@ -10,7 +10,6 @@ GameObject:
   - 4: {fileID: 456562}
   - 33: {fileID: 3332170}
   - 23: {fileID: 2357932}
-  - 95: {fileID: 9546936}
   m_Layer: 0
   m_Name: Plank_PRFB (1)
   m_TagString: Untagged
@@ -28,7 +27,6 @@ GameObject:
   - 4: {fileID: 426754}
   - 33: {fileID: 3306926}
   - 23: {fileID: 2383818}
-  - 95: {fileID: 9574160}
   m_Layer: 0
   m_Name: Barrel_PRFB
   m_TagString: Untagged
@@ -46,7 +44,6 @@ GameObject:
   - 4: {fileID: 419910}
   - 33: {fileID: 3310614}
   - 23: {fileID: 2396646}
-  - 95: {fileID: 9591622}
   m_Layer: 0
   m_Name: Plank_PRFB
   m_TagString: Untagged
@@ -64,7 +61,6 @@ GameObject:
   - 4: {fileID: 423758}
   - 33: {fileID: 3311194}
   - 23: {fileID: 2393350}
-  - 95: {fileID: 9561290}
   m_Layer: 0
   m_Name: Barrel_PRFB (1)
   m_TagString: Untagged
@@ -148,7 +144,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 197478}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 7.09000015, z: 0}
+  m_LocalPosition: {x: 26.0512047, y: 267.26947, z: -353.759613}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 456562}
@@ -259,7 +255,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 135834}
-  m_Mesh: {fileID: 4300000, guid: e41ff4be42f310d479cf6b0a7915770b, type: 3}
+  m_Mesh: {fileID: 4300000, guid: a1a68cde8f78d5e40b7d475cb4cd34e5, type: 3}
 --- !u!33 &3310614
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -273,7 +269,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 182934}
-  m_Mesh: {fileID: 4300000, guid: e41ff4be42f310d479cf6b0a7915770b, type: 3}
+  m_Mesh: {fileID: 4300000, guid: a1a68cde8f78d5e40b7d475cb4cd34e5, type: 3}
 --- !u!33 &3332170
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -308,74 +304,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 6.65999985, y: 2, z: 4.86999989}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!95 &9546936
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100974}
-  m_Enabled: 0
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f659dac57e420de49881e7e79d6f9e02, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
---- !u!95 &9561290
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 182934}
-  m_Enabled: 0
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 8e91e4b51cf223b428473996ebd23c91, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
---- !u!95 &9574160
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 135834}
-  m_Enabled: 0
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: aa0de084612a80142a0c7d1eb92f531b, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
---- !u!95 &9591622
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 173252}
-  m_Enabled: 0
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: c2ed43358c59a954e91acf1ece3ad35e, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &11408860
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -435,6 +363,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EXP_Reward: 250
   lifeTime: 30
+  owner: {fileID: 0}
 --- !u!114 &11471860
 MonoBehaviour:
   m_ObjectHideFlags: 1

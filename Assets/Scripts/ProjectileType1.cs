@@ -6,15 +6,16 @@ public class ProjectileType1 : Projectile
     {
         HullOnline hull = collision.collider.GetComponent<HullOnline>();
         SailOnline sails = collision.collider.GetComponent<SailOnline>();
+
         if (hull)
         {
-            hull.Damage(collision.contacts[0].point, hullDamage, damageRadius, this.gameObject);
+            hull.Damage(collision.contacts[0].point, hullDamage, damageRadius, gameObject);
             RpcSpawnHit(collision.contacts[0].point);
             base.DealDamage(collision);
         }
         if (sails)
         {
-            sails.Damage(sailDamage);
+            collision.gameObject.GetComponent<ShipAttributesOnline>().DamageAllSails(sailDamage);
             RpcSpawnHit(collision.contacts[0].point);
         }
         Delete();

@@ -13,9 +13,6 @@ public class ShipScript : NetworkBehaviour
     private const float CUBE_GIZMOS_SIZE = 0.5f;
     private const float SPHERE_GIZMOS_SIZE = 0.1f;
 
-    //private enum Sails { Opened, Closed };
-    //private Sails currentSailsState = Sails.Closed;
-
     [SyncVar]
     [SerializeField]
     private float sailState = 0f;
@@ -36,13 +33,9 @@ public class ShipScript : NetworkBehaviour
     private LineRenderer rightLR;
     private LineRenderer leftLR;
 
+    [SerializeField]
     private List<GameObject> projectiles = new List<GameObject>();
     private int currentProjIndex = 0;
-
-    private GameObject currentProjectileType;
-    private GameObject projectileType1Prefab;
-    private GameObject projectileType2Prefab;
-    private GameObject projectileType3Prefab;
 
     private OnlinePlayerInput onlineInput;
 
@@ -81,16 +74,6 @@ public class ShipScript : NetworkBehaviour
         shipAttributes = GetComponent<ShipAttributesOnline>();
         objRigidBody = GetComponent<Rigidbody>();
         objBounds = GetComponent<Collider>().bounds;
-
-        //Load ammo
-        projectileType1Prefab = (GameObject)Resources.Load("Projectiles/ProjectileType1");
-        projectiles.Add(projectileType1Prefab);
-        projectileType2Prefab = (GameObject)Resources.Load("Projectiles/ProjectileType2");
-        projectiles.Add(projectileType2Prefab);
-        projectileType3Prefab = (GameObject)Resources.Load("Projectiles/ProjectileType3");
-        projectiles.Add(projectileType3Prefab);
-
-        currentProjectileType = projectileType1Prefab;
 
         onlineInput = GetComponent<OnlinePlayerInput>();
         customOnlinePlayer = GetComponent<CustomOnlinePlayer>();
@@ -138,6 +121,8 @@ public class ShipScript : NetworkBehaviour
     public void ResetShootAndMovement()
     {
         sailState = 0f;
+        currentProjIndex = 0;
+        barrelCoolDown = 0f;
         currentShootInputState = ShootInputState.Idle;
         shotPowerLeft = leftSide.transform.childCount;
         shotPowerRight = rightSide.transform.childCount;
@@ -159,34 +144,38 @@ public class ShipScript : NetworkBehaviour
 
     private void ChangeAmmoType(OnlinePlayerInput.PlayerControlMessage m, Vector3 dir)
     {
+        if (playerRespawn.IsDead)
+            return;
+
         if (m == OnlinePlayerInput.PlayerControlMessage.SWITCH_START_HOLD_DOWN)
         {
             currentProjIndex++;
 
             if (currentProjIndex > projectiles.Count - 1)
                 currentProjIndex = 0;
-
-            currentProjectileType = projectiles[currentProjIndex];
         }
     }
 
     [ClientCallback]
     private void SwitchClientAmmoType()
     {
+        if (playerRespawn.IsDead)
+            return;
+
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             currentProjIndex++;
 
             if (currentProjIndex > projectiles.Count - 1)
                 currentProjIndex = 0;
-
-            currentProjectileType = projectiles[currentProjIndex];
         }
     }
 
     [ServerCallback]
     private void ControlSails()
     {
+        if (playerRespawn.IsDead)
+            return;
 
         if (onlineInput.GetInputValue(OnlinePlayerInput.PlayerControls.FORWARD))
             sailState += sailAccelerationPerFrame;
@@ -199,6 +188,9 @@ public class ShipScript : NetworkBehaviour
 
     private void Move()
     {
+        if (shipAttributes.IsDead)
+            return;
+
         Vector3 forward = new Vector3(transform.forward.x, 0f, transform.forward.z).normalized;
         float cureMod = (customOnlinePlayer.currentCureCarrier == transform) ? CureScript.cureCarrierSpeedDebuff : 1f;
 
@@ -214,6 +206,9 @@ public class ShipScript : NetworkBehaviour
     [ServerCallback]
     private void Rotate()
     {
+        if (playerRespawn.IsDead)
+            return;
+
         Vector3 right = new Vector3(transform.right.x, 0f, transform.right.z).normalized;
         float currentHorizonSpeed = new Vector3(objRigidBody.velocity.x, 0f, objRigidBody.velocity.z).magnitude;
 
@@ -232,7 +227,7 @@ public class ShipScript : NetworkBehaviour
     [ClientCallback]
     private void PreviewTrajectory()
     {
-        if (!isLocalPlayer)
+        if (!isLocalPlayer || playerRespawn.IsDead)
             return;
 
         rightLR.enabled = false;
@@ -247,10 +242,10 @@ public class ShipScript : NetworkBehaviour
                 storedSideIsLeft = false;
         }
 
-        if (startedPreviewingTrajectory && currentProjectileType != projectileType3Prefab)
+        if (startedPreviewingTrajectory && currentProjIndex != 2)
         {
-            float projectileMass = currentProjectileType.GetComponent<Rigidbody>().mass;
-            float upwardsModifier = currentProjectileType.GetComponent<Projectile>().UpwardsModifier;
+            float projectileMass = projectiles[currentProjIndex].GetComponent<Rigidbody>().mass;
+            float upwardsModifier = projectiles[currentProjIndex].GetComponent<Projectile>().UpwardsModifier;
 
             if (storedSideIsLeft)
             {
@@ -310,10 +305,10 @@ public class ShipScript : NetworkBehaviour
 
     private void HandleShootInput(OnlinePlayerInput.PlayerControlMessage m, Vector3 dir)
     {
-        if (shipAttributes.IsDead)
+        if (playerRespawn.IsDead)
             return;
 
-        if (currentProjectileType == projectileType3Prefab)
+        if (currentProjIndex == 2)
         {
             if (m == OnlinePlayerInput.PlayerControlMessage.SHOOT_START_HOLD_DOWN && currentShootInputState == ShootInputState.Idle)
             {
@@ -364,6 +359,9 @@ public class ShipScript : NetworkBehaviour
     [ServerCallback]
     private void UpdateShootState()
     {
+        if (playerRespawn.IsDead)
+            return;
+
         float chargingSpeed = shipAttributes.CannonChargeRate * Time.deltaTime;
 
         shotPowerLeft += chargingSpeed;
@@ -381,7 +379,10 @@ public class ShipScript : NetworkBehaviour
     [ServerCallback]
     private void Shoot(Transform side, float shotPower)
     {
-        if (currentProjectileType == projectileType3Prefab)
+        if (playerRespawn.IsDead)
+            return;
+
+        if (currentProjIndex == 2)
         {
             if (barrelCoolDown <= 0f)
             {
@@ -390,7 +391,7 @@ public class ShipScript : NetworkBehaviour
                     Vector3 rndPos = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f));
                     float rndForce = Random.Range(250f, 500f);
 
-                    GameObject barrel = (GameObject)Instantiate(currentProjectileType, transform.position + rndPos - (transform.forward * objBounds.size.z), Random.rotation);
+                    GameObject barrel = (GameObject)Instantiate(projectiles[currentProjIndex], transform.position + rndPos - (transform.forward * objBounds.size.z), Random.rotation);
                     Rigidbody barrelRB = barrel.GetComponent<Rigidbody>();
                     Projectile barrelProj = barrel.GetComponent<Projectile>();
 
@@ -433,13 +434,13 @@ public class ShipScript : NetworkBehaviour
                 fx.RpcEmitCannonSmoke((side == leftSide), (int)shotPower);
             }
 
-            float projectileMass = currentProjectileType.GetComponent<Rigidbody>().mass;
-            float upwardsModifier = currentProjectileType.GetComponent<Projectile>().UpwardsModifier;
+            float projectileMass = projectiles[currentProjIndex].GetComponent<Rigidbody>().mass;
+            float upwardsModifier = projectiles[currentProjIndex].GetComponent<Projectile>().UpwardsModifier;
 
             for (int i = 0; i < (int)shotPower; i++)
             {
                 Transform cannon = activeSide.GetChild(i);
-                GameObject projectile = (GameObject)Instantiate(currentProjectileType, cannon.position, Random.rotation);
+                GameObject projectile = (GameObject)Instantiate(projectiles[currentProjIndex], cannon.position, Random.rotation);
                 Rigidbody projRB = projectile.GetComponent<Rigidbody>();
                 Projectile projProj = projectile.GetComponent<Projectile>();
 

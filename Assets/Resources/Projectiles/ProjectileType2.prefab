@@ -184,15 +184,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifeTime: 10
-  upwardsModifier: 600
+  upwardsModifier: 300
   hullDamage: 1
-  sailDamage: 10
+  sailDamage: 5
   damageRadius: 3
   coolDown: 0
   owner: {fileID: 0}
-  crate: {fileID: 106812, guid: f6c917cc8175d1e4582a63d5365b0714, type: 2}
-  barrel: {fileID: 193054, guid: 82978177c31e3ae40a37913cc2ce2717, type: 2}
-  plank: {fileID: 185838, guid: 73092ba537f6d83429603d0f830339dc, type: 2}
+  debris:
+  - {fileID: 193054, guid: 82978177c31e3ae40a37913cc2ce2717, type: 2}
+  - {fileID: 106812, guid: f6c917cc8175d1e4582a63d5365b0714, type: 2}
+  - {fileID: 185838, guid: 73092ba537f6d83429603d0f830339dc, type: 2}
   crossHit: {fileID: 108002, guid: e0c3bef3433ca2d4d8c08c450b4f6caf, type: 2}
   splashPrefab: {fileID: 148626, guid: a7709fac6f50ef145a702f827ae67eaf, type: 2}
 --- !u!135 &13503682
@@ -214,6 +215,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: debris.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Colors.m_Color[0].rgba
       value: 4278190080
@@ -264,7 +269,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: upwardsModifier
-      value: 600
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: lifeTime
@@ -276,7 +281,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: sailDamage
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: damageRadius
@@ -314,6 +319,18 @@ Prefab:
       propertyPath: crossHit
       value: 
       objectReference: {fileID: 108002, guid: e0c3bef3433ca2d4d8c08c450b4f6caf, type: 2}
+    - target: {fileID: 0}
+      propertyPath: debris.Array.data[0]
+      value: 
+      objectReference: {fileID: 193054, guid: 82978177c31e3ae40a37913cc2ce2717, type: 2}
+    - target: {fileID: 0}
+      propertyPath: debris.Array.data[1]
+      value: 
+      objectReference: {fileID: 106812, guid: f6c917cc8175d1e4582a63d5365b0714, type: 2}
+    - target: {fileID: 0}
+      propertyPath: debris.Array.data[2]
+      value: 
+      objectReference: {fileID: 185838, guid: 73092ba537f6d83429603d0f830339dc, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 193654}
