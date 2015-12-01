@@ -1,13 +1,37 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine.Networking;
+using FMODUnity;
+using FMOD;
 
 public class OfflineSceneReferences : MonoBehaviour {
+
+	StudioEventEmitter _soundEmitter;
+
+	[SerializeField]
+	List<string> _soundList = new List<string>();
+
+	public enum MENU_SOUNDS
+	{
+		CLICK
+	}
 
 	void Start()
 	{
 		Cursor.visible = true;
+		_soundEmitter = GetComponent<StudioEventEmitter> ();
+	}
+
+	public void PlaySound(MENU_SOUNDS s)
+	{
+		_soundEmitter.Event = _soundList [(int)s];
+		_soundEmitter.Play ();
+	}
+
+	public void PlayClick()
+	{
+		PlaySound (MENU_SOUNDS.CLICK);
 	}
 
 

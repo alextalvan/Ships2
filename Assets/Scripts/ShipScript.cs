@@ -451,12 +451,7 @@ public class ShipScript : NetworkBehaviour
 
             if ((int)shotPower > 0)
             {
-                fx.RpcPlaySound(PlayerFX.PLAYER_SOUNDS.FIRE_CANNON1);
-                fx.RpcCameraShake(0.375f, 1.5f * cannonRatio);
-            }
-            if ((int)shotPower > 0)
-            {
-                fx.RpcPlaySound(PlayerFX.PLAYER_SOUNDS.FIRE_CANNON1);
+				fx.RpcPlaySoundWithParam(PlayerFX.PLAYER_SOUNDS.FIRE_CANNON,"canonsUsed",(int)shotPower);
                 fx.RpcCameraShake(0.375f, 1.5f * cannonRatio);
                 fx.RpcEmitCannonSmoke((side == leftSide), (int)shotPower);
             }

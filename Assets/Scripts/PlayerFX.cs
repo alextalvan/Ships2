@@ -2,13 +2,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Networking;
+using FMODUnity;
+using FMOD;
 
-
-[RequireComponent(typeof(AudioSource))]
+//[RequireComponent(typeof(StudioEventEmitter))]
 public class PlayerFX : NetworkBehaviour {
 
 	[SerializeField]
-	private List<AudioClip> _soundList = new List<AudioClip>();
+	private List<string> _soundList = new List<string>();
 
 	[SerializeField]
 	private List<ParticleSystem> _leftSideSmokes = new List<ParticleSystem> ();
@@ -16,34 +17,68 @@ public class PlayerFX : NetworkBehaviour {
 	[SerializeField]
 	private List<ParticleSystem> _rightSideSmokes = new List<ParticleSystem> ();
 
-	AudioSource _source;
+	//StudioEventEmitter _source;
 
 	public enum PLAYER_SOUNDS
 	{
-		FIRE_CANNON1,
-		FIRE_CANNON2,
+		FIRE_CANNON,
+		HIT,
+		COLLISION,
 		LEVEL_UP,
-		PICKUP1,
-		PICKUP2,
-		PICKUP3,
-		UPGRADE1,
-		UPGRADE2,
-		UPGRADE3,
-		PICKUP_CURE
+		PICKUP,
+		UPGRADE//,
+		//DETECT_CURE
 	}
 
 
-	public void PlaySound(PLAYER_SOUNDS s)
+	public void PlaySound(PLAYER_SOUNDS s, string[] paramNames = null, float[] paramValues = null)
 	{
-		_source.Stop ();
-		_source.clip = _soundList [(int)s];
-		_source.Play ();
+		FMOD.Studio.EventInstance sndInst = FMODUnity.RuntimeManager.CreateInstance (_soundList [(int)s]);
+
+		if(paramNames!=null && paramValues !=null)
+			for(int i=0;i<paramNames.Length;++i)
+			{
+				sndInst.setParameterValue (paramNames[i], paramValues[i]);
+			}
+
+
+		FMOD.ATTRIBUTES_3D a = new FMOD.ATTRIBUTES_3D();
+		sndInst.get3DAttributes (out a);
+		a.position = transform.position.ToFMODVector();
+		sndInst.set3DAttributes (a);
+		sndInst.start ();
+		sndInst.release ();
+	}
+
+	public void PlaySound(PLAYER_SOUNDS s, string pName, float pValue)
+	{
+		FMOD.Studio.EventInstance i = FMODUnity.RuntimeManager.CreateInstance (_soundList [(int)s]);
+		i.setParameterValue (pName, pValue);
+		FMOD.ATTRIBUTES_3D a = new FMOD.ATTRIBUTES_3D();
+		i.get3DAttributes (out a);
+		a.position = transform.position.ToFMODVector();
+		i.set3DAttributes (a);
+		i.start ();
+		i.release ();
+
+
+	}
+
+	[ClientRpc]
+	public void RpcPlaySoundWithParams(PLAYER_SOUNDS s, string[] paramNames, float[] paramValues)
+	{
+		PlaySound (s, paramNames, paramValues);
+	}
+
+	[ClientRpc]
+	public void RpcPlaySoundWithParam(PLAYER_SOUNDS s, string pName, float pValue)
+	{
+		PlaySound (s, pName, pValue);
 	}
 
 	[ClientRpc]
 	public void RpcPlaySound(PLAYER_SOUNDS s)
 	{
-		//if(isLocalPlayer)
 		PlaySound (s);
 	}
 
@@ -84,7 +119,7 @@ public class PlayerFX : NetworkBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
-		_source = GetComponent<AudioSource> ();
+		//_source = GetComponent<StudioEventEmitter> ();
 	}
 
 

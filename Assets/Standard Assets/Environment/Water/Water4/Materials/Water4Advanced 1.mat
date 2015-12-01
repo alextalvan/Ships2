@@ -169,10 +169,6 @@ Material:
         second: 313.218384
       data:
         first:
-          name: _InvFade
-        second: .628782988
-      data:
-        first:
           name: _FresnelScale
         second: .657142818
       data:
@@ -182,7 +178,11 @@ Material:
       data:
         first:
           name: _CustomTime
-        second: 55.4709167
+        second: 137.257751
+      data:
+        first:
+          name: _InvFade
+        second: .628782988
       data:
         first:
           name: _HeightDisplacement
@@ -266,10 +266,6 @@ Material:
         second: {r: 1, g: 1, b: 0, a: 0}
       data:
         first:
-          name: _BumpMap_ST
-        second: {r: 1, g: 1, b: 0, a: 0}
-      data:
-        first:
           name: _DistortParams
         second: {r: 1.43999994, g: .242857143, b: 1.85306406, a: -.531428456}
       data:
@@ -336,6 +332,10 @@ Material:
         first:
           name: _GDirectionCD
         second: {r: .70338881, g: -.679999888, b: .717573524, a: -.200000003}
+      data:
+        first:
+          name: _BumpMap_ST
+        second: {r: 1, g: 1, b: 0, a: 0}
       data:
         first:
           name: _WaveScale

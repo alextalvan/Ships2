@@ -55,6 +55,7 @@ public class HullOnline : NetworkBehaviour
         }
 
         GetComponent<PlayerCaptionController>().RpcPushDebugText("My hull got damaged for " + damage + " damage. Remaining health: " + currentHealth);
+		GetComponent<PlayerFX> ().RpcPlaySound (PlayerFX.PLAYER_SOUNDS.HIT);
         SendHealthBarRefresh();
     }
 
@@ -91,6 +92,7 @@ public class HullOnline : NetworkBehaviour
                 hull.Damage(collision.contacts[0].point, collision.relativeVelocity.magnitude / 3f, 10f);
                 shipAttributes.GetPlayerFX.RpcCameraShake(0.375f, collision.relativeVelocity.magnitude);
             }
+			GetComponent<PlayerFX> ().RpcPlaySound (PlayerFX.PLAYER_SOUNDS.COLLISION);
             SendHealthBarRefresh();
         }
     }

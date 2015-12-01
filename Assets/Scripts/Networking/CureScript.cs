@@ -34,7 +34,7 @@ public class CureScript : NetworkBehaviour {
 
 		CustomOnlinePlayer player = hitbox.GetComponentInParent<CustomOnlinePlayer> ();
 
-		 
+		player.gameObject.GetComponent<PlayerFX> ().RpcPlaySoundWithParam (PlayerFX.PLAYER_SOUNDS.PICKUP, "Type", 2);
 
         onlineRef.gameManager.cureCarrier = player;
 		holder = player.transform;

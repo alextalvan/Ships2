@@ -44,7 +44,6 @@ public class LevelUser : NetworkBehaviour
 			ServerLevelUp();
 
 			_level++;
-			//TODO: function to calculate next level exp
 			_nextLevelEXP += 1000;
 		}
 	}
@@ -64,6 +63,7 @@ public class LevelUser : NetworkBehaviour
 		LevelUpChoice c = new LevelUpChoice (0);
 		RpcReceiveLevelUpChoice (c);
 		_choicesBuffer.Enqueue (c);
+		GetComponent<PlayerFX> ().RpcPlaySound (PlayerFX.PLAYER_SOUNDS.LEVEL_UP);
 		GetComponent<PlayerCaptionController> ().RpcPushCaption ("You just leveled up! Right click to upgrade",4f);
 	}
 
@@ -112,6 +112,7 @@ public class LevelUser : NetworkBehaviour
 		if (choice == 3)
 			UpgradeHelper.ApplyUpgrade ((UPGRADES)c.choice3,GetComponent<ShipAttributesOnline>());
 
+		GetComponent<PlayerFX> ().RpcPlaySound (PlayerFX.PLAYER_SOUNDS.UPGRADE);
 	}
 
 	

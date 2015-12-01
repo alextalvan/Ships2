@@ -13,6 +13,9 @@ public class Pickup : NetworkBehaviour
 
     public CustomOnlinePlayer owner;
 
+	[SerializeField]
+	int pickupSoundIndex = 0;
+
     // Use this for initialization
     void Start()
     {
@@ -56,5 +59,6 @@ public class Pickup : NetworkBehaviour
     protected virtual void OnPickup(CustomOnlinePlayer player)
     {
         player.GetComponent<LevelUser>().GainEXP(EXP_Reward);
+		player.GetComponent<PlayerFX> ().RpcPlaySoundWithParam (PlayerFX.PLAYER_SOUNDS.PICKUP, "Type", pickupSoundIndex);
     }
 }
