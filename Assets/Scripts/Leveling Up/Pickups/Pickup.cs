@@ -56,5 +56,7 @@ public class Pickup : NetworkBehaviour
     protected virtual void OnPickup(CustomOnlinePlayer player)
     {
         player.GetComponent<LevelUser>().GainEXP(EXP_Reward);
+		PlayerFX.PLAYER_SOUNDS s = (PlayerFX.PLAYER_SOUNDS)((int)(PlayerFX.PLAYER_SOUNDS.PICKUP1) + Random.Range (0, 3));
+		player.GetComponent<PlayerFX> ().RpcPlaySound (s);
     }
 }

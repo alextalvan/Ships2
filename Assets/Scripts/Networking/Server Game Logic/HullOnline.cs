@@ -91,6 +91,7 @@ public class HullOnline : NetworkBehaviour
                 hull.Damage(collision.contacts[0].point, collision.relativeVelocity.magnitude / 3f, 10f);
                 shipAttributes.GetPlayerFX.RpcCameraShake(0.375f, collision.relativeVelocity.magnitude);
             }
+			GetComponent<PlayerFX> ().RpcPlaySound(PlayerFX.PLAYER_SOUNDS.COLLISION);
             SendHealthBarRefresh();
         }
     }

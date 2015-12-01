@@ -8,7 +8,7 @@ using UnityEngine.Networking;
 public class PlayerFX : NetworkBehaviour {
 
 	[SerializeField]
-	private List<AudioClip> _soundList = new List<AudioClip>();
+	private List<AudioClip> _audioClips = new List<AudioClip> ();
 
 	[SerializeField]
 	private List<ParticleSystem> _leftSideSmokes = new List<ParticleSystem> ();
@@ -21,31 +21,34 @@ public class PlayerFX : NetworkBehaviour {
 	public enum PLAYER_SOUNDS
 	{
 		FIRE_CANNON1,
-		FIRE_CANNON2,
+		HIT1,
+		HIT2,
+		COLLISION,
+		EXPLOSION,
 		LEVEL_UP,
 		PICKUP1,
 		PICKUP2,
 		PICKUP3,
-		UPGRADE1,
-		UPGRADE2,
-		UPGRADE3,
-		PICKUP_CURE
+		PICKUP_CURE,
+		UPGRADE//,
+		//DETECT_CURE
 	}
 
 
 	public void PlaySound(PLAYER_SOUNDS s)
 	{
 		_source.Stop ();
-		_source.clip = _soundList [(int)s];
+		_source.clip = _audioClips [(int)s];
 		_source.Play ();
 	}
+
 
 	[ClientRpc]
 	public void RpcPlaySound(PLAYER_SOUNDS s)
 	{
-		//if(isLocalPlayer)
 		PlaySound (s);
 	}
+
 
 	public void CameraShake(float duration, float strength)
 	{

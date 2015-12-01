@@ -1,13 +1,33 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine.Networking;
 
 public class OfflineSceneReferences : MonoBehaviour {
 
+	AudioSource _soundEmitter;
+
+	public List<AudioClip> sounds = new List<AudioClip> ();
+
+	public enum MENU_SOUNDS
+	{
+		CLICK
+	}
+
 	void Start()
 	{
 		Cursor.visible = true;
+		_soundEmitter = GetComponent<AudioSource> ();
+	}
+
+	public void PlaySound(MENU_SOUNDS s)
+	{
+		_soundEmitter.PlayOneShot(sounds[(int)s]);
+	}
+
+	public void PlayClick()
+	{
+		PlaySound (MENU_SOUNDS.CLICK);
 	}
 
 
