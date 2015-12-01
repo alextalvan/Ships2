@@ -83,5 +83,10 @@ public class OnlineSceneReferences : MonoBehaviour {
 
 	public ClientUpgradeScreen UpgradeScreen;
 	
+	public List<GameObject> AmmoIcons = new List<GameObject>();
 
+	//placeholder
+	public Text SailSpeedText;
+
+	public Text BarrelCd;
 }

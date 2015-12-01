@@ -12,7 +12,7 @@ public class CrossHitScript : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void FixedUpdate () {
+	void Update () {
 
         lifeTime -= Time.deltaTime;
 
