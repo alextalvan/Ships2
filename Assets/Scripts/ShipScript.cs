@@ -242,33 +242,47 @@ public class ShipScript : NetworkBehaviour
                 storedSideIsLeft = false;
         }
 
-        if (startedPreviewingTrajectory && currentProjIndex != 2)
+        if (startedPreviewingTrajectory)
         {
             float projectileMass = projectiles[currentProjIndex].GetComponent<Rigidbody>().mass;
             float upwardsModifier = projectiles[currentProjIndex].GetComponent<Projectile>().UpwardsModifier;
 
-            if (storedSideIsLeft)
+            if (currentProjIndex == 2)
             {
                 leftLR.enabled = true;
                 Transform centerCannon = leftSide.GetChild(0);
 
-                Vector3 forwardDirection = new Vector3(centerCannon.forward.x, 0f, centerCannon.forward.z).normalized * shipAttributes.RangeMultiplier;
-                Vector3 force = (Vector3.up * upwardsModifier + (forwardDirection * 5000f)) * projectileMass;
+                Vector3 backwardDirection = new Vector3(-transform.forward.x, 0f, -transform.forward.z).normalized * shipAttributes.RangeMultiplier;
+                Vector3 force = (Vector3.up * upwardsModifier + (backwardDirection * 500f)) * projectileMass;
 
-                float shotDist = GetTrajectoryDistance(centerCannon.position, force);
-                leftCannons.DrawArea(shotPowerLeft, shotDist);
+                float shotDist = GetTrajectoryDistance(transform.position - transform.forward * objBounds.extents.z, force);
+                leftCannons.DrawArea(shotPowerLeft, shotDist, false);
             }
             else
             {
-                rightLR.enabled = true;
+                if (storedSideIsLeft)
+                {
+                    leftLR.enabled = true;
+                    Transform centerCannon = leftSide.GetChild(0);
 
-                Transform centerCannon = rightSide.GetChild(0);
+                    Vector3 forwardDirection = new Vector3(centerCannon.forward.x, 0f, centerCannon.forward.z).normalized * shipAttributes.RangeMultiplier;
+                    Vector3 force = (Vector3.up * upwardsModifier + (forwardDirection * 5000f)) * projectileMass;
 
-                Vector3 forwardDirection = new Vector3(centerCannon.forward.x, 0f, centerCannon.forward.z).normalized;
-                Vector3 force = (Vector3.up * upwardsModifier + (forwardDirection * 5000f)) * projectileMass * shipAttributes.RangeMultiplier;
+                    float shotDist = GetTrajectoryDistance(centerCannon.position, force);
+                    leftCannons.DrawArea(shotPowerLeft, shotDist, true);
+                }
+                else
+                {
+                    rightLR.enabled = true;
 
-                float shotDist = GetTrajectoryDistance(centerCannon.position, force);
-                rightCannons.DrawArea(shotPowerRight, shotDist);
+                    Transform centerCannon = rightSide.GetChild(0);
+
+                    Vector3 forwardDirection = new Vector3(centerCannon.forward.x, 0f, centerCannon.forward.z).normalized;
+                    Vector3 force = (Vector3.up * upwardsModifier + (forwardDirection * 5000f)) * projectileMass * shipAttributes.RangeMultiplier;
+
+                    float shotDist = GetTrajectoryDistance(centerCannon.position, force);
+                    rightCannons.DrawArea(shotPowerRight, shotDist, true);
+                }
             }
         }
 
@@ -388,7 +402,7 @@ public class ShipScript : NetworkBehaviour
             {
                 for (int i = 0; i < 5; i++)
                 {
-                    Vector3 rndPos = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f));
+                    Vector3 rndPos = new Vector3(Random.Range(-3f, 3f), Random.Range(-3f, 3f), Random.Range(-3f, 3f));
                     float rndForce = Random.Range(250f, 500f);
 
                     GameObject barrel = (GameObject)Instantiate(projectiles[currentProjIndex], transform.position + rndPos - (transform.forward * objBounds.size.z), Random.rotation);

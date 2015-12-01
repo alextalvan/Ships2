@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: ConeOutline
+  m_Name: ConeOutline1
   m_Shader: {fileID: 4800000, guid: c4f8ffbaf93b3eb4d8daaf5b2ace0060, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
@@ -138,11 +138,11 @@ Material:
       data:
         first:
           name: _Aplitude
-        second: 10
+        second: 2
       data:
         first:
           name: _SpeedMUL
-        second: .25
+        second: .200000003
       data:
         first:
           name: _HorizontalMUL
@@ -159,11 +159,11 @@ Material:
       data:
         first:
           name: _Color
-        second: {r: 0, g: .917241335, b: 1, a: 1}
+        second: {r: 1, g: 1, b: 1, a: 1}
       data:
         first:
           name: _Color2
-        second: {r: .522058845, g: .762677372, b: 1, a: 1}
+        second: {r: .911764681, g: .956186593, b: 1, a: 1}
       data:
         first:
           name: _TintColor
