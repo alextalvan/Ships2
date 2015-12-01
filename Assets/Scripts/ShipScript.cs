@@ -67,14 +67,21 @@ public class ShipScript : NetworkBehaviour
     private OnlinePlayerInput onlinePlayerInput;
     private CustomOnlinePlayer customOnlinePlayer;
     private PlayerRespawn playerRespawn;
+    private OnlineSceneReferences onlineRef;
 
-	private OnlineSceneReferences onlineRef;
+    public float GetMaxBarrelCoolDown
+    {
+        get { return projectiles[2].GetComponent<Projectile>().GetCoolDown; }
+    }
+    public float GetCurrentBarrelCoolDown
+    {
+        get { return barrelCoolDown; }
+    }
 
     // Use this for initialization
     void Start()
     {
-		onlineRef = GameObject.Find ("OnlineSceneReferences").GetComponent<OnlineSceneReferences> ();
-
+        onlineRef = GameObject.Find("OnlineSceneReferences").GetComponent<OnlineSceneReferences>();
         shipAttributes = GetComponent<ShipAttributesOnline>();
         objRigidBody = GetComponent<Rigidbody>();
         objBounds = GetComponent<Collider>().bounds;
@@ -125,7 +132,6 @@ public class ShipScript : NetworkBehaviour
     public void ResetShootAndMovement()
     {
         sailState = 0f;
-        currentProjIndex = 0;
         barrelCoolDown = 0f;
         currentShootInputState = ShootInputState.Idle;
         shotPowerLeft = leftSide.transform.childCount;
@@ -136,8 +142,8 @@ public class ShipScript : NetworkBehaviour
     {
         SwitchClientAmmoType();
         PreviewTrajectory();
-		UpdateSailUI ();
-		UpdateShootState();
+        UpdateSailUI();
+        UpdateShootState();
     }
 
     void FixedUpdate()
@@ -145,12 +151,11 @@ public class ShipScript : NetworkBehaviour
         ControlSails();
         Move();
         Rotate();
-        
     }
 
     private void ChangeAmmoType(OnlinePlayerInput.PlayerControlMessage m, Vector3 dir)
     {
-		//if (playerRespawn.IsDead) //disabled - this can create networking bugs with this implementeation
+        //if (playerRespawn.IsDead)
         //    return;
 
         if (m == OnlinePlayerInput.PlayerControlMessage.SWITCH_START_HOLD_DOWN)
@@ -165,22 +170,19 @@ public class ShipScript : NetworkBehaviour
     [ClientCallback]
     private void SwitchClientAmmoType()
     {
-        //if (playerRespawn.IsDead) //disabled - this can create networking bugs with this implementeation
+        //if (playerRespawn.IsDead)
         //    return;
-
-		if (!isLocalPlayer)
-			return;
 
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-			onlineRef.AmmoIcons[currentProjIndex].SetActive(false);
+            onlineRef.AmmoIcons[currentProjIndex].SetActive(false);
 
             currentProjIndex++;
 
             if (currentProjIndex > projectiles.Count - 1)
                 currentProjIndex = 0;
 
-			onlineRef.AmmoIcons[currentProjIndex].SetActive(true);
+            onlineRef.AmmoIcons[currentProjIndex].SetActive(true);
         }
     }
 
@@ -263,13 +265,12 @@ public class ShipScript : NetworkBehaviour
             if (currentProjIndex == 2)
             {
                 leftLR.enabled = true;
-                Transform centerCannon = leftSide.GetChild(0);
 
                 Vector3 backwardDirection = new Vector3(-transform.forward.x, 0f, -transform.forward.z).normalized * shipAttributes.RangeMultiplier;
                 Vector3 force = (Vector3.up * upwardsModifier + (backwardDirection * 500f)) * projectileMass;
 
                 float shotDist = GetTrajectoryDistance(transform.position - transform.forward * objBounds.extents.z, force);
-                leftCannons.DrawArea(shotPowerLeft, shotDist, false);
+                leftCannons.DrawArea(shotPowerLeft, shotDist, false, currentProjIndex);
             }
             else
             {
@@ -282,7 +283,7 @@ public class ShipScript : NetworkBehaviour
                     Vector3 force = (Vector3.up * upwardsModifier + (forwardDirection * 5000f)) * projectileMass;
 
                     float shotDist = GetTrajectoryDistance(centerCannon.position, force);
-                    leftCannons.DrawArea(shotPowerLeft, shotDist, true);
+                    leftCannons.DrawArea(shotPowerLeft, shotDist, true, currentProjIndex);
                 }
                 else
                 {
@@ -294,7 +295,7 @@ public class ShipScript : NetworkBehaviour
                     Vector3 force = (Vector3.up * upwardsModifier + (forwardDirection * 5000f)) * projectileMass * shipAttributes.RangeMultiplier;
 
                     float shotDist = GetTrajectoryDistance(centerCannon.position, force);
-                    rightCannons.DrawArea(shotPowerRight, shotDist, true);
+                    rightCannons.DrawArea(shotPowerRight, shotDist, true, currentProjIndex);
                 }
             }
         }
@@ -480,18 +481,16 @@ public class ShipScript : NetworkBehaviour
         }
     }
 
+    [ClientCallback]
+    void UpdateSailUI()
+    {
+        if (!isLocalPlayer)
+            return;
 
-	[ClientCallback]
-	void UpdateSailUI()
-	{
-		if (!isLocalPlayer)
-			return;
+        onlineRef.SailSpeedText.text = "Speed: " + (int)(sailState * 100) + "%";
 
-		onlineRef.SailSpeedText.text = "Speed: " + (int)(sailState * 100) + "%";
-
-		onlineRef.BarrelCd.text = "Barrel: " + (int)((1f - barrelCoolDown / projectiles[2].GetComponent<ProjectileType3>().GetCoolDown) * 100) +"%";
-	}
-
+        onlineRef.BarrelCd.text = "Barrel: " + (int)((1f - barrelCoolDown / projectiles[2].GetComponent<ProjectileType3>().GetCoolDown) * 100) + "%";
+    }
 
     private void OnDrawGizmos()
     {
