@@ -11,7 +11,7 @@ public class TimeSynchronizer : NetworkBehaviour {
 	
 	float _firstTimestamp;
 	
-	bool requestedSync = false;
+	static bool requestedSync = false;
 	
 	public bool IsSynced { get { return requestedSync; } }
 
@@ -31,7 +31,7 @@ public class TimeSynchronizer : NetworkBehaviour {
 			this.enabled = false;
 			return;
 		}
-
+		
 		if (NetworkManager.singleton != null && NetworkManager.singleton.isNetworkActive && NetworkServer.active)
 		{
 			this.enabled = false;

@@ -40,6 +40,7 @@ public class ShipAttributesOnline : NetworkBehaviour
 
     private float sailSpeedModifier;
 
+	[SyncVar]
     private bool isDead = false;
 
 

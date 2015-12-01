@@ -35,6 +35,9 @@ public class CustomOnlinePlayer : NetworkBehaviour {
 	[SerializeField]
 	List<Renderer> _objectsToColor = new List<Renderer>();
 
+	[SerializeField]
+	GameObject arrow;
+
     OnlineSceneReferences onlineRef;
 	// Use this for initialization
 	void Start () 
@@ -45,12 +48,13 @@ public class CustomOnlinePlayer : NetworkBehaviour {
 		ClientSideSetup ();
 		//test
 		ServersideSetup ();
+
+		onlineRef.allOnlinePlayers.Add (this);
 	}
 
 	[ClientCallback]
 	void ClientSideSetup()
 	{
-		onlineRef.UI_cure.enabled = true;
 		clientCure = onlineRef.clientCure;
 
 		if (isLocalPlayer)
@@ -85,7 +89,7 @@ public class CustomOnlinePlayer : NetworkBehaviour {
 		CalculateIfCanSeeCure ();
         SyncCureLocation();
 		SyncColor ();
-		UpdateUIcure ();
+		UpdateArrow ();
 	}
 
     [ClientCallback]
@@ -133,47 +137,56 @@ public class CustomOnlinePlayer : NetworkBehaviour {
     }
 
 	[ClientCallback]
-	void UpdateUIcure()
+	void UpdateArrow()
 	{
+		arrow.SetActive (false);
 
-		if (!isLocalPlayer)
+		if (currentCureCarrier == this.transform || !isLocalPlayer)
 			return;
 
-		Image UIcure = onlineRef.UI_cure;
-		Image UIcureArrow = onlineRef.UI_cureArrow;
+		GameObject target = null;
+		if (canSeeCure) 
+		{
+			target = onlineRef.clientCure.gameObject;
+			arrow.transform.GetChild(0).GetComponent<Renderer>().material.color = Color.yellow;
+			arrow.SetActive(true);
+			arrow.transform.rotation = Quaternion.identity;
 
-		UIcure.enabled = false;
-		UIcureArrow.enabled = false;
+		} else 
+		{
+			float mindist = float.MaxValue;
+			CustomOnlinePlayer best = null;
+			foreach(CustomOnlinePlayer p in onlineRef.allOnlinePlayers)
+			{
+				if(p.isLocalPlayer || p.GetComponent<ShipAttributesOnline>().IsDead)
+					continue;
 
-		if (!canSeeCure) 
+				float dist =(p.transform.position - transform.position).magnitude;
+
+				if(dist < mindist)
+				{
+					best = p;
+					mindist = dist;
+				}
+			}
+
+			if(best!=null)
+				target = best.gameObject;
+
+			arrow.transform.GetChild(0).GetComponent<Renderer> ().material.color = Color.red;
+		}
+
+		if (target == null) 
 			return;
 
-		Vector3 screenPos = Camera.main.WorldToScreenPoint (cureLocation);
-
-		if (screenPos.x >= 0f && screenPos.x <= Screen.width && screenPos.y >= 0f && screenPos.y <= Screen.height)
-			return;
-
-		UIcure.enabled = true;
-		UIcureArrow.enabled = true;
-
-		float width = UIcure.rectTransform.rect.width * 0.5f;
-		float height = UIcure.rectTransform.rect.height * 0.5f;
-
-		Vector3 clampedPos = new Vector3(Mathf.Clamp (screenPos.x, width, Screen.width - width),
-		                        		 Mathf.Clamp (screenPos.y, height, Screen.height - height),
-		                        		 0f);
-
-
-		float rotation = Mathf.Atan2 (screenPos.y - clampedPos.y , screenPos.x - clampedPos.x ) * 360f / Mathf.PI;
-
-		UIcure.rectTransform.position = clampedPos;
-		UIcureArrow.rectTransform.localEulerAngles = new Vector3 (0f, 0f, rotation);
+		arrow.SetActive (true);
+		arrow.transform.localRotation = Quaternion.LookRotation (target.transform.position - this.transform.position);
 	}
-
 
 	void OnDestroy()
 	{
 		OnDestroyedOnServer ();
+		onlineRef.allOnlinePlayers.Remove (this);
 	}
 
 	[ServerCallback]

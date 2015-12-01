@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.UI;
 
 public class OnlineSceneReferences : MonoBehaviour {
@@ -40,7 +41,7 @@ public class OnlineSceneReferences : MonoBehaviour {
                 return _onlinePlayer;
         }
     }
-
+	/*
     private CustomOnlinePlayer[] _allOnline = null;
 
     public CustomOnlinePlayer[] allOnlinePlayers
@@ -54,6 +55,9 @@ public class OnlineSceneReferences : MonoBehaviour {
             return _allOnline;
         }
     }
+    */
+
+	public List<CustomOnlinePlayer> allOnlinePlayers = new List<CustomOnlinePlayer> ();
 
     public Transform clientCure;
 
@@ -68,7 +72,7 @@ public class OnlineSceneReferences : MonoBehaviour {
 	public Slider interpSlider;
 	public void ChangeInterp()
 	{
-		CustomOnlinePlayer[] list = allOnlinePlayers;
+		List<CustomOnlinePlayer> list = allOnlinePlayers;
 		foreach (CustomOnlinePlayer p in list) 
 		{
 			p.GetComponent<OnlineTransform>().SetInterp(interpSlider.value);
@@ -78,9 +82,6 @@ public class OnlineSceneReferences : MonoBehaviour {
 	}
 
 	public ClientUpgradeScreen UpgradeScreen;
-
-	public Image UI_cure;
-
-	public Image UI_cureArrow;
+	
 
 }
