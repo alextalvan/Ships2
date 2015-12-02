@@ -66,8 +66,7 @@ public class PlayerRespawn : NetworkBehaviour
         GetComponent<Rigidbody>().position = spawnPos;
         GetComponent<Rigidbody>().rotation = Quaternion.identity;
         transform.rotation = Quaternion.identity;
-
-
+        
         //GetComponent<OnlineTransform> ().RpcForceNewTransform (spawnPos,Quaternion.identity);
     }
 
