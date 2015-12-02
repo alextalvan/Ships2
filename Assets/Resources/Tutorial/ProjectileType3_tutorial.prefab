@@ -63,7 +63,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 193654}
-  m_Mesh: {fileID: 4300000, guid: a1a68cde8f78d5e40b7d475cb4cd34e5, type: 3}
+  m_Mesh: {fileID: 4300000, guid: b44eb4a9a36f3a8408ab9ab27ab2eb9e, type: 3}
 --- !u!54 &5496096
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -251,7 +251,7 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 4300000, guid: d7a8a9f61b60a36438306db194a68a17, type: 3}
+      objectReference: {fileID: 4300000, guid: b44eb4a9a36f3a8408ab9ab27ab2eb9e, type: 3}
     - target: {fileID: 0}
       propertyPath: debris.Array.data[0]
       value: 

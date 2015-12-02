@@ -151,11 +151,13 @@ public class TutorialShipAttributes : MonoBehaviour
 	{
 		isDead = false;
 		tutHull.Reset();
-		
+
+		/*
 		foreach (TutorialSail sail in sails)
 		{
-			sail.Reset();
+			//sail.Reset();
 		}
+		*/
 		
 		UpdateSailsState();
 	}

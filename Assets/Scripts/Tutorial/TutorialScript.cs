@@ -3,12 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class TutorialScript : MonoBehaviour {
+
     [SerializeField]
     List<TutorialSpriteManager> sprites = new List<TutorialSpriteManager>();
     int stage;
 	// Use this for initialization
 	void Start () {
-        
+		stage = 7;
 	}
 
     public void RemoveItem(TutorialSpriteManager item)
@@ -40,4 +41,5 @@ public class TutorialScript : MonoBehaviour {
         }
         
 	}
+
 }

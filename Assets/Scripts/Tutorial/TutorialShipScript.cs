@@ -83,7 +83,9 @@ public class TutorialShipScript : MonoBehaviour
 
 	public bool MovementLock = true;
 	public bool CombatLock = true;
-	
+
+	[SerializeField]
+	GameObject ammoIconsParent;
 
 	
 	// Use this for initialization
@@ -133,7 +135,7 @@ public class TutorialShipScript : MonoBehaviour
 		//if (playerRespawn.IsDead)
 		//    return;
 
-
+		ammoIconsParent.SetActive (!CombatLock);
 
 		if (CombatLock)
 			return;

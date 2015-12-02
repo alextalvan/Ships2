@@ -7,6 +7,8 @@ public class TutorialManager : MonoBehaviour {
 	[SerializeField]
 	GameObject player;
 
+	TutorialShipScript ship;
+
 	[SerializeField]
 	GUIDialog tutorialDialog;
 
@@ -25,11 +27,16 @@ public class TutorialManager : MonoBehaviour {
 		WASD
 	}
 
+	public enum TUTORIAL_EVENTS
+	{
+		GRABBED_CURE
+	}
+
 	// Use this for initialization
 	void Start () 
 	{
 		StartCoroutine (StartShip ());
-
+		ship = player.GetComponent<TutorialShipScript> ();
 		SetText("Welcome to the [game name] tutorial.");
 	}
 	
@@ -53,6 +60,23 @@ public class TutorialManager : MonoBehaviour {
 			        "and hold it for [x] minutes. The first player to do this wins the game!");
 			continueButton.enabled = true;
 			break;
+
+		case TUTORIAL_STATES.WASD:
+			SetText("Use the keys W, A, S, and S to move. Pick up the <color=yellow>CURE</color> to continue.");
+			continueButton.enabled = false;
+			ship.MovementLock = false;
+			break;
+		default:
+			break;
+		}
+	}
+
+	public void GetMessage(TUTORIAL_EVENTS e)
+	{
+		switch (e) 
+		{
+		case TUTORIAL_EVENTS.GRABBED_CURE:
+			break;
 		default:
 			break;
 		}
@@ -64,6 +88,9 @@ public class TutorialManager : MonoBehaviour {
 		{
 		case TUTORIAL_STATES.START:
 			SetState(TUTORIAL_STATES.WINCOND_EXPLAIN);
+			return;
+		case TUTORIAL_STATES.WINCOND_EXPLAIN:
+			SetState(TUTORIAL_STATES.WASD);
 			return;
 		default:
 			return;

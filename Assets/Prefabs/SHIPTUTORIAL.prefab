@@ -502,7 +502,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &120008
 GameObject:
   m_ObjectHideFlags: 1
@@ -1608,18 +1608,15 @@ GameObject:
   - 54: {fileID: 5493216}
   - 114: {fileID: 11437540}
   - 114: {fileID: 11456776}
-  - 114: {fileID: 11400246}
   - 114: {fileID: 11437594}
-  - 114: {fileID: 11409460}
-  - 114: {fileID: 11449724}
-  - 114: {fileID: 11417730}
   - 114: {fileID: 11430672}
   - 82: {fileID: 8276306}
   - 114: {fileID: 11422838}
   - 114: {fileID: 11455946}
   - 114: {fileID: 11465752}
-  - 114: {fileID: 11457380}
   - 114: {fileID: 11473924}
+  - 114: {fileID: 11464722}
+  - 114: {fileID: 11465986}
   m_Layer: 0
   m_Name: SHIPTUTORIAL
   m_TagString: Untagged
@@ -2714,7 +2711,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 173014}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 18.7099991, z: 47.2200012}
+  m_LocalPosition: {x: 0, y: 1.74000001, z: 47.2200012}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 423084}
@@ -5245,29 +5242,6 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
---- !u!114 &11400246
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 173014}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4cb36b246680f614b96d7b3b78b55ecb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &11409460
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 173014}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 332961445282f4a48b77b9a4557bec44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _delta: 0
 --- !u!114 &11411914
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5284,18 +5258,6 @@ MonoBehaviour:
   - {fileID: 2100000, guid: e67c23e1f07b8be41aa7a822090a7769, type: 2}
   - {fileID: 2100000, guid: 7bc7a8ed8fa8cc9449f295745154e70e, type: 2}
   anotherSide: {fileID: 494604}
---- !u!114 &11417730
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 173014}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a4842dda38864d4a8ec11cac25a03bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _maxLevel: 10
 --- !u!114 &11422838
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5415,18 +5377,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9a220e3045aab54f8ed05f167ff718a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &11449724
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 173014}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a098b3ee2328df24388f1a949a512be2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  respawnTime: 15
 --- !u!114 &11455946
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5446,6 +5396,8 @@ MonoBehaviour:
   - {fileID: 193654, guid: 5943df4f44113f047903042ed7807b6c, type: 2}
   - {fileID: 193654, guid: 55b575f24faa9604aaebd7f39953e163, type: 2}
   cannonRecoil: 100000
+  MovementLock: 1
+  CombatLock: 1
 --- !u!114 &11456638
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5483,33 +5435,6 @@ MonoBehaviour:
   - {fileID: 2364982}
   - {fileID: 2397560}
   arrow: {fileID: 0}
---- !u!114 &11457380
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 173014}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3b368aeb2de1d747b311a8e74661f2f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sailParent: {fileID: 0}
-  hpBar: {fileID: 0}
-  hullMaxHealth: 200
-  sailMaxHealth: 100
-  basicSpeed: 10
-  steeringModifier: 250
-  shootRangeMultiplier: 1
-  cannonChargeRate: 5
-  reloadRateModifier: 1
-  damageModifier: 1
-  pickUps:
-  - {fileID: 193054, guid: 82978177c31e3ae40a37913cc2ce2717, type: 2}
-  - {fileID: 106812, guid: f6c917cc8175d1e4582a63d5365b0714, type: 2}
-  - {fileID: 185838, guid: 73092ba537f6d83429603d0f830339dc, type: 2}
-  minDrop: 3
-  maxDrop: 6
 --- !u!114 &11459080
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5536,6 +5461,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shipAttributes: {fileID: 11465752}
   currentHealth: 0
+--- !u!114 &11464722
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 173014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b23a5b4f9cce3754e9c4dd2312050c65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxLevel: 10
 --- !u!114 &11465326
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5572,6 +5509,29 @@ MonoBehaviour:
   pickUps: []
   minDrop: 0
   maxDrop: 4
+--- !u!114 &11465986
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 173014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f43e3c510ae8974aaba91d01c008f43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sailParent: {fileID: 435112}
+  hullMaxHealth: 200
+  sailMaxHealth: 100
+  basicSpeed: 10
+  steeringModifier: 350
+  shootRangeMultiplier: 1
+  cannonChargeRate: 5
+  reloadRateModifier: 1
+  damageModifier: 1
+  pickUps: []
+  minDrop: 0
+  maxDrop: 0
 --- !u!114 &11473924
 MonoBehaviour:
   m_ObjectHideFlags: 1
