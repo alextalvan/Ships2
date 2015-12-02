@@ -17,9 +17,6 @@ public class PlayerFX : NetworkBehaviour
     [SerializeField]
     private List<ParticleSystem> _rightSideSmokes = new List<ParticleSystem>();
 
-    private List<ParticleSystem> _leftSideWaves = new List<ParticleSystem>();
-    private List<ParticleSystem> _rightSideWaves = new List<ParticleSystem>();
-
     AudioSource _source;
 
     public enum PLAYER_SOUNDS
@@ -74,9 +71,7 @@ public class PlayerFX : NetworkBehaviour
             for (int i = 0; i < cannonCount; ++i)
             {
                 _leftSideSmokes[i].Stop();
-                _leftSideWaves[i].Stop();
                 _leftSideSmokes[i].Play();
-                _leftSideWaves[i].Play();
             }
         }
         else
@@ -84,9 +79,7 @@ public class PlayerFX : NetworkBehaviour
             for (int i = 0; i < cannonCount; ++i)
             {
                 _rightSideSmokes[i].Stop();
-                _rightSideWaves[i].Stop();
                 _rightSideSmokes[i].Play();
-                _rightSideWaves[i].Play();
             }
         }
     }
@@ -95,11 +88,6 @@ public class PlayerFX : NetworkBehaviour
     void Start()
     {
         _source = GetComponent<AudioSource>();
-
-        foreach (ParticleSystem smoke in _leftSideSmokes)
-            _leftSideWaves.Add(smoke.transform.GetChild(0).GetComponent<ParticleSystem>());
-        foreach (ParticleSystem smoke in _rightSideSmokes)
-            _rightSideWaves.Add(smoke.transform.GetChild(0).GetComponent<ParticleSystem>());
     }
 
 
