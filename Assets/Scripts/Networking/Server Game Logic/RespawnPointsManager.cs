@@ -45,12 +45,12 @@ public class RespawnPointsManager : MonoBehaviour {
 		_initPoints.AddRange (_points);
 	}
 
-	public Vector3 GetInitialSpawnPoint()
+	public GameObject GetInitialSpawnPoint()
 	{
 		int index = Random.Range (0, _initPoints.Count);
 		//Debug.Log (_initPoints.Count + " possible SpawnPoints");
-		Vector3 pos = _initPoints [index].transform.position;
+		GameObject ret = _initPoints [index].gameObject;
 		_initPoints.RemoveAt (index);
-		return pos;
+		return ret;
 	}
 }

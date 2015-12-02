@@ -93,8 +93,12 @@ Material:
     m_Colors:
       data:
         first:
-          name: _MainColor
+          name: _Color
         second: {r: 1, g: 1, b: 1, a: 1}
+      data:
+        first:
+          name: _MainColor
+        second: {r: .926470578, g: .926470578, b: .926470578, a: 1}
       data:
         first:
           name: _Overlaycolor

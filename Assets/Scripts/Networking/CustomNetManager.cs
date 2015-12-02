@@ -163,9 +163,9 @@ public class CustomNetManager : NetworkLobbyManager {
 				resetSpawnPointsOnSceneChange = false;
 			}
 
-			Vector3 spawnPos = GameObject.Find("RespawnManager").GetComponent<RespawnPointsManager>().GetInitialSpawnPoint();
+			GameObject spawnPos = GameObject.Find("RespawnManager").GetComponent<RespawnPointsManager>().GetInitialSpawnPoint();
 			//UIConsole.Log());
-			GameObject player = (GameObject)Object.Instantiate(onlinePlayerPrefab,spawnPos,Quaternion.identity);
+			GameObject player = (GameObject)Object.Instantiate(onlinePlayerPrefab,spawnPos.transform.position,spawnPos.transform.rotation);
 			NetworkServer.AddPlayerForConnection(conn,player,playerControllerId);
 				//UIConsole.Log("FAILED TO ADD PLAYER");
 

@@ -72,8 +72,8 @@ public class PlayerFX : NetworkBehaviour
             CameraShake(duration, strength);
     }
 
-    [ClientRpc]
-    public void RpcEmitCannonSmoke(bool leftSide, int cannonCount)
+    
+    public void EmitCannonSmoke(bool leftSide, int cannonCount)
     {
         if (leftSide)
         {
@@ -94,25 +94,46 @@ public class PlayerFX : NetworkBehaviour
     }
 
 	[ClientRpc]
-	public void RpcDoLevelUpParticle()
+	public void RpcEmitCannonSmoke(bool leftSide, int cannonCount)
+	{
+		EmitCannonSmoke (leftSide, cannonCount);
+	}
+		
+	public void DoLevelUpParticle()
 	{
 		_levelUpParticle.Stop ();
 		_levelUpParticle.Play ();
 	}
 
 	[ClientRpc]
-	public void RpcSpawnDeathParticle()
+	public void RpcDoLevelUpParticle()
+	{
+		DoLevelUpParticle ();
+	}
+
+	public void SpawnDeathParticle()
 	{
 		//GameObject skull = (GameObject)
 		Instantiate (_deathParticle, transform.position + new Vector3 (0, 20, 0), Quaternion.identity);
 	}
 
 	[ClientRpc]
-	public void RpcEmitMapParticle(int mapCount)
+	public void RpcSpawnDeathParticle()
+	{
+		RpcSpawnDeathParticle ();
+	}
+
+	public void EmitMapParticle(int mapCount)
 	{
 		_mapPickupParticle.Stop ();
 		_mapPickupParticle.startSize = CustomOnlinePlayer.distancePerMapPiece * mapCount * 0.5f;
 		_mapPickupParticle.Play ();
+	}
+
+	[ClientRpc]
+	public void RpcEmitMapParticle(int mapCount)
+	{
+		EmitMapParticle (mapCount);
 	}
 
 

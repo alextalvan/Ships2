@@ -1,0 +1,274 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &193654
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 452454}
+  - 33: {fileID: 3313014}
+  - 23: {fileID: 2338828}
+  - 54: {fileID: 5496096}
+  - 64: {fileID: 6493816}
+  - 114: {fileID: 11496484}
+  - 114: {fileID: 11410248}
+  m_Layer: 13
+  m_Name: ProjectileType3_tutorial
+  m_TagString: Projectile
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &452454
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 193654}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 28.882534, y: 270.059814, z: -354.3349}
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!23 &2338828
+MeshRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 193654}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_Materials:
+  - {fileID: 2100000, guid: 0ebb122b989daf64c90f900a887abf8a, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 1
+  m_ReflectionProbeUsage: 1
+  m_ProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 1
+  m_ImportantGI: 0
+  m_AutoUVMaxDistance: .5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+--- !u!33 &3313014
+MeshFilter:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 193654}
+  m_Mesh: {fileID: 4300000, guid: a1a68cde8f78d5e40b7d475cb4cd34e5, type: 3}
+--- !u!54 &5496096
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 193654}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: .0500000007
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 2
+--- !u!64 &6493816
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 193654}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 1
+  m_Mesh: {fileID: 4300000, guid: b44eb4a9a36f3a8408ab9ab27ab2eb9e, type: 3}
+--- !u!114 &11410248
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 193654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 008dc8fccd27ffa44a3b6577f3ebff61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  voxelsX: 2
+  voxelsY: 2
+  voxelsZ: 2
+  voxelsYDownMod: 1
+  centerOfMassYOffset: 1
+  buoyancyLimit: 100
+--- !u!114 &11496484
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 193654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92bd6cbc0e2edcd47ad73de42ef1c11b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifeTime: 30
+  upwardsModifier: 500
+  hullDamage: 50
+  sailDamage: 25
+  damageRadius: 25
+  coolDown: 150
+  owner: {fileID: 0}
+  debris:
+  - {fileID: 193054, guid: 5338ec053d181754b8643e3419f97021, type: 2}
+  - {fileID: 106812, guid: 44ee686557cfcbe42ada482820744740, type: 2}
+  - {fileID: 185838, guid: 7b9fe03a86fb7e94bb7c8b3f00805044, type: 2}
+  crossHit: {fileID: 108002, guid: e0c3bef3433ca2d4d8c08c450b4f6caf, type: 2}
+  projectileType: 3
+  splashPrefab: {fileID: 153714, guid: b9828af26fb651a4286e498fbc78b841, type: 2}
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: debris.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Colors.m_Color[0].rgba
+      value: 4278190080
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Colors.m_Color[1].rgba
+      value: 4278190080
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Colors.m_Color[2].rgba
+      value: 4281677109
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Colors.m_Color[3].rgba
+      value: 4283716692
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Colors.m_Color[4].rgba
+      value: 7171437
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Time
+      value: .100000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b25815883f6c87344b550daf1f342aa3, type: 2}
+    - target: {fileID: 0}
+      propertyPath: m_SendInterval
+      value: .0500000007
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_SnapThreshold
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Drag
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_CollisionDetection
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: upwardsModifier
+      value: 600
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: lifeTime
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: hullDamage
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: sailDamage
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: damageRadius
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_TagString
+      value: Projectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _snapThreshold
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: coolDown
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: splashPrefab
+      value: 
+      objectReference: {fileID: 153714, guid: b9828af26fb651a4286e498fbc78b841, type: 2}
+    - target: {fileID: 0}
+      propertyPath: crate
+      value: 
+      objectReference: {fileID: 106812, guid: f6c917cc8175d1e4582a63d5365b0714, type: 2}
+    - target: {fileID: 0}
+      propertyPath: barrel
+      value: 
+      objectReference: {fileID: 193054, guid: 82978177c31e3ae40a37913cc2ce2717, type: 2}
+    - target: {fileID: 0}
+      propertyPath: plank
+      value: 
+      objectReference: {fileID: 185838, guid: 73092ba537f6d83429603d0f830339dc, type: 2}
+    - target: {fileID: 0}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: crossHit
+      value: 
+      objectReference: {fileID: 108002, guid: e0c3bef3433ca2d4d8c08c450b4f6caf, type: 2}
+    - target: {fileID: 0}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300000, guid: d7a8a9f61b60a36438306db194a68a17, type: 3}
+    - target: {fileID: 0}
+      propertyPath: debris.Array.data[0]
+      value: 
+      objectReference: {fileID: 193054, guid: 82978177c31e3ae40a37913cc2ce2717, type: 2}
+    - target: {fileID: 0}
+      propertyPath: debris.Array.data[1]
+      value: 
+      objectReference: {fileID: 106812, guid: f6c917cc8175d1e4582a63d5365b0714, type: 2}
+    - target: {fileID: 0}
+      propertyPath: debris.Array.data[2]
+      value: 
+      objectReference: {fileID: 185838, guid: 73092ba537f6d83429603d0f830339dc, type: 2}
+    - target: {fileID: 0}
+      propertyPath: projectileType
+      value: 3
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 193654}
+  m_IsPrefabParent: 1
