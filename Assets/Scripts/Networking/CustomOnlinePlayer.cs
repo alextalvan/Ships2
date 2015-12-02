@@ -8,7 +8,7 @@ public class CustomOnlinePlayer : NetworkBehaviour
 {
 
     static float distancePerMapPiece = 50f;
-    static Vector3 hiddenLocation = new Vector3(10000, 10000, 10000);
+    static Vector3 hiddenLocation = new Vector3(100000, 0, 100000);
 
     [SyncVar]
     Vector3 cureLocation;

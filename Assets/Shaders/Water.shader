@@ -46,7 +46,7 @@ Shader "Custom/Water_gerstner" {
         Pass {
             Name "FORWARD"
             Tags {
-                "LightMode"="ForwardBase"
+                "LightMode"="ForwardBase" 
             }
             Blend SrcAlpha OneMinusSrcAlpha
             
@@ -348,7 +348,7 @@ Shader "Custom/Water_gerstner" {
             Tags {
                 "LightMode"="Meta"
             }
-            Cull Off
+            //Cull Off
             
             CGPROGRAM
             #pragma vertex vert
