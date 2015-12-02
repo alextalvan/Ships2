@@ -35,10 +35,10 @@ public class HullOnline : NetworkBehaviour
         if (currentHealth < Mathf.Epsilon)
             return;
 
-        shipAttributes.GetPlayerFX.RpcCameraShake(0.375f, damage/2f);
+        shipAttributes.GetPlayerFX.RpcCameraShake(0.375f, damage / 2f);
 
         currentHealth -= damage;
-        buoyancy.ChangeBuoyancy(position, buoyancy.GetVoxelsCount, radius);
+        buoyancy.DamageVoxels(position, damage, radius);
 
         if (currentHealth <= Mathf.Epsilon)
         {
@@ -49,7 +49,8 @@ public class HullOnline : NetworkBehaviour
             if (source != null)
             {
                 Projectile p = source.GetComponent<Projectile>();
-                if (p != null)
+
+                if (p != null && p.owner != GetComponent<CustomOnlinePlayer>())
                     p.owner.GetComponent<LevelUser>().GainEXP(500);
             }
         }
@@ -60,13 +61,16 @@ public class HullOnline : NetworkBehaviour
 
     public void Repair(float amount)
     {
-        currentHealth += amount;
+        if (currentHealth < shipAttributes.HullMaxHealth)
+        {
+            currentHealth += amount;
 
-        if (currentHealth > shipAttributes.HullMaxHealth)
-            currentHealth = shipAttributes.HullMaxHealth;
+            if (currentHealth > shipAttributes.HullMaxHealth)
+                currentHealth = shipAttributes.HullMaxHealth;
 
-        GetComponent<PlayerCaptionController>().RpcPushDebugText("My hull got repaired for " + amount + ". Current hull health: " + currentHealth);
-        SendHealthBarRefresh();
+            GetComponent<PlayerCaptionController>().RpcPushDebugText("My hull got repaired for " + amount + ". Current hull health: " + currentHealth);
+            SendHealthBarRefresh();
+        }
     }
 
     //Rammimg
@@ -76,22 +80,15 @@ public class HullOnline : NetworkBehaviour
 
         if (hull)
         {
-            Rigidbody thisRb = GetComponent<Rigidbody>();
-            Rigidbody enemyRb = collision.collider.GetComponent<Rigidbody>();
+            Vector3 colPoint = collision.contacts[0].point;
+            float power = collision.relativeVelocity.magnitude;
 
-            if (thisRb.velocity.magnitude > enemyRb.velocity.magnitude)
-            {
-                hull.Damage(collision.contacts[0].point, collision.relativeVelocity.magnitude, 10f);
-                Damage(collision.contacts[0].point, collision.relativeVelocity.magnitude / 3f, 10f);
-                shipAttributes.GetPlayerFX.RpcCameraShake(0.375f, collision.relativeVelocity.magnitude / 3f);
-            }
-            else
-            {
-                Damage(collision.contacts[0].point, collision.relativeVelocity.magnitude, 10f);
-                hull.Damage(collision.contacts[0].point, collision.relativeVelocity.magnitude / 3f, 10f);
-                shipAttributes.GetPlayerFX.RpcCameraShake(0.375f, collision.relativeVelocity.magnitude);
-            }
-			GetComponent<PlayerFX> ().RpcPlaySound(PlayerFX.PLAYER_SOUNDS.COLLISION);
+            hull.Damage(colPoint, power, 10f);
+            Damage(colPoint, power, 10f);
+
+            shipAttributes.GetPlayerFX.RpcCameraShake(0.375f, power);
+
+            GetComponent<PlayerFX>().RpcPlaySound(PlayerFX.PLAYER_SOUNDS.COLLISION);
             SendHealthBarRefresh();
         }
     }

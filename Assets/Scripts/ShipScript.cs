@@ -471,8 +471,10 @@ public class ShipScript : NetworkBehaviour
                 Rigidbody projRB = projectile.GetComponent<Rigidbody>();
                 Projectile projProj = projectile.GetComponent<Projectile>();
 
+                float rndGunPowderAmount = Random.Range(4500f, 5000f);
+
                 Vector3 forwardDirection = new Vector3(cannon.forward.x, 0f, cannon.forward.z).normalized;
-                Vector3 force = (Vector3.up * upwardsModifier + (forwardDirection * 5000f)) * projectileMass * shipAttributes.RangeMultiplier;
+                Vector3 force = (Vector3.up * upwardsModifier + (forwardDirection * rndGunPowderAmount)) * projectileMass * shipAttributes.RangeMultiplier;
 
                 projRB.AddForce(force);
                 projProj.owner = customOnlinePlayer;

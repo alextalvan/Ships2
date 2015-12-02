@@ -5,11 +5,12 @@ using UnityEngine.Networking;
 [RequireComponent(typeof(Collider))]
 public class Pickup : NetworkBehaviour
 {
-
     public int EXP_Reward;
     public float lifeTime;
     private float deathTime;
     private bool taken = false;
+    [SerializeField]
+    private float repairPotential;
 
     public CustomOnlinePlayer owner;
 
@@ -47,6 +48,13 @@ public class Pickup : NetworkBehaviour
 
         if (hitbox != null && !hitbox.GetComponentInParent<ShipAttributesOnline>().IsDead && other.GetComponentInParent<CustomOnlinePlayer>() != owner)
         {
+            float rnd = Random.Range(0, 3);
+
+            if (rnd == 0 || rnd == 1)
+                other.GetComponentInParent<HullOnline>().Repair(repairPotential);
+            else
+                other.GetComponentInParent<ShipAttributesOnline>().RepairAllSails(repairPotential);
+
             OnPickup(hitbox.GetComponentInParent<CustomOnlinePlayer>());
             taken = true;
             NetworkServer.Destroy(this.gameObject);
@@ -56,7 +64,7 @@ public class Pickup : NetworkBehaviour
     protected virtual void OnPickup(CustomOnlinePlayer player)
     {
         player.GetComponent<LevelUser>().GainEXP(EXP_Reward);
-		PlayerFX.PLAYER_SOUNDS s = (PlayerFX.PLAYER_SOUNDS)((int)(PlayerFX.PLAYER_SOUNDS.PICKUP1) + Random.Range (0, 3));
-		player.GetComponent<PlayerFX> ().RpcPlaySound (s);
+        PlayerFX.PLAYER_SOUNDS s = (PlayerFX.PLAYER_SOUNDS)((int)(PlayerFX.PLAYER_SOUNDS.PICKUP1) + Random.Range(0, 3));
+        player.GetComponent<PlayerFX>().RpcPlaySound(s);
     }
 }

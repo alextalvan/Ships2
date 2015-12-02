@@ -129,6 +129,4 @@ public class LevelUser : NetworkBehaviour
 		if (Input.GetKeyDown (KeyCode.J))
 			GainEXP (1000);
 	}
-
-
 }

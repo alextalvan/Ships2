@@ -238,28 +238,37 @@ public class BuoyancyScript : NetworkBehaviour
         }
     }
 
-    public void ChangeBuoyancy(Vector3 position, float damage, float radius)
+    public void DamageVoxels(Vector3 position, float damage, float radius)
     {
-        Voxel closestVoxel = null;
-        float minDist = radius;
+        damage /= voxels.Count;
 
         foreach (Voxel voxel in voxels)
         {
-            float dist = (position - transform.TransformPoint(voxel.Position)).magnitude;
-            if (dist < minDist && voxel.BuoyancyState > 0f)
+            float distToVoxel = (position - transform.TransformPoint(voxel.Position)).magnitude;
+
+            if (distToVoxel < radius && voxel.BuoyancyState > 0f)
             {
-                closestVoxel = voxel;
-                minDist = dist;
+                voxel.BuoyancyState -= damage;
+
+                if (voxel.BuoyancyState < 0f)
+                    voxel.BuoyancyState = 0f;
             }
         }
+    }
 
-        if (closestVoxel != null)
+    public void RepairVoxels(float amount)
+    {
+        amount /= voxels.Count;
+
+        foreach (Voxel voxel in voxels)
         {
-            if (closestVoxel.BuoyancyState > 0f)
-                closestVoxel.BuoyancyState -= damage;
+            if (voxel.BuoyancyState < 100f)
+            {
+                voxel.BuoyancyState += amount;
 
-            if (closestVoxel.BuoyancyState < 0f)
-                closestVoxel.BuoyancyState = 0f;
+                if (voxel.BuoyancyState > 100f)
+                    voxel.BuoyancyState = 100f;
+            }
         }
     }
 
