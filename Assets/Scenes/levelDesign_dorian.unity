@@ -125,50 +125,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3366410, guid: 4abd272968e9df449af88bc5f7b3af21, type: 2}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 4300000, guid: 2dd0481b04b05da4187bead4b3c11843, type: 3}
-    - target: {fileID: 3387076, guid: 4abd272968e9df449af88bc5f7b3af21, type: 2}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 4300000, guid: 2dd0481b04b05da4187bead4b3c11843, type: 3}
-    - target: {fileID: 3307564, guid: 4abd272968e9df449af88bc5f7b3af21, type: 2}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 4300000, guid: 2dd0481b04b05da4187bead4b3c11843, type: 3}
-    - target: {fileID: 3372236, guid: 4abd272968e9df449af88bc5f7b3af21, type: 2}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 4300000, guid: 2dd0481b04b05da4187bead4b3c11843, type: 3}
-    - target: {fileID: 2303042, guid: 4abd272968e9df449af88bc5f7b3af21, type: 2}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 499cc28f379e7a44da0a5e3720bd9549, type: 2}
-    - target: {fileID: 2345398, guid: 4abd272968e9df449af88bc5f7b3af21, type: 2}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 499cc28f379e7a44da0a5e3720bd9549, type: 2}
-    - target: {fileID: 2312840, guid: 4abd272968e9df449af88bc5f7b3af21, type: 2}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 499cc28f379e7a44da0a5e3720bd9549, type: 2}
-    - target: {fileID: 490852, guid: 4abd272968e9df449af88bc5f7b3af21, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -19.4899998
-      objectReference: {fileID: 0}
-    - target: {fileID: 464886, guid: 4abd272968e9df449af88bc5f7b3af21, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -19.4899998
-      objectReference: {fileID: 0}
-    - target: {fileID: 478828, guid: 4abd272968e9df449af88bc5f7b3af21, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -17.0100002
-      objectReference: {fileID: 0}
-    - target: {fileID: 487848, guid: 4abd272968e9df449af88bc5f7b3af21, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -8.81999969
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4abd272968e9df449af88bc5f7b3af21, type: 2}
   m_IsPrefabParent: 0
