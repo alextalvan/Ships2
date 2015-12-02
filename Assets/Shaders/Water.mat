@@ -55,7 +55,7 @@ Material:
       data:
         first:
           name: _CustomTime
-        second: 155.807053
+        second: 87.5765381
       data:
         first:
           name: _Wave_amount
@@ -111,6 +111,10 @@ Material:
         second: {r: .313725501, g: .0705882385, b: .0705882385, a: 1}
       data:
         first:
+          name: _Color2
+        second: {r: .316176474, g: .07206963, b: .07206963, a: 1}
+      data:
+        first:
           name: _GAmplitude
         second: {r: .140000001, g: .230000004, b: .174999997, a: .224999994}
       data:
@@ -133,10 +137,6 @@ Material:
         first:
           name: _GDirectionCD
         second: {r: .699999988, g: -.680000007, b: .709999979, a: -.200000003}
-      data:
-        first:
-          name: _Color2
-        second: {r: .316176474, g: .07206963, b: .07206963, a: 1}
       data:
         first:
           name: _Color_lerp
