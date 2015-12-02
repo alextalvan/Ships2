@@ -8,7 +8,7 @@ public class CustomOnlinePlayer : NetworkBehaviour
 {
 
     public const float distancePerMapPiece = 25f;
-    static Vector3 hiddenLocation = new Vector3(100000, -100000, 100000);
+    static Vector3 hiddenLocation = new Vector3(100000, 100000, 100000);
 
     [SyncVar]
     Vector3 cureLocation;
@@ -124,9 +124,6 @@ public class CustomOnlinePlayer : NetworkBehaviour
             clientCure.transform.position = currentCureCarrier.transform.position + currentCureCarrier.transform.up * 20f;
             return;
         }
-        else
-            clientCure.transform.parent = null;
-
 
         if (canSeeCure)
             clientCure.transform.position = cureLocation;
