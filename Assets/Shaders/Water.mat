@@ -1,0 +1,151 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Water
+  m_Shader: {fileID: 4800000, guid: ac3fccaa2b030474783c12d1ee741115, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 5
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  m_SavedProperties:
+    serializedVersion: 2
+    m_TexEnvs:
+      data:
+        first:
+          name: _AlphaWave2
+        second:
+          m_Texture: {fileID: 2800000, guid: 28c7aad1372ff114b90d330f8a2dd938, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _AlphaWave
+        second:
+          m_Texture: {fileID: 2800000, guid: cee2491bf9f104825a5ca3ffd00453aa, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _WaveTexture
+        second:
+          m_Texture: {fileID: 2800000, guid: 36dd0b22da8874ed38075789055ca664, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _Normalforrefl
+        second:
+          m_Texture: {fileID: 2800000, guid: 276a54cad51984ff89da8445c52523c7, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+    m_Floats:
+      data:
+        first:
+          name: _Reflection
+        second: 0
+      data:
+        first:
+          name: _Cutoff
+        second: .5
+      data:
+        first:
+          name: _Fresnel
+        second: 1
+      data:
+        first:
+          name: _CustomTime
+        second: 62.031292
+      data:
+        first:
+          name: _Wave_amount
+        second: 1
+      data:
+        first:
+          name: _Panner
+        second: 11.4200001
+      data:
+        first:
+          name: _Lerp
+        second: 1
+      data:
+        first:
+          name: _Power
+        second: .850000024
+      data:
+        first:
+          name: _Angle
+        second: 15
+      data:
+        first:
+          name: _Transparancy
+        second: .75
+      data:
+        first:
+          name: _Edge
+        second: 0
+      data:
+        first:
+          name: _RefelectionBlur
+        second: 2.36999989
+      data:
+        first:
+          name: _Refelcetion_Int
+        second: .143999994
+      data:
+        first:
+          name: _F_Intensity
+        second: 3
+      data:
+        first:
+          name: _Reflection_Move_amount
+        second: .200000003
+    m_Colors:
+      data:
+        first:
+          name: _Color
+        second: {r: .313725501, g: .0705882385, b: .0705882385, a: 1}
+      data:
+        first:
+          name: _Color2
+        second: {r: .316176474, g: .07206963, b: .07206963, a: 1}
+      data:
+        first:
+          name: _GAmplitude
+        second: {r: .140000001, g: .230000004, b: .174999997, a: .224999994}
+      data:
+        first:
+          name: _GFrequency
+        second: {r: .5, g: .379999995, b: .589999974, a: .600000024}
+      data:
+        first:
+          name: _GSteepness
+        second: {r: 7, g: 2, b: 6, a: 2}
+      data:
+        first:
+          name: _GSpeed
+        second: {r: -3, g: 2, b: 1, a: 3}
+      data:
+        first:
+          name: _GDirectionAB
+        second: {r: .469999999, g: .354999989, b: -.200000003, a: .100000001}
+      data:
+        first:
+          name: _GDirectionCD
+        second: {r: .699999988, g: -.680000007, b: .709999979, a: -.200000003}
+      data:
+        first:
+          name: _Color_lerp
+        second: {r: .144625872, g: .786764741, b: .174844161, a: 1}
+      data:
+        first:
+          name: _Deep_Color
+        second: {r: 0, g: .338235319, b: .268440753, a: 1}
+      data:
+        first:
+          name: _FresnelColor
+        second: {r: .143057972, g: .198529422, b: .198529422, a: 1}

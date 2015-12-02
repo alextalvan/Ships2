@@ -246,13 +246,10 @@ half4  ExtinctColor (half4 baseColor, half extinctionAmount)
 					 half4 amplitude, half4 frequency, half4 steepness, 
 					 half4 speed, half4 directionAB, half4 directionCD, float customTime ) 
 	{
-		#ifdef WATER_VERTEX_DISPLACEMENT_ON
+		
 			offs = GerstnerOffset4(tileableVtx.xz, steepness, amplitude, frequency, speed, directionAB, directionCD, customTime);
 			nrml = GerstnerNormal4(tileableVtx.xz + offs.xz, amplitude, frequency, speed, directionAB, directionCD);		
-		#else
-			offs = half3(0,0,0);
-			nrml = half3(0,1,0);
-		#endif							
+					
 	}
 
 
