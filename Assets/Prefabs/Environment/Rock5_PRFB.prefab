@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 465678}
   - 33: {fileID: 3359254}
   - 23: {fileID: 2353636}
-  - 65: {fileID: 6521444}
+  - 64: {fileID: 6436732}
   m_Layer: 0
   m_Name: Rock5_PRFB
   m_TagString: Untagged
@@ -25,7 +25,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 140916}
   m_LocalRotation: {x: -.0903567821, y: 0, z: 0, w: .995909512}
-  m_LocalPosition: {x: -227.734833, y: 47.1161423, z: 436.540771}
+  m_LocalPosition: {x: 290.588562, y: -31.8233643, z: 682.991028}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -60,9 +60,9 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 140916}
-  m_Mesh: {fileID: 4300000, guid: ce1d885208792f74e84881609dfcea05, type: 3}
---- !u!65 &6521444
-BoxCollider:
+  m_Mesh: {fileID: 4300000, guid: 3c28686644ca8ed48aba9cdf548bd399, type: 3}
+--- !u!64 &6436732
+MeshCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -71,8 +71,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 24.398859, y: 35.2623024, z: 24.6795578}
-  m_Center: {x: 5.13751507, y: 17.508707, z: 4.95073891}
+  m_Convex: 0
+  m_Mesh: {fileID: 4300000, guid: ce1d885208792f74e84881609dfcea05, type: 3}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -83,7 +83,7 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 4300000, guid: ce1d885208792f74e84881609dfcea05, type: 3}
+      objectReference: {fileID: 4300000, guid: 3c28686644ca8ed48aba9cdf548bd399, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 140916}

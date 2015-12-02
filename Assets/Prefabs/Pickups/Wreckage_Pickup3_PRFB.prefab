@@ -110,7 +110,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 192358}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 150.050812, y: 87.9961624, z: -67.4262009}
+  m_LocalPosition: {x: -304.271118, y: -57.6230774, z: 140.040985}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 459418}
@@ -203,7 +203,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 191432}
-  m_Mesh: {fileID: 4300000, guid: d055aa5e2c8e8fd4db1d920bd404ce9d, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 2dd0481b04b05da4187bead4b3c11843, type: 3}
 --- !u!33 &3388862
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -221,15 +221,19 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.34802246, y: 1, z: 3.78726697}
-  m_Center: {x: .153106689, y: 0, z: .188140869}
+  m_Size: {x: 3.039855, y: 1.28338897, z: 3.78726673}
+  m_Center: {x: -.00100708008, y: -.894420624, z: .188140869}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300000, guid: 2dd0481b04b05da4187bead4b3c11843, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 192358}
