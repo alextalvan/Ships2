@@ -8,8 +8,7 @@ namespace UnityStandardAssets.Effects
     public class ExplosionPhysicsForce : MonoBehaviour
     {
         public float explosionForce = 4;
-
-
+        
         private IEnumerator Start()
         {
             // wait one frame because some explosions instantiate debris which should then

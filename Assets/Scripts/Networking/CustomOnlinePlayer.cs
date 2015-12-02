@@ -8,7 +8,7 @@ public class CustomOnlinePlayer : NetworkBehaviour
 {
 
     public const float distancePerMapPiece = 25f;
-    static Vector3 hiddenLocation = new Vector3(100000, -100000, 100000);
+    static Vector3 hiddenLocation = new Vector3(100000, 100000, 100000);
 
     [SyncVar]
     Vector3 cureLocation;
@@ -124,9 +124,6 @@ public class CustomOnlinePlayer : NetworkBehaviour
             clientCure.transform.position = currentCureCarrier.transform.position + currentCureCarrier.transform.up * 20f;
             return;
         }
-        else
-            clientCure.transform.parent = null;
-
 
         if (canSeeCure)
             clientCure.transform.position = cureLocation;
@@ -203,7 +200,7 @@ public class CustomOnlinePlayer : NetworkBehaviour
 
         Vector3 targetVPpos = Camera.main.WorldToViewportPoint(target.transform.position);
 
-        if ((targetVPpos.x < 0f || targetVPpos.x > 1f || targetVPpos.y < 0f || targetVPpos.y > 1f) || canSeeCure)
+        if (targetVPpos.x < 0f || targetVPpos.x > 1f || targetVPpos.y < 0f || targetVPpos.y > 1f)
         {
             arrow.SetActive(true);
             arrow.transform.localRotation = Quaternion.LookRotation(target.transform.position - transform.position);

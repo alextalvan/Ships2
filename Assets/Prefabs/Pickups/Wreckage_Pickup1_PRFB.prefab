@@ -144,7 +144,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 197478}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 26.0512047, y: 267.26947, z: -353.759613}
+  m_LocalPosition: {x: -310.313477, y: -58.0737686, z: 139.695786}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 456562}
@@ -255,7 +255,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 135834}
-  m_Mesh: {fileID: 4300000, guid: a1a68cde8f78d5e40b7d475cb4cd34e5, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 2dd0481b04b05da4187bead4b3c11843, type: 3}
 --- !u!33 &3310614
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -269,7 +269,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 182934}
-  m_Mesh: {fileID: 4300000, guid: a1a68cde8f78d5e40b7d475cb4cd34e5, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 2dd0481b04b05da4187bead4b3c11843, type: 3}
 --- !u!33 &3332170
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -302,8 +302,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 6.65999985, y: 2, z: 4.86999989}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 4.08109903, y: 1.43579769, z: 3.25760961}
+  m_Center: {x: -.177520752, y: -.0843582153, z: -.284317017}
 --- !u!114 &11408860
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -401,6 +401,10 @@ Prefab:
       propertyPath: repairPotential
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4300000, guid: 2dd0481b04b05da4187bead4b3c11843, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 197478}

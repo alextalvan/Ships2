@@ -1,17 +1,19 @@
 fileFormatVersion: 2
-guid: a1a68cde8f78d5e40b7d475cb4cd34e5
-timeCreated: 1448919781
+guid: 2dd0481b04b05da4187bead4b3c11843
+timeCreated: 1449070423
 licenseType: Free
 ModelImporter:
   serializedVersion: 18
   fileIDToRecycleName:
-    100000: //RootNode
-    400000: //RootNode
-    2300000: //RootNode
-    3300000: //RootNode
+    100000: barrel
+    100002: //RootNode
+    400000: barrel
+    400002: //RootNode
+    2300000: barrel
+    3300000: barrel
     4300000: barrel
   materials:
-    importMaterials: 1
+    importMaterials: 0
     materialName: 0
     materialSearch: 1
   animations:
@@ -53,7 +55,7 @@ ModelImporter:
     splitTangentsAcrossUV: 1
     normalImportMode: 0
     tangentImportMode: 1
-  importAnimation: 1
+  importAnimation: 0
   copyAvatar: 0
   humanDescription:
     human: []

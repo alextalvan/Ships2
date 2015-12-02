@@ -10,7 +10,6 @@ GameObject:
   - 4: {fileID: 449754}
   - 33: {fileID: 3388258}
   - 23: {fileID: 2320868}
-  - 65: {fileID: 6570490}
   m_Layer: 0
   m_Name: Cure_PRFB
   m_TagString: Untagged
@@ -25,7 +24,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 142762}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 286.132355, y: .310000002, z: 323.668335}
+  m_LocalPosition: {x: -323.404907, y: -60.8833656, z: 192.677414}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -40,8 +39,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: b5792f595d52be9468388e58f0d51810, type: 2}
-  - {fileID: 2100000, guid: ec9b6605bd924614bbfa5f22b5ab50c9, type: 2}
+  - {fileID: 2100000, guid: 170eadf6dc1289648a779e64cdfaf0a5, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -61,19 +59,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 142762}
-  m_Mesh: {fileID: 4300000, guid: 4346c3b1e07a73c4e95fe70c8ff75009, type: 3}
---- !u!65 &6570490
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 142762}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.36486959, y: 1.54036713, z: .591831565}
-  m_Center: {x: -.899212122, y: 1.13352633, z: -.00645233691}
+  m_Mesh: {fileID: 4300000, guid: 2ac59e412e8b8ba469fe9b0844af6b06, type: 3}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

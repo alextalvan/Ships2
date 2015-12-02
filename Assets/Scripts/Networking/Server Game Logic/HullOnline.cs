@@ -11,12 +11,17 @@ public class HullOnline : NetworkBehaviour
     private Renderer hpRend;
 
     private float currentHealth;
+    private float velocity;
 
     public BuoyancyScript SetBuoyancy
     {
         set { buoyancy = value; }
     }
 
+    public float CurrentVelocity
+    {
+        get { return velocity; }
+    }
     public float CurrentHealth
     {
         get { return currentHealth; }
@@ -28,6 +33,11 @@ public class HullOnline : NetworkBehaviour
         currentHealth = shipAttributes.HullMaxHealth;
         buoyancy.Reset();
         SendHealthBarRefresh();
+    }
+
+    void FixedUpdate()
+    {
+        velocity = shipAttributes.GetCurrentSpeed;
     }
 
     public void Damage(Vector3 position, float damage, float radius, GameObject source = null)
@@ -76,21 +86,28 @@ public class HullOnline : NetworkBehaviour
     //Rammimg
     void OnCollisionEnter(Collision collision)
     {
+        if (collision.collider.GetComponent<Projectile>() || collision.collider.GetComponent<SailOnline>())
+            return;
+
+        if (collision.relativeVelocity.magnitude < 10f)
+            return;
+
         HullOnline hull = collision.collider.GetComponent<HullOnline>();
+        Vector3 colPoint = collision.contacts[0].point;
 
         if (hull)
         {
-            Vector3 colPoint = collision.contacts[0].point;
-            float power = collision.relativeVelocity.magnitude;
-
-            hull.Damage(colPoint, power, 10f);
-            Damage(colPoint, power, 10f);
-
-            shipAttributes.GetPlayerFX.RpcCameraShake(0.375f, power);
-
-            GetComponent<PlayerFX>().RpcPlaySound(PlayerFX.PLAYER_SOUNDS.COLLISION);
-            SendHealthBarRefresh();
+            HullOnline colHull = collision.collider.GetComponent<HullOnline>();
+            Damage(colPoint, colHull.CurrentVelocity, 10f);
         }
+        else
+        {
+            Damage(colPoint, velocity, 10f);
+        }
+
+        shipAttributes.GetPlayerFX.RpcCameraShake(0.375f, collision.relativeVelocity.magnitude / velocity);
+        GetComponent<PlayerFX>().RpcPlaySound(PlayerFX.PLAYER_SOUNDS.COLLISION);
+        SendHealthBarRefresh();
     }
 
     [ServerCallback]

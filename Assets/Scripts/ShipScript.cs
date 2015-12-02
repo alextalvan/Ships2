@@ -88,7 +88,19 @@ public class ShipScript : NetworkBehaviour
         onlineRef = GameObject.Find("OnlineSceneReferences").GetComponent<OnlineSceneReferences>();
         shipAttributes = GetComponent<ShipAttributesOnline>();
         objRigidBody = GetComponent<Rigidbody>();
+
+        //Store initial position and rotation
+        Vector3 initialPosition = transform.position;
+        Quaternion initialRotation = transform.rotation;
+        //Reset object's position and rotation
+        transform.position = Vector3.zero;
+        transform.rotation = Quaternion.identity;
+
         objBounds = GetComponent<Collider>().bounds;
+
+        //Set initial position and rotation back
+        transform.position = initialPosition;
+        transform.rotation = initialRotation;
 
         onlineInput = GetComponent<OnlinePlayerInput>();
         customOnlinePlayer = GetComponent<CustomOnlinePlayer>();
@@ -246,7 +258,7 @@ public class ShipScript : NetworkBehaviour
     [ClientCallback]
     private void PreviewTrajectory()
     {
-        if (!isLocalPlayer || playerRespawn.IsDead)
+        if (!isLocalPlayer)
             return;
 
         rightLR.enabled = false;
@@ -420,7 +432,7 @@ public class ShipScript : NetworkBehaviour
             {
                 for (int i = 0; i < 5; i++)
                 {
-                    Vector3 rndPos = new Vector3(Random.Range(-3f, 3f), Random.Range(-3f, 3f), Random.Range(-3f, 3f));
+                    Vector3 rndPos = new Vector3(Random.Range(-2f, 2f), Random.Range(-2f, 2f), Random.Range(-2f, 2f));
                     float rndForce = Random.Range(250f, 500f);
 
                     GameObject barrel = (GameObject)Instantiate(projectiles[currentProjIndex], transform.position + rndPos - (transform.forward * objBounds.size.z), Random.rotation);
