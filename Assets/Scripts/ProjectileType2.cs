@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Networking;
 
 public class ProjectileType2 : Projectile
 {
@@ -22,5 +23,14 @@ public class ProjectileType2 : Projectile
             RpcSpawnHit(collision.contacts[0].point);
         }
         Delete();
+    }
+
+    [ServerCallback]
+    protected override void Delete()
+    {
+        if (Time.time < birthDate + lifeTime)
+            RpcExplode(transform.position);
+
+        base.Delete();
     }
 }

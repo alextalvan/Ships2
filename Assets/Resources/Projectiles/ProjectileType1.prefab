@@ -30,7 +30,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 193654}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -775.465637, y: 55.3425217, z: 90.529747}
+  m_LocalPosition: {x: 27.0594196, y: 25.3455429, z: 374.71225}
   m_LocalScale: {x: 75, y: 75, z: 75}
   m_Children: []
   m_Father: {fileID: 0}
@@ -196,6 +196,7 @@ MonoBehaviour:
   - {fileID: 185838, guid: 73092ba537f6d83429603d0f830339dc, type: 2}
   crossHit: {fileID: 108002, guid: e0c3bef3433ca2d4d8c08c450b4f6caf, type: 2}
   splashPrefab: {fileID: 153714, guid: b9828af26fb651a4286e498fbc78b841, type: 2}
+  explosionPrefab: {fileID: 100010, guid: 645413a00f7bd0242bbd6d0e5eb6f439, type: 2}
 --- !u!135 &13592058
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -335,6 +336,10 @@ Prefab:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 4300000, guid: 40e2bb1bc70626942a27f541fa168bc9, type: 3}
+    - target: {fileID: 0}
+      propertyPath: explosionPrefab
+      value: 
+      objectReference: {fileID: 100010, guid: 645413a00f7bd0242bbd6d0e5eb6f439, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 193654}
