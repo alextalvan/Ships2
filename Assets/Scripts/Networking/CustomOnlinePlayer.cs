@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class CustomOnlinePlayer : NetworkBehaviour
 {
 
-    static float distancePerMapPiece = 50f;
+    public const float distancePerMapPiece = 25f;
     static Vector3 hiddenLocation = new Vector3(100000, -100000, 100000);
 
     [SyncVar]
@@ -25,7 +25,19 @@ public class CustomOnlinePlayer : NetworkBehaviour
 
     Transform clientCure;
 
-    public int mapPieces = 1;
+    private int mapPieces = 1;
+
+	public int MapPieces {
+		get {
+			return mapPieces;
+		}
+		set {
+			if(value > mapPieces)
+				GetComponent<PlayerFX>().RpcEmitMapParticle(value);
+
+			mapPieces = value;
+		}
+	}
 
     public float cureCarryTimeLeft = 60f;
 
@@ -53,13 +65,24 @@ public class CustomOnlinePlayer : NetworkBehaviour
         onlineRef.allOnlinePlayers.Add(this);
     }
 
+	IEnumerator ShowInitialMessage()
+	{
+		yield return new WaitForSeconds (5);
+		GetComponent<PlayerCaptionController>().PushCaptionLocally("Obtain map pieces to increase cure detection radius",10f);
+	}
+
+
+
     [ClientCallback]
     void ClientSideSetup()
     {
         clientCure = onlineRef.clientCure;
 
-        if (isLocalPlayer)
-            onlineRef.UpgradeScreen.SetTargetPlayer(this);
+        if (isLocalPlayer) 
+		{
+			StartCoroutine (ShowInitialMessage());
+			onlineRef.UpgradeScreen.SetTargetPlayer (this);
+		}
     }
 
     [ServerCallback]

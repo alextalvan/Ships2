@@ -195,7 +195,7 @@ MonoBehaviour:
   - {fileID: 106812, guid: f6c917cc8175d1e4582a63d5365b0714, type: 2}
   - {fileID: 185838, guid: 73092ba537f6d83429603d0f830339dc, type: 2}
   crossHit: {fileID: 108002, guid: e0c3bef3433ca2d4d8c08c450b4f6caf, type: 2}
-  splashPrefab: {fileID: 148626, guid: a7709fac6f50ef145a702f827ae67eaf, type: 2}
+  splashPrefab: {fileID: 153714, guid: b9828af26fb651a4286e498fbc78b841, type: 2}
 --- !u!135 &13535416
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -298,7 +298,7 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: splashPrefab
       value: 
-      objectReference: {fileID: 148626, guid: a7709fac6f50ef145a702f827ae67eaf, type: 2}
+      objectReference: {fileID: 153714, guid: b9828af26fb651a4286e498fbc78b841, type: 2}
     - target: {fileID: 0}
       propertyPath: crate
       value: 

@@ -7,7 +7,7 @@ public class PlayerCaptionController : NetworkBehaviour
 
     UICaption _middleCaption;
 
-    void Start()
+    void Awake()
     {
         _middleCaption = GameObject.Find("OnlineSceneReferences").GetComponent<OnlineSceneReferences>().middleCaption;
     }
@@ -26,6 +26,12 @@ public class PlayerCaptionController : NetworkBehaviour
         if (isLocalPlayer)
             UIConsole.Log(text);
     }
+
+	public void PushCaptionLocally(string text, float duration)
+	{
+		if (isLocalPlayer)
+			_middleCaption.PushCaption(text, duration);
+	}
 
     public enum BROADCAST_MODE
     {

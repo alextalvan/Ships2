@@ -227,6 +227,7 @@ public class ShipAttributesOnline : NetworkBehaviour
     public void OnDeath()
     {
         playerRespawn.StartRespawn();
+		GetComponent<PlayerFX> ().RpcSpawnDeathParticle ();
 
         int amount = Random.Range(minDrop, maxDrop);
 

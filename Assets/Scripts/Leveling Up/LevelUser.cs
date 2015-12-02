@@ -64,7 +64,9 @@ public class LevelUser : NetworkBehaviour
 		RpcReceiveLevelUpChoice (c);
 		_choicesBuffer.Enqueue (c);
 		GetComponent<PlayerFX> ().RpcPlaySound (PlayerFX.PLAYER_SOUNDS.LEVEL_UP);
-		GetComponent<PlayerCaptionController> ().RpcPushCaption ("You just leveled up! Right click to upgrade",4f);
+		GetComponent<PlayerCaptionController> ().RpcPushCaption ("LEVEL UP! Right click to upgrade",4f);
+		GetComponent<PlayerFX> ().RpcDoLevelUpParticle ();
+
 	}
 
 	[ClientRpc]
