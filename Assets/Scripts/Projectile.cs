@@ -90,7 +90,7 @@ public abstract class Projectile : NetworkBehaviour
     [ServerCallback]
     protected virtual void DealDamage(Collision collision)
     {
-        int randomNmb = Random.Range(0, 5);
+        int randomNmb = Random.Range(0, 4);
 
         if (randomNmb != 1)
             return;

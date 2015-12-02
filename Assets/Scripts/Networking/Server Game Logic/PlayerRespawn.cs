@@ -25,7 +25,7 @@ public class PlayerRespawn : NetworkBehaviour
     {
         GetComponent<PlayerCaptionController>().RpcPushDebugText("I died");
         GetComponent<OnlinePlayerInput>().enabled = false;
-		GetComponent<ShipScript>().ResetShootAndMovement ();
+		GetComponent<ShipScript>().ResetShootAndMovement();
         GetComponent<ShipScript>().RpcChangeCameraState(false);
 
         if (GetComponent<CustomOnlinePlayer>().currentCureCarrier == transform)

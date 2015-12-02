@@ -39,5 +39,4 @@ public class UpgradeHelper  {
 
 		target.GetComponent<PlayerCaptionController>().RpcPushCaption("You have been upgraded with: " + up.ToString(),4f);
 	}
-	
 }

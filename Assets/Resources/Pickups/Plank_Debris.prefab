@@ -106,6 +106,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EXP_Reward: 50
   lifeTime: 30
+  repairPotential: 10
+  owner: {fileID: 0}
 --- !u!114 &11447652
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -215,6 +217,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: buoyancyLimit
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: repairPotential
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

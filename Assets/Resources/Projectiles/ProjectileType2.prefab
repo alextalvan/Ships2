@@ -15,7 +15,7 @@ GameObject:
   - 114: {fileID: 11442474}
   - 114: {fileID: 11489172}
   - 114: {fileID: 11472308}
-  - 64: {fileID: 6486150}
+  - 135: {fileID: 13578232}
   m_Layer: 13
   m_Name: ProjectileType2
   m_TagString: Projectile
@@ -30,7 +30,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 193654}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 27.7758026, y: -6.55856371, z: -24.4688587}
+  m_LocalPosition: {x: -258.958923, y: 36.8539085, z: 671.053284}
   m_LocalScale: {x: 50, y: 50, z: 50}
   m_Children: []
   m_Father: {fileID: 0}
@@ -81,18 +81,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 2
---- !u!64 &6486150
-MeshCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 193654}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 1
-  m_Mesh: {fileID: 4300000, guid: b3b155359f0c3134ab8673e5ab5873a1, type: 3}
 --- !u!96 &9639940
 TrailRenderer:
   m_ObjectHideFlags: 1
@@ -208,6 +196,18 @@ MonoBehaviour:
   - {fileID: 185838, guid: 73092ba537f6d83429603d0f830339dc, type: 2}
   crossHit: {fileID: 108002, guid: e0c3bef3433ca2d4d8c08c450b4f6caf, type: 2}
   splashPrefab: {fileID: 148626, guid: a7709fac6f50ef145a702f827ae67eaf, type: 2}
+--- !u!135 &13578232
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 193654}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: .00999999978
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -331,6 +331,18 @@ Prefab:
       propertyPath: debris.Array.data[2]
       value: 
       objectReference: {fileID: 185838, guid: 73092ba537f6d83429603d0f830339dc, type: 2}
+    - target: {fileID: 0}
+      propertyPath: m_LocalScale.x
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_LocalScale.y
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_LocalScale.z
+      value: 75
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 193654}

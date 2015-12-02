@@ -34,8 +34,6 @@ public class ShipAttributesOnline : NetworkBehaviour
     private float cannonChargeRate;
     [SerializeField]
     private float reloadRateModifier;
-    [SerializeField]
-    private float regenerationRate;
 
     [SerializeField]
     private float damageModifier;
@@ -82,7 +80,6 @@ public class ShipAttributesOnline : NetworkBehaviour
             hull.SendHealthBarRefresh();
         }
     }
-
     public float SailMaxHealth
     {
         get { return sailMaxHealth; }
@@ -113,11 +110,6 @@ public class ShipAttributesOnline : NetworkBehaviour
     {
         get { return reloadRateModifier; }
         set { reloadRateModifier = value; }
-    }
-    public float RegenerationRate
-    {
-        get { return regenerationRate; }
-        set { regenerationRate = value; }
     }
     public float SailSpeedModifier
     {
@@ -190,6 +182,7 @@ public class ShipAttributesOnline : NetworkBehaviour
         ChangeSailsShaking();
     }
 
+    [ServerCallback]
     public void DamageAllSails(float damage)
     {
         pfx.RpcCameraShake(0.375f, damage / 3f);
@@ -197,6 +190,15 @@ public class ShipAttributesOnline : NetworkBehaviour
         foreach (SailOnline sail in sails)
         {
             sail.Damage(damage);
+        }
+    }
+
+    [ServerCallback]
+    public void RepairAllSails(float amount)
+    {
+        foreach (SailOnline sail in sails)
+        {
+            sail.Repair(amount);
         }
     }
 

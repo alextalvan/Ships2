@@ -133,8 +133,6 @@ public class CustomOnlinePlayer : NetworkBehaviour
         cureLocation = hiddenLocation;
         canSeeCure = false;
         return;
-
-
     }
 
     [ClientCallback]
@@ -182,7 +180,7 @@ public class CustomOnlinePlayer : NetworkBehaviour
 
         Vector3 targetVPpos = Camera.main.WorldToViewportPoint(target.transform.position);
 
-        if (targetVPpos.x < 0f || targetVPpos.x > 1f || targetVPpos.y < 0f || targetVPpos.y > 1f)
+        if ((targetVPpos.x < 0f || targetVPpos.x > 1f || targetVPpos.y < 0f || targetVPpos.y > 1f) || canSeeCure)
         {
             arrow.SetActive(true);
             arrow.transform.localRotation = Quaternion.LookRotation(target.transform.position - transform.position);

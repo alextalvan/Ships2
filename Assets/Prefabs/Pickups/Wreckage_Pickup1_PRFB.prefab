@@ -363,6 +363,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EXP_Reward: 250
   lifeTime: 30
+  repairPotential: 20
   owner: {fileID: 0}
 --- !u!114 &11471860
 MonoBehaviour:
@@ -395,6 +396,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Layer
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: repairPotential
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
