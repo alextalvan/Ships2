@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Networking;
 
 public class ProjectileType3 : Projectile
 {
@@ -13,9 +14,16 @@ public class ProjectileType3 : Projectile
             hull.Damage(collision.contacts[0].point, hullDamage, damageRadius, gameObject);
             hull.GetComponent<ShipAttributesOnline>().DamageAllSails(sailDamage);
             RpcSpawnHit(collision.contacts[0].point);
-			hull.GetComponent<PlayerFX> ().RpcPlaySound(PlayerFX.PLAYER_SOUNDS.EXPLOSION);
+            hull.GetComponent<PlayerFX>().RpcPlaySound(PlayerFX.PLAYER_SOUNDS.EXPLOSION);
             base.DealDamage(collision);
         }
         Delete();
+    }
+
+    [ServerCallback]
+    protected override void Delete()
+    {
+        RpcExplode(transform.position);
+        base.Delete();
     }
 }

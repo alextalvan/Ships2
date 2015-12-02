@@ -31,7 +31,9 @@ public abstract class Projectile : NetworkBehaviour
 
     //splash
     [SerializeField]
-	GameObject splashPrefab;
+    GameObject splashPrefab;
+    [SerializeField]
+    GameObject explosionPrefab;
 
     private bool spawnedSplash = false;
 
@@ -72,20 +74,26 @@ public abstract class Projectile : NetworkBehaviour
 
     void FixedUpdate()
     {
-		ProcessDeath ();
-		ProcessSplash ();
+        ProcessDeath();
+        ProcessSplash();
     }
 
-	[ClientCallback]
-	void ProcessSplash()
-	{
-		Vector3 pos = transform.position;
-		if(!spawnedSplash && pos.y <= WaterHelper.GetOceanHeightAt(new Vector2(pos.x,pos.z)))
-		{
-			spawnedSplash = true;
-			Instantiate(splashPrefab,pos,Quaternion.identity);
-		}
-	}
+    [ClientCallback]
+    void ProcessSplash()
+    {
+        Vector3 pos = transform.position;
+        if (!spawnedSplash && pos.y <= WaterHelper.GetOceanHeightAt(new Vector2(pos.x, pos.z)))
+        {
+            spawnedSplash = true;
+            Instantiate(splashPrefab, pos, new Quaternion(0f, Random.rotation.y, 0f, 0f));
+        }
+    }
+
+    [ClientRpc]
+    protected void RpcExplode(Vector3 pos)
+    {
+        Instantiate(explosionPrefab, pos, Quaternion.identity);
+    }
 
     [ServerCallback]
     protected virtual void DealDamage(Collision collision)
@@ -105,7 +113,7 @@ public abstract class Projectile : NetworkBehaviour
         Rigidbody debrisObjRB = debrisObj.GetComponent<Rigidbody>();
 
         float debrisMass = debrisObjRB.mass;
-        
+
         Vector3 force = (Vector3.up * upwardsModifier + dir.normalized * rndForce) * debrisMass;
 
         debrisObjRB.AddForce(force);
@@ -120,14 +128,14 @@ public abstract class Projectile : NetworkBehaviour
         DealDamage(collision);
     }
 
-	[ServerCallback]
-	void ProcessDeath()
-	{
-		if (Time.time > birthDate + lifeTime)
-		{
-			Delete();
-		}
-	}
+    [ServerCallback]
+    void ProcessDeath()
+    {
+        if (Time.time > birthDate + lifeTime)
+        {
+            Delete();
+        }
+    }
 
     [ServerCallback]
     protected virtual void Delete()

@@ -89,7 +89,7 @@ public class HullOnline : NetworkBehaviour
         if (collision.collider.GetComponent<Projectile>() || collision.collider.GetComponent<SailOnline>())
             return;
 
-        if (collision.relativeVelocity.magnitude < 15f)
+        if (collision.relativeVelocity.magnitude < 10f)
             return;
 
         HullOnline hull = collision.collider.GetComponent<HullOnline>();
