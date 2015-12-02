@@ -32,6 +32,15 @@ Shader "Custom/Water" {
         _Metallic ("Metallic", Range(0, 1)) = 1
         _Glossiness ("Glossiness", Range(0, 1)) = 0.01
         [HideInInspector]_Cutoff ("Alpha cutoff", Range(0,1)) = 0.5
+        
+        //gerstner
+        _GAmplitude ("Wave Amplitude", Vector) = (0.14 ,0.23, 0.175, 0.225)
+		_GFrequency ("Wave Frequency", Vector) = (0.5, 0.38, 0.59, 0.6)
+		_GSteepness ("Wave Steepness", Vector) = (7.0, 2.0, 6.0, 2.0)
+		_GSpeed ("Wave Speed", Vector) = (-3.0, 2.0, 1.0, 3.0)
+		_GDirectionAB ("Wave Direction", Vector) = (0.47 ,0.355, -0.2, 0.1)
+		_GDirectionCD ("Wave Direction", Vector) = (0.70 ,-0.68, 0.71, -0.2)
+		_CustomTime("Custom time", Float) = 0.0
     }
     SubShader {
         Tags {
@@ -56,6 +65,7 @@ Shader "Custom/Water" {
             #define _GLOSSYENV 1
             #include "UnityCG.cginc"
             #include "Lighting.cginc"
+            #include "WaterInclude.cginc"
             #include "UnityPBSLighting.cginc"
             #include "UnityStandardBRDF.cginc"
             #pragma multi_compile_fwdbase
@@ -92,6 +102,17 @@ Shader "Custom/Water" {
             uniform sampler2D _BaseColor; uniform float4 _BaseColor_ST;
             uniform float _Metallic;
             uniform float _Glossiness;
+            
+            uniform float4 _GAmplitude;
+			uniform float4 _GFrequency;
+			uniform float4 _GSteepness;
+			uniform float4 _GSpeed;
+			uniform float4 _GDirectionAB;
+			uniform float4 _GDirectionCD;
+			uniform float _CustomTime;
+            
+            
+            
             struct VertexInput {
                 float4 vertex : POSITION;
                 float3 normal : NORMAL;
@@ -115,7 +136,8 @@ Shader "Custom/Water" {
                     float4 ambientOrLightmapUV : TEXCOORD9;
                 #endif
             };
-            VertexOutput vert (VertexInput v) {
+            VertexOutput vert (VertexInput v) 
+            {
                 VertexOutput o = (VertexOutput)0;
                 o.uv0 = v.texcoord0;
                 o.uv1 = v.texcoord1;
@@ -127,7 +149,28 @@ Shader "Custom/Water" {
                 #ifdef DYNAMICLIGHTMAP_ON
                     o.ambientOrLightmapUV.zw = v.texcoord2.xy * unity_DynamicLightmapST.xy + unity_DynamicLightmapST.zw;
                 #endif
-                o.normalDir = UnityObjectToWorldNormal(v.normal);
+                
+                half3 worldSpaceVertex = mul(_Object2World,(v.vertex)).xyz;
+				half3 vtxForAni = (worldSpaceVertex).xzz;
+
+				half3 nrml;
+				half3 offsets;
+				Gerstner (
+					offsets, nrml, v.vertex.xyz, vtxForAni,						// offsets, nrml will be written
+					_GAmplitude,												// amplitude
+					_GFrequency,												// frequency
+					_GSteepness,												// steepness
+					_GSpeed,													// speed
+					_GDirectionAB,												// direction # 1, 2
+					_GDirectionCD,												// direction # 3, 4
+					_CustomTime
+				);
+		
+				v.vertex.xyz += offsets.xyz;
+                
+                
+                o.normalDir = nrml;
+               	//o.normalDir = UnityObjectToWorldNormal(v.normal);
                 o.tangentDir = normalize( mul( _Object2World, float4( v.tangent.xyz, 0.0 ) ).xyz );
                 o.bitangentDir = normalize(cross(o.normalDir, o.tangentDir) * v.tangent.w);
                 o.posWorld = mul(_Object2World, v.vertex);

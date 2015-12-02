@@ -13,7 +13,7 @@ Shader "Shader Forge/Health" {
     }
     SubShader {
         Tags {
-            "Queue"="AlphaTest"
+            "Queue"="Transparent+100"
             "RenderType"="TransparentCutout"
         }
         Pass {
@@ -21,7 +21,6 @@ Shader "Shader Forge/Health" {
             Tags {
                 "LightMode"="ForwardBase"
             }
-            
             
             CGPROGRAM
             #pragma vertex vert
@@ -66,6 +65,7 @@ Shader "Shader Forge/Health" {
         Pass {
             Name "ShadowCaster"
             Tags {
+            	"Queue"="Transparent+100"
                 "LightMode"="ShadowCaster"
             }
             Offset 1, 1

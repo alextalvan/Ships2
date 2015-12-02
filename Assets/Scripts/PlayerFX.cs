@@ -17,6 +17,15 @@ public class PlayerFX : NetworkBehaviour
     [SerializeField]
     private List<ParticleSystem> _rightSideSmokes = new List<ParticleSystem>();
 
+	[SerializeField]
+	private ParticleSystem _levelUpParticle;
+
+	[SerializeField]
+	private GameObject _deathParticle;
+
+	[SerializeField]
+	private ParticleSystem _mapPickupParticle;
+
     AudioSource _source;
 
     public enum PLAYER_SOUNDS
@@ -83,6 +92,29 @@ public class PlayerFX : NetworkBehaviour
             }
         }
     }
+
+	[ClientRpc]
+	public void RpcDoLevelUpParticle()
+	{
+		_levelUpParticle.Stop ();
+		_levelUpParticle.Play ();
+	}
+
+	[ClientRpc]
+	public void RpcSpawnDeathParticle()
+	{
+		//GameObject skull = (GameObject)
+		Instantiate (_deathParticle, transform.position + new Vector3 (0, 20, 0), Quaternion.identity);
+	}
+
+	[ClientRpc]
+	public void RpcEmitMapParticle(int mapCount)
+	{
+		_mapPickupParticle.Stop ();
+		_mapPickupParticle.startSize = CustomOnlinePlayer.distancePerMapPiece * mapCount * 0.5f;
+		_mapPickupParticle.Play ();
+	}
+
 
     // Use this for initialization
     void Start()
