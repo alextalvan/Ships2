@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.Networking;
 
 [RequireComponent(typeof(CustomNetManager))]
 public class AutoNetworkStarter : MonoBehaviour 
@@ -20,6 +21,7 @@ public class AutoNetworkStarter : MonoBehaviour
 
 			if(net.serverAutoRestart)
 			{
+				NetworkServer.Reset();
 				StartCoroutine(DelayedServerStart());
 				//net.StartServerAttempt();
 				return;

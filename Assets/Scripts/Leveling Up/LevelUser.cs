@@ -80,7 +80,7 @@ public class LevelUser : NetworkBehaviour
 		LevelUpChoice c = new LevelUpChoice (0);
 		RpcReceiveLevelUpChoice (c);
 		_choicesBuffer.Enqueue (c);
-		GetComponent<PlayerFX> ().RpcPlaySound (PlayerFX.PLAYER_SOUNDS.LEVEL_UP);
+		GetComponent<PlayerFX> ().RpcPlaySoundForMainPlayer (PlayerFX.PLAYER_SOUNDS.LEVEL_UP, false);
 		GetComponent<PlayerCaptionController> ().RpcPushCaption ("LEVEL UP! Right click to upgrade",4f);
 		GetComponent<PlayerFX> ().RpcDoLevelUpParticle ();
 
@@ -131,7 +131,7 @@ public class LevelUser : NetworkBehaviour
 		if (choice == 3)
 			UpgradeHelper.ApplyUpgrade ((UPGRADES)c.choice3,GetComponent<ShipAttributesOnline>());
 
-		GetComponent<PlayerFX> ().RpcPlaySound (PlayerFX.PLAYER_SOUNDS.UPGRADE);
+		GetComponent<PlayerFX> ().RpcPlaySoundForMainPlayer (PlayerFX.PLAYER_SOUNDS.UPGRADE, false);
 	}
 
 	

@@ -424,7 +424,7 @@ public class TutorialShipScript : MonoBehaviour
 			
 			if ((int)shotPower > 0)
 			{
-				fx.PlaySound(PlayerFX.PLAYER_SOUNDS.SHOOT);
+				fx.PlaySound(PlayerFX.PLAYER_SOUNDS.SHOOT, true);
 				fx.CameraShake(0.375f, 1.5f * cannonRatio);
 				fx.EmitCannonSmoke((side == leftSide), (int)shotPower);
 			}

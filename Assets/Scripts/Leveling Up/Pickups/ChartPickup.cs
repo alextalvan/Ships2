@@ -7,5 +7,6 @@ public class ChartPickup : Pickup
     {
         base.OnPickup(player);
         player.MapPieces++;
+		player.GetComponent<PlayerFX> ().RpcPlaySoundForMainPlayer (PlayerFX.PLAYER_SOUNDS.PICKUP_SCROLL,false);
     }
 }

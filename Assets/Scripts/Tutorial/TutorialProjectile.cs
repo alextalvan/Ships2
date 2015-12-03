@@ -113,7 +113,7 @@ public class TutorialProjectile : MonoBehaviour
             hull.Damage(collision.contacts[0].point, hullDamage, damageRadius, gameObject);
             hull.GetComponent<TutorialShipAttributes>().DamageAllSails(sailDamage);
             SpawnHit(collision.contacts[0].point);
-            hull.GetComponent<PlayerFX>().PlaySound(PlayerFX.PLAYER_SOUNDS.EXPLOSION);
+            hull.GetComponent<PlayerFX>().PlaySound(PlayerFX.PLAYER_SOUNDS.EXPLOSION,true);
 
             int randomNmb = Random.Range(0, 4);
 

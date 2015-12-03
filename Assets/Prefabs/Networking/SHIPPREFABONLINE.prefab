@@ -5229,7 +5229,7 @@ AudioSource:
   Spatialize: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 57.4002838
+  MinDistance: 25
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
@@ -5965,8 +5965,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3b368aeb2de1d747b311a8e74661f2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sailParent: {fileID: 477808}
   hpBar: {fileID: 442344}
+  sails:
+  - {fileID: 11437044}
+  - {fileID: 11474812}
+  - {fileID: 11415596}
+  - {fileID: 11420550}
+  - {fileID: 11437072}
+  - {fileID: 11489712}
   hullMaxHealth: 200
   sailMaxHealth: 100
   basicSpeed: 10
@@ -6220,22 +6226,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a594a9ec5868184f951e9292ce30723, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _audioEvents:
-  - event:/Shoot
-  - event:/Hit
-  - event:/Collision
-  - event:/Explosion
-  - event:/LevelUp
-  - event:/PickUp
-  - event:/PickUp
-  - event:/PickUp
-  - event:/Upgrade
-  - event:/GameState
-  _spatialSounds:
-  - {fileID: 8300000, guid: d4b6c985bd9031f4588f009d67bb7c29, type: 3}
-  - {fileID: 8300000, guid: 96447de8ae3fbcf4392dba442c9db643, type: 3}
-  - {fileID: 8300000, guid: 9e87a057ea447e04aabcc9faaa07e4db, type: 3}
-  - {fileID: 8300000, guid: d74f0c02961f33a44a19be2ad502c6d0, type: 3}
+  _clipList:
+  - {fileID: 8300000, guid: 7ddf51d4315e39b4bbf4a4655e84f2e0, type: 3}
+  - {fileID: 8300000, guid: 5cb535f554d1d644383c5b6d8acebb8e, type: 3}
+  - {fileID: 8300000, guid: 072c78eea027b384091e0ba4d9329b4c, type: 3}
+  - {fileID: 8300000, guid: 13ffb50079d66ab408999657df1d5893, type: 3}
+  - {fileID: 8300000, guid: 433b904f3e9714442b5e695f229d9212, type: 3}
+  - {fileID: 8300000, guid: 37b8672789f8d22458012053d19d804b, type: 3}
+  - {fileID: 8300000, guid: 01dd4d06ac0ea5b49a2c70e3351d6495, type: 3}
+  - {fileID: 8300000, guid: 74de37961a486b64d9cbb1b9cf6bbaee, type: 3}
+  - {fileID: 8300000, guid: 366d2d7b6c7103b4cb507b436467f845, type: 3}
+  - {fileID: 8300000, guid: 90fd4d823ab663f44bebafc2d4f67d7c, type: 3}
+  - {fileID: 8300000, guid: 31bd9ef0970206f41b851bc35b761c72, type: 3}
+  - {fileID: 8300000, guid: 84026aff8f931384ab67b6dfcd835d6e, type: 3}
   _leftSideSmokes:
   - {fileID: 19814794}
   - {fileID: 19847492}
@@ -6408,6 +6411,7 @@ MonoBehaviour:
   _sendRate: .0500000007
   _interpRate: .100000001
   _snapThreshold: 10
+  syncRotation: 1
 --- !u!114 &11489712
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -71141,6 +71145,22 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: maxDrop
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _audioEvents.Array.data[5]
+      value: event:/Pickup
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _audioEvents.Array.data[6]
+      value: event:/Pickup
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _audioEvents.Array.data[7]
+      value: event:/Pickup
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: MinDistance
+      value: 25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

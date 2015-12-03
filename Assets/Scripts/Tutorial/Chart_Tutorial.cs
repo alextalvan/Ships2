@@ -14,7 +14,7 @@ public class Chart_Tutorial : MonoBehaviour {
 
 			PlayerFX fx = GameObject.Find ("TutorialManager").GetComponent<TutorialManager> ().player.GetComponent<PlayerFX>();
 			fx.EmitMapParticle(4);
-			fx.PlaySound(PlayerFX.PLAYER_SOUNDS.PICKUP_SCROLL);
+			fx.PlaySound(PlayerFX.PLAYER_SOUNDS.PICKUP_SCROLL, false);
 			//StartCoroutine(Kill ());
 		}
 	}
