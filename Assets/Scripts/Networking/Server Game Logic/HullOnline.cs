@@ -9,6 +9,12 @@ public class HullOnline : NetworkBehaviour
     private ShipAttributesOnline shipAttributes;
     [SerializeField]
     private Renderer hpRend;
+    [SerializeField]
+    GameObject debrisRamming;
+    [SerializeField]
+    GameObject splashPrefab;
+    [SerializeField]
+    GameObject explosionPrefab;
 
     private float currentHealth;
     private float velocity;
@@ -55,13 +61,17 @@ public class HullOnline : NetworkBehaviour
             currentHealth = 0f;
             shipAttributes.IsDead = true;
             shipAttributes.OnDeath();
+            RpcExplode(new Vector3(transform.position.x, WaterHelper.GetOceanHeightAt(new Vector2(transform.position.x, transform.position.z)), transform.position.z), 50f, 5f);
 
             if (source != null)
             {
                 Projectile p = source.GetComponent<Projectile>();
+                //HullOnline hullKilla = source.GetComponent<HullOnline>();
 
                 if (p != null && p.owner != GetComponent<CustomOnlinePlayer>())
                     p.owner.GetComponent<LevelUser>().GainEXP(500);
+                //else if (hullKilla != null)
+                //    hullKilla.GetComponent<CustomOnlinePlayer>().GetComponent<LevelUser>().GainEXP(500);
             }
         }
 
@@ -83,6 +93,17 @@ public class HullOnline : NetworkBehaviour
         }
     }
 
+    [ClientRpc]
+    private void RpcExplode(Vector3 pos, float size, float duration)
+    {
+        GameObject splashGO = (GameObject)Instantiate(splashPrefab, pos, new Quaternion(0f, Random.rotation.y, 0f, 0f));
+        splashGO.GetComponent<ParticleSystem>().startRotation = Random.Range(0, 180);
+        splashGO.GetComponent<ParticleSystem>().startSize = size;
+        splashGO.GetComponent<ParticleSystem>().startLifetime = duration;
+
+        Instantiate(explosionPrefab, pos, new Quaternion(0f, Random.rotation.y, 0f, 0f));
+    }
+
     //Rammimg
     void OnCollisionEnter(Collision collision)
     {
@@ -98,12 +119,14 @@ public class HullOnline : NetworkBehaviour
         if (hull)
         {
             HullOnline colHull = collision.collider.GetComponent<HullOnline>();
-            Damage(colPoint, colHull.CurrentVelocity, 10f);
+            Damage(colPoint, colHull.CurrentVelocity, 10f);//, collision.gameObject);
         }
         else
         {
             Damage(colPoint, velocity, 10f);
         }
+
+        RpcSpawnWrecks(colPoint);
 
         shipAttributes.GetPlayerFX.RpcCameraShake(0.375f, collision.relativeVelocity.magnitude / velocity);
         GetComponent<PlayerFX>().RpcPlaySound(PlayerFX.PLAYER_SOUNDS.COLLISION);
@@ -120,5 +143,11 @@ public class HullOnline : NetworkBehaviour
     void RpcUpdateHP(float healthRatio)
     {
         hpRend.material.SetFloat("_Health", healthRatio);
+    }
+
+    [ClientRpc]
+    protected void RpcSpawnWrecks(Vector3 pos)
+    {
+        Instantiate(debrisRamming, pos, new Quaternion(0f, Random.rotation.y, 0f, 0f));
     }
 }

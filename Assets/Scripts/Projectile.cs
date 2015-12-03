@@ -26,14 +26,13 @@ public abstract class Projectile : NetworkBehaviour
     [SerializeField]
     private List<GameObject> debris = new List<GameObject>();
 
-    [SerializeField]
-    GameObject crossHit;
-
     //splash
     [SerializeField]
     GameObject splashPrefab;
     [SerializeField]
     GameObject explosionPrefab;
+    [SerializeField]
+    GameObject debrisPrefab;
 
     private bool spawnedSplash = false;
 
@@ -85,14 +84,23 @@ public abstract class Projectile : NetworkBehaviour
         if (!spawnedSplash && pos.y <= WaterHelper.GetOceanHeightAt(new Vector2(pos.x, pos.z)))
         {
             spawnedSplash = true;
-            Instantiate(splashPrefab, pos, new Quaternion(0f, Random.rotation.y, 0f, 0f));
+            GameObject splashGO = (GameObject)Instantiate(splashPrefab, pos, new Quaternion(0f, Random.rotation.y, 0f, 0f));
+            splashGO.GetComponent<ParticleSystem>().startRotation = Random.Range(0, 180);
         }
+    }
+
+    [ClientRpc]
+    protected void RpcSpawnSplash(Vector3 pos, float size)
+    {
+        GameObject splashGO = (GameObject)Instantiate(splashPrefab, pos, new Quaternion(0f, Random.rotation.y, 0f, 0f));
+        splashGO.GetComponent<ParticleSystem>().startRotation = Random.Range(0, 180);
+        splashGO.GetComponent<ParticleSystem>().startSize = size;
     }
 
     [ClientRpc]
     protected void RpcExplode(Vector3 pos)
     {
-        Instantiate(explosionPrefab, pos, Quaternion.identity);
+        Instantiate(explosionPrefab, pos, new Quaternion(0f, Random.rotation.y, 0f, 0f));
     }
 
     [ServerCallback]
@@ -131,7 +139,7 @@ public abstract class Projectile : NetworkBehaviour
     [ServerCallback]
     void ProcessDeath()
     {
-        if (Time.time > birthDate + lifeTime)
+        if (Time.time > birthDate + lifeTime)// || transform.position.y < WaterHelper.GetOceanHeightAt(new Vector2(transform.position.x, transform.position.z)))
         {
             Delete();
         }
@@ -144,8 +152,8 @@ public abstract class Projectile : NetworkBehaviour
     }
 
     [ClientRpc]
-    protected void RpcSpawnHit(Vector3 pos)
+    protected void RpcSpawnWrecks(Vector3 pos)
     {
-        Instantiate(Resources.Load("CrossHit"), pos, Quaternion.LookRotation(Camera.main.transform.position - pos));
+        Instantiate(debrisPrefab, pos, new Quaternion(0f, Random.rotation.y, 0f, 0f));
     }
 }
