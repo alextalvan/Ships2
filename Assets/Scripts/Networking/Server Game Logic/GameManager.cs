@@ -8,6 +8,7 @@ public class GameManager : NetworkBehaviour {
     float phase1Time = 120f;
 
 	//temp
+	[SerializeField]
     bool phase1inProgress = true;
 	bool finishedGame = false;
 
@@ -25,10 +26,13 @@ public class GameManager : NetworkBehaviour {
 	[SerializeField]
 	int initialScrollCount = 10;
 
+	OnlineSceneReferences onlineRef;
+
 	// Use this for initialization
 	void Start () 
 	{
 		//test
+		onlineRef = GameObject.Find ("OnlineSceneReferences").GetComponent<OnlineSceneReferences> ();
 
 		if(NetworkServer.active)
 			ArrangeArena ();
@@ -58,6 +62,7 @@ public class GameManager : NetworkBehaviour {
 
         }
 	}
+	
 
 	[ServerCallback]
 	void ArrangeArena()
@@ -85,6 +90,21 @@ public class GameManager : NetworkBehaviour {
 
     void WinAction(CustomOnlinePlayer winner)
     {
-		PlayerCaptionController.BroadcastCaption (winner.ColoredName + " has finished their timer with the cure and wins the game!",5f);
+		string name = winner.ColoredName;
+		foreach (CustomOnlinePlayer p in onlineRef.allOnlinePlayers) 
+		{
+			p.GetComponent<ShipScript>().SetFreeze(true);
+			p.GetComponent<PlayerCaptionController>().RpcPushGameEndDialog(name);
+		}
+
+		StartCoroutine (StopServer ());
+
+		//PlayerCaptionController.BroadcastCaption (winner.ColoredName + " has finished their timer with the cure and wins the game!",5f);
     }
+
+	IEnumerator StopServer()
+	{
+		yield return new WaitForSeconds (10);
+		GameObject.Find ("NetworkManager").GetComponent<CustomNetManager> ().Disconnect ();
+	}
 }
