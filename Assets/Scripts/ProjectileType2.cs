@@ -11,15 +11,16 @@ public class ProjectileType2 : Projectile
         if (hull)
         {
             hull.Damage(collision.contacts[0].point, hullDamage, damageRadius, gameObject);
+            hull.GetRigidBody.AddExplosionForce(explosionForce, collision.contacts[0].point, damageRadius);
             RpcSpawnWrecks(collision.contacts[0].point);
-
-            PlayerFX.PLAYER_SOUNDS s = (PlayerFX.PLAYER_SOUNDS)((int)(PlayerFX.PLAYER_SOUNDS.HIT1) + Random.Range (0, 2));
-			hull.GetComponent<PlayerFX> ().RpcPlaySound (s);
+            PlayerFX.PLAYER_SOUNDS s = (PlayerFX.PLAYER_SOUNDS)((int)(PlayerFX.PLAYER_SOUNDS.HIT1) + Random.Range(0, 2));
+            hull.GetComponent<PlayerFX>().RpcPlaySound(s);
             base.DealDamage(collision);
         }
         if (sails)
         {
             collision.gameObject.GetComponent<ShipAttributesOnline>().DamageAllSails(sailDamage);
+            hull.GetRigidBody.AddExplosionForce(explosionForce/2f, collision.contacts[0].point, damageRadius);
             RpcSpawnWrecks(collision.contacts[0].point);
         }
         Delete(false);

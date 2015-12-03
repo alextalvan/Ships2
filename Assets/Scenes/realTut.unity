@@ -125,6 +125,8 @@ MonoBehaviour:
   - {fileID: 1590492298}
   SailSpeedText: {fileID: 548172584}
   BarrelCd: {fileID: 690461347}
+  GameEndMessage: {fileID: 0}
+  GameEndText: {fileID: 0}
 --- !u!4 &44461773
 Transform:
   m_ObjectHideFlags: 0
@@ -1230,17 +1232,21 @@ Prefab:
       propertyPath: tutMng
       value: 
       objectReference: {fileID: 1598560251}
-    - target: {fileID: 119648, guid: 3646394ab4e530144bc8b81fd3340217, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2310556, guid: 3646394ab4e530144bc8b81fd3340217, type: 2}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 109194, guid: 3646394ab4e530144bc8b81fd3340217, type: 2}
-      propertyPath: m_IsActive
-      value: 0
+    - target: {fileID: 11447462, guid: 3646394ab4e530144bc8b81fd3340217, type: 2}
+      propertyPath: cure
+      value: 
+      objectReference: {fileID: 473075539}
+    - target: {fileID: 11447462, guid: 3646394ab4e530144bc8b81fd3340217, type: 2}
+      propertyPath: enemy1
+      value: 
+      objectReference: {fileID: 1427832620}
+    - target: {fileID: 11447462, guid: 3646394ab4e530144bc8b81fd3340217, type: 2}
+      propertyPath: enemy2
+      value: 
+      objectReference: {fileID: 2062716460}
+    - target: {fileID: 8239414, guid: 3646394ab4e530144bc8b81fd3340217, type: 2}
+      propertyPath: MinDistance
+      value: 80
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3646394ab4e530144bc8b81fd3340217, type: 2}
@@ -1979,25 +1985,12 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bc34a491fac72a64896b6b37898a5eb6, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &818145130 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 119648, guid: 3646394ab4e530144bc8b81fd3340217, type: 2}
-  m_PrefabInternal: {fileID: 630385977}
---- !u!114 &818145132
+--- !u!114 &818145132 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 818145130}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
+  m_PrefabParentObject: {fileID: 11447462, guid: 3646394ab4e530144bc8b81fd3340217,
+    type: 2}
+  m_PrefabInternal: {fileID: 630385977}
   m_Script: {fileID: 11500000, guid: 2013bd4b41219a84fada06b8fb6a6648, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cure: {fileID: 473075539}
-  enemy1: {fileID: 1427832620}
-  enemy2: {fileID: 2062716460}
-  currentState: 2
 --- !u!1 &919020461
 GameObject:
   m_ObjectHideFlags: 0
@@ -2636,9 +2629,10 @@ GameObject:
   - 20: {fileID: 1300502025}
   - 92: {fileID: 1300502024}
   - 124: {fileID: 1300502023}
-  - 81: {fileID: 1300502022}
   - 114: {fileID: 1300502021}
   - 114: {fileID: 1300502020}
+  - 114: {fileID: 1300502022}
+  - 81: {fileID: 1300502026}
   m_Layer: 0
   m_Name: Main Camera(online)
   m_TagString: MainCamera
@@ -2687,13 +2681,18 @@ MonoBehaviour:
   rotationSpeedLimit: 25
   angleOffset: 10
   currentObject: {fileID: 630385979}
---- !u!81 &1300502022
-AudioListener:
+--- !u!114 &1300502022
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1300502018}
   m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f8336b22d6d3af4da2712827e9ad333, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pluginPaths: []
 --- !u!124 &1300502023
 Behaviour:
   m_ObjectHideFlags: 0
@@ -2742,6 +2741,13 @@ Camera:
   m_StereoConvergence: 10
   m_StereoSeparation: .0219999999
   m_StereoMirrorMode: 0
+--- !u!81 &1300502026
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1300502018}
+  m_Enabled: 1
 --- !u!1 &1371667780
 GameObject:
   m_ObjectHideFlags: 0
@@ -3098,7 +3104,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 444702, guid: 3646394ab4e530144bc8b81fd3340217, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 11455946, guid: 3646394ab4e530144bc8b81fd3340217, type: 2}
       propertyPath: ammoIconsParent
@@ -3144,7 +3150,8 @@ Prefab:
       propertyPath: pickUps.Array.data[2]
       value: 
       objectReference: {fileID: 185838, guid: 7b9fe03a86fb7e94bb7c8b3f00805044, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: 3646394ab4e530144bc8b81fd3340217, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1427832620 stripped
@@ -4752,7 +4759,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 444702, guid: 3646394ab4e530144bc8b81fd3340217, type: 2}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11455946, guid: 3646394ab4e530144bc8b81fd3340217, type: 2}
       propertyPath: ammoIconsParent
@@ -4798,7 +4805,8 @@ Prefab:
       propertyPath: pickUps.Array.data[2]
       value: 
       objectReference: {fileID: 185838, guid: 7b9fe03a86fb7e94bb7c8b3f00805044, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: 3646394ab4e530144bc8b81fd3340217, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &2062716460 stripped

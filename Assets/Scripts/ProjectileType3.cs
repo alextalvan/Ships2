@@ -13,6 +13,7 @@ public class ProjectileType3 : Projectile
         {
             hull.Damage(collision.contacts[0].point, hullDamage, damageRadius, gameObject);
             hull.GetComponent<ShipAttributesOnline>().DamageAllSails(sailDamage);
+            hull.GetRigidBody.AddExplosionForce(explosionForce, collision.contacts[0].point, damageRadius);
             RpcSpawnWrecks(collision.contacts[0].point);
             hull.GetComponent<PlayerFX>().RpcPlaySound(PlayerFX.PLAYER_SOUNDS.EXPLOSION);
             base.DealDamage(collision);

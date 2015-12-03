@@ -5,9 +5,15 @@ using UnityEngine.Networking;
 
 public class OfflineSceneReferences : MonoBehaviour {
 
-	AudioSource _soundEmitter;
+	public string tutorialScene;
 
-	public List<AudioClip> sounds = new List<AudioClip> ();
+	public void StartTutorial()
+	{
+		Application.LoadLevel (tutorialScene);
+	}
+	
+
+	public List<string> sounds = new List<string> ();
 
 	public enum MENU_SOUNDS
 	{
@@ -17,12 +23,11 @@ public class OfflineSceneReferences : MonoBehaviour {
 	void Start()
 	{
 		Cursor.visible = true;
-		_soundEmitter = GetComponent<AudioSource> ();
 	}
 
 	public void PlaySound(MENU_SOUNDS s)
 	{
-		_soundEmitter.PlayOneShot(sounds[(int)s]);
+		FMOD_StudioSystem.instance.PlayOneShot (sounds [(int)s],Camera.main.transform.position);
 	}
 
 	public void PlayClick()

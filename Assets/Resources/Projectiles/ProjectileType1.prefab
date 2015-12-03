@@ -171,6 +171,7 @@ MonoBehaviour:
   upwardsModifier: 100
   hullDamage: 5
   sailDamage: 1
+  explosionForce: 50
   damageRadius: 5
   coolDown: 0
   owner: {fileID: 0}
@@ -1417,6 +1418,10 @@ Prefab:
       propertyPath: debrisPrefab
       value: 
       objectReference: {fileID: 156180, guid: def7e319d7f84b542bf20f892d17aae8, type: 2}
+    - target: {fileID: 0}
+      propertyPath: explosionForce
+      value: 50
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 193654}

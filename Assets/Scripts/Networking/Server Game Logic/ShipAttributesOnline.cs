@@ -126,6 +126,10 @@ public class ShipAttributesOnline : NetworkBehaviour
         get { return isDead; }
         set { isDead = value; }
     }
+    public Rigidbody GetRigidBody
+    {
+        get { return rb; }
+    }
     public float GetCurrentSpeed
     {
         get { return rb.velocity.magnitude; }

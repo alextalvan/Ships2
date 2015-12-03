@@ -6,6 +6,14 @@ using UnityEngine.UI;
 public class OnlineSceneReferences : MonoBehaviour {
 
 
+	//bool reconnectChuckMarkState
+	public void ChangeClientReconnectSetting()
+	{
+		CustomNetManager net = GameObject.Find ("NetworkManager").GetComponent<CustomNetManager> ();
+		net.clientAutoReconnect = !net.clientAutoReconnect;
+	}
+
+
 	void Start()
 	{
 		//temp disabled cause annoying
@@ -89,4 +97,7 @@ public class OnlineSceneReferences : MonoBehaviour {
 	public Text SailSpeedText;
 
 	public Text BarrelCd;
+
+	public GUIDialog GameEndMessage;
+	public Text GameEndText;
 }

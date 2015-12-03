@@ -17,6 +17,8 @@ public abstract class Projectile : NetworkBehaviour
     [SerializeField]
     protected float sailDamage;
     [SerializeField]
+    protected float explosionForce;
+    [SerializeField]
     protected float damageRadius;
     [SerializeField]
     protected float coolDown;

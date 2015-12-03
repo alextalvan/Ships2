@@ -63,7 +63,6 @@ public class TutorialPickup : MonoBehaviour
 	protected virtual void OnPickup(CustomOnlinePlayer player)
 	{
 		player.GetComponent<TutorialLevelUser>().GainEXP(EXP_Reward);
-		PlayerFX.PLAYER_SOUNDS s = (PlayerFX.PLAYER_SOUNDS)((int)(PlayerFX.PLAYER_SOUNDS.PICKUP1) + Random.Range(0, 3));
-		player.GetComponent<PlayerFX>().PlaySound(s);
+		player.GetComponent<PlayerFX>().PlaySound(PlayerFX.PLAYER_SOUNDS.PICKUP);
 	}
 }
