@@ -122,7 +122,7 @@ public class PlayerFX : NetworkBehaviour
     [ClientRpc]
     public void RpcSpawnDeathParticle()
     {
-        RpcSpawnDeathParticle();
+        SpawnDeathParticle();
     }
 
     public void EmitMapParticle(int mapCount)
