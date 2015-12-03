@@ -51,11 +51,16 @@ public class Pickup : NetworkBehaviour
             float rnd = Random.Range(0, 3);
 
             if (rnd == 0 || rnd == 1)
+            {
                 other.GetComponentInParent<HullOnline>().Repair(repairPotential);
+                OnPickup(hitbox.GetComponentInParent<CustomOnlinePlayer>(), "Hull");
+            }
             else
+            {
                 other.GetComponentInParent<ShipAttributesOnline>().RepairAllSails(repairPotential);
+                OnPickup(hitbox.GetComponentInParent<CustomOnlinePlayer>(), "Sails");
+            }
 
-            OnPickup(hitbox.GetComponentInParent<CustomOnlinePlayer>());
             taken = true;
             NetworkServer.Destroy(this.gameObject);
         }
@@ -64,5 +69,10 @@ public class Pickup : NetworkBehaviour
     protected virtual void OnPickup(CustomOnlinePlayer player)
     {
         player.GetComponent<LevelUser>().GainEXP(EXP_Reward);
+    }
+
+    protected virtual void OnPickup(CustomOnlinePlayer player, string part)
+    {
+        player.GetComponent<LevelUser>().GainEXP(EXP_Reward, (int)repairPotential, part);
     }
 }

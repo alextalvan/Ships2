@@ -395,6 +395,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a654cf835fbab174ead110589f9a2992, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tutorialScene: 
+  sounds: []
   firstMenuPage: {fileID: 1772032168}
   lobbyMenuPage: {fileID: 1450582143}
   socketInputField: {fileID: 652728456}
@@ -4230,6 +4232,8 @@ MonoBehaviour:
   onlinePlayerPrefab: {fileID: 170488, guid: 551dd1b5def485242abb9579ec47cc7f, type: 2}
   lobbyInfoPrefab: {fileID: 107454, guid: 7cc19d15546aef54d86cacf78cfa2f21, type: 2}
   _lobbyInfo: {fileID: 0}
+  clientAutoReconnect: 0
+  serverAutoRestart: 0
 --- !u!4 &1471472059
 Transform:
   m_ObjectHideFlags: 0
