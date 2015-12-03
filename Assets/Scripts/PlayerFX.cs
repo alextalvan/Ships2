@@ -71,8 +71,7 @@ public class PlayerFX : NetworkBehaviour
         if (isLocalPlayer)
             CameraShake(duration, strength);
     }
-
-
+    
     public void EmitCannonSmoke(bool leftSide, int cannonCount)
     {
         if (leftSide)

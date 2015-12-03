@@ -15,15 +15,19 @@ public class HullOnline : NetworkBehaviour
     GameObject splashPrefab;
     [SerializeField]
     GameObject explosionPrefab;
+    private Rigidbody rb;
 
     private float currentHealth;
     private float velocity;
 
+    public Rigidbody GetRigidBody
+    {
+        get { return rb; }
+    }
     public BuoyancyScript SetBuoyancy
     {
         set { buoyancy = value; }
     }
-
     public float CurrentVelocity
     {
         get { return velocity; }
@@ -36,6 +40,7 @@ public class HullOnline : NetworkBehaviour
 
     public void Reset()
     {
+        rb = shipAttributes.GetRigidBody;
         currentHealth = shipAttributes.HullMaxHealth;
         buoyancy.Reset();
         SendHealthBarRefresh();
@@ -120,10 +125,12 @@ public class HullOnline : NetworkBehaviour
         {
             HullOnline colHull = collision.collider.GetComponent<HullOnline>();
             Damage(colPoint, colHull.CurrentVelocity, 10f, collision.collider.gameObject);
+            rb.AddForce(collision.impulse * colHull.CurrentVelocity);
         }
         else
         {
             Damage(colPoint, velocity, 10f);
+            rb.AddForce(collision.impulse * velocity);
         }
 
         RpcSpawnWrecks(colPoint);
