@@ -28,7 +28,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 185838}
   m_LocalRotation: {x: -.0390161499, y: -.100114115, z: -.00392884435, w: .994202912}
-  m_LocalPosition: {x: 1.04925537, y: -.953049362, z: .140930176}
+  m_LocalPosition: {x: -416.828735, y: 146.498535, z: 343.18573}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -121,7 +121,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EXP_Reward: 50
   lifeTime: 30
-  repairPotential: 0
+  repairPotential: 10
   owner: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:

@@ -139,6 +139,9 @@ public class PlayerFX : NetworkBehaviour
             for (int i = 0; i < cannonCount; ++i)
             {
                 _leftSideSmokes[i].Stop();
+                Light flash = _leftSideSmokes[i].GetComponent<Light>();
+                if (flash)
+                    flash.enabled = true;
                 _leftSideSmokes[i].Play();
             }
         }
@@ -147,6 +150,9 @@ public class PlayerFX : NetworkBehaviour
             for (int i = 0; i < cannonCount; ++i)
             {
                 _rightSideSmokes[i].Stop();
+                Light flash = _rightSideSmokes[i].GetComponent<Light>();
+                if (flash)
+                    flash.enabled = true;
                 _rightSideSmokes[i].Play();
             }
         }

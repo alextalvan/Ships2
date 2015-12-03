@@ -28,7 +28,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 193054}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -308.170563, y: 257.052795, z: -139.228027}
+  m_LocalPosition: {x: -411.104828, y: 147.10376, z: 347.55896}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -43,7 +43,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 4b9817b4ae92fab4aa1c2a5359100179, type: 2}
+  - {fileID: 2100000, guid: d05cbf6326659a045a039cc677d5d8cb, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -63,7 +63,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 193054}
-  m_Mesh: {fileID: 4300000, guid: 2dd0481b04b05da4187bead4b3c11843, type: 3}
+  m_Mesh: {fileID: 4300000, guid: d055aa5e2c8e8fd4db1d920bd404ce9d, type: 3}
 --- !u!54 &5457796
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -121,7 +121,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EXP_Reward: 50
   lifeTime: 30
-  repairPotential: 0
+  repairPotential: 10
   owner: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:

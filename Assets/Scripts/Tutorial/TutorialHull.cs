@@ -9,8 +9,14 @@ public class TutorialHull : MonoBehaviour
 	private TutorialShipAttributes shipAttributes;
 	[SerializeField]
 	private Renderer hpRend;
+    [SerializeField]
+    GameObject debrisRamming;
+    [SerializeField]
+    GameObject splashPrefab;
+    [SerializeField]
+    GameObject explosionPrefab;
 
-	[SerializeField]
+    [SerializeField]
 	private float currentHealth;
 	
 	public TutorialBuoyancy SetBuoyancy
@@ -40,9 +46,10 @@ public class TutorialHull : MonoBehaviour
 		shipAttributes.GetPlayerFX.CameraShake(0.375f, damage / 2f);
 		
 		currentHealth -= damage;
-		//buoyancy.DamageVoxels(position, damage, radius);
-		
-		if (currentHealth <= Mathf.Epsilon)
+        Instantiate(debrisRamming, position, new Quaternion(0f, Random.rotation.y, 0f, 0f));
+        //buoyancy.DamageVoxels(position, damage, radius);
+
+        if (currentHealth <= Mathf.Epsilon)
 		{
 			TutorialSceneReferences t = GameObject.Find("TutorialSceneReferences").GetComponent<TutorialSceneReferences>();
 			if(this.gameObject!= t.player)
@@ -51,7 +58,13 @@ public class TutorialHull : MonoBehaviour
 				shipAttributes.IsDead = true;
 				shipAttributes.OnDeath();
 
-				if(GetComponent<TutorialEnemy>())
+                GameObject splashGO = (GameObject)Instantiate(splashPrefab, transform.position, new Quaternion(0f, Random.rotation.y, 0f, 0f));
+                splashGO.GetComponent<ParticleSystem>().startRotation = Random.Range(0, 180);
+                splashGO.GetComponent<ParticleSystem>().startSize = 50f;
+
+                Instantiate(explosionPrefab, transform.position, new Quaternion(0f, Random.rotation.y, 0f, 0f)); ;
+
+                if (GetComponent<TutorialEnemy>())
 					GetComponent<TutorialEnemy>().OnDeath();
 				
 				if (source != null)
@@ -98,9 +111,9 @@ public class TutorialHull : MonoBehaviour
 			hull.Damage(colPoint, power, 10f);
 			Damage(colPoint, power, 10f);
 			
-			shipAttributes.GetPlayerFX.RpcCameraShake(0.375f, power);
-			
-			GetComponent<PlayerFX>().RpcPlaySound(PlayerFX.PLAYER_SOUNDS.COLLISION);
+			shipAttributes.GetPlayerFX.CameraShake(0.375f, power);
+
+            GetComponent<PlayerFX>().PlaySound(PlayerFX.PLAYER_SOUNDS.COLLISION);
 			UpdateHP();
 		}
 	}

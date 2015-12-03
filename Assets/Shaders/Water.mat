@@ -19,7 +19,7 @@ Material:
         first:
           name: _BaseColor
         second:
-          m_Texture: {fileID: 2800000, guid: 39381a011c1c9534bb06721d13994df6, type: 3}
+          m_Texture: {fileID: 2800000, guid: 03be20f5881bdb44199070576d6d7c07, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -40,7 +40,7 @@ Material:
         first:
           name: _WaveTexture
         second:
-          m_Texture: {fileID: 2800000, guid: 36dd0b22da8874ed38075789055ca664, type: 3}
+          m_Texture: {fileID: 2800000, guid: cee2491bf9f104825a5ca3ffd00453aa, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -69,15 +69,15 @@ Material:
       data:
         first:
           name: _Glossiness
-        second: .104999997
+        second: 1
       data:
         first:
           name: _Metallic
-        second: .0240000002
+        second: 1
       data:
         first:
           name: _CustomTime
-        second: 112.312393
+        second: 97.3261566
       data:
         first:
           name: _Fresnel
@@ -89,11 +89,11 @@ Material:
       data:
         first:
           name: _Panner
-        second: 22.4624786
+        second: 19.4652309
       data:
         first:
           name: _Lerp
-        second: -.970000029
+        second: 1
       data:
         first:
           name: _Power
@@ -113,7 +113,7 @@ Material:
       data:
         first:
           name: _RefelectionBlur
-        second: 2.76999998
+        second: .479999989
       data:
         first:
           name: _Refelcetion_Int
@@ -130,11 +130,11 @@ Material:
       data:
         first:
           name: _Color
-        second: {r: 0, g: 0, b: 0, a: 1}
+        second: {r: 1, g: 1, b: 1, a: 1}
       data:
         first:
           name: _Color2
-        second: {r: 0, g: 0, b: 0, a: 1}
+        second: {r: 1, g: 1, b: 1, a: 1}
       data:
         first:
           name: _GAmplitude
@@ -166,7 +166,7 @@ Material:
       data:
         first:
           name: _Deep_Color
-        second: {r: 0, g: .0808823705, b: .0507606529, a: 1}
+        second: {r: .0175173171, g: .0294117928, b: .0249821246, a: 1}
       data:
         first:
           name: _FresnelColor
