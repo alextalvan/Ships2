@@ -8,10 +8,4 @@ public class ChartPickup : Pickup
         base.OnPickup(player);
         player.MapPieces++;
     }
-
- //   protected override void OnPickup (CustomOnlinePlayer player, string part)
-	//{
-	//	base.OnPickup (player, part);
-	//	player.MapPieces++;
-	//}
 }

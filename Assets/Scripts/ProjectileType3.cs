@@ -3,6 +3,9 @@ using UnityEngine.Networking;
 
 public class ProjectileType3 : Projectile
 {
+    [SerializeField]
+    GameObject ripples;
+
     protected override void DealDamage(Collision collision)
     {
         if (collision.collider.GetComponent<ProjectileType3>())
@@ -30,6 +33,7 @@ public class ProjectileType3 : Projectile
             spawnedSplash = true;
             GameObject splashGO = (GameObject)Instantiate(splashPrefab, pos, new Quaternion(0f, Random.rotation.y, 0f, 0f));
             splashGO.GetComponent<ParticleSystem>().startRotation = Random.Range(0, 180);
+            ripples.SetActive(true);
         }
     }
 

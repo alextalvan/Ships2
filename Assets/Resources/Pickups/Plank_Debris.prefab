@@ -168,7 +168,7 @@ MonoBehaviour:
   voxelsX: 2
   voxelsY: 2
   voxelsZ: 2
-  voxelsYDownMod: 1
+  voxelsYDownMod: 2
   centerOfMassYOffset: 1
   buoyancyLimit: 100
 --- !u!1001 &100100000
@@ -221,6 +221,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: repairPotential
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: voxelsYDownMod
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
