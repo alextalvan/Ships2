@@ -7,10 +7,10 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: ConeOutline1
-  m_Shader: {fileID: 4800000, guid: c4f8ffbaf93b3eb4d8daaf5b2ace0060, type: 3}
+  m_Shader: {fileID: 4800000, guid: b955738636dcb8c4caa4b0cc43275da9, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
-  m_CustomRenderQueue: 2450
+  m_CustomRenderQueue: 3100
   stringTagMap: {}
   m_SavedProperties:
     serializedVersion: 2
@@ -32,6 +32,13 @@ Material:
       data:
         first:
           name: _DetailNormalMap
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _MetallicGlossMap
         second:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
@@ -71,13 +78,6 @@ Material:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _MetallicGlossMap
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
     m_Floats:
       data:
         first:
@@ -93,10 +93,6 @@ Material:
         second: .5
       data:
         first:
-          name: _Parallax
-        second: .0199999996
-      data:
-        first:
           name: _ZWrite
         second: 1
       data:
@@ -105,8 +101,16 @@ Material:
         second: .5
       data:
         first:
+          name: _Metallic
+        second: 0
+      data:
+        first:
           name: _BumpScale
         second: 1
+      data:
+        first:
+          name: _Parallax
+        second: .0199999996
       data:
         first:
           name: _OcclusionStrength
@@ -125,10 +129,6 @@ Material:
         second: 0
       data:
         first:
-          name: _Metallic
-        second: 0
-      data:
-        first:
           name: _InvFade
         second: 1
       data:
@@ -142,7 +142,7 @@ Material:
       data:
         first:
           name: _SpeedMUL
-        second: .200000003
+        second: 2
       data:
         first:
           name: _HorizontalMUL
@@ -150,7 +150,11 @@ Material:
       data:
         first:
           name: _VerticalMUL
-        second: 0
+        second: -5
+      data:
+        first:
+          name: _Health
+        second: 1
     m_Colors:
       data:
         first:
@@ -159,12 +163,16 @@ Material:
       data:
         first:
           name: _Color
-        second: {r: 1, g: 1, b: 1, a: 1}
+        second: {r: 1, g: .972413778, b: 0, a: 1}
       data:
         first:
           name: _Color2
-        second: {r: .911764681, g: .956186593, b: 1, a: 1}
+        second: {r: 1, g: .931034446, b: 0, a: 1}
       data:
         first:
           name: _TintColor
         second: {r: 0, g: .958620548, b: 1, a: .5}
+      data:
+        first:
+          name: _Color1
+        second: {r: 1, g: .972413778, b: 0, a: 1}

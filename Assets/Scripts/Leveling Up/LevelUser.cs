@@ -48,7 +48,24 @@ public class LevelUser : NetworkBehaviour
 		}
 	}
 
-	private Queue<LevelUpChoice> _choicesBuffer = new Queue<LevelUpChoice>();
+    public void GainEXP(int amount, int repair, string part)
+    {
+        GetComponent<PlayerCaptionController>().RpcPushCaption("<color=#41DD92>+" + amount + " EXP. " + part + " repaired for " + repair + " HP." + "</color>", 3f);
+
+        _currentEXP += amount;
+        if (_currentEXP >= _nextLevelEXP && _level < _maxLevel)
+        {
+            if (OnLevelUp != null)
+                OnLevelUp();
+
+            ServerLevelUp();
+
+            _level++;
+            _nextLevelEXP += 1000;
+        }
+    }
+
+    private Queue<LevelUpChoice> _choicesBuffer = new Queue<LevelUpChoice>();
 
 	public Queue<LevelUpChoice> ChoicesBuffer
 	{

@@ -7,10 +7,10 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: ConeOutline2
-  m_Shader: {fileID: 4800000, guid: c4f8ffbaf93b3eb4d8daaf5b2ace0060, type: 3}
+  m_Shader: {fileID: 4800000, guid: b955738636dcb8c4caa4b0cc43275da9, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
-  m_CustomRenderQueue: 2450
+  m_CustomRenderQueue: 3100
   stringTagMap: {}
   m_SavedProperties:
     serializedVersion: 2
@@ -32,6 +32,13 @@ Material:
       data:
         first:
           name: _DetailNormalMap
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _MetallicGlossMap
         second:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
@@ -73,9 +80,44 @@ Material:
           m_Offset: {x: 0, y: 0}
       data:
         first:
-          name: _MetallicGlossMap
+          name: _Ramp
         second:
-          m_Texture: {fileID: 0}
+          m_Texture: {fileID: 2800000, guid: 0e675a08c985440e5869b3e14278db8d, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _Texture_main
+        second:
+          m_Texture: {fileID: 2800000, guid: ee07ea8cb1a00c844b4048d37dcfe712, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _Normalmap
+        second:
+          m_Texture: {fileID: 2800000, guid: 276a54cad51984ff89da8445c52523c7, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _Noise_for_dissolve
+        second:
+          m_Texture: {fileID: 2800000, guid: 36dd0b22da8874ed38075789055ca664, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _Mask_for_controls
+        second:
+          m_Texture: {fileID: 2800000, guid: aad29a4cc7dc94eb8ad469382532fa80, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _Ramp2
+        second:
+          m_Texture: {fileID: 2800000, guid: 0e675a08c985440e5869b3e14278db8d, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
     m_Floats:
@@ -93,10 +135,6 @@ Material:
         second: .5
       data:
         first:
-          name: _Parallax
-        second: .0199999996
-      data:
-        first:
           name: _ZWrite
         second: 1
       data:
@@ -105,8 +143,16 @@ Material:
         second: .5
       data:
         first:
+          name: _Metallic
+        second: 0
+      data:
+        first:
           name: _BumpScale
         second: 1
+      data:
+        first:
+          name: _Parallax
+        second: .0199999996
       data:
         first:
           name: _OcclusionStrength
@@ -125,10 +171,6 @@ Material:
         second: 0
       data:
         first:
-          name: _Metallic
-        second: 0
-      data:
-        first:
           name: _InvFade
         second: 1
       data:
@@ -142,7 +184,7 @@ Material:
       data:
         first:
           name: _SpeedMUL
-        second: .200000003
+        second: 2
       data:
         first:
           name: _HorizontalMUL
@@ -150,7 +192,35 @@ Material:
       data:
         first:
           name: _VerticalMUL
+        second: -5
+      data:
+        first:
+          name: _Dissolveamount
         second: 0
+      data:
+        first:
+          name: _Frequency
+        second: .200000003
+      data:
+        first:
+          name: _Amplitude
+        second: 2
+      data:
+        first:
+          name: _Gloss
+        second: 0
+      data:
+        first:
+          name: _SailControls
+        second: 0
+      data:
+        first:
+          name: _Foldsamount
+        second: 2
+      data:
+        first:
+          name: _Health
+        second: 1
     m_Colors:
       data:
         first:
@@ -163,8 +233,16 @@ Material:
       data:
         first:
           name: _Color2
-        second: {r: .41911763, g: .71156168, b: 1, a: 1}
+        second: {r: 0, g: .503448009, b: 1, a: 1}
       data:
         first:
           name: _TintColor
         second: {r: 0, g: .958620548, b: 1, a: .5}
+      data:
+        first:
+          name: _Overlaycolor
+        second: {r: .25, g: .25, b: .25, a: 1}
+      data:
+        first:
+          name: _Color1
+        second: {r: 0, g: .793103218, b: 1, a: 1}
