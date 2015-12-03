@@ -77,7 +77,7 @@ Material:
       data:
         first:
           name: _CustomTime
-        second: 69.7807236
+        second: 81.8393097
       data:
         first:
           name: _Fresnel
@@ -89,7 +89,7 @@ Material:
       data:
         first:
           name: _Panner
-        second: 13.9561453
+        second: 16.3678627
       data:
         first:
           name: _Lerp

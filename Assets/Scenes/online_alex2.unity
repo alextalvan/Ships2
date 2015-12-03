@@ -8818,7 +8818,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 713507744}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a933967c4f11f034c92274ad31bf4739, type: 3}
+  m_Script: {fileID: 11500000, guid: a3ba4416f532d214b93c5a6b98ef9f40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   whalePrefab: {fileID: 125212, guid: 1cf2370a0fe729d46899cefe7e1f8285, type: 2}
@@ -23946,11 +23946,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1921314317}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c7606ab21de9a64ba9288433ce9d0ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 51b1212620a28644db103ec076474b87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sea: {fileID: 0}
-  pickupPrefab: {fileID: 106812, guid: f6c917cc8175d1e4582a63d5365b0714, type: 2}
+  debris:
+  - {fileID: 106812, guid: f6c917cc8175d1e4582a63d5365b0714, type: 2}
+  - {fileID: 185838, guid: 73092ba537f6d83429603d0f830339dc, type: 2}
+  - {fileID: 193054, guid: 82978177c31e3ae40a37913cc2ce2717, type: 2}
+  sea: {fileID: 1893082798}
 --- !u!4 &1921314319
 Transform:
   m_ObjectHideFlags: 0
