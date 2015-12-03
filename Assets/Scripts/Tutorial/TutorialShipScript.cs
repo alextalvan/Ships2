@@ -13,7 +13,7 @@ public class TutorialShipScript : MonoBehaviour
 	private const float CUBE_GIZMOS_SIZE = 0.5f;
 	private const float SPHERE_GIZMOS_SIZE = 0.1f;
 
-	//[SerializeField]
+	[SerializeField]
 	private float sailState = 0f;
 	[SerializeField]
 	float sailAccelerationPerFrame = 0.01f;
@@ -84,8 +84,19 @@ public class TutorialShipScript : MonoBehaviour
 	public bool MovementLock = true;
 	public bool CombatLock = true;
 
+	public void Freeze()
+	{
+		//MovementLock = true;
+		sailState = 0f;
+		GetComponent<Rigidbody> ().velocity = Vector3.zero;
+		MovementLock = true;
+	}
+
 	[SerializeField]
 	GameObject ammoIconsParent;
+
+	[SerializeField]
+	TutorialManager tutMng;
 
 	
 	// Use this for initialization
@@ -382,6 +393,7 @@ public class TutorialShipScript : MonoBehaviour
 					GameObject barrel = (GameObject)Instantiate(projectiles[currentProjIndex], transform.position + rndPos - (transform.forward * objBounds.size.z), Random.rotation);
 					Rigidbody barrelRB = barrel.GetComponent<Rigidbody>();
 					TutorialProjectile barrelProj = barrel.GetComponent<TutorialProjectile>();
+					barrelProj.owner = GetComponent<CustomOnlinePlayer>();
 					
 					float projectileMass = barrelRB.mass;
 					float upwardsModifier = barrelProj.UpwardsModifier;
@@ -426,6 +438,7 @@ public class TutorialShipScript : MonoBehaviour
 				GameObject projectile = (GameObject)Instantiate(projectiles[currentProjIndex], cannon.position, Random.rotation);
 				Rigidbody projRB = projectile.GetComponent<Rigidbody>();
 				TutorialProjectile projProj = projectile.GetComponent<TutorialProjectile>();
+				projProj.owner = GetComponent<CustomOnlinePlayer>();
 				
 				float rndGunPowderAmount = Random.Range(4500f, 5000f);
 				

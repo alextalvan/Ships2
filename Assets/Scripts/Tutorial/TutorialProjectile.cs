@@ -95,8 +95,8 @@ public class TutorialProjectile : MonoBehaviour
 	{
 
 
-		if (projectileType != 3)
-			return;
+		//if (projectileType != 3)
+		//	return;
 
 		if (collision.collider.GetComponent<TutorialProjectile>() && collision.collider.GetComponent<TutorialProjectile>().projectileType == 3)
 			return;

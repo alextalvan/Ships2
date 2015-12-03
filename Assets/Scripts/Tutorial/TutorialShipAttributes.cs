@@ -15,7 +15,7 @@ public class TutorialShipAttributes : MonoBehaviour
 	private Transform sailParent;
 	//[SerializeField]
 	//private Transform hpBar;
-	
+	[SerializeField]
 	private List<TutorialSail> sails = new List<TutorialSail>();
 	
 	[SerializeField]
@@ -137,12 +137,6 @@ public class TutorialShipAttributes : MonoBehaviour
 		tutHull = GetComponent<TutorialHull>();
 		tutHull.SetBuoyancy = GetComponent<TutorialBuoyancy>();
 		
-		foreach (Transform child in sailParent)
-		{
-			TutorialSail sail = child.GetComponent<TutorialSail>();
-			sails.Add(sail);
-		}
-		
 		Reset();
 	}
 	
@@ -152,12 +146,12 @@ public class TutorialShipAttributes : MonoBehaviour
 		isDead = false;
 		tutHull.Reset();
 
-		/*
+
 		foreach (TutorialSail sail in sails)
 		{
-			//sail.Reset();
+			sail.Reset();
 		}
-		*/
+
 		
 		UpdateSailsState();
 	}

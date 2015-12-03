@@ -29,8 +29,7 @@ public class PlayerCaptionController : NetworkBehaviour
 
 	public void PushCaptionLocally(string text, float duration)
 	{
-		if (isLocalPlayer)
-			_middleCaption.PushCaption(text, duration);
+		_middleCaption.PushCaption(text, duration);
 	}
 
     public enum BROADCAST_MODE

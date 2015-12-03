@@ -50,13 +50,16 @@ public class TutorialHull : MonoBehaviour
 				currentHealth = 0f;
 				shipAttributes.IsDead = true;
 				shipAttributes.OnDeath();
+
+				if(GetComponent<TutorialEnemy>())
+					GetComponent<TutorialEnemy>().OnDeath();
 				
 				if (source != null)
 				{
 					TutorialProjectile p = source.GetComponent<TutorialProjectile>();
 					
 					if (p != null && p.owner != GetComponent<CustomOnlinePlayer>())
-						p.owner.GetComponent<LevelUser>().GainEXP(500);
+						p.owner.GetComponent<TutorialLevelUser>().GainEXP(500);
 				}
 			}
 			else
