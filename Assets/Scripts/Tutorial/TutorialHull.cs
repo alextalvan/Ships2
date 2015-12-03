@@ -79,7 +79,7 @@ public class TutorialHull : MonoBehaviour
 				currentHealth = 1f;
 		}
 
-		GetComponent<PlayerFX> ().PlaySound (PlayerFX.PLAYER_SOUNDS.HIT);
+		GetComponent<PlayerFX> ().PlaySound (PlayerFX.PLAYER_SOUNDS.HIT,true);
 		//GetComponent<PlayerCaptionController>().RpcPushDebugText("My hull got damaged for " + damage + " damage. Remaining health: " + currentHealth);
 		UpdateHP();
 	}
@@ -113,7 +113,7 @@ public class TutorialHull : MonoBehaviour
 			
 			shipAttributes.GetPlayerFX.CameraShake(0.375f, power);
 
-            GetComponent<PlayerFX>().PlaySound(PlayerFX.PLAYER_SOUNDS.COLLISION);
+            GetComponent<PlayerFX>().PlaySound(PlayerFX.PLAYER_SOUNDS.COLLISION, true);
 			UpdateHP();
 		}
 	}

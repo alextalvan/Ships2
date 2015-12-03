@@ -6,11 +6,11 @@ using UnityEngine.Networking;
 
 public class PlayerFX : NetworkBehaviour
 {
-    [SerializeField]
-    private List<string> _audioEvents = new List<string>();
+    //[SerializeField]
+    //private List<string> _audioEvents = new List<string>();
 
 	[SerializeField]
-	private List<AudioClip> _spatialSounds = new List<AudioClip> ();
+	private List<AudioClip> _clipList = new List<AudioClip> ();
 
     [SerializeField]
     private List<ParticleSystem> _leftSideSmokes = new List<ParticleSystem>();
@@ -47,77 +47,31 @@ public class PlayerFX : NetworkBehaviour
     }
 
 
-	public void PlaySound(PLAYER_SOUNDS s)
+	public void PlaySound(PLAYER_SOUNDS s, bool _3d)
     {  
+		if (_3d)
+			_source.spatialBlend = 1.0f;
+		else
+			_source.spatialBlend = 0.0f;
 
-		//return;
-		//FMOD_StudioEventEmitter em = GetComponent<FMOD_StudioEventEmitter> ();
-		//em.
-		//first parameter checks
-		FMOD.Studio.EventInstance e = FMOD_StudioSystem.instance.GetEvent (_audioEvents [(int)s]);
-		//FMOD.Studio.ParameterInstance p;
-
-		switch (s) 
-		{
-		case PLAYER_SOUNDS.PICKUP:
-			e.setParameterValue("Type",0);
-			e.start ();
-			break;
-		case PLAYER_SOUNDS.PICKUP_SCROLL:
-			e.setParameterValue("Type",1);
-			e.start ();
-			break;
-		case PLAYER_SOUNDS.PICKUP_CURE:
-			e.setParameterValue("Type",2);
-			e.start ();
-			break;
-		case PLAYER_SOUNDS.RESPAWN:
-			e.setParameterValue("State",0);
-			e.start ();
-			break;
-		case PLAYER_SOUNDS.SINK:
-			e.setParameterValue("State",1);
-			e.start ();
-			break;
-		case PLAYER_SOUNDS.WIN:
-			e.setParameterValue("State",2);
-			e.start ();
-			break;
-		case PLAYER_SOUNDS.LEVEL_UP:
-		case PLAYER_SOUNDS.UPGRADE:
-			e.start ();
-			break;
-		case PLAYER_SOUNDS.SHOOT:
-			_source.Stop();
-			_source.clip = _spatialSounds[0];
-			_source.Play ();
-			break;
-		case PLAYER_SOUNDS.HIT:
-			_source.Stop();
-			_source.clip = _spatialSounds[1];
-			_source.Play ();
-			break;
-		case PLAYER_SOUNDS.COLLISION:
-			_source.Stop();
-			_source.clip = _spatialSounds[2];
-			_source.Play ();
-			break;
-		case PLAYER_SOUNDS.EXPLOSION:
-			_source.Stop();
-			_source.clip = _spatialSounds[3];
-			_source.Play ();
-			break;
-		}
-		
-        //FMOD_StudioSystem.instance.PlayOneShot(_audioEvents[(int)s],transform.position);
+		_source.Stop ();
+		_source.clip = _clipList [(int)s];
+		_source.Play ();
     }
 
 
     [ClientRpc]
-    public void RpcPlaySound(PLAYER_SOUNDS s)
+    public void RpcPlaySound(PLAYER_SOUNDS s, bool _3d)
     {
-        PlaySound(s);
+        PlaySound(s, _3d);
     }
+
+	[ClientRpc]
+	public void RpcPlaySoundForMainPlayer(PLAYER_SOUNDS s, bool _3d)
+	{
+		if(isLocalPlayer)
+			PlaySound(s, _3d);
+	}
 
     public void CameraShake(float duration, float strength)
     {

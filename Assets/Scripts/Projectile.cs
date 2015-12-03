@@ -38,6 +38,17 @@ public abstract class Projectile : NetworkBehaviour
 
     protected bool spawnedSplash = false;
 
+	[SerializeField]
+	private List<AudioClip> _impactSounds;
+
+	protected enum ImpactSoundType
+	{
+		SHIP_HULL = 0,
+		ROCK,
+		EXPLOSION,
+		NONE
+	}
+
     public float UpwardsModifier
     {
         get { return upwardsModifier; }
@@ -88,9 +99,13 @@ public abstract class Projectile : NetworkBehaviour
     }
 
     [ClientRpc]
-    protected void RpcExplode(Vector3 pos)
+    protected void RpcExplode(Vector3 pos, ImpactSoundType type)
     {
         Instantiate(explosionPrefab, pos, new Quaternion(0f, Random.rotation.y, 0f, 0f));
+
+		if (type == ImpactSoundType.NONE)
+			return;
+		AudioHelper.PlayAt (_impactSounds [(int)type], pos);
     }
 
     [ServerCallback]

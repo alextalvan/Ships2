@@ -65,7 +65,7 @@ public class TutorialLevelUser : MonoBehaviour
 		LevelUpChoice c = new LevelUpChoice (0);
 		//RpcReceiveLevelUpChoice (c);
 		_choicesBuffer.Enqueue (c);
-		GetComponent<PlayerFX> ().PlaySound (PlayerFX.PLAYER_SOUNDS.LEVEL_UP);
+		GetComponent<PlayerFX> ().PlaySound (PlayerFX.PLAYER_SOUNDS.LEVEL_UP, false);
 		//GetComponent<PlayerCaptionController> ().RpcPushCaption ("LEVEL UP! Right click to upgrade",4f);
 		GetComponent<PlayerFX> ().DoLevelUpParticle ();
 		
@@ -110,7 +110,7 @@ public class TutorialLevelUser : MonoBehaviour
 			UpgradeHelper.ApplyUpgrade ((UPGRADES)c.choice3,GetComponent<ShipAttributesOnline>());
 			*/
 		
-		GetComponent<PlayerFX> ().PlaySound (PlayerFX.PLAYER_SOUNDS.UPGRADE);
+		GetComponent<PlayerFX> ().PlaySound (PlayerFX.PLAYER_SOUNDS.UPGRADE, false);
 
 		GameObject.Find ("TutorialManager").GetComponent<TutorialManager> ().GetMessage (TutorialManager.TUTORIAL_EVENTS.UPGRADED);
 	}

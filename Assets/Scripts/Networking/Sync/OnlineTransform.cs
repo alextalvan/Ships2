@@ -18,6 +18,9 @@ public class OnlineTransform : NetworkBehaviour {
 	Quaternion prevRotation;
 	Quaternion newRotation;
 
+
+	public bool syncRotation = true;
+
 	//server
 	//float nextTime = 0.0f;
 	float _timeAccumulator = 0f;
@@ -74,8 +77,11 @@ public class OnlineTransform : NetworkBehaviour {
 
 		transform.position = prevPosition;
 
-		prevRotation = Quaternion.Lerp (prevRotation, newRotation, _interpRate);
-		transform.rotation = prevRotation;
+		if (syncRotation) 
+		{
+			prevRotation = Quaternion.Lerp (prevRotation, newRotation, _interpRate);
+			transform.rotation = prevRotation;
+		}
 	}
 
 	[ServerCallback]

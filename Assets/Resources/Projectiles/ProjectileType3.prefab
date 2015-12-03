@@ -126,7 +126,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 193654}
-  m_Mesh: {fileID: 4300000, guid: d055aa5e2c8e8fd4db1d920bd404ce9d, type: 3}
+  m_Mesh: {fileID: 4300000, guid: b44eb4a9a36f3a8408ab9ab27ab2eb9e, type: 3}
 --- !u!54 &5496096
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -275,6 +275,10 @@ MonoBehaviour:
   splashPrefab: {fileID: 153714, guid: b9828af26fb651a4286e498fbc78b841, type: 2}
   explosionPrefab: {fileID: 101760, guid: c31608110ceac0e45abea324514c5e6a, type: 2}
   debrisPrefab: {fileID: 156180, guid: def7e319d7f84b542bf20f892d17aae8, type: 2}
+  _impactSounds:
+  - {fileID: 8300000, guid: 5cb535f554d1d644383c5b6d8acebb8e, type: 3}
+  - {fileID: 8300000, guid: d734db346602b984aa786e456ccf088f, type: 3}
+  - {fileID: 8300000, guid: d74f0c02961f33a44a19be2ad502c6d0, type: 3}
 --- !u!198 &19844350
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -2491,7 +2495,7 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 4300000, guid: d7a8a9f61b60a36438306db194a68a17, type: 3}
+      objectReference: {fileID: 4300000, guid: b44eb4a9a36f3a8408ab9ab27ab2eb9e, type: 3}
     - target: {fileID: 0}
       propertyPath: debris.Array.data[0]
       value: 

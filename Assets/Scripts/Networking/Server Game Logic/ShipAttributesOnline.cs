@@ -11,11 +11,12 @@ public class ShipAttributesOnline : NetworkBehaviour
     private Rigidbody rb;
     private ShipScript shipScript;
 
-    [SerializeField]
-    private Transform sailParent;
+    //[SerializeField]
+    //private Transform sailParent;
     [SerializeField]
     private Transform hpBar;
 
+	[SerializeField]
     private List<SailOnline> sails = new List<SailOnline>();
 
     [SerializeField]
@@ -144,12 +145,6 @@ public class ShipAttributesOnline : NetworkBehaviour
         playerRespawn = GetComponent<PlayerRespawn>();
         hullOnline = GetComponent<HullOnline>();
         hullOnline.SetBuoyancy = GetComponent<BuoyancyScript>();
-
-        foreach (Transform child in sailParent)
-        {
-            SailOnline sail = child.GetComponent<SailOnline>();
-            sails.Add(sail);
-        }
 
         Reset();
     }

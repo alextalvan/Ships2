@@ -10,11 +10,11 @@ GameObject:
   - 4: {fileID: 456112}
   - 33: {fileID: 3338776}
   - 23: {fileID: 2352564}
-  - 65: {fileID: 6548802}
   - 114: {fileID: 11489662}
   - 114: {fileID: 11479772}
   - 114: {fileID: 11471230}
-  - 95: {fileID: 9540150}
+  - 114: {fileID: 11408582}
+  - 135: {fileID: 13568000}
   m_Layer: 9
   m_Name: Chartpiece_PRFB
   m_TagString: Untagged
@@ -65,35 +65,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 115790}
   m_Mesh: {fileID: 4300000, guid: 36c395fb04dbb73488bb2617a34e3f93, type: 3}
---- !u!65 &6548802
-BoxCollider:
+--- !u!114 &11408582
+MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 115790}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 3, y: 3.66716075, z: 2}
-  m_Center: {x: 0, y: 1.83322012, z: -.0707807392}
---- !u!95 &9540150
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 115790}
-  m_Enabled: 0
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f8e908107a17df2409c35428575441e2, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c0268e991af43b4484dbba9c7b4334a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  step: {x: 0, y: 2, z: 0}
 --- !u!114 &11471230
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -123,6 +106,7 @@ MonoBehaviour:
   _sendRate: .0500000007
   _interpRate: .100000001
   _snapThreshold: 20
+  syncRotation: 0
 --- !u!114 &11489662
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -155,6 +139,18 @@ MonoBehaviour:
     i15: 153
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
+--- !u!135 &13568000
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 115790}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 2.03999996
+  m_Center: {x: 0, y: 1.83322012, z: -.0707807392}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

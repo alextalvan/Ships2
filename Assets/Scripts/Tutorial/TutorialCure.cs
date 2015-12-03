@@ -14,7 +14,7 @@ public class TutorialCure : MonoBehaviour {
 		{
 			attached = true;
 			GameObject.Find ("TutorialManager").GetComponent<TutorialManager> ().GetMessage(TutorialManager.TUTORIAL_EVENTS.GRABBED_CURE);
-			GameObject.Find ("TutorialManager").GetComponent<TutorialManager> ().player.GetComponent<PlayerFX>().PlaySound(PlayerFX.PLAYER_SOUNDS.PICKUP_CURE);
+			GameObject.Find ("TutorialManager").GetComponent<TutorialManager> ().player.GetComponent<PlayerFX>().PlaySound(PlayerFX.PLAYER_SOUNDS.PICKUP_CURE,false);
 			StartCoroutine(Kill ());
 		}
 	}
