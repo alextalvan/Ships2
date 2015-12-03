@@ -63,6 +63,8 @@ public class ShipScript : NetworkBehaviour
     [SerializeField]
     float cannonRecoil = 100000f;
 
+	private bool frozen = false;
+
     //Used components
     private OnlinePlayerInput onlinePlayerInput;
     private CustomOnlinePlayer customOnlinePlayer;
@@ -82,7 +84,6 @@ public class ShipScript : NetworkBehaviour
         get { return sailState; }
     }
 
-    // Use this for initialization
     void Start()
     {
         onlineRef = GameObject.Find("OnlineSceneReferences").GetComponent<OnlineSceneReferences>();
@@ -152,13 +153,14 @@ public class ShipScript : NetworkBehaviour
         currentShootInputState = ShootInputState.Idle;
         shotPowerLeft = leftSide.transform.childCount;
         shotPowerRight = rightSide.transform.childCount;
+		frozen = false;
     }
 
     void Update()
     {
         SwitchClientAmmoType();
         PreviewTrajectory();
-        UpdateSailUI();
+        UpdateUI();
         UpdateShootState();
     }
 
@@ -171,9 +173,6 @@ public class ShipScript : NetworkBehaviour
 
     private void ChangeAmmoType(OnlinePlayerInput.PlayerControlMessage m, Vector3 dir)
     {
-        //if (playerRespawn.IsDead)
-        //    return;
-
         if (m == OnlinePlayerInput.PlayerControlMessage.SWITCH_START_HOLD_DOWN)
         {
             currentProjIndex++;
@@ -186,9 +185,6 @@ public class ShipScript : NetworkBehaviour
     [ClientCallback]
     private void SwitchClientAmmoType()
     {
-        //if (playerRespawn.IsDead)
-        //    return;
-
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             onlineRef.AmmoIcons[currentProjIndex].SetActive(false);
@@ -202,10 +198,24 @@ public class ShipScript : NetworkBehaviour
         }
     }
 
+	public void SetFreeze(bool state)
+	{
+		if (state) 
+		{
+			objRigidBody.velocity = Vector3.zero;
+			sailState = 0f;
+			frozen = true;
+		} 
+		else 
+		{
+			frozen = false;
+		}
+	}
+
     [ServerCallback]
     private void ControlSails()
     {
-        if (playerRespawn.IsDead)
+        if (playerRespawn.IsDead || frozen)
             return;
 
         if (onlineInput.GetInputValue(OnlinePlayerInput.PlayerControls.FORWARD))
@@ -219,7 +229,7 @@ public class ShipScript : NetworkBehaviour
 
     private void Move()
     {
-        if (shipAttributes.IsDead)
+        if (shipAttributes.IsDead || frozen)
             return;
 
         Vector3 forward = new Vector3(transform.forward.x, 0f, transform.forward.z).normalized;
@@ -237,7 +247,7 @@ public class ShipScript : NetworkBehaviour
     [ServerCallback]
     private void Rotate()
     {
-        if (playerRespawn.IsDead)
+        if (playerRespawn.IsDead || frozen)
             return;
 
         Vector3 right = new Vector3(transform.right.x, 0f, transform.right.z).normalized;
@@ -349,7 +359,7 @@ public class ShipScript : NetworkBehaviour
 
     private void HandleShootInput(OnlinePlayerInput.PlayerControlMessage m, Vector3 dir)
     {
-        if (playerRespawn.IsDead)
+        if (playerRespawn.IsDead || frozen)
             return;
 
         if (currentProjIndex == 2)
@@ -500,7 +510,7 @@ public class ShipScript : NetworkBehaviour
     }
 
     [ClientCallback]
-    void UpdateSailUI()
+    void UpdateUI()
     {
         if (!isLocalPlayer)
             return;
