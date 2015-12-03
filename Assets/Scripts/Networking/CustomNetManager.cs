@@ -24,6 +24,9 @@ public class CustomNetManager : NetworkLobbyManager {
 
 	[SerializeField]
 	LobbyPlayerInfo _lobbyInfo;
+	
+	public bool clientAutoReconnect = false;
+	public bool serverAutoRestart = false;
 
 	void SetAddress(string ip)
 	{
@@ -77,6 +80,7 @@ public class CustomNetManager : NetworkLobbyManager {
 		networkPort = portField;
 		UIConsole.Log("Attempting to connect to the server " + addressField + ":" + portField);
 		StartClient();
+		clientAutoReconnect = false;
 		//isClient = true;
 	}
 
@@ -117,9 +121,6 @@ public class CustomNetManager : NetworkLobbyManager {
 		StartCoroutine (SpawnPlayerWithDelay (6f));
 
 	}
-
-
-	
 
 	public override void OnServerSceneChanged (string sceneName)
 	{

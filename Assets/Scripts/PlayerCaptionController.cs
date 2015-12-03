@@ -4,12 +4,13 @@ using UnityEngine.Networking;
 
 public class PlayerCaptionController : NetworkBehaviour
 {
-
+	OnlineSceneReferences onlineRef;
     UICaption _middleCaption;
 
     void Awake()
     {
-        _middleCaption = GameObject.Find("OnlineSceneReferences").GetComponent<OnlineSceneReferences>().middleCaption;
+		onlineRef = GameObject.Find ("OnlineSceneReferences").GetComponent<OnlineSceneReferences> ();
+        _middleCaption = onlineRef.middleCaption;
     }
 
 
@@ -31,6 +32,14 @@ public class PlayerCaptionController : NetworkBehaviour
 	{
 		_middleCaption.PushCaption(text, duration);
 	}
+
+	[ClientRpc]
+	public void RpcPushGameEndDialog(string winnerName)
+	{
+		onlineRef.GameEndText.text = winnerName + " has finished their time with the cure and wins the game. The server will now restart.";
+		onlineRef.GameEndMessage.Enable ();
+	}
+
 
     public enum BROADCAST_MODE
     {

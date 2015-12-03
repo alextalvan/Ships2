@@ -13,8 +13,7 @@ public class ProjectileType2 : Projectile
             hull.Damage(collision.contacts[0].point, hullDamage, damageRadius, gameObject);
             RpcSpawnWrecks(collision.contacts[0].point);
 
-            PlayerFX.PLAYER_SOUNDS s = (PlayerFX.PLAYER_SOUNDS)((int)(PlayerFX.PLAYER_SOUNDS.HIT1) + Random.Range (0, 2));
-			hull.GetComponent<PlayerFX> ().RpcPlaySound (s);
+			hull.GetComponent<PlayerFX> ().RpcPlaySound (PlayerFX.PLAYER_SOUNDS.HIT);
             base.DealDamage(collision);
         }
         if (sails)

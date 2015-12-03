@@ -65,7 +65,8 @@ public class TutorialHull : MonoBehaviour
 			else
 				currentHealth = 1f;
 		}
-		
+
+		GetComponent<PlayerFX> ().PlaySound (PlayerFX.PLAYER_SOUNDS.HIT);
 		//GetComponent<PlayerCaptionController>().RpcPushDebugText("My hull got damaged for " + damage + " damage. Remaining health: " + currentHealth);
 		UpdateHP();
 	}
