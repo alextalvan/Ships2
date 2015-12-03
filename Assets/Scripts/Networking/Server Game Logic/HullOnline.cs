@@ -66,12 +66,12 @@ public class HullOnline : NetworkBehaviour
             if (source != null)
             {
                 Projectile p = source.GetComponent<Projectile>();
-                //HullOnline hullKilla = source.GetComponent<HullOnline>();
+                HullOnline hullKilla = source.GetComponent<HullOnline>();
 
                 if (p != null && p.owner != GetComponent<CustomOnlinePlayer>())
                     p.owner.GetComponent<LevelUser>().GainEXP(500);
-                //else if (hullKilla != null)
-                //    hullKilla.GetComponent<CustomOnlinePlayer>().GetComponent<LevelUser>().GainEXP(500);
+                else if (hullKilla != null)
+                    hullKilla.GetComponent<CustomOnlinePlayer>().GetComponent<LevelUser>().GainEXP(500);
             }
         }
 
@@ -119,7 +119,7 @@ public class HullOnline : NetworkBehaviour
         if (hull)
         {
             HullOnline colHull = collision.collider.GetComponent<HullOnline>();
-            Damage(colPoint, colHull.CurrentVelocity, 10f);//, collision.gameObject);
+            Damage(colPoint, colHull.CurrentVelocity, 10f, collision.collider.gameObject);
         }
         else
         {

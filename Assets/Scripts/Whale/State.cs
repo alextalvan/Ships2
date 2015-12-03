@@ -71,8 +71,6 @@ public abstract class State : NetworkBehaviour
         {
             to.setPlayerTarget(targetPlayer);
         }
-        onlineRefs = GameObject.Find("OnlineSceneReferences").GetComponent<OnlineSceneReferences>();
-        patrolArea = GameObject.Find("WhaleBox").transform;
         from.enabled = false;
         to.enabled = true;
     }
@@ -93,7 +91,7 @@ public abstract class State : NetworkBehaviour
     protected void FixedUpdate()
     {
         execute();
-
+ 
         //movement
         transform.position += transform.forward * (speed * Time.deltaTime);
 

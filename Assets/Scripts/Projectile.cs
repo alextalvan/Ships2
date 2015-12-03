@@ -28,13 +28,13 @@ public abstract class Projectile : NetworkBehaviour
 
     //splash
     [SerializeField]
-    GameObject splashPrefab;
+    protected GameObject splashPrefab;
     [SerializeField]
-    GameObject explosionPrefab;
+    protected GameObject explosionPrefab;
     [SerializeField]
-    GameObject debrisPrefab;
+    protected GameObject debrisPrefab;
 
-    private bool spawnedSplash = false;
+    protected bool spawnedSplash = false;
 
     public float UpwardsModifier
     {
@@ -73,20 +73,8 @@ public abstract class Projectile : NetworkBehaviour
 
     void FixedUpdate()
     {
-        ProcessDeath();
         ProcessSplash();
-    }
-
-    [ClientCallback]
-    void ProcessSplash()
-    {
-        Vector3 pos = transform.position;
-        if (!spawnedSplash && pos.y <= WaterHelper.GetOceanHeightAt(new Vector2(pos.x, pos.z)))
-        {
-            spawnedSplash = true;
-            GameObject splashGO = (GameObject)Instantiate(splashPrefab, pos, new Quaternion(0f, Random.rotation.y, 0f, 0f));
-            splashGO.GetComponent<ParticleSystem>().startRotation = Random.Range(0, 180);
-        }
+        ProcessDeath();
     }
 
     [ClientRpc]
@@ -137,16 +125,20 @@ public abstract class Projectile : NetworkBehaviour
     }
 
     [ServerCallback]
-    void ProcessDeath()
+    protected virtual void ProcessDeath()
     {
-        if (Time.time > birthDate + lifeTime)// || transform.position.y < WaterHelper.GetOceanHeightAt(new Vector2(transform.position.x, transform.position.z)))
-        {
-            Delete();
-        }
+        if (Time.time > birthDate + lifeTime)
+            Delete(false);
+    }
+
+    [ClientCallback]
+    protected virtual void ProcessSplash()
+    {
+
     }
 
     [ServerCallback]
-    protected virtual void Delete()
+    protected virtual void Delete(bool underWater)
     {
         NetworkServer.Destroy(gameObject);
     }

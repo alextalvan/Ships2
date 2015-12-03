@@ -11,6 +11,8 @@ GameObject:
   - 198: {fileID: 19831098}
   - 199: {fileID: 19929816}
   - 114: {fileID: 11434652}
+  - 108: {fileID: 10838810}
+  - 114: {fileID: 11476368}
   m_Layer: 0
   m_Name: BarrelExplode
   m_TagString: Untagged
@@ -143,13 +145,45 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 101760}
   m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106709}
-  m_LocalPosition: {x: 243.366638, y: 47.6139221, z: 115.96875}
+  m_LocalPosition: {x: -197.56398, y: 103.2192, z: 817.974304}
   m_LocalScale: {x: .198367849, y: .198367938, z: .198367938}
   m_Children:
   - {fileID: 439186}
   - {fileID: 407900}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!108 &10838810
+Light:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 101760}
+  m_Enabled: 1
+  serializedVersion: 6
+  m_Type: 2
+  m_Color: {r: 1, g: .475862056, b: 0, a: 1}
+  m_Intensity: 5
+  m_Range: 15
+  m_SpotAngle: 30
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 1
+    m_Resolution: -1
+    m_Strength: 1
+    m_Bias: .0500000007
+    m_NormalBias: .400000006
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Lightmapping: 4
+  m_BounceIntensity: 0
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+  m_AreaSize: {x: 1, y: 1}
 --- !u!114 &11434652
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -159,6 +193,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 344f2f9703310ef4bbbd4716d10f8c18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11476368
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 101760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c8782bd0e481084c9632a410a141d24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!198 &19822858
@@ -5452,7 +5497,11 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_Shadows.m_Type
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 101760}
