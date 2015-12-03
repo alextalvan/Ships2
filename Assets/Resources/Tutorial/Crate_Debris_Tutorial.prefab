@@ -13,6 +13,7 @@ GameObject:
   - 54: {fileID: 5490088}
   - 64: {fileID: 6482578}
   - 114: {fileID: 11407842}
+  - 114: {fileID: 11454680}
   m_Layer: 9
   m_Name: Crate_Debris_Tutorial
   m_TagString: Untagged
@@ -102,9 +103,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EXP_Reward: 50
-  lifeTime: 10
+  lifeTime: 30
   repairPotential: 0
   owner: {fileID: 0}
+--- !u!114 &11454680
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 106812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 008dc8fccd27ffa44a3b6577f3ebff61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  voxelsX: 2
+  voxelsY: 2
+  voxelsZ: 2
+  voxelsYDownMod: 1
+  centerOfMassYOffset: 1
+  buoyancyLimit: 100
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -122,7 +140,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: lifeTime
-      value: 10
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Layer

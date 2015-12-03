@@ -13,6 +13,7 @@ GameObject:
   - 54: {fileID: 5457796}
   - 64: {fileID: 6484132}
   - 114: {fileID: 11458986}
+  - 114: {fileID: 11446838}
   m_Layer: 9
   m_Name: Barrel_Debris_Tutorial
   m_TagString: Untagged
@@ -62,7 +63,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 193054}
-  m_Mesh: {fileID: 4300000, guid: a1a68cde8f78d5e40b7d475cb4cd34e5, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 2dd0481b04b05da4187bead4b3c11843, type: 3}
 --- !u!54 &5457796
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -90,6 +91,23 @@ MeshCollider:
   serializedVersion: 2
   m_Convex: 1
   m_Mesh: {fileID: 4300000, guid: b44eb4a9a36f3a8408ab9ab27ab2eb9e, type: 3}
+--- !u!114 &11446838
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 193054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 008dc8fccd27ffa44a3b6577f3ebff61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  voxelsX: 2
+  voxelsY: 2
+  voxelsZ: 2
+  voxelsYDownMod: 1
+  centerOfMassYOffset: 1
+  buoyancyLimit: 100
 --- !u!114 &11458986
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -102,7 +120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EXP_Reward: 50
-  lifeTime: 10
+  lifeTime: 30
   repairPotential: 0
   owner: {fileID: 0}
 --- !u!1001 &100100000
@@ -122,7 +140,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: lifeTime
-      value: 10
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Layer
@@ -155,7 +173,7 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 4300000, guid: b44eb4a9a36f3a8408ab9ab27ab2eb9e, type: 3}
+      objectReference: {fileID: 4300000, guid: 2dd0481b04b05da4187bead4b3c11843, type: 3}
     - target: {fileID: 0}
       propertyPath: repairPotential
       value: 10

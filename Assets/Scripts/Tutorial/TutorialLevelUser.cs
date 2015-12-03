@@ -7,13 +7,14 @@ public class TutorialLevelUser : MonoBehaviour
 {
 	
 	int _level = 0;
+	[SerializeField]
 	int _currentEXP;
-	int _nextLevelEXP = 500;
+	int _nextLevelEXP = 1000;
 	
 	[SerializeField]
 	int _maxLevel = 10;
 	
-	
+
 	public delegate void voidvoid();
 	
 	public event voidvoid OnLevelUp;
@@ -45,6 +46,7 @@ public class TutorialLevelUser : MonoBehaviour
 			
 			_level++;
 			_nextLevelEXP += 1000;
+			GameObject.Find ("TutorialManager").GetComponent<TutorialManager> ().GetMessage(TutorialManager.TUTORIAL_EVENTS.LEVELED_UP);
 		}
 	}
 	
@@ -109,6 +111,8 @@ public class TutorialLevelUser : MonoBehaviour
 			*/
 		
 		GetComponent<PlayerFX> ().PlaySound (PlayerFX.PLAYER_SOUNDS.UPGRADE);
+
+		GameObject.Find ("TutorialManager").GetComponent<TutorialManager> ().GetMessage (TutorialManager.TUTORIAL_EVENTS.UPGRADED);
 	}
 	
 	

@@ -5398,6 +5398,8 @@ MonoBehaviour:
   cannonRecoil: 100000
   MovementLock: 1
   CombatLock: 1
+  ammoIconsParent: {fileID: 0}
+  tutMng: {fileID: 0}
 --- !u!114 &11456638
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5498,6 +5500,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sailParent: {fileID: 435112}
+  sails:
+  - {fileID: 11465326}
+  - {fileID: 11463846}
+  - {fileID: 11459080}
+  - {fileID: 11432930}
+  - {fileID: 11492290}
+  - {fileID: 11456638}
   hullMaxHealth: 200
   sailMaxHealth: 100
   basicSpeed: 10
@@ -5521,6 +5530,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sailParent: {fileID: 435112}
+  sails: []
   hullMaxHealth: 200
   sailMaxHealth: 100
   basicSpeed: 10
