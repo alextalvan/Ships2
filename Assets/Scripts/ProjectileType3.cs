@@ -17,14 +17,14 @@ public class ProjectileType3 : Projectile
             hull.GetComponent<PlayerFX>().RpcPlaySound(PlayerFX.PLAYER_SOUNDS.EXPLOSION);
             base.DealDamage(collision);
         }
-        Delete();
+        Delete(false);
     }
 
     [ServerCallback]
-    protected override void Delete()
+    protected override void Delete(bool underWater)
     {
         RpcExplode(transform.position);
         RpcSpawnSplash(new Vector3(transform.position.x, WaterHelper.GetOceanHeightAt(new Vector2(transform.position.x, transform.position.z)), transform.position.z), 25f);
-        base.Delete();
+        base.Delete(false);
     }
 }

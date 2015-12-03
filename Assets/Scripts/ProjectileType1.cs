@@ -19,15 +19,26 @@ public class ProjectileType1 : Projectile
             collision.gameObject.GetComponent<ShipAttributesOnline>().DamageAllSails(sailDamage);
             RpcSpawnWrecks(collision.contacts[0].point);
         }
-        Delete();
+        Delete(false);
     }
 
     [ServerCallback]
-    protected override void Delete()
+    protected override void ProcessDeath()
     {
-        if (Time.time < birthDate + lifeTime)
+        if (Time.time > birthDate + lifeTime)
+            Delete(false);
+        else if (transform.position.y < WaterHelper.GetOceanHeightAt(new Vector2(transform.position.x, transform.position.z)))
+            Delete(true);
+    }
+
+    [ServerCallback]
+    protected override void Delete(bool underWater)
+    {
+        if (underWater)
+            RpcSpawnSplash(transform.position, 5f);
+        else
             RpcExplode(transform.position);
 
-        base.Delete();
+        base.Delete(underWater);
     }
 }

@@ -10,6 +10,7 @@ GameObject:
   - 4: {fileID: 423658}
   - 198: {fileID: 19818338}
   - 199: {fileID: 19936652}
+  - 114: {fileID: 11487544}
   m_Layer: 0
   m_Name: Dying
   m_TagString: Untagged
@@ -29,6 +30,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!114 &11487544
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 160978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 344f2f9703310ef4bbbd4716d10f8c18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!198 &19818338
 ParticleSystem:
   m_ObjectHideFlags: 1

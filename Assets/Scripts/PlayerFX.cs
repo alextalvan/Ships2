@@ -17,14 +17,14 @@ public class PlayerFX : NetworkBehaviour
     [SerializeField]
     private List<ParticleSystem> _rightSideSmokes = new List<ParticleSystem>();
 
-	[SerializeField]
-	private ParticleSystem _levelUpParticle;
+    [SerializeField]
+    private ParticleSystem _levelUpParticle;
 
-	[SerializeField]
-	private GameObject _deathParticle;
+    [SerializeField]
+    private GameObject _deathParticle;
 
-	[SerializeField]
-	private ParticleSystem _mapPickupParticle;
+    [SerializeField]
+    private ParticleSystem _mapPickupParticle;
 
     AudioSource _source;
 
@@ -72,7 +72,7 @@ public class PlayerFX : NetworkBehaviour
             CameraShake(duration, strength);
     }
 
-    
+
     public void EmitCannonSmoke(bool leftSide, int cannonCount)
     {
         if (leftSide)
@@ -80,6 +80,7 @@ public class PlayerFX : NetworkBehaviour
             for (int i = 0; i < cannonCount; ++i)
             {
                 _leftSideSmokes[i].Stop();
+                _leftSideSmokes[i].GetComponent<Light>().enabled = true;
                 _leftSideSmokes[i].Play();
             }
         }
@@ -88,55 +89,55 @@ public class PlayerFX : NetworkBehaviour
             for (int i = 0; i < cannonCount; ++i)
             {
                 _rightSideSmokes[i].Stop();
+                _rightSideSmokes[i].GetComponent<Light>().enabled = true;
                 _rightSideSmokes[i].Play();
             }
         }
     }
 
-	[ClientRpc]
-	public void RpcEmitCannonSmoke(bool leftSide, int cannonCount)
-	{
-		EmitCannonSmoke (leftSide, cannonCount);
-	}
-		
-	public void DoLevelUpParticle()
-	{
-		_levelUpParticle.Stop ();
-		_levelUpParticle.Play ();
-	}
+    [ClientRpc]
+    public void RpcEmitCannonSmoke(bool leftSide, int cannonCount)
+    {
+        EmitCannonSmoke(leftSide, cannonCount);
+    }
 
-	[ClientRpc]
-	public void RpcDoLevelUpParticle()
-	{
-		DoLevelUpParticle ();
-	}
+    public void DoLevelUpParticle()
+    {
+        _levelUpParticle.Stop();
+        _levelUpParticle.Play();
+    }
 
-	public void SpawnDeathParticle()
-	{
-		//GameObject skull = (GameObject)
-		Instantiate (_deathParticle, transform.position + new Vector3 (0, 20, 0), Quaternion.identity);
-	}
+    [ClientRpc]
+    public void RpcDoLevelUpParticle()
+    {
+        DoLevelUpParticle();
+    }
 
-	[ClientRpc]
-	public void RpcSpawnDeathParticle()
-	{
-		RpcSpawnDeathParticle ();
-	}
+    public void SpawnDeathParticle()
+    {
+        //GameObject skull = (GameObject)
+        Instantiate(_deathParticle, transform.position + new Vector3(0, 20, 0), Quaternion.identity);
+    }
 
-	public void EmitMapParticle(int mapCount)
-	{
-		_mapPickupParticle.Stop ();
-		_mapPickupParticle.startSize = CustomOnlinePlayer.distancePerMapPiece * mapCount * 0.5f;
-		_mapPickupParticle.Play ();
-	}
+    [ClientRpc]
+    public void RpcSpawnDeathParticle()
+    {
+        RpcSpawnDeathParticle();
+    }
 
-	[ClientRpc]
-	public void RpcEmitMapParticle(int mapCount)
-	{
-		EmitMapParticle (mapCount);
-	}
+    public void EmitMapParticle(int mapCount)
+    {
+        _mapPickupParticle.Stop();
+        _mapPickupParticle.startSize = CustomOnlinePlayer.distancePerMapPiece * mapCount * 0.5f;
+        _mapPickupParticle.Play();
+    }
 
-
+    [ClientRpc]
+    public void RpcEmitMapParticle(int mapCount)
+    {
+        EmitMapParticle(mapCount);
+    }
+    
     // Use this for initialization
     void Start()
     {
