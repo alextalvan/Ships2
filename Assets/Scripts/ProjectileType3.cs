@@ -13,7 +13,7 @@ public class ProjectileType3 : Projectile
         {
             hull.Damage(collision.contacts[0].point, hullDamage, damageRadius, gameObject);
             hull.GetComponent<ShipAttributesOnline>().DamageAllSails(sailDamage);
-            RpcSpawnHit(collision.contacts[0].point);
+            RpcSpawnWrecks(collision.contacts[0].point);
             hull.GetComponent<PlayerFX>().RpcPlaySound(PlayerFX.PLAYER_SOUNDS.EXPLOSION);
             base.DealDamage(collision);
         }
@@ -24,6 +24,7 @@ public class ProjectileType3 : Projectile
     protected override void Delete()
     {
         RpcExplode(transform.position);
+        RpcSpawnSplash(new Vector3(transform.position.x, WaterHelper.GetOceanHeightAt(new Vector2(transform.position.x, transform.position.z)), transform.position.z), 25f);
         base.Delete();
     }
 }
