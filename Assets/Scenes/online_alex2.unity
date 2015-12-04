@@ -116,8 +116,8 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 68.9000015, y: 67}
-  m_SizeDelta: {x: 150, y: 135}
+  m_AnchoredPosition: {x: 50, y: 50}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &5056826
 MonoBehaviour:
@@ -140,7 +140,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: 8dc7cb02f6c1b5b4ab56ea1e1d4b3b1c, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -812,7 +812,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: 
 --- !u!222 &47465835
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1920,7 +1920,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 0}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -8054,7 +8054,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: 
 --- !u!222 &643691393
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10914,7 +10914,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: 
 --- !u!222 &868349431
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -14785,7 +14785,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: 
 --- !u!222 &1143210490
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -16545,7 +16545,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: 
 --- !u!222 &1271362668
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -17300,7 +17300,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: 
 --- !u!222 &1307360272
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -17807,7 +17807,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 0}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -22335,7 +22335,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 0}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -23270,8 +23270,8 @@ RectTransform:
   m_RootOrder: 2
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 68.9000015, y: 67}
-  m_SizeDelta: {x: 150, y: 135}
+  m_AnchoredPosition: {x: 50, y: 50}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1814093077
 MonoBehaviour:
@@ -23294,7 +23294,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: e7484d9a9626ecd49907866472c670fb, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -25315,12 +25315,12 @@ MonoBehaviour:
   - {fileID: 21300000, guid: a28d295a965a0bf4a877a15f4939a6ca, type: 3}
   - {fileID: 21300000, guid: c56fafb31cbc9354796201906f84736f, type: 3}
   highlightImages:
-  - {fileID: 21300000, guid: 020a9ea87884e254c82fa499a72b073b, type: 3}
-  - {fileID: 21300000, guid: d4554c2f4d278e140bfe4695c4846438, type: 3}
-  - {fileID: 21300000, guid: 23e679183d996374a8a7ff35cf3735d4, type: 3}
-  - {fileID: 21300000, guid: a9935f47aed1e294fa312a017da1a68f, type: 3}
-  - {fileID: 21300000, guid: ca90591c74ea59d4e8421c71106c2874, type: 3}
-  - {fileID: 21300000, guid: 760d535b6caa2eb4c9d349f7422c00a7, type: 3}
+  - {fileID: 21300000, guid: 73412678cc73e5a418f1af2f21450365, type: 3}
+  - {fileID: 21300000, guid: 425f15c721902f7488dcfa98724731d5, type: 3}
+  - {fileID: 21300000, guid: d3d64eb753149f14dad6dec81af2714f, type: 3}
+  - {fileID: 21300000, guid: 195940a9277b7d349a6f33f61ac0b4c7, type: 3}
+  - {fileID: 21300000, guid: 29a2fd7a1a3275649ab612eafb60ff01, type: 3}
+  - {fileID: 21300000, guid: 4fdde0efad2f554408593fc5ceea31a9, type: 3}
 --- !u!1 &1968933441
 GameObject:
   m_ObjectHideFlags: 0
@@ -27074,8 +27074,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 68.9000015, y: 67}
-  m_SizeDelta: {x: 150, y: 135}
+  m_AnchoredPosition: {x: 50, y: 50}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &2091705654
 MonoBehaviour:
@@ -27098,7 +27098,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: 02423ab94a7e31341849b59016a85cee, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
