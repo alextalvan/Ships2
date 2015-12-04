@@ -298,13 +298,13 @@ public class BuoyancyScript : NetworkBehaviour
     /// </summary>
     private void OnDrawGizmos()
     {
-        foreach (Voxel voxel in voxels)
-        {
-            Gizmos.color = voxel.Color;
-            Vector3 voxelWorldPos = transform.TransformPoint(voxel.Position);
-            Gizmos.DrawWireSphere(voxelWorldPos, SPHERE_GIZMOS_SIZE);
-            Gizmos.DrawLine(voxelWorldPos, voxelWorldPos + voxel.Force / objRigidBody.mass);
-        }
+        //foreach (Voxel voxel in voxels)
+        //{
+        //    Gizmos.color = voxel.Color;
+        //    Vector3 voxelWorldPos = transform.TransformPoint(voxel.Position);
+        //    Gizmos.DrawWireSphere(voxelWorldPos, SPHERE_GIZMOS_SIZE);
+        //    Gizmos.DrawLine(voxelWorldPos, voxelWorldPos + voxel.Force / objRigidBody.mass);
+        //}
     }
 }
 

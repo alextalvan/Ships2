@@ -2748,7 +2748,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 173014}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 179.431244, y: 73.5868301, z: 181.245544}
+  m_LocalPosition: {x: 184.222702, y: 8.25015068, z: 342.527344}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 423084}
@@ -5943,22 +5943,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a594a9ec5868184f951e9292ce30723, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _audioEvents:
-  - event:/Shoot
-  - event:/Hit
-  - event:/Collision
-  - event:/Explosion
-  - event:/LevelUp
-  - event:/Pickup
-  - event:/Pickup
-  - event:/Pickup
-  - event:/Upgrade
-  - event:/GameState
-  _spatialSounds:
-  - {fileID: 8300000, guid: d4b6c985bd9031f4588f009d67bb7c29, type: 3}
-  - {fileID: 8300000, guid: 66ded9aeedc4cd24bb04c42b2b6769af, type: 3}
-  - {fileID: 8300000, guid: 9e87a057ea447e04aabcc9faaa07e4db, type: 3}
-  - {fileID: 8300000, guid: d74f0c02961f33a44a19be2ad502c6d0, type: 3}
+  _clipList:
+  - {fileID: 8300000, guid: 7ddf51d4315e39b4bbf4a4655e84f2e0, type: 3}
+  - {fileID: 8300000, guid: dab4d5994f5b7ea4b80fa6ef903afc6c, type: 3}
+  - {fileID: 8300000, guid: 072c78eea027b384091e0ba4d9329b4c, type: 3}
+  - {fileID: 8300000, guid: 13ffb50079d66ab408999657df1d5893, type: 3}
+  - {fileID: 8300000, guid: 433b904f3e9714442b5e695f229d9212, type: 3}
+  - {fileID: 8300000, guid: 37b8672789f8d22458012053d19d804b, type: 3}
+  - {fileID: 8300000, guid: 01dd4d06ac0ea5b49a2c70e3351d6495, type: 3}
+  - {fileID: 8300000, guid: 74de37961a486b64d9cbb1b9cf6bbaee, type: 3}
+  - {fileID: 8300000, guid: 599e703f1999a4f49a325d76c3fd0710, type: 3}
+  - {fileID: 8300000, guid: 90fd4d823ab663f44bebafc2d4f67d7c, type: 3}
+  - {fileID: 8300000, guid: 31bd9ef0970206f41b851bc35b761c72, type: 3}
+  - {fileID: 8300000, guid: 84026aff8f931384ab67b6dfcd835d6e, type: 3}
   _leftSideSmokes:
   - {fileID: 19847558}
   - {fileID: 19813680}

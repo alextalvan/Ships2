@@ -522,15 +522,15 @@ public class ShipScript : NetworkBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.blue;
+        //Gizmos.color = Color.blue;
 
-        foreach (Transform cannon in rightSide)
-        {
-            Gizmos.DrawWireSphere(cannon.position, CUBE_GIZMOS_SIZE);
-        }
-        foreach (Transform cannon in leftSide)
-        {
-            Gizmos.DrawWireSphere(cannon.position, CUBE_GIZMOS_SIZE);
-        }
+        //foreach (Transform cannon in rightSide)
+        //{
+        //    Gizmos.DrawWireSphere(cannon.position, CUBE_GIZMOS_SIZE);
+        //}
+        //foreach (Transform cannon in leftSide)
+        //{
+        //    Gizmos.DrawWireSphere(cannon.position, CUBE_GIZMOS_SIZE);
+        //}
     }
 }

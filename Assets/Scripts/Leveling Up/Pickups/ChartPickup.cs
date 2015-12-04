@@ -9,10 +9,4 @@ public class ChartPickup : Pickup
         player.MapPieces++;
 		player.GetComponent<PlayerFX> ().RpcPlaySoundForMainPlayer (PlayerFX.PLAYER_SOUNDS.PICKUP_SCROLL,false);
     }
-
- //   protected override void OnPickup (CustomOnlinePlayer player, string part)
-	//{
-	//	base.OnPickup (player, part);
-	//	player.MapPieces++;
-	//}
 }

@@ -22,6 +22,8 @@ public abstract class State : NetworkBehaviour
     protected float repelForce = 20f;
     protected float swimTime = 0;
     protected float coolDown = 30f;
+    protected float maxY = -4.5f;
+    protected float attackRadius = 50f;
 
     [SerializeField]
     protected OnlineSceneReferences onlineRefs;
@@ -59,6 +61,17 @@ public abstract class State : NetworkBehaviour
         changeDirection();
         searchTime = 0;
     }
+    protected void forceBack()
+    {
+        //brute force back in water in case of undesired collsions
+        if (transform.position.y > maxY)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y - 0.1f, transform.position.z);
+            if (transform.position.y > -2) transform.position = new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z);
+            dir = (target - transform.position).normalized;
+            changeDirection();
+        }
+    }
     protected void changeDirection()
     {
         Quaternion rot = Quaternion.LookRotation(dir);
@@ -92,7 +105,7 @@ public abstract class State : NetworkBehaviour
     protected void FixedUpdate()
     {
         execute();
- 
+
         //movement
         transform.position += transform.forward * (speed * Time.deltaTime);
 

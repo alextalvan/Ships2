@@ -3,8 +3,6 @@ using System.Collections;
 
 public class Wander : State
 {
-    float attackRadius = 50f;
-    float maxY = -3.5f;
 
     void OnEnable()
     {
@@ -77,14 +75,7 @@ public class Wander : State
                 }
             }
         }
-        //brute force back in water in case of undesired collsions
-        if (transform.position.y > maxY)
-        {
-            transform.position = new Vector3(transform.position.x, transform.position.y - 0.1f, transform.position.z);
-            if (transform.position.y > -2) transform.position = new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z);
-            dir = (target - transform.position).normalized;
-            changeDirection();
-        }
+
         //down
         //Debug.DrawRay(transform.position, (transform.forward + -transform.up) * 5, Color.cyan);
         else if (Physics.Raycast(transform.position, (transform.forward + -transform.up).normalized, out hit, 5))
@@ -96,7 +87,7 @@ public class Wander : State
                 transform.position = new Vector3(transform.position.x, transform.position.y + 0.1f, transform.position.z);
             }
         }
-
+        forceBack();
         //if target reached(almost)
         if ((target - transform.position).magnitude <= 10 || target == new Vector3(0, 0, 0))
         {

@@ -12,15 +12,20 @@ public class Attack : State
     {
         target = targetPlayer.transform.position;
         animate();
-        if ((transform.position - targetPlayer.transform.position).magnitude <= 30f)
+
+        if ((transform.position - targetPlayer.transform.position).magnitude >= 30f)
         {
-            //print("going for kill");
-            //attackAnimation();
+            forceBack();
+        }
+        if ((transform.position - targetPlayer.transform.position).magnitude >= attackRadius)
+        {
+            targetPlayer = null;
+            switchState(this, states[0]);
         }
     }
     void OnEnable()
     {
-        speed = 20;
+        speed = 10;
         attackTime = 5;
     }
     void OnCollisionEnter(Collision col)

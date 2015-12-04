@@ -48,17 +48,24 @@ public class Pickup : NetworkBehaviour
 
         if (hitbox != null && !hitbox.GetComponentInParent<ShipAttributesOnline>().IsDead && other.GetComponentInParent<CustomOnlinePlayer>() != owner)
         {
-            float rnd = Random.Range(0, 3);
-
-            if (rnd == 0 || rnd == 1)
+            if (repairPotential > 0f)
             {
-                other.GetComponentInParent<HullOnline>().Repair(repairPotential);
-                OnPickup(hitbox.GetComponentInParent<CustomOnlinePlayer>(), "Hull");
+                float rnd = Random.Range(0, 3);
+
+                if (rnd == 0 || rnd == 1)
+                {
+                    other.GetComponentInParent<HullOnline>().Repair(repairPotential);
+                    OnPickup(hitbox.GetComponentInParent<CustomOnlinePlayer>(), "Hull");
+                }
+                else
+                {
+                    other.GetComponentInParent<ShipAttributesOnline>().RepairAllSails(repairPotential);
+                    OnPickup(hitbox.GetComponentInParent<CustomOnlinePlayer>(), "Sails");
+                }
             }
             else
             {
-                other.GetComponentInParent<ShipAttributesOnline>().RepairAllSails(repairPotential);
-                OnPickup(hitbox.GetComponentInParent<CustomOnlinePlayer>(), "Sails");
+                OnPickup(hitbox.GetComponentInParent<CustomOnlinePlayer>());
             }
 
             taken = true;
