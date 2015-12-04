@@ -20,7 +20,6 @@ public class UpgradeHelper  {
 		case LevelUser.UPGRADES.DEFENCE_EXPERT:
 			target.HullMaxHealth += 50f;
 			target.RangeMultiplier -=0.1f;
-
 			break;
 
 		case LevelUser.UPGRADES.POWDER_MONKEY:
