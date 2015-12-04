@@ -95,6 +95,12 @@ public class CustomOnlinePlayer : NetworkBehaviour
         }
 
         IndividualColor = c;
+
+		CustomNetManager net = GameObject.Find ("NetworkManager").GetComponent<CustomNetManager> ();
+		int myIndex = NetworkServer.connections.IndexOf (this.connectionToServer);
+
+		if (net.nicknames.ContainsKey (myIndex))
+			this.IndividualName = net.nicknames [myIndex];
     }
 
     [ClientCallback]

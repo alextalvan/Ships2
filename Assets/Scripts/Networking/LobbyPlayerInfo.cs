@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.Networking;
+using System.Collections.Generic;
 
 
 public class LobbyPlayerInfo : NetworkBehaviour {
@@ -13,6 +14,12 @@ public class LobbyPlayerInfo : NetworkBehaviour {
 
 	[SyncVar]
 	public int minToStartCount = 0;
+	
+
+	void Start()
+	{
+		DontDestroyOnLoad (this.gameObject);
+	}
 		
 	void FixedUpdate()
 	{

@@ -90,4 +90,18 @@ public class OfflineSceneReferences : MonoBehaviour {
 				return _lobbyPlayer;
 		}
 	}
+
+	public void SendNickname()
+	{
+		if (lobbyPlayer == null)
+			return;
+
+		lobbyPlayer.CmdSendNickname (nicknameInput.text);
+	}
+
+	[SerializeField]
+	InputField nicknameInput;
+
+	public GUIDialog autoConnectMessage;
+	public GUIDialog autoRestartMessage;
 }

@@ -28,6 +28,8 @@ public class CustomNetManager : NetworkLobbyManager {
 	public bool clientAutoReconnect = false;
 	public bool serverAutoRestart = false;
 
+	public Dictionary<int,string> nicknames; 
+
 	void SetAddress(string ip)
 	{
 		addressField = ip;
@@ -81,6 +83,7 @@ public class CustomNetManager : NetworkLobbyManager {
 		UIConsole.Log("Attempting to connect to the server " + addressField + ":" + portField);
 		StartClient();
 		clientAutoReconnect = false;
+		serverAutoRestart = false;
 		//isClient = true;
 	}
 
@@ -91,6 +94,8 @@ public class CustomNetManager : NetworkLobbyManager {
 		UIConsole.Log("Starting server with port: "  + portField);
 		StartServer ();
 		resetSpawnPointsOnSceneChange = true;
+		serverAutoRestart = true;
+		nicknames = new Dictionary<int, string>();
 		//isClient = false;
 	}
 
