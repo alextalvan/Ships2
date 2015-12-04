@@ -5,6 +5,11 @@ using UnityEngine.UI;
 
 public class OnlineSceneReferences : MonoBehaviour {
 
+	public GameObject harbor;
+
+	public GameObject whale;
+
+	public FMOD.Studio.EventInstance ambience;
 
 	//bool reconnectChuckMarkState
 	public void ChangeClientReconnectSetting()
@@ -14,8 +19,17 @@ public class OnlineSceneReferences : MonoBehaviour {
 	}
 
 
+	void OnDestroy()
+	{
+		ambience.stop (FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+		ambience.release ();
+	}
+
 	void Start()
 	{
+		ambience = FMOD_StudioSystem.instance.GetEvent ("event:/Ambient");
+		ambience.setVolume (0.25f);
+		ambience.start();
 		//temp disabled cause annoying
 		//Cursor.visible = false;
 	}

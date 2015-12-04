@@ -23,6 +23,7 @@ public class OfflineSceneReferences : MonoBehaviour {
 	void Start()
 	{
 		Cursor.visible = true;
+		MusicManager.Singleton.Music.setParameterValue ("Menu", 1f);
 	}
 
 	public void PlaySound(MENU_SOUNDS s)

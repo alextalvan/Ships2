@@ -7,7 +7,7 @@ public class SpawnDebris : NetworkBehaviour {
     [SerializeField]
     private List<GameObject> debris = new List<GameObject>();
 
-    List<GameObject> debrisList = new List<GameObject>();
+    //List<GameObject> debrisList = new List<GameObject>();
 
     [SerializeField]
     Transform sea;
@@ -24,36 +24,33 @@ public class SpawnDebris : NetworkBehaviour {
 	void Update ()
     {
         existanceTime += Time.deltaTime;
-        if (existanceTime >= 30f)
+        if (existanceTime >= 35f)
         {
-            debrisList.Clear();
+			spawnDebris();
             existanceTime = 0f;
-        }
-        if (debrisList.Count <= 10f)
-        {
-            spawnDebris();
         }
     }
 
     [ServerCallback]
     void spawnDebris() {
-        Vector3 rndPosWithinSea;
-        rndPosWithinSea = new Vector3(Random.Range(-450f, 350f), Random.Range(-1, 1f), Random.Range(0f, 800f));
-        //rndPosWithinSea = sea.TransformPoint(rndPosWithinSea * 0.5f);
-        if (Physics.Raycast(transform.position, rndPosWithinSea, out hit, (rndPosWithinSea - transform.position).magnitude))
-        {
-            print("Bad Debris at: " + rndPosWithinSea);
-            if (hit.transform != transform)
-            {
-                return;
+		for (int i=0; i<10; ++i) {
+
+			Vector3 rndPosWithinSea;
+			rndPosWithinSea = new Vector3 (Random.Range (-450f, 350f), Random.Range (-1, 1f), Random.Range (0f, 800f));
+			//rndPosWithinSea = sea.TransformPoint(rndPosWithinSea * 0.5f);
+			if (Physics.Raycast (transform.position, rndPosWithinSea, out hit, (rndPosWithinSea - transform.position).magnitude)) {
+				print ("Bad Debris at: " + rndPosWithinSea);
+				if (hit.transform != transform) {
+					return;
                
-            }
-        }
+				}
+			}
 
-        int rndDebr = Random.Range(0, debris.Count);
+			int rndDebr = Random.Range (0, debris.Count);
 
-        GameObject rndDebris = (GameObject)Instantiate(debris[rndDebr], rndPosWithinSea, Quaternion.identity);
-        NetworkServer.Spawn(rndDebris);
-        debrisList.Add(rndDebris);
+			GameObject rndDebris = (GameObject)Instantiate (debris [rndDebr], rndPosWithinSea, Quaternion.identity);
+			NetworkServer.Spawn (rndDebris);
+			//debrisList.Add (rndDebris);
+		}
     }
 }

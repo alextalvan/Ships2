@@ -29,6 +29,15 @@ public class PlayerFX : NetworkBehaviour
 
 	AudioSource _source;
 
+	OnlineSceneReferences onlineRefs;
+
+	[SerializeField]
+	float whaleSoundDistanceThreshold = 50f;
+
+	[SerializeField]
+	float harborSoundDistanceThreshold = 50f;
+
+
 
     public enum PLAYER_SOUNDS
     {
@@ -54,9 +63,12 @@ public class PlayerFX : NetworkBehaviour
 		else
 			_source.spatialBlend = 0.0f;
 
+		/*
 		_source.Stop ();
 		_source.clip = _clipList [(int)s];
 		_source.Play ();
+		*/
+		_source.PlayOneShot (_clipList [(int)s]);
     }
 
 
@@ -160,8 +172,32 @@ public class PlayerFX : NetworkBehaviour
     void Start()
     {
 		_source = GetComponent<AudioSource> ();
+		onlineRefs = GameObject.Find ("OnlineSceneReferences").GetComponent<OnlineSceneReferences> ();
     }
 
+	void Update()
+	{
+		AdjustFmodMusic ();
+	}
+
+	[ClientCallback]
+	void AdjustFmodMusic()
+	{
+		if (!isLocalPlayer)
+			return;
+
+		if (onlineRefs.whale != null) 
+		{
+			float whaleParam = ((onlineRefs.whale.transform.position - this.transform.position).magnitude <= whaleSoundDistanceThreshold) ? 1f : 0f;
+			onlineRefs.ambience.setParameterValue ("Whale", whaleParam);
+		}
+
+		if (onlineRefs.harbor != null) 
+		{
+			float harborParam = Mathf.Clamp01(1f- (onlineRefs.harbor.transform.position - this.transform.position).magnitude / harborSoundDistanceThreshold) * 10f;
+			onlineRefs.ambience.setParameterValue("HarborDistance",harborParam);
+		}
+	}
 
     //test
     /*

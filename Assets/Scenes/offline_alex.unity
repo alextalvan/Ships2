@@ -4408,7 +4408,7 @@ MonoBehaviour:
     type: 2}
   m_GamePlayerPrefab: {fileID: 0}
   m_LobbyScene: offline_alex
-  m_PlayScene: online_alex2
+  m_PlayScene: online_alex
   lobbySlots: []
   addressField: 127.0.0.1
   portField: 7777

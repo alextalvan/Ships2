@@ -37,6 +37,7 @@ public abstract class State : NetworkBehaviour
         states = GetComponents<State>();
         onlineRefs = GameObject.Find("OnlineSceneReferences").GetComponent<OnlineSceneReferences>();
         patrolArea = GameObject.Find("WhaleBox").transform;
+		onlineRefs.whale = this.gameObject;
     }
     protected void setPlayerTarget(CustomOnlinePlayer newTarget)
     {
