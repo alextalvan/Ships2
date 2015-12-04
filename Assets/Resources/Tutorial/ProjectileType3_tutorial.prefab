@@ -213,7 +213,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifeTime: 30
-  upwardsModifier: 50
+  upwardsModifier: 500
   hullDamage: 100
   sailDamage: 50
   damageRadius: 25
@@ -2386,7 +2386,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: upwardsModifier
-      value: 600
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: lifeTime
