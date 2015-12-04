@@ -132,7 +132,7 @@ MonoBehaviour:
   - {fileID: 185838, guid: 7b9fe03a86fb7e94bb7c8b3f00805044, type: 2}
   crossHit: {fileID: 127044, guid: 5c6277b96102dfb4e80baf43385f570f, type: 2}
   projectileType: 1
-  explosionPrefab: {fileID: 0}
+  explosionPrefab: {fileID: 101760, guid: c31608110ceac0e45abea324514c5e6a, type: 2}
   splashPrefab: {fileID: 153714, guid: b9828af26fb651a4286e498fbc78b841, type: 2}
 --- !u!135 &13592058
 SphereCollider:
@@ -1362,6 +1362,10 @@ Prefab:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 4300000, guid: 40e2bb1bc70626942a27f541fa168bc9, type: 3}
+    - target: {fileID: 0}
+      propertyPath: explosionPrefab
+      value: 
+      objectReference: {fileID: 101760, guid: c31608110ceac0e45abea324514c5e6a, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 193654}

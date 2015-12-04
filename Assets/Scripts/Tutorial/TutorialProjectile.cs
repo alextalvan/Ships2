@@ -78,8 +78,8 @@ public class TutorialProjectile : MonoBehaviour
 
     void FixedUpdate()
     {
-        ProcessDeath();
         ProcessSplash();
+        ProcessDeath();
     }
 
     //[ClientCallback]
@@ -96,16 +96,16 @@ public class TutorialProjectile : MonoBehaviour
     //[ServerCallback]
     protected virtual void DealDamage(Collision collision)
     {
-
-
         //if (projectileType != 3)
         //	return;
 
-        if (collision.collider.GetComponent<TutorialProjectile>() && collision.collider.GetComponent<TutorialProjectile>().projectileType == 3)
+        if (collision.collider.GetComponent<TutorialProjectile>())
         {
-            Instantiate(explosionPrefab, transform.position, new Quaternion(0f, Random.rotation.y, 0f, 0f));
             return;
         }
+
+        if (projectileType == 3)
+            Instantiate(explosionPrefab, transform.position, new Quaternion(0f, Random.rotation.y, 0f, 0f));
 
         TutorialHull hull = collision.collider.GetComponent<TutorialHull>();
         if (hull)
@@ -157,6 +157,8 @@ public class TutorialProjectile : MonoBehaviour
     {
         if (Time.time > birthDate + lifeTime)
         {
+            Delete();
+        } else if (projectileType != 3 && transform.position.y < WaterHelper.GetOceanHeightAt(new Vector2(transform.position.x, transform.position.z))) {
             Delete();
         }
     }

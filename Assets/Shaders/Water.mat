@@ -68,16 +68,16 @@ Material:
         second: .5
       data:
         first:
-          name: _CustomTime
-        second: 73.196907
-      data:
-        first:
           name: _Glossiness
         second: 1
       data:
         first:
           name: _Metallic
         second: 1
+      data:
+        first:
+          name: _CustomTime
+        second: 170.089462
       data:
         first:
           name: _Fresnel
@@ -89,7 +89,7 @@ Material:
       data:
         first:
           name: _Panner
-        second: 14.6393824
+        second: 34.0178947
       data:
         first:
           name: _Lerp
@@ -133,6 +133,10 @@ Material:
         second: {r: 1, g: 1, b: 1, a: 1}
       data:
         first:
+          name: _Color2
+        second: {r: 1, g: 1, b: 1, a: 1}
+      data:
+        first:
           name: _GAmplitude
         second: {r: .140000001, g: .230000004, b: .100000001, a: .224999994}
       data:
@@ -155,10 +159,6 @@ Material:
         first:
           name: _GDirectionCD
         second: {r: .699999988, g: -.680000007, b: .709999979, a: -.200000003}
-      data:
-        first:
-          name: _Color2
-        second: {r: 1, g: 1, b: 1, a: 1}
       data:
         first:
           name: _Color_lerp

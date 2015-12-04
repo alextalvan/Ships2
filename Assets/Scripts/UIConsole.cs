@@ -11,7 +11,7 @@ public class UIConsole : MonoBehaviour
 	GUIStyle _consoleStyle = new GUIStyle();
 
 	static UIConsole _instance = null;
-	bool hide = false;
+	bool hide = true;
 
 	static UIConsole Instance
 	{

@@ -58,16 +58,16 @@ public class TutorialHull : MonoBehaviour
 				shipAttributes.IsDead = true;
 				shipAttributes.OnDeath();
 
+                Instantiate(explosionPrefab, transform.position, new Quaternion(0f, Random.rotation.y, 0f, 0f));
+
                 GameObject splashGO = (GameObject)Instantiate(splashPrefab, transform.position, new Quaternion(0f, Random.rotation.y, 0f, 0f));
                 splashGO.GetComponent<ParticleSystem>().startRotation = Random.Range(0, 180);
                 splashGO.GetComponent<ParticleSystem>().startSize = 50f;
 
-                Instantiate(explosionPrefab, transform.position, new Quaternion(0f, Random.rotation.y, 0f, 0f)); ;
-
                 if (GetComponent<TutorialEnemy>())
 					GetComponent<TutorialEnemy>().OnDeath();
-				
-				if (source != null)
+
+                if (source != null)
 				{
 					TutorialProjectile p = source.GetComponent<TutorialProjectile>();
 					
