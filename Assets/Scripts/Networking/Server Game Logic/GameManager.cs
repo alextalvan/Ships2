@@ -37,7 +37,18 @@ public class GameManager : NetworkBehaviour {
 		if(NetworkServer.active)
 			ArrangeArena ();
 	}
-	
+
+	void Update()
+	{
+		DebugFunc ();
+	}
+
+	void DebugFunc()
+	{
+		if (Input.GetKeyDown (KeyCode.G))
+			WinAction (onlineRef.allOnlinePlayers [0]);
+	}
+
 	// Update is called once per frame
 	void FixedUpdate ()
     {

@@ -163,6 +163,9 @@ MonoBehaviour:
   crossHit: {fileID: 127044, guid: 5c6277b96102dfb4e80baf43385f570f, type: 2}
   projectileType: 2
   explosionPrefab: {fileID: 0}
+  normalImpact: {fileID: 127044, guid: 5c6277b96102dfb4e80baf43385f570f, type: 2}
+  explosionSound: {fileID: 8300000, guid: d74f0c02961f33a44a19be2ad502c6d0, type: 3}
+  hitSound: {fileID: 8300000, guid: 4b49d770f5f1c2f4f8851591878df9a7, type: 3}
   splashPrefab: {fileID: 153714, guid: b9828af26fb651a4286e498fbc78b841, type: 2}
 --- !u!135 &13535416
 SphereCollider:
@@ -2477,6 +2480,18 @@ Prefab:
       propertyPath: debris.Array.data[2]
       value: 
       objectReference: {fileID: 185838, guid: 73092ba537f6d83429603d0f830339dc, type: 2}
+    - target: {fileID: 0}
+      propertyPath: normalImpact
+      value: 
+      objectReference: {fileID: 127044, guid: 5c6277b96102dfb4e80baf43385f570f, type: 2}
+    - target: {fileID: 0}
+      propertyPath: explosionSound
+      value: 
+      objectReference: {fileID: 8300000, guid: d74f0c02961f33a44a19be2ad502c6d0, type: 3}
+    - target: {fileID: 0}
+      propertyPath: hitSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 4b49d770f5f1c2f4f8851591878df9a7, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 193654}

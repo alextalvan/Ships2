@@ -235,8 +235,8 @@ public class ShipScript : NetworkBehaviour
         Vector3 forward = new Vector3(transform.forward.x, 0f, transform.forward.z).normalized;
         float cureMod = (customOnlinePlayer.currentCureCarrier == transform) ? CureScript.cureCarrierSpeedDebuff : 1f;
 
-        float baseWeight = shipAttributes.BasicSpeed * 0.25f;
-        float sailWeight = shipAttributes.BasicSpeed * 0.75f;
+        float baseWeight = shipAttributes.BasicSpeed * 0.5f;
+        float sailWeight = shipAttributes.BasicSpeed * 0.5f;
 
         float totalSpeed = (baseWeight + sailWeight * shipAttributes.SailSpeedModifier) * cureMod * sailState;
 
@@ -277,11 +277,18 @@ public class ShipScript : NetworkBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && !startedPreviewingTrajectory)
         {
             startedPreviewingTrajectory = true;
+			/*
             if (Vector3.Dot(Camera.main.transform.forward, leftSide.forward) > 0f)
                 storedSideIsLeft = true;
             else
                 storedSideIsLeft = false;
+                */
         }
+
+		if (Vector3.Dot(Camera.main.transform.forward, leftSide.forward) > 0f)
+			storedSideIsLeft = true;
+		else
+			storedSideIsLeft = false;
 
         if (startedPreviewingTrajectory)
         {
@@ -380,13 +387,15 @@ public class ShipScript : NetworkBehaviour
             if (m == OnlinePlayerInput.PlayerControlMessage.SHOOT_START_HOLD_DOWN && currentShootInputState == ShootInputState.Idle)
             {
                 currentShootInputState = ShootInputState.Ready;
-                activeSide = (Vector3.Dot(dir, leftSide.forward) > 0f) ? leftSide : rightSide;
-                activeCannons = activeSide.GetComponent<CannonGroup>();
+                
                 return;
             }
             if (m == OnlinePlayerInput.PlayerControlMessage.SHOOT_RELEASE && currentShootInputState == ShootInputState.Ready)
             {
                 currentShootInputState = ShootInputState.Idle;
+
+				activeSide = (Vector3.Dot(dir, leftSide.forward) > 0f) ? leftSide : rightSide;
+				activeCannons = activeSide.GetComponent<CannonGroup>();
 
                 if (activeSide == leftSide)
                 {

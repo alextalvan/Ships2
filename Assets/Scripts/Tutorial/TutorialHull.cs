@@ -42,8 +42,9 @@ public class TutorialHull : MonoBehaviour
 	{
 		if (currentHealth < Mathf.Epsilon)
 			return;
-		
-		shipAttributes.GetPlayerFX.CameraShake(0.375f, damage / 2f);
+
+		if(this.gameObject == GameObject.Find("TutorialSceneReferences").GetComponent<TutorialSceneReferences>().player)
+			shipAttributes.GetPlayerFX.CameraShake(0.375f, damage / 2f);
 		
 		currentHealth -= damage;
         Instantiate(debrisRamming, position, new Quaternion(0f, Random.rotation.y, 0f, 0f));

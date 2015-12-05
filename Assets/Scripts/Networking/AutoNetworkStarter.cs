@@ -21,6 +21,7 @@ public class AutoNetworkStarter : MonoBehaviour
 
 			if(net.clientAutoReconnect)
 			{
+				refs.firstMenuPage.Disable();
 				StartCoroutine(DelayedClientConnect());
 				//net.StartClientAttempt();
 				return;
@@ -41,7 +42,7 @@ public class AutoNetworkStarter : MonoBehaviour
 		refs.autoConnectMessage.Enable ();
 		yield return new WaitForSeconds(5);
 		net.StartClientAttempt();
-		refs.autoConnectMessage.Disable ();
+		//refs.autoConnectMessage.Disable ();
 	}
 
 	IEnumerator DelayedServerStart()
@@ -49,7 +50,7 @@ public class AutoNetworkStarter : MonoBehaviour
 		refs.autoRestartMessage.Enable ();
 		yield return new WaitForSeconds(2);
 		net.StartServerAttempt ();
-		refs.autoRestartMessage.Disable ();
+		//refs.autoRestartMessage.Disable ();
 	}
 
 	// Use this for initialization
@@ -66,9 +67,11 @@ public class AutoNetworkStarter : MonoBehaviour
 
 	void PerformCleanup()
 	{
+
 		LobbyPlayerInfo[] garbage = GameObject.FindObjectsOfType<LobbyPlayerInfo> ();
 		foreach (LobbyPlayerInfo p in garbage)
 			Destroy (p.gameObject);
+
 
 		CustomLobbyPlayer[] garbage2 = GameObject.FindObjectsOfType<CustomLobbyPlayer> ();
 

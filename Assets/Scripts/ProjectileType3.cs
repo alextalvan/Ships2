@@ -1,46 +1,88 @@
 ﻿using UnityEngine;
 using UnityEngine.Networking;
+using System.Collections;
 
 public class ProjectileType3 : Projectile
 {
     [SerializeField]
     GameObject ripples;
 
+	[SerializeField]
+	float explosionRadius;
+
+	bool exploded = false;
+
     protected override void DealDamage(Collision collision)
     {
         if (collision.collider.GetComponent<ProjectileType3>())
             return;
 
-        HullOnline hull = collision.collider.GetComponent<HullOnline>();
-        if (hull)
-        {
-            hull.Damage(collision.contacts[0].point, hullDamage, damageRadius, gameObject);
-            hull.GetComponent<ShipAttributesOnline>().DamageAllSails(sailDamage);
-            hull.GetRigidBody.AddExplosionForce(explosionForce, collision.contacts[0].point, damageRadius);
-            RpcSpawnWrecks(collision.contacts[0].point);
-            base.DealDamage(collision);
-        }
-        Delete(false);
+		ForceExplosion ();
     }
 
     [ClientCallback]
-    protected override void ProcessSplash()
+    protected override void ProcessSplash(float size = 5f)
     {
-        Vector3 pos = transform.position;
-        if (!spawnedSplash && pos.y <= WaterHelper.GetOceanHeightAt(new Vector2(pos.x, pos.z)))
-        {
-            spawnedSplash = true;
-            GameObject splashGO = (GameObject)Instantiate(splashPrefab, pos, new Quaternion(0f, Random.rotation.y, 0f, 0f));
-            splashGO.GetComponent<ParticleSystem>().startRotation = Random.Range(0, 180);
-            ripples.SetActive(true);
-        }
+		if (spawnedSplash)
+			return;
+
+		base.ProcessSplash (25f);
+		gameObject.SetActive (true);
+		ripples.SetActive (true);
     }
 
+
+	public void ForceExplosion()
+	{
+		if (exploded)
+			return;
+
+		exploded = true;
+
+		DoAreaDamage ();
+		Delete ();
+	}
+
+	public void ForceDelayedExplosion()
+	{
+		StartCoroutine (DelayedExplosion (0.1f));
+	}
+
+	IEnumerator DelayedExplosion(float delay)
+	{
+		yield return new WaitForSeconds (delay);
+		ForceExplosion ();
+	}
+
+	void DoAreaDamage()
+	{
+		Vector3 myPos = GetComponent<Rigidbody> ().position;
+		Collider[] objects = Physics.OverlapSphere (myPos, explosionRadius);
+		foreach (Collider c in objects) 
+		{
+			HullOnline hull = c.GetComponent<HullOnline>();
+			if (hull)
+			{
+				hull.Damage(myPos, hullDamage, damageRadius, gameObject);
+				hull.GetComponent<ShipAttributesOnline>().DamageAllSails(sailDamage);
+				hull.GetRigidBody.AddExplosionForce(explosionForce, myPos, damageRadius);
+				RpcSpawnWrecks(myPos);
+				SpawnDebrisAt(myPos,(myPos-hull.transform.position).normalized,hull.GetComponent<CustomOnlinePlayer>());
+			}
+
+			ProjectileType3 otherProj = c.GetComponent<ProjectileType3>();
+			if(otherProj)
+			{
+				otherProj.ForceDelayedExplosion();
+			}
+		}
+	}
+
     [ServerCallback]
-    protected override void Delete(bool underWater)
+    protected override void Delete()
     {
         RpcExplode(transform.position, ImpactSoundType.EXPLOSION);
         RpcSpawnSplash(new Vector3(transform.position.x, WaterHelper.GetOceanHeightAt(new Vector2(transform.position.x, transform.position.z)), transform.position.z), 25f);
-        base.Delete(false);
+        base.Delete();
     }
 }

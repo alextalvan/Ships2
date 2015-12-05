@@ -20,6 +20,7 @@ public class SpecialDropdown : MonoBehaviour {
 	{
 		//modTarget.
 		_storedList = _thisDropdown.options;
+		ClampOptionCount ();
 	}
 
 

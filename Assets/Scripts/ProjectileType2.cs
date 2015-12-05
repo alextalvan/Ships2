@@ -27,28 +27,10 @@ public class ProjectileType2 : Projectile
 			hitShip = true;
 		}
 		
-		if(!hitShip)
+		if(!hitShip && transform.position.y >= WaterHelper.GetOceanHeightAt (new Vector2 (transform.position.x, transform.position.z)))
 			RpcExplode(transform.position, ImpactSoundType.ROCK);
 		
-		Delete(false);
+		Delete();
 	}
-	
-	[ServerCallback]
-	protected override void ProcessDeath()
-	{
-		if (Time.time > birthDate + lifeTime)
-			Delete(false);
-		else if (transform.position.y < WaterHelper.GetOceanHeightAt(new Vector2(transform.position.x, transform.position.z)))
-			Delete(true);
-	}
-	
-	[ServerCallback]
-	protected override void Delete(bool underWater)
-	{
-		if (underWater)
-			RpcSpawnSplash(transform.position, 5f);
-		//RpcExplode(transform.position);
-		
-		base.Delete(underWater);
-	}
+
 }

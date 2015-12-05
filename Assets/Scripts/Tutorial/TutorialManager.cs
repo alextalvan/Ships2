@@ -65,7 +65,7 @@ public class TutorialManager : MonoBehaviour {
 	{
 		StartCoroutine (StartShip ());
 		ship = player.GetComponent<TutorialShipScript> ();
-		SetText("Welcome to the [game name] tutorial.");
+		SetText("Welcome to the Cursed Waters tutorial.");
 		ship.CombatLock = true;
 	}
 	
@@ -85,8 +85,8 @@ public class TutorialManager : MonoBehaviour {
 		switch (s) 
 		{
 		case TUTORIAL_STATES.WINCOND_EXPLAIN:
-			SetText("In [game name], the primary objective is to grab the <color=yellow>CURE</color> " +
-			        " to your curse and hold it for [x] minutes. The first player to do this wins the game!");
+			SetText("In Cursed Waters, the primary objective is to grab the <color=yellow>CURE</color> " +
+			        " to your curse and hold it for 2 minutes. The first player to do this wins the game!");
 			continueButton.gameObject.SetActive(true);
 			break;
 
@@ -103,6 +103,7 @@ public class TutorialManager : MonoBehaviour {
 			SetText("The chart pieces increase the detection distance for the <color=yellow>CURE</color>. Find the cure to continue.");
 			ship.Freeze();
 			ship.MovementLock = false;
+			arrow.currentState = TutorialArrow.TUTORIAL_ARROW_STATE.CURE;
 			cure.SetActive(true);
 			break;
 
@@ -133,7 +134,7 @@ public class TutorialManager : MonoBehaviour {
 			break;
 
 		case TUTORIAL_STATES.END:
-			SetText("This concludes the [GAME NAME] tutorial. Good luck and have fun playing.");
+			SetText("This concludes the Cursed Waters tutorial. Good luck and have fun playing.");
 			continueButton.gameObject.SetActive(true);
 			break;
 		default:
@@ -192,7 +193,7 @@ public class TutorialManager : MonoBehaviour {
 
 	IEnumerator StartShip()
 	{
-		yield return new WaitForSeconds(5);
+		yield return new WaitForSeconds(1f);
 		player.SetActive (true);
 		tutorialDialog.Enable ();
 	}

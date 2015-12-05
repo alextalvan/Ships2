@@ -35,6 +35,14 @@ public class TutorialProjectile : MonoBehaviour
     [SerializeField]
     private GameObject explosionPrefab;
 
+	[SerializeField]
+	private GameObject normalImpact;
+
+	[SerializeField]
+	private AudioClip explosionSound;
+
+	[SerializeField]
+	private AudioClip hitSound;
     //splash
     [SerializeField]
     GameObject splashPrefab;
@@ -104,8 +112,13 @@ public class TutorialProjectile : MonoBehaviour
             return;
         }
 
-        if (projectileType == 3)
-            Instantiate(explosionPrefab, transform.position, new Quaternion(0f, Random.rotation.y, 0f, 0f));
+        if (projectileType == 3) {
+			Instantiate (explosionPrefab, transform.position, Quaternion.identity);
+			AudioHelper.PlayAt (explosionSound, transform.position);
+		} else {
+			AudioHelper.PlayAt(hitSound,transform.position);
+			Instantiate (normalImpact, transform.position, Quaternion.identity);
+		}
 
         TutorialHull hull = collision.collider.GetComponent<TutorialHull>();
         if (hull)
@@ -113,7 +126,7 @@ public class TutorialProjectile : MonoBehaviour
             hull.Damage(collision.contacts[0].point, hullDamage, damageRadius, gameObject);
             hull.GetComponent<TutorialShipAttributes>().DamageAllSails(sailDamage);
             SpawnHit(collision.contacts[0].point);
-            hull.GetComponent<PlayerFX>().PlaySound(PlayerFX.PLAYER_SOUNDS.EXPLOSION,true);
+            //hull.GetComponent<PlayerFX>().PlaySound(PlayerFX.PLAYER_SOUNDS.HIT,true);
 
             int randomNmb = Random.Range(0, 4);
 
@@ -140,6 +153,7 @@ public class TutorialProjectile : MonoBehaviour
 
             debrisObj.GetComponent<TutorialPickup>().owner = collision.collider.GetComponent<CustomOnlinePlayer>();
         }
+		
 
         Delete();
 

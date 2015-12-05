@@ -90,10 +90,20 @@ public abstract class Projectile : NetworkBehaviour
         ProcessDeath();
     }
 
-    [ClientRpc]
-    protected void RpcSpawnSplash(Vector3 pos, float size)
+
+	[ClientRpc]
+	protected void RpcSpawnSplash(Vector3 pos, float size)
+	{
+		GameObject splashGO = (GameObject)Instantiate(splashPrefab, pos, Quaternion.identity);
+		splashGO.GetComponent<ParticleSystem>().startRotation = Random.Range(0, 180);
+		splashGO.GetComponent<ParticleSystem>().startSize = size;
+	}
+
+
+    protected void SpawnSplash(float size)
     {
-        GameObject splashGO = (GameObject)Instantiate(splashPrefab, pos, new Quaternion(0f, Random.rotation.y, 0f, 0f));
+        //GameObject splashGO = (GameObject)Instantiate(splashPrefab, transform.position, new Quaternion(0f, Random.rotation.y, 0f, 0f));
+		GameObject splashGO = (GameObject)Instantiate(splashPrefab, transform.position, Quaternion.identity);
         splashGO.GetComponent<ParticleSystem>().startRotation = Random.Range(0, 180);
         splashGO.GetComponent<ParticleSystem>().startSize = size;
     }
@@ -136,6 +146,34 @@ public abstract class Projectile : NetworkBehaviour
         NetworkServer.Spawn(debrisObj);
     }
 
+	[ServerCallback]
+	protected void SpawnDebrisAt(Vector3 point, Vector3 normal, CustomOnlinePlayer owner)
+	{
+		int randomNmb = Random.Range(0, 4);
+		
+		if (randomNmb != 1)
+			return;
+		
+		int rndDebris = Random.Range(0, debris.Count);
+		
+		float rndForce = Random.Range(50f, 100f);
+		
+		Vector3 dir = point + normal * 5f;
+		
+		GameObject debrisObj = (GameObject)Instantiate(debris[rndDebris], dir, Random.rotation);
+		Rigidbody debrisObjRB = debrisObj.GetComponent<Rigidbody>();
+		
+		float debrisMass = debrisObjRB.mass;
+		
+		Vector3 force = (Vector3.up * upwardsModifier + dir.normalized * rndForce) * debrisMass;
+		
+		debrisObjRB.AddForce(force);
+		
+		debrisObj.GetComponent<Pickup> ().owner = owner;
+		
+		NetworkServer.Spawn(debrisObj);
+	}
+
     void OnCollisionEnter(Collision collision)
     {
         DealDamage(collision);
@@ -145,17 +183,22 @@ public abstract class Projectile : NetworkBehaviour
     protected virtual void ProcessDeath()
     {
         if (Time.time > birthDate + lifeTime)
-            Delete(false);
+            Delete();
     }
 
     [ClientCallback]
-    protected virtual void ProcessSplash()
+    protected virtual void ProcessSplash(float size = 5f)
     {
-
+		if (!spawnedSplash && transform.position.y < WaterHelper.GetOceanHeightAt (new Vector2 (transform.position.x, transform.position.z))) 
+		{
+			spawnedSplash = true;
+			gameObject.SetActive(false);
+			SpawnSplash(size);
+		}
     }
 
     [ServerCallback]
-    protected virtual void Delete(bool underWater)
+    protected virtual void Delete()
     {
         NetworkServer.Destroy(gameObject);
     }

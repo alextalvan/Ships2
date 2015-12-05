@@ -84,6 +84,7 @@ public class CustomNetManager : NetworkLobbyManager {
 		StartClient();
 		clientAutoReconnect = false;
 		serverAutoRestart = false;
+		GameObject.Find ("OfflineSceneReferences").GetComponent<OfflineSceneReferences> ().autoConnectMessage.Disable ();
 		//isClient = true;
 	}
 
@@ -92,12 +93,19 @@ public class CustomNetManager : NetworkLobbyManager {
 		networkAddress = addressField;
 		networkPort = portField;
 		UIConsole.Log("Starting server with port: "  + portField);
-		StartServer ();
 		resetSpawnPointsOnSceneChange = true;
 		serverAutoRestart = true;
 		nicknames = new Dictionary<int, string>();
+		StartServer ();
 		//isClient = false;
 	}
+
+	public override void OnLobbyStartServer ()
+	{
+		GameObject.Find ("OfflineSceneReferences").GetComponent<OfflineSceneReferences> ().autoRestartMessage.Disable ();
+	}
+
+
 
 	public void Disconnect()
 	{
@@ -135,7 +143,9 @@ public class CustomNetManager : NetworkLobbyManager {
 
 	public override void OnServerAddPlayer (NetworkConnection conn, short playerControllerId)
 	{
-		//UIConsole.Log ("OnServerAddPlayer " + Application.loadedLevelName);
+		//remove previous player objects for the connection, if they exist
+		NetworkServer.DestroyPlayersForConnection (conn);
+	
 		if (CheckIfLobbyScene ()) 
 		{
 			base.OnServerAddPlayer (conn, playerControllerId);
@@ -191,13 +201,14 @@ public class CustomNetManager : NetworkLobbyManager {
 
 		PortMapper pmapper = GetComponent<PortMapper> ();
 
-		if (pmapper != null) 
+		if (pmapper != null && pmapper.enabled) 
 		{
 			pmapper.Init();
 		}
 
 		//UI
 		GameObject.Find ("OfflineSceneReferences").GetComponent<OfflineSceneReferences> ().firstMenuPage.Disable ();
+		GameObject.Find ("OfflineSceneReferences").GetComponent<OfflineSceneReferences> ().serverRunningMessage.Enable ();
 	}
 
 	public override void OnStopServer ()
@@ -208,7 +219,7 @@ public class CustomNetManager : NetworkLobbyManager {
 		//clean up ports
 		PortMapper pmapper = GetComponent<PortMapper> ();
 		
-		if (pmapper != null) 
+		if (pmapper != null && pmapper.enabled) 
 		{
 			pmapper.Stop();
 		}
@@ -232,10 +243,10 @@ public class CustomNetManager : NetworkLobbyManager {
 		base.OnClientDisconnect (conn);
 		UIConsole.Log ("Client has been disconnected.");
 
-		string lobbyScene = this.lobbyScene;
-		StopHost ();
+		//string lobbyScene = this.lobbyScene;
+		//StopHost ();
 		//startedServer = false;
-		Application.LoadLevel(lobbyScene);
+		//Application.LoadLevel(lobbyScene);
 		return;
 
 
@@ -243,7 +254,9 @@ public class CustomNetManager : NetworkLobbyManager {
 	
 	void ShowLobbyInterface()
 	{
-		GameObject.Find ("OfflineSceneReferences").GetComponent<OfflineSceneReferences> ().lobbyMenuPage.Enable ();
+		OfflineSceneReferences refs = GameObject.Find ("OfflineSceneReferences").GetComponent<OfflineSceneReferences> ();
+		refs.lobbyMenuPage.Enable ();
+		refs.connectAttempMessage.Disable ();
 	}
 	
 
@@ -263,8 +276,6 @@ public class CustomNetManager : NetworkLobbyManager {
 	{
 		//test
 	}
-
-
 
 	//lobby information handling
 
@@ -293,6 +304,8 @@ public class CustomNetManager : NetworkLobbyManager {
 		if (Input.GetKey (KeyCode.K) && Input.GetKeyDown (KeyCode.L)) 
 		{
 			Disconnect();
+			serverAutoRestart = false;
+			clientAutoReconnect = false;
 		}
 
 	}

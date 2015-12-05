@@ -36,6 +36,6 @@ public class UpgradeHelper  {
 			break;
 		}
 
-		target.GetComponent<PlayerCaptionController>().RpcPushCaption("You have been upgraded with: " + up.ToString(),4f);
+		//target.GetComponent<PlayerCaptionController>().RpcPushCaption("You have been upgraded with: " + up.ToString(),4f);
 	}
 }

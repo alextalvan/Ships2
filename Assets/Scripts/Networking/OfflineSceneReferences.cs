@@ -11,9 +11,11 @@ public class OfflineSceneReferences : MonoBehaviour {
 	{
 		Application.LoadLevel (tutorialScene);
 	}
-	
 
-	public List<string> sounds = new List<string> ();
+	[SerializeField]
+	List<AudioClip> _sounds = new List<AudioClip>();
+
+	AudioSource _source;
 
 	public enum MENU_SOUNDS
 	{
@@ -24,11 +26,14 @@ public class OfflineSceneReferences : MonoBehaviour {
 	{
 		Cursor.visible = true;
 		MusicManager.Singleton.Music.setParameterValue ("Menu", 1f);
+		_source = GetComponent<AudioSource> ();
 	}
 
 	public void PlaySound(MENU_SOUNDS s)
 	{
-		FMOD_StudioSystem.instance.PlayOneShot (sounds [(int)s],Camera.main.transform.position);
+		_source.Stop ();
+		_source.clip = _sounds [(int)s];
+		_source.Play ();
 	}
 
 	public void PlayClick()
@@ -59,7 +64,12 @@ public class OfflineSceneReferences : MonoBehaviour {
 		GameObject.Find ("NetworkManager").GetComponent<CustomNetManager> ().StartServerAttempt ();
 	}
 
-
+	public void SetConnectAttemptText()
+	{
+		CustomNetManager net = GameObject.Find ("NetworkManager").GetComponent<CustomNetManager> ();
+		connectAttemptText.text = "Attempting to connect to the server " + net.networkAddress + ":" + net.networkPort + "." +
+								  "\nPress K+L to disconnect";
+	}
 
 	//find lobbyplayer in all of the instances
 	bool foundMyPlayer = false;
@@ -104,4 +114,7 @@ public class OfflineSceneReferences : MonoBehaviour {
 
 	public GUIDialog autoConnectMessage;
 	public GUIDialog autoRestartMessage;
+	public GUIDialog serverRunningMessage;
+	public GUIDialog connectAttempMessage;
+	public Text connectAttemptText;
 }
