@@ -10,7 +10,7 @@ public class CustomLobbyPlayer : NetworkLobbyPlayer
 	public void CmdSendNickname(string nickname)
 	{
 		CustomNetManager net = GameObject.Find ("NetworkManager").GetComponent<CustomNetManager> ();//.nicknames [this.connectionToServer] = nickname;
-		int myIndex = NetworkServer.connections.IndexOf (this.connectionToServer);
+		int myIndex = NetworkServer.connections.IndexOf (this.connectionToClient);
 		if (!net.nicknames.ContainsKey (myIndex))
 			net.nicknames.Add (myIndex, nickname);
 		else

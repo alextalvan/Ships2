@@ -117,4 +117,22 @@ public class OfflineSceneReferences : MonoBehaviour {
 	public GUIDialog serverRunningMessage;
 	public GUIDialog connectAttempMessage;
 	public Text connectAttemptText;
+
+	public InputField cureTimeField;
+
+	public InputField changeHiddenTimeField;
+
+	public void ChangeCureTime()
+	{
+		int time;
+		if (int.TryParse (cureTimeField.text, out time) && time > 0f)
+			GameManager.initialCureTime = time;
+	}
+
+	public void ChangeHideTime()
+	{
+		int time;
+		if (int.TryParse (changeHiddenTimeField.text, out time) && time > 0f)
+			GameManager.initialPhase1Time = time;
+	}
 }

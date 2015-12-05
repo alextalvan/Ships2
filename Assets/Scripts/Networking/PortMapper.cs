@@ -68,13 +68,13 @@ public class PortMapper : MonoBehaviour
 
 	void AddMapping()
 	{
-		if (_device == null || portToForward < 0)
+		if (_device == null || portToForward < 0 || portToForward > 65535)
 			return;
 
 		Mapping m = new Mapping (Protocol.Udp, portToForward, portToForward, 0);
-		m.Description = "Unity Game - Pirate Ships (UDP)";
+		m.Description = "Cursed Waters (UDP)";
 		Mapping m2 = new Mapping (Protocol.Tcp, portToForward, portToForward, 0);
-		m2.Description = "Unity Game - Pirate Ships (TCP)";
+		m2.Description = "Cursed Waters (TCP)";
 
 		_maps.Add (m);
 		_maps.Add (m2);

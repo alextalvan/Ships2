@@ -96,6 +96,7 @@ public class CustomNetManager : NetworkLobbyManager {
 		resetSpawnPointsOnSceneChange = true;
 		serverAutoRestart = true;
 		nicknames = new Dictionary<int, string>();
+		CustomOnlinePlayer.ResetColorList ();
 		StartServer ();
 		//isClient = false;
 	}
@@ -209,6 +210,8 @@ public class CustomNetManager : NetworkLobbyManager {
 		//UI
 		GameObject.Find ("OfflineSceneReferences").GetComponent<OfflineSceneReferences> ().firstMenuPage.Disable ();
 		GameObject.Find ("OfflineSceneReferences").GetComponent<OfflineSceneReferences> ().serverRunningMessage.Enable ();
+
+
 	}
 
 	public override void OnStopServer ()
@@ -226,6 +229,8 @@ public class CustomNetManager : NetworkLobbyManager {
 
 		//clean up lobby players
 		lobbySlots = new NetworkLobbyPlayer[maxPlayers];
+
+
 
 	}
 
@@ -306,6 +311,16 @@ public class CustomNetManager : NetworkLobbyManager {
 			Disconnect();
 			serverAutoRestart = false;
 			clientAutoReconnect = false;
+
+			if(CheckIfLobbyScene())
+			{
+				OfflineSceneReferences refs = GameObject.Find ("OfflineSceneReferences").GetComponent<OfflineSceneReferences> ();
+				refs.lobbyMenuPage.Disable ();
+				refs.firstMenuPage.Enable();
+				refs.autoConnectMessage.Disable();
+				refs.autoRestartMessage.Disable();
+
+			}
 		}
 
 	}

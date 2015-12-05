@@ -5,7 +5,12 @@ using UnityEngine.Networking;
 
 public class GameManager : NetworkBehaviour {
 
-    float phase1Time = 120f;
+	[SerializeField]
+    float phase1Time;
+
+
+	public static float initialPhase1Time = 120f;
+	public static float initialCureTime = 120f;
 
 	//temp
 	[SerializeField]
@@ -33,6 +38,7 @@ public class GameManager : NetworkBehaviour {
 	{
 		//test
 		onlineRef = GameObject.Find ("OnlineSceneReferences").GetComponent<OnlineSceneReferences> ();
+		phase1Time = initialPhase1Time;
 
 		if(NetworkServer.active)
 			ArrangeArena ();

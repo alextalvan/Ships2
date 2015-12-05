@@ -6095,7 +6095,7 @@ MonoBehaviour:
   - {fileID: 11489712}
   hullMaxHealth: 200
   sailMaxHealth: 100
-  basicSpeed: 10
+  basicSpeed: 12.5
   steeringModifier: 250
   shootRangeMultiplier: 1
   cannonChargeRate: 5
@@ -75526,7 +75526,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: basicSpeed
-      value: 7.5
+      value: 12.5
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: regenerationRate

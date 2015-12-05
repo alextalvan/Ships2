@@ -12,7 +12,7 @@ public class CureScript : NetworkBehaviour {
 	//bool wasHeldPrevFrame;
 	//Vector3 lastPos;
 
-	public static float cureCarrierSpeedDebuff = 0.85f;
+	public static float cureCarrierSpeedDebuff = 0.65f;
 
 	void Start()
 	{

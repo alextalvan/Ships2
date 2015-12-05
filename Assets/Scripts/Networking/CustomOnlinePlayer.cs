@@ -7,7 +7,8 @@ using UnityEngine.UI;
 public class CustomOnlinePlayer : NetworkBehaviour
 {
 
-    public const float distancePerMapPiece = 25f;
+    public static float distancePerMapPiece = 25f;
+
     static Vector3 hiddenLocation = new Vector3(100000, 100000, 100000);
 
     [SyncVar]
@@ -39,9 +40,9 @@ public class CustomOnlinePlayer : NetworkBehaviour
 		}
 	}
 
-    public float cureCarryTimeLeft = 60f;
+    public float cureCarryTimeLeft;
 
-    [SyncVar]
+
     public Color IndividualColor = Color.white;
     public string IndividualName = "Player";
 
@@ -52,17 +53,37 @@ public class CustomOnlinePlayer : NetworkBehaviour
     GameObject arrow;
 
     OnlineSceneReferences onlineRef;
+
+	private static List<Color> _playerColors;
+
+	public static void ResetColorList()
+	{
+		_playerColors = new List<Color> (10);
+		_playerColors.Add(new Color (0.933f, 0.929f, 0.875f));//titanium hwhite
+		_playerColors.Add(new Color (0.165f, 0.392f, 0.678f));//phthalo blue
+		_playerColors.Add(new Color (0.212f, 0.216f, 0.235f));//midnight black
+		_playerColors.Add(new Color (0.267f, 0.502f, 0.165f));//sap green
+		_playerColors.Add(new Color (0.675f, 0.106f, 0.173f));//cadmium red
+		_playerColors.Add(new Color (0.824f, 0.545f, 0.137f));//indian yellow
+		_playerColors.Add(new Color (0.780f, 0.333f, 0.435f));//pork pink
+		_playerColors.Add(new Color (0.000f, 0.878f, 0.878f));//cyan
+		_playerColors.Add(new Color (1.000f, 0.529f, 0.220f));//orange
+		_playerColors.Add(new Color (0.627f, 0.227f, 1.000f));//purple
+
+	}
+
     // Use this for initialization
     void Start()
     {
 
         onlineRef = GameObject.Find("OnlineSceneReferences").GetComponent<OnlineSceneReferences>();
+		onlineRef.allOnlinePlayers.Add(this);
         //GameObject.Find ("OnlineSceneReferences").GetComponent<OnlineSceneReferences> ()
         ClientSideSetup();
         //test
         ServersideSetup();
 
-        onlineRef.allOnlinePlayers.Add(this);
+        
     }
 
 	IEnumerator ShowInitialMessage()
@@ -88,22 +109,53 @@ public class CustomOnlinePlayer : NetworkBehaviour
     [ServerCallback]
     void ServersideSetup()
     {
-        Color c = new Color(Mathf.Clamp01(Random.value + 0.25f), Mathf.Clamp01(Random.value + 0.25f), Mathf.Clamp01(Random.value + 0.25f));
-        foreach (Renderer r in _objectsToColor)
-        {
-            r.material.color = c;
-        }
+		cureCarryTimeLeft = GameManager.initialCureTime;
 
-        IndividualColor = c;
+		SetupColor ();
+
+		SyncColorForAll ();
 
 		CustomNetManager net = GameObject.Find ("NetworkManager").GetComponent<CustomNetManager> ();
-		int myIndex = NetworkServer.connections.IndexOf (this.connectionToServer);
+		int myIndex = NetworkServer.connections.IndexOf (this.connectionToClient);
 
 		if (net.nicknames.ContainsKey (myIndex))
 			this.IndividualName = net.nicknames [myIndex];
     }
 
-    [ClientCallback]
+	public void SetupColor()
+	{
+		int index = Random.Range (0, _playerColors.Count);
+		Color c = _playerColors [index];
+		_playerColors.RemoveAt (index);
+		foreach (Renderer r in _objectsToColor)
+		{
+			r.material.color = c;
+		}
+		
+		IndividualColor = c;
+	}
+
+	public void SyncColorForAll()
+	{
+		foreach (CustomOnlinePlayer p in onlineRef.allOnlinePlayers) 
+		{
+			p.RpcSetColor(p.IndividualColor);
+		}
+	}
+
+	[ClientRpc]
+	public void RpcSetColor(Color c)
+	{
+		foreach (Renderer r in _objectsToColor)
+		{
+			r.material.color = c;
+			r.material.SetVector("_SecColor",new Vector4(c.r,c.g,c.b,c.a));
+		}
+		
+		IndividualColor = c;
+	}
+    //[ClientCallback]
+	/*
     public void SyncColor()
     {
         //GetComponent<Renderer> ().material.color = IndividualColor; 
@@ -112,13 +164,14 @@ public class CustomOnlinePlayer : NetworkBehaviour
             r.material.color = IndividualColor;
         }
     }
+    */
 
     // Update 
     void FixedUpdate()
     {
         CalculateIfCanSeeCure();
         SyncCureLocation();
-        SyncColor();
+        //SyncColor();
         UpdateArrow();
     }
 

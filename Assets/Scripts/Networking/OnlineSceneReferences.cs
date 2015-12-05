@@ -18,6 +18,12 @@ public class OnlineSceneReferences : MonoBehaviour {
 		net.clientAutoReconnect = !net.clientAutoReconnect;
 	}
 
+	public void Disconnect()
+	{
+		CustomNetManager net = GameObject.Find ("NetworkManager").GetComponent<CustomNetManager> ();
+		net.Disconnect ();
+	}
+
 
 	void OnDestroy()
 	{
