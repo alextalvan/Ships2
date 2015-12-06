@@ -94,7 +94,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 193654}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 220.569473, y: 1.04442215, z: 336.567169}
+  m_LocalPosition: {x: 371.089874, y: 450.139343, z: -408.040771}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 406054}
@@ -156,7 +156,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 193654}
-  m_Mesh: {fileID: 4300000, guid: b44eb4a9a36f3a8408ab9ab27ab2eb9e, type: 3}
+  m_Mesh: {fileID: 4300000, guid: d055aa5e2c8e8fd4db1d920bd404ce9d, type: 3}
 --- !u!54 &5496096
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -2351,7 +2351,7 @@ ParticleSystem:
   looping: 1
   prewarm: 0
   playOnAwake: 1
-  moveWithTransform: 1
+  moveWithTransform: 0
   InitialModule:
     enabled: 1
     startLifetime:
@@ -2515,7 +2515,7 @@ ParticleSystem:
         rgba: 4293787611
       minMaxState: 0
     startSize:
-      scalar: 5
+      scalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -2635,35 +2635,20 @@ ParticleSystem:
   SizeModule:
     enabled: 1
     curve:
-      scalar: 2
+      scalar: 10
       maxCurve:
         serializedVersion: 2
         m_Curve:
-        - time: .00396831241
+        - time: 0
           value: 0
-          inSlope: 2
-          outSlope: 2
-          tangentMode: 0
-        - time: .23849453
-          value: .224316821
-          inSlope: .860393047
-          outSlope: .860393047
-          tangentMode: 0
-        - time: .509010851
-          value: .512781382
-          inSlope: 1.27822161
-          outSlope: 1.27822161
-          tangentMode: 0
-        - time: .788312912
-          value: .78238678
-          inSlope: 1.05828047
-          outSlope: 1.05828047
-          tangentMode: 0
+          inSlope: 1
+          outSlope: 1
+          tangentMode: 10
         - time: 1
           value: 1
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
+          inSlope: 1
+          outSlope: 1
+          tangentMode: 10
         m_PreInfinity: 2
         m_PostInfinity: 2
       minCurve:
