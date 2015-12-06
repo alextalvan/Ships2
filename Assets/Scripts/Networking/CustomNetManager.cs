@@ -11,7 +11,7 @@ public class CustomNetManager : NetworkLobbyManager {
 	bool resetSpawnPointsOnSceneChange = false;
 
 	[SerializeField]
-	string addressField = "192.168.0.100";
+	string addressField = "127.0.0.1";
 	[SerializeField]
 	int portField = 7777;
 	public bool isHudEnabled;

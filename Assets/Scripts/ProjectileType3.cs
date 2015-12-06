@@ -17,7 +17,8 @@ public class ProjectileType3 : Projectile
         if (collision.collider.GetComponent<ProjectileType3>())
             return;
 
-		ForceExplosion ();
+		Delete ();
+		//ForceExplosion ();
     }
 
     [ClientCallback]
@@ -40,7 +41,7 @@ public class ProjectileType3 : Projectile
 		exploded = true;
 
 		DoAreaDamage ();
-		Delete ();
+		//Delete ();
 	}
 
 	public void ForceDelayedExplosion()
@@ -51,7 +52,8 @@ public class ProjectileType3 : Projectile
 	IEnumerator DelayedExplosion(float delay)
 	{
 		yield return new WaitForSeconds (delay);
-		ForceExplosion ();
+		//ForceExplosion ();
+		Delete ();
 	}
 
 	void DoAreaDamage()
@@ -83,6 +85,7 @@ public class ProjectileType3 : Projectile
     {
         RpcExplode(transform.position, ImpactSoundType.EXPLOSION);
         RpcSpawnSplash(new Vector3(transform.position.x, WaterHelper.GetOceanHeightAt(new Vector2(transform.position.x, transform.position.z)), transform.position.z), 25f);
+		ForceExplosion ();
         base.Delete();
     }
 }

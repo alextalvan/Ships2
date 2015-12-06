@@ -151,9 +151,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 716f183b3c96e994eaabcbfb2ff9ac5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sendRate: .0500000007
+  _sendRate: .100000001
   _interpRate: .100000001
   _snapThreshold: 20
+  syncRotation: 1
 --- !u!114 &11487336
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -225,6 +226,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: voxelsYDownMod
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _sendRate
+      value: .100000001
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

@@ -77,7 +77,7 @@ Material:
       data:
         first:
           name: _CustomTime
-        second: 108.389839
+        second: 186.265121
       data:
         first:
           name: _Wave_amount
@@ -85,7 +85,7 @@ Material:
       data:
         first:
           name: _Panner
-        second: 21.677969
+        second: 37.2530251
       data:
         first:
           name: _Lerp

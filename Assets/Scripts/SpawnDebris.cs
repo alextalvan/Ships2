@@ -1,56 +1,56 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.Networking;
+using System.Collections;
 
 public class SpawnDebris : NetworkBehaviour {
 
     [SerializeField]
     private List<GameObject> debris = new List<GameObject>();
 
+	[SerializeField]
+	float timeBetweenWaves = 35f;
+
+	[SerializeField]
+	int debrisPerWave = 20;
+
+	[SerializeField]
+	float depthOfSpawn = 10f;
+
     //List<GameObject> debrisList = new List<GameObject>();
 
     [SerializeField]
-    Transform sea;
+	PickupSpawnPointList helper;
 
-    float existanceTime = 0;
+   
 
-    RaycastHit hit;
+    //RaycastHit hit;
 	// Use this for initialization
-	void Start () {
-	    
+	void Start () 
+	{
+		StartCoroutine (ContinuousSpawn ());
 	}
-	
-	// Update is called once per frame
-	void Update ()
-    {
-        existanceTime += Time.deltaTime;
-        if (existanceTime >= 35f)
-        {
+
+
+	IEnumerator ContinuousSpawn()
+	{
+		for (;;) 
+		{
 			spawnDebris();
-            existanceTime = 0f;
-        }
-    }
+			yield return new WaitForSeconds(timeBetweenWaves);
+		}
+	}
 
     [ServerCallback]
     void spawnDebris() {
-		for (int i=0; i<10; ++i) {
-
-			Vector3 rndPosWithinSea;
-			rndPosWithinSea = new Vector3 (Random.Range (-450f, 350f), Random.Range (-1, 1f), Random.Range (0f, 800f));
-			//rndPosWithinSea = sea.TransformPoint(rndPosWithinSea * 0.5f);
-			if (Physics.Raycast (transform.position, rndPosWithinSea, out hit, (rndPosWithinSea - transform.position).magnitude)) {
-				print ("Bad Debris at: " + rndPosWithinSea);
-				if (hit.transform != transform) {
-					return;
-               
-				}
-			}
+		for (int i=0; i<debrisPerWave; ++i) 
+		{
+			Vector3 rndPosWithinSea = helper.GetRandomPoint() - new Vector3(0,depthOfSpawn,0);
 
 			int rndDebr = Random.Range (0, debris.Count);
 
 			GameObject rndDebris = (GameObject)Instantiate (debris [rndDebr], rndPosWithinSea, Quaternion.identity);
 			NetworkServer.Spawn (rndDebris);
-			//debrisList.Add (rndDebris);
 		}
     }
 }

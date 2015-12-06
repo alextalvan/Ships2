@@ -224,7 +224,10 @@ public class ShipScript : NetworkBehaviour
         if (onlineInput.GetInputValue(OnlinePlayerInput.PlayerControls.BACK))
             sailState -= sailAccelerationPerFrame;
 
-        sailState = Mathf.Clamp01(sailState);
+        sailState = Mathf.Clamp(sailState,-0.35f,1f);
+
+		if (sailState < 0.0f)
+			sailState *= 0.99f;
     }
 
     private void Move()

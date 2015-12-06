@@ -13,8 +13,6 @@ public class PortMapper : MonoBehaviour
 	System.IO.StringWriter _logO = new System.IO.StringWriter ();
 
 
-
-
 	private void DeviceFound(object sender, DeviceEventArgs e)
 	{
 		INatDevice device = e.Device;
@@ -71,23 +69,47 @@ public class PortMapper : MonoBehaviour
 		if (_device == null || portToForward < 0 || portToForward > 65535)
 			return;
 
-		Mapping m = new Mapping (Protocol.Udp, portToForward, portToForward, 0);
-		m.Description = "Cursed Waters (UDP)";
-		Mapping m2 = new Mapping (Protocol.Tcp, portToForward, portToForward, 0);
-		m2.Description = "Cursed Waters (TCP)";
 
-		_maps.Add (m);
-		_maps.Add (m2);
+		//check if the mappings already exist
+		bool foundTCP = false;
+		bool foundUDP = false;
 
-		_device.CreatePortMap (m);
-		_device.CreatePortMap (m2);
+		foreach (Mapping portMap in _device.GetAllMappings())
+		{
+			if(portMap.PrivatePort == portToForward && portMap.PublicPort == portToForward)
+			{
+				if(portMap.Protocol == Protocol.Tcp)
+					foundTCP = true;
+				else
+					foundUDP = true;
+			}
+		}
 
-		UIConsole.Log("Added TCP and UDP port mappings for port: " + portToForward);
+		if (!foundUDP) 
+		{
+			Mapping m = new Mapping (Protocol.Udp, portToForward, portToForward, 0);
+			m.Description = "Cursed Waters (UDP)";
+			_maps.Add (m);
+			_device.CreatePortMap (m);
+		}
+
+		if (!foundTCP) 
+		{
+			Mapping m2 = new Mapping (Protocol.Tcp, portToForward, portToForward, 0);
+			m2.Description = "Cursed Waters (TCP)";
+			_maps.Add (m2);
+			_device.CreatePortMap (m2);
+		}
+
+		//UIConsole.Log("Added TCP and UDP port mappings for port: " + portToForward);
 	}
 
 	void RemoveAddedMappings()
 	{
 		if (_device == null)
+			return;
+
+		if (_maps.Count == 0)
 			return;
 
 		foreach (Mapping m in _maps) 
@@ -120,7 +142,7 @@ public class PortMapper : MonoBehaviour
 
 		if (Input.GetKeyUp (KeyCode.Alpha6))
 			Debug.Log (NatUtility.Logger.ToString());
-			*/
+		*/	
 
 	}
 

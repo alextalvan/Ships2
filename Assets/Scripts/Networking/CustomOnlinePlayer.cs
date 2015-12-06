@@ -49,6 +49,9 @@ public class CustomOnlinePlayer : NetworkBehaviour
     [SerializeField]
     List<Renderer> _objectsToColor = new List<Renderer>();
 
+	[SerializeField]
+	TextMesh _overHeadText;
+
     [SerializeField]
     GameObject arrow;
 
@@ -61,11 +64,11 @@ public class CustomOnlinePlayer : NetworkBehaviour
 		_playerColors = new List<Color> (10);
 		_playerColors.Add(new Color (0.933f, 0.929f, 0.875f));//titanium hwhite
 		_playerColors.Add(new Color (0.165f, 0.392f, 0.678f));//phthalo blue
-		_playerColors.Add(new Color (0.212f, 0.216f, 0.235f));//midnight black
+		_playerColors.Add(new Color (0.000f, 0.000f, 0.000f));//midnight black
 		_playerColors.Add(new Color (0.267f, 0.502f, 0.165f));//sap green
 		_playerColors.Add(new Color (0.675f, 0.106f, 0.173f));//cadmium red
 		_playerColors.Add(new Color (0.824f, 0.545f, 0.137f));//indian yellow
-		_playerColors.Add(new Color (0.780f, 0.333f, 0.435f));//pork pink
+		_playerColors.Add(new Color (0.500f, 0.500f, 0.500f));//grey
 		_playerColors.Add(new Color (0.000f, 0.878f, 0.878f));//cyan
 		_playerColors.Add(new Color (1.000f, 0.529f, 0.220f));//orange
 		_playerColors.Add(new Color (0.627f, 0.227f, 1.000f));//purple
@@ -111,19 +114,15 @@ public class CustomOnlinePlayer : NetworkBehaviour
     {
 		cureCarryTimeLeft = GameManager.initialCureTime;
 
-		SetupColor ();
+		SetupInfo ();
 
-		SyncColorForAll ();
-
-		CustomNetManager net = GameObject.Find ("NetworkManager").GetComponent<CustomNetManager> ();
-		int myIndex = NetworkServer.connections.IndexOf (this.connectionToClient);
-
-		if (net.nicknames.ContainsKey (myIndex))
-			this.IndividualName = net.nicknames [myIndex];
+		SyncIndividualInfoForAll ();
+		
     }
 
-	public void SetupColor()
+	public void SetupInfo()
 	{
+		//color first
 		int index = Random.Range (0, _playerColors.Count);
 		Color c = _playerColors [index];
 		_playerColors.RemoveAt (index);
@@ -133,18 +132,28 @@ public class CustomOnlinePlayer : NetworkBehaviour
 		}
 		
 		IndividualColor = c;
+
+		//then nickname
+		CustomNetManager net = GameObject.Find ("NetworkManager").GetComponent<CustomNetManager> ();
+		int myIndex = NetworkServer.connections.IndexOf (this.connectionToClient);
+		
+		if (net.nicknames.ContainsKey (myIndex))
+			this.IndividualName = net.nicknames [myIndex];
+
+		_overHeadText.text = IndividualName;
+		_overHeadText.color = IndividualColor;
 	}
 
-	public void SyncColorForAll()
+	public void SyncIndividualInfoForAll()
 	{
 		foreach (CustomOnlinePlayer p in onlineRef.allOnlinePlayers) 
 		{
-			p.RpcSetColor(p.IndividualColor);
+			p.RpcSetPlayerInfo(p.IndividualColor,p.IndividualName);
 		}
 	}
 
 	[ClientRpc]
-	public void RpcSetColor(Color c)
+	public void RpcSetPlayerInfo(Color c, string name)
 	{
 		foreach (Renderer r in _objectsToColor)
 		{
@@ -153,6 +162,12 @@ public class CustomOnlinePlayer : NetworkBehaviour
 		}
 		
 		IndividualColor = c;
+
+		if (isLocalPlayer)
+			return;
+		IndividualName = name;
+		_overHeadText.text = IndividualName;
+		_overHeadText.color = IndividualColor;
 	}
     //[ClientCallback]
 	/*

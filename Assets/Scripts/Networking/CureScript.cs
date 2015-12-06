@@ -21,9 +21,6 @@ public class CureScript : NetworkBehaviour {
 
     void OnTriggerStay(Collider col)
     {
-		if (!GetComponent<GameManager> ().phase1Finished)
-			return;
-
         PlayerPickupHitbox hitbox = col.gameObject.GetComponent<PlayerPickupHitbox>();
         if (!hitbox||!isDropped)
             return;
@@ -31,6 +28,11 @@ public class CureScript : NetworkBehaviour {
 		PlayerRespawn res = hitbox.GetComponentInParent<PlayerRespawn> ();
 		if (!res || res.IsDead)
 			return;
+
+		if (!GetComponent<GameManager> ().phase1Finished) 
+		{
+			GetComponent<GameManager> ().phase1Finished = true;
+		}
 
 		CustomOnlinePlayer player = hitbox.GetComponentInParent<CustomOnlinePlayer> ();
 		

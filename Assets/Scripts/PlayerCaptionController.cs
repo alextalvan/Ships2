@@ -52,6 +52,10 @@ public class PlayerCaptionController : NetworkBehaviour
     static public void BroadcastCaption(string text, float duration, BROADCAST_MODE mode = BROADCAST_MODE.FULL)
     {
         OnlineSceneReferences onlineRef = GameObject.Find("OnlineSceneReferences").GetComponent<OnlineSceneReferences>();
+
+		if (onlineRef.allOnlinePlayers.Count == 0)
+			return;
+
         foreach (CustomOnlinePlayer p in onlineRef.allOnlinePlayers)
         {
             if (mode == BROADCAST_MODE.CAPTION || mode == BROADCAST_MODE.FULL)

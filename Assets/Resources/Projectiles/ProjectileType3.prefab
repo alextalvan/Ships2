@@ -311,7 +311,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d734db346602b984aa786e456ccf088f, type: 3}
   - {fileID: 8300000, guid: d74f0c02961f33a44a19be2ad502c6d0, type: 3}
   ripples: {fileID: 189756}
-  explosionRadius: 17.5
+  explosionRadius: 15
 --- !u!198 &19844350
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -3634,7 +3634,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: explosionRadius
-      value: 17.5
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

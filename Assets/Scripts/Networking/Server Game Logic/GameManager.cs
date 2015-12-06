@@ -19,7 +19,7 @@ public class GameManager : NetworkBehaviour {
 
     public CustomOnlinePlayer cureCarrier = null;
 
-    public bool phase1Finished {  get { return !phase1inProgress; } }
+	public bool phase1Finished {  get { return !phase1inProgress; } set { phase1inProgress = !value; } }
     //float phase2Time = 600f;
 
 	[SerializeField]
