@@ -186,7 +186,7 @@ MonoBehaviour:
   _sendRate: .0500000007
   _interpRate: .100000001
   _snapThreshold: 100
-  syncRotation: 1
+  syncRotation: 0
 --- !u!114 &11489172
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2541,6 +2541,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: explosionForce
       value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: syncRotation
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
