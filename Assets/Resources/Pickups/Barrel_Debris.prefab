@@ -108,6 +108,8 @@ MonoBehaviour:
   _interpRate: .100000001
   _snapThreshold: 20
   syncRotation: 1
+  disableRigidbody: 1
+  disableCollider: 0
 --- !u!114 &11438864
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -234,6 +236,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: _sendRate
       value: .100000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: disableCollider
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

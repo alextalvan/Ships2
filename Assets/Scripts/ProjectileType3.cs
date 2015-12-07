@@ -80,6 +80,7 @@ public class ProjectileType3 : Projectile
 		}
 	}
 
+
     [ServerCallback]
     protected override void Delete()
     {

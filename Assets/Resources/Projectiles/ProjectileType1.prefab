@@ -30,7 +30,6 @@ GameObject:
   - 54: {fileID: 5496096}
   - 114: {fileID: 11442474}
   - 114: {fileID: 11470354}
-  - 114: {fileID: 11459456}
   - 135: {fileID: 13592058}
   m_Layer: 13
   m_Name: ProjectileType1
@@ -142,21 +141,6 @@ MonoBehaviour:
     i15: 206
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
---- !u!114 &11459456
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 193654}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 716f183b3c96e994eaabcbfb2ff9ac5e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _sendRate: .0500000007
-  _interpRate: .100000001
-  _snapThreshold: 100
-  syncRotation: 0
 --- !u!114 &11470354
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -187,6 +171,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 66ded9aeedc4cd24bb04c42b2b6769af, type: 3}
   - {fileID: 8300000, guid: 4b49d770f5f1c2f4f8851591878df9a7, type: 3}
   - {fileID: 8300000, guid: d74f0c02961f33a44a19be2ad502c6d0, type: 3}
+  localPhysicsSimulation: 1
+  startForce: {x: 0, y: 0, z: 0}
 --- !u!135 &13592058
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -1430,6 +1416,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: syncRotation
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: localPhysicsSimulation
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

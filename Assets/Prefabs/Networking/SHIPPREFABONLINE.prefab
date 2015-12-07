@@ -6681,6 +6681,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cureisCarriedByAPlayer: 0
   currentCureCarrier: {fileID: 0}
+  cureInfoSendRate: .200000003
   cureCarryTimeLeft: 60
   IndividualColor: {r: 1, g: 1, b: 1, a: 1}
   IndividualName: Player
@@ -6798,6 +6799,8 @@ MonoBehaviour:
   _interpRate: .100000001
   _snapThreshold: 10
   syncRotation: 1
+  disableRigidbody: 1
+  disableCollider: 0
 --- !u!114 &11489712
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -80179,6 +80182,14 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: MinDistance
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: disableCollider
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: cureInfoSendRate
+      value: .200000003
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

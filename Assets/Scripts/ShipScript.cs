@@ -236,7 +236,7 @@ public class ShipScript : NetworkBehaviour
             return;
 
         Vector3 forward = new Vector3(transform.forward.x, 0f, transform.forward.z).normalized;
-        float cureMod = (customOnlinePlayer.currentCureCarrier == transform) ? CureScript.cureCarrierSpeedDebuff : 1f;
+        float cureMod = (customOnlinePlayer.currentCureCarrier == GetComponent<NetworkIdentity>()) ? CureScript.cureCarrierSpeedDebuff : 1f;
 
         float baseWeight = shipAttributes.BasicSpeed * 0.5f;
         float sailWeight = shipAttributes.BasicSpeed * 0.5f;
@@ -516,6 +516,7 @@ public class ShipScript : NetworkBehaviour
                 projProj.SailDamage *= shipAttributes.DamageModifier;
 
                 NetworkServer.Spawn(projectile);
+				projProj.RpcApplyLocalRigidbodyForce(force);
             }
             activeCannons.CurrentCharge -= (int)shotPower;
         }

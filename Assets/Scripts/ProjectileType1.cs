@@ -34,5 +34,14 @@ public class ProjectileType1 : Projectile
     }
 
 
+	protected override void OnCollisionEnter (Collision collision)
+	{
+		base.OnCollisionEnter (collision);
+	}
     
+	[ClientCallback]
+	void HandleClientCollision()
+	{
+		this.gameObject.SetActive (false);
+	}
 }

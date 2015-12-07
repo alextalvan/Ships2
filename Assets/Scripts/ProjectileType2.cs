@@ -33,4 +33,16 @@ public class ProjectileType2 : Projectile
 		Delete();
 	}
 
+	protected override void OnCollisionEnter (Collision collision)
+	{
+		base.OnCollisionEnter (collision);
+		HandleClientCollision ();
+	}
+	
+	[ClientCallback]
+	void HandleClientCollision()
+	{
+		this.gameObject.SetActive (false);
+	}
+
 }

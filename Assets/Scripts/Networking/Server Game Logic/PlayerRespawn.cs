@@ -28,7 +28,7 @@ public class PlayerRespawn : NetworkBehaviour
 		GetComponent<ShipScript>().ResetShootAndMovement();
         GetComponent<ShipScript>().RpcChangeCameraState(false);
 
-        if (GetComponent<CustomOnlinePlayer>().currentCureCarrier == transform)
+        if (GetComponent<CustomOnlinePlayer>().currentCureCarrier == GetComponent<NetworkIdentity>())
             onlineRef.serverCure.DetachFromHolder();
 
         spawnTime = Time.time + respawnTime;

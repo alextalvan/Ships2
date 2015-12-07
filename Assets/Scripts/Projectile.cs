@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.Networking;
 
 [RequireComponent(typeof(Rigidbody), typeof(Collider))]
+[NetworkSettings(channel = 0, sendInterval = 1e+6f)]
 public abstract class Projectile : NetworkBehaviour
 {
     protected float birthDate;
@@ -41,7 +42,7 @@ public abstract class Projectile : NetworkBehaviour
 	[SerializeField]
 	private List<AudioClip> _impactSounds;
 
-	protected enum ImpactSoundType
+	public enum ImpactSoundType
 	{
 		SHIP_HULL = 0,
 		ROCK,
@@ -174,7 +175,7 @@ public abstract class Projectile : NetworkBehaviour
 		NetworkServer.Spawn(debrisObj);
 	}
 
-    void OnCollisionEnter(Collision collision)
+    protected virtual void OnCollisionEnter(Collision collision)
     {
         DealDamage(collision);
     }
@@ -208,4 +209,11 @@ public abstract class Projectile : NetworkBehaviour
     {
         Instantiate(debrisPrefab, pos, new Quaternion(0f, Random.rotation.y, 0f, 0f));
     }
+
+	[ClientRpc]
+	public void RpcApplyLocalRigidbodyForce(Vector3 force)
+	{
+		GetComponent<Rigidbody> ().AddForce (force);
+	}
+
 }

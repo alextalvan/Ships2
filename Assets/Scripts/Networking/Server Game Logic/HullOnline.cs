@@ -2,6 +2,7 @@
 using UnityEngine.Networking;
 
 [RequireComponent(typeof(Collider))]
+[NetworkSettings(channel = 0, sendInterval = 1e+6f)]
 public class HullOnline : NetworkBehaviour
 {
     private BuoyancyScript buoyancy;

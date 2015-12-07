@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine.Networking;
 using System.Collections.Generic;
 
+[NetworkSettings(channel = 0, sendInterval = 1e+6f)]
 public class LevelUser : NetworkBehaviour 
 {
 

@@ -4,6 +4,7 @@ using UnityEngine.Networking;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
+[NetworkSettings(channel = 0, sendInterval = 1e+6f)]
 public class CustomOnlinePlayer : NetworkBehaviour
 {
 
@@ -11,18 +12,20 @@ public class CustomOnlinePlayer : NetworkBehaviour
 
     static Vector3 hiddenLocation = new Vector3(100000, 100000, 100000);
 
-    [SyncVar]
+    //[SyncVar]
     Vector3 cureLocation;
 
-    [SyncVar]
+    //[SyncVar]
     bool canSeeCure = false;
 
-
-    [SyncVar]
+    //[SyncVar]
     public bool cureisCarriedByAPlayer = false;
 
-    [SyncVar]
-    public Transform currentCureCarrier = null;
+    //[SyncVar]
+    public NetworkIdentity currentCureCarrier = null;
+
+	[SerializeField]
+	float cureInfoSendRate = 0.25f;
 
     Transform clientCure;
 
@@ -84,9 +87,7 @@ public class CustomOnlinePlayer : NetworkBehaviour
         //GameObject.Find ("OnlineSceneReferences").GetComponent<OnlineSceneReferences> ()
         ClientSideSetup();
         //test
-        ServersideSetup();
-
-        
+        ServersideSetup();  
     }
 
 	IEnumerator ShowInitialMessage()
@@ -117,6 +118,8 @@ public class CustomOnlinePlayer : NetworkBehaviour
 		SetupInfo ();
 
 		SyncIndividualInfoForAll ();
+
+		StartCoroutine (CRCalculateIfCanSeeCure ());
 		
     }
 
@@ -169,22 +172,11 @@ public class CustomOnlinePlayer : NetworkBehaviour
 		_overHeadText.text = IndividualName;
 		_overHeadText.color = IndividualColor;
 	}
-    //[ClientCallback]
-	/*
-    public void SyncColor()
-    {
-        //GetComponent<Renderer> ().material.color = IndividualColor; 
-        foreach (Renderer r in _objectsToColor)
-        {
-            r.material.color = IndividualColor;
-        }
-    }
-    */
 
     // Update 
-    void FixedUpdate()
+    void Update()
     {
-        CalculateIfCanSeeCure();
+        //CalculateIfCanSeeCure();
         SyncCureLocation();
         //SyncColor();
         UpdateArrow();
@@ -205,27 +197,41 @@ public class CustomOnlinePlayer : NetworkBehaviour
             clientCure.transform.position = hiddenLocation;
     }
 
-    [ServerCallback]
+	IEnumerator CRCalculateIfCanSeeCure()
+	{
+		while(true)
+		{
+			CalculateIfCanSeeCure();
+			yield return new WaitForSeconds(cureInfoSendRate);
+		}
+	}
+
+    //[ServerCallback]
     void CalculateIfCanSeeCure()
     {
+		Debug.Log ("Calculating cure sight");
+
+		if (cureisCarriedByAPlayer && currentCureCarrier != null) 
+		{
+			RpcSendCureHolder (currentCureCarrier);
+			return;
+		}
+
         float distance = (transform.position - onlineRef.serverCure.transform.position).magnitude;
 
-        if (distance < mapPieces * distancePerMapPiece)
+        if (distance <= mapPieces * distancePerMapPiece)
         {
-            cureLocation = onlineRef.serverCure.transform.position;
-            canSeeCure = true;
+			RpcSendCureRawLocation(onlineRef.serverCure.transform.position);
             return;
         }
 
         if (onlineRef.gameManager.phase1Finished)
         {
-            cureLocation = onlineRef.serverCure.transform.position;
-            canSeeCure = true;
+			RpcSendCureRawLocation(onlineRef.serverCure.transform.position);
             return;
         }
-
-        cureLocation = hiddenLocation;
-        canSeeCure = false;
+		
+		RpcHideCure ();
         return;
     }
 
@@ -234,7 +240,7 @@ public class CustomOnlinePlayer : NetworkBehaviour
     {
         arrow.SetActive(false);
 
-        if (currentCureCarrier == this.transform || !isLocalPlayer || GetComponent<PlayerRespawn>().IsDead)
+        if (currentCureCarrier == GetComponent<NetworkIdentity>() || !isLocalPlayer || GetComponent<PlayerRespawn>().IsDead)
             return;
 
         GameObject target = null;
@@ -280,6 +286,32 @@ public class CustomOnlinePlayer : NetworkBehaviour
             arrow.transform.localRotation = Quaternion.LookRotation(target.transform.position - transform.position);
         }
     }
+
+	[ClientRpc]
+	void RpcSendCureRawLocation(Vector3 location)
+	{
+		cureLocation = location;
+		canSeeCure = true;
+		cureisCarriedByAPlayer = false;
+		currentCureCarrier = null;
+	}
+
+	[ClientRpc]
+	public void RpcSendCureHolder(NetworkIdentity holder)
+	{
+		currentCureCarrier = holder;
+		cureisCarriedByAPlayer = true;
+		canSeeCure = true;
+	}
+
+	[ClientRpc]
+	void RpcHideCure()
+	{
+		currentCureCarrier = null;
+		cureLocation = hiddenLocation;
+		cureisCarriedByAPlayer = false;
+		canSeeCure = false;
+	}
 
     void OnDestroy()
     {

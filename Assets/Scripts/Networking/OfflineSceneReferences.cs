@@ -24,6 +24,7 @@ public class OfflineSceneReferences : MonoBehaviour {
 
 	void Start()
 	{
+		Application.targetFrameRate = 60;
 		Cursor.visible = true;
 		MusicManager.Singleton.Music.setParameterValue ("Menu", 1f);
 		_source = GetComponent<AudioSource> ();

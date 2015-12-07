@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.Networking;
 
+[NetworkSettings(channel = 0, sendInterval = 1e+6f)]
 public class OnlineTransform : NetworkBehaviour {
 
 	[SerializeField]
@@ -21,6 +22,12 @@ public class OnlineTransform : NetworkBehaviour {
 
 	public bool syncRotation = true;
 
+	[SerializeField]
+	bool disableRigidbody = true;
+
+	[SerializeField]
+	bool disableCollider = true;
+
 	//server
 	//float nextTime = 0.0f;
 	float _timeAccumulator = 0f;
@@ -34,12 +41,12 @@ public class OnlineTransform : NetworkBehaviour {
 	void Awake()
 	{
 		
-		if (NetworkManager.singleton != null && NetworkManager.singleton.isNetworkActive && !NetworkServer.active)
+		if (NetworkManager.singleton != null && NetworkManager.singleton.IsClientConnected())
 		{
-			if(GetComponent<Rigidbody>())
+			if(disableRigidbody && GetComponent<Rigidbody>())
 				GetComponent<Rigidbody>().isKinematic = true;
 
-			if(GetComponent<Collider>())
+			if(disableCollider && GetComponent<Collider>())
 				GetComponent<Collider>().enabled = false;
 			return;
 		}

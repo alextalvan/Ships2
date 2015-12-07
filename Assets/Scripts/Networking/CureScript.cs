@@ -2,7 +2,7 @@
 using UnityEngine.Networking;
 
 
-public class CureScript : NetworkBehaviour {
+public class CureScript : MonoBehaviour {
 
     bool isDropped = true;
 	OnlineSceneReferences onlineRef;
@@ -46,7 +46,7 @@ public class CureScript : NetworkBehaviour {
 		foreach (CustomOnlinePlayer p in onlineRef.allOnlinePlayers) 
 		{
 			p.cureisCarriedByAPlayer = true;
-			p.currentCureCarrier = player.transform;
+			p.currentCureCarrier = player.GetComponent<NetworkIdentity>();
 		}
 
 		string message = player.ColoredName + " has picked up the cure.";
@@ -81,7 +81,7 @@ public class CureScript : NetworkBehaviour {
 	public void DetachFromHolder()
 	{
 		if (holder != null)
-			transform.position = holder.transform.position;
+			transform.position = new Vector3 (holder.transform.position.x, 4f, holder.transform.position.z);//holder.transform.position;
 		//else
 		//	transform.position = lastPos;
 
@@ -91,7 +91,7 @@ public class CureScript : NetworkBehaviour {
 		foreach (CustomOnlinePlayer p in onlineRef.allOnlinePlayers) 
 		{
 			p.cureisCarriedByAPlayer = false;
-			p.currentCureCarrier = this.transform;//doesn't matter what we put here because it wont be used
+			p.currentCureCarrier = null;//doesn't matter what we put here because it wont be used
 		}
 
 		PlayerCaptionController.BroadcastCaption (GetComponent<GameManager> ().cureCarrier.ColoredName + " has dropped the cure!",5f);
