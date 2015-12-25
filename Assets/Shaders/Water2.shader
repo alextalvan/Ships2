@@ -27,7 +27,7 @@ Shader "Custom/Water" {
         _F_Intensity ("F_Intensity", Range(0, 5)) = 2.8
         _FresnelColor ("Fresnel Color", Color) = (0,1,1,1)
         _Reflection_Move_amount ("Reflection_Move_amount", Range(0, 1)) = 0.2
-        _NormALMAP ("NormAL MAP", 2D) = "black" {}
+        _NormALMAP ("NormAL MAP", 2D) = "bump" {}
         _BaseColor ("Base Color", 2D) = "white" {}
         _Metallic ("Metallic", Range(0, 1)) = 1
         _Glossiness ("Glossiness", Range(0, 1)) = 0.01

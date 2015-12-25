@@ -57,17 +57,45 @@ Material:
         second: 8
       data:
         first:
-          name: _FresnelScale
-        second: 1.32000005
+          name: _CustomTime
+        second: 84.4645538
       data:
         first:
           name: _GerstnerIntensity
         second: 1.38999999
       data:
         first:
-          name: _CustomTime
-        second: 84.4645538
+          name: _FresnelScale
+        second: 1.32000005
     m_Colors:
+      data:
+        first:
+          name: _BaseColor
+        second: {r: .00700000022, g: .0500000007, b: .0390000008, a: .73299998}
+      data:
+        first:
+          name: _GAmplitude
+        second: {r: .140000001, g: -.0900000036, b: .174999997, a: .224999994}
+      data:
+        first:
+          name: _GFrequency
+        second: {r: .5, g: .560000002, b: .589999974, a: .600000024}
+      data:
+        first:
+          name: _GSteepness
+        second: {r: 7.32999992, g: 5.51000023, b: 6, a: 2}
+      data:
+        first:
+          name: _GSpeed
+        second: {r: -3, g: 2, b: 1, a: 3}
+      data:
+        first:
+          name: _GDirectionAB
+        second: {r: .469143599, g: .74000001, b: .639999986, a: .100000001}
+      data:
+        first:
+          name: _GDirectionCD
+        second: {r: .70338881, g: -.679999888, b: .717573524, a: -.200000003}
       data:
         first:
           name: _DistortParams
@@ -94,10 +122,6 @@ Material:
         second: {r: 40, g: 54.7999992, b: 40.7000008, a: -40}
       data:
         first:
-          name: _BaseColor
-        second: {r: .00700000022, g: .0500000007, b: .0390000008, a: .73299998}
-      data:
-        first:
           name: _ReflectionColor
         second: {r: 1, g: 1, b: 1, a: .351999998}
       data:
@@ -112,30 +136,6 @@ Material:
         first:
           name: _Foam
         second: {r: 3.08999991, g: .389999986, b: -.25999999, a: .980000019}
-      data:
-        first:
-          name: _GAmplitude
-        second: {r: .140000001, g: -.0900000036, b: .174999997, a: .224999994}
-      data:
-        first:
-          name: _GFrequency
-        second: {r: .5, g: .560000002, b: .589999974, a: .600000024}
-      data:
-        first:
-          name: _GSteepness
-        second: {r: 7.32999992, g: 5.51000023, b: 6, a: 2}
-      data:
-        first:
-          name: _GSpeed
-        second: {r: -3, g: 2, b: 1, a: 3}
-      data:
-        first:
-          name: _GDirectionAB
-        second: {r: .469143599, g: .74000001, b: .639999986, a: .100000001}
-      data:
-        first:
-          name: _GDirectionCD
-        second: {r: .70338881, g: -.679999888, b: .717573524, a: -.200000003}
 --- !u!1002 &2100001
 EditorExtensionImpl:
   serializedVersion: 6

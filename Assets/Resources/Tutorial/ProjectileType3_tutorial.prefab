@@ -63,7 +63,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 193654}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 380.440765, y: 438.510284, z: -406.92337}
+  m_LocalPosition: {x: 7.76309299, y: 11.9194069, z: 99.4654388}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 455316}
@@ -132,7 +132,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 193654}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 5
   m_Drag: 0
   m_AngularDrag: .0500000007
   m_UseGravity: 1
@@ -198,8 +198,9 @@ MonoBehaviour:
   voxelsX: 2
   voxelsY: 2
   voxelsZ: 2
-  voxelsYDownMod: 1
-  centerOfMassYOffset: 1
+  voxelsShiftY: 1
+  centerOfMassShiftY: 2
+  gravityModifier: 2
   buoyancyLimit: 100
 --- !u!114 &11496484
 MonoBehaviour:

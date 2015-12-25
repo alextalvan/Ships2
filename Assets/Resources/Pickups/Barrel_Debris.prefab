@@ -73,7 +73,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 193054}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 5
   m_Drag: 0
   m_AngularDrag: .0500000007
   m_UseGravity: 1
@@ -109,7 +109,7 @@ MonoBehaviour:
   _snapThreshold: 20
   syncRotation: 1
   disableRigidbody: 1
-  disableCollider: 0
+  disableCollider: 1
 --- !u!114 &11438864
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -153,12 +153,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1a05fdbb5b152642b023a72a31b395c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  voxelsX: 2
-  voxelsY: 2
-  voxelsZ: 2
-  voxelsYDownMod: 2
-  centerOfMassYOffset: 1
-  buoyancyLimit: 100
+  voxelsX: 1
+  voxelsY: 1
+  voxelsZ: 1
+  voxelsShiftY: 1
+  centerOfMassShiftY: 1
+  gravityModifier: 2
 --- !u!114 &11498780
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -203,15 +203,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: voxelsX
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: voxelsY
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: voxelsZ
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: centerOfMassYOffset
@@ -239,7 +239,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: disableCollider
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Mass
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: voxelsShiftY
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: centerOfMassShiftY
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
