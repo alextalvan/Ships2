@@ -69,7 +69,7 @@ Material:
       data:
         first:
           name: _CustomTime
-        second: 43.2136116
+        second: 65.8739395
       data:
         first:
           name: _Glossiness
@@ -85,7 +85,7 @@ Material:
       data:
         first:
           name: _Panner
-        second: 8.64272213
+        second: 13.1747885
       data:
         first:
           name: _Lerp

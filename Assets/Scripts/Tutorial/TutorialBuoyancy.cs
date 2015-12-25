@@ -144,10 +144,12 @@ public class TutorialBuoyancy : MonoBehaviour
     private void FixedUpdate()
     {
         CalculatePhysics();
-        UpdateTotalBuoyancy();
 
         if (shipAttributes)
-            SinkDamagedVoxels(shipAttributes.IsDead);
+        {
+            UpdateTotalBuoyancy();
+            SinkDamagedVoxels(shipAttributes.IsDead && objRigidBody.velocity.y > 0f);
+        }
     }
 
     /// <summary>

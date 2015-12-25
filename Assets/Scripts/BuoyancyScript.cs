@@ -156,10 +156,12 @@ public class BuoyancyScript : NetworkBehaviour
     private void FixedUpdate()
     {
         CalculatePhysics();
-        UpdateTotalBuoyancy();
 
         if (shipAttributes)
+        {
+            UpdateTotalBuoyancy();
             SinkDamagedVoxels(shipAttributes.IsDead);
+        }
     }
 
     /// <summary>
@@ -346,7 +348,7 @@ public class Voxel
 
     public float BuoyancyModifier
     {
-        get { return (buoyancyState / 100f); }
+        get { return buoyancyState / 100f; }
     }
 
     public Color Color
@@ -357,7 +359,7 @@ public class Voxel
 
     public void Sink()
     {
-        if (buoyancyState > 10f)
-            buoyancyState -= 0.2f;
+        if (buoyancyState > 0f)
+            buoyancyState -= 1f;
     }
 }
