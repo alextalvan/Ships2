@@ -19,14 +19,14 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2800000, guid: 4ae6f431fd650e5479c951638e954c31, type: 3}
+          m_Texture: {fileID: 2800000, guid: 1d6ce827abbd8de44a91d2c63d6d08db, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
         first:
           name: _BumpMap
         second:
-          m_Texture: {fileID: 2800000, guid: 06cebb00eb0416e4791007764a1715f1, type: 3}
+          m_Texture: {fileID: 2800000, guid: 152664521344d18499430ae3f7c8578a, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -97,16 +97,20 @@ Material:
         second: .00499999989
       data:
         first:
-          name: _ZWrite
-        second: 1
+          name: _Metallic
+        second: 0
       data:
         first:
           name: _Glossiness
         second: .115999997
       data:
         first:
-          name: _BumpScale
+          name: _ZWrite
         second: 1
+      data:
+        first:
+          name: _BumpScale
+        second: 5
       data:
         first:
           name: _OcclusionStrength
@@ -123,10 +127,6 @@ Material:
         first:
           name: _Mode
         second: 0
-      data:
-        first:
-          name: _Metallic
-        second: 0
     m_Colors:
       data:
         first:
@@ -135,4 +135,4 @@ Material:
       data:
         first:
           name: _Color
-        second: {r: .941176474, g: .853549719, b: .567474067, a: 1}
+        second: {r: .875, g: .823707044, b: .65625, a: 1}
