@@ -28,7 +28,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 185838}
   m_LocalRotation: {x: -.0390161499, y: -.100114115, z: -.00392884435, w: .994202912}
-  m_LocalPosition: {x: -416.828735, y: 146.498535, z: 343.18573}
+  m_LocalPosition: {x: 10.4470673, y: 11.9852409, z: 101.589905}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -102,11 +102,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 008dc8fccd27ffa44a3b6577f3ebff61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  voxelsX: 2
-  voxelsY: 2
-  voxelsZ: 2
-  voxelsYDownMod: 1
-  centerOfMassYOffset: 1
+  voxelsX: 1
+  voxelsY: 1
+  voxelsZ: 1
+  voxelsShiftY: 1
+  centerOfMassShiftY: 1
+  gravityModifier: 2
   buoyancyLimit: 100
 --- !u!114 &11414288
 MonoBehaviour:

@@ -1882,10 +1882,6 @@ Prefab:
       propertyPath: enemy2
       value: 
       objectReference: {fileID: 2062716460}
-    - target: {fileID: 11430672, guid: 3646394ab4e530144bc8b81fd3340217, type: 2}
-      propertyPath: _clipList.Array.data[8]
-      value: 
-      objectReference: {fileID: 8300000, guid: 8b9112720e106b145894f8e27cd2534b, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3646394ab4e530144bc8b81fd3340217, type: 2}
   m_IsPrefabParent: 0
@@ -4393,7 +4389,7 @@ Transform:
   - {fileID: 685123433}
   - {fileID: 661623327}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
 --- !u!1 &1300502018
 GameObject:
   m_ObjectHideFlags: 0
@@ -5089,6 +5085,10 @@ Prefab:
     - target: {fileID: 8239414, guid: 3646394ab4e530144bc8b81fd3340217, type: 2}
       propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11422838, guid: 3646394ab4e530144bc8b81fd3340217, type: 2}
+      propertyPath: gravityModifier
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
@@ -7848,6 +7848,10 @@ Prefab:
     - target: {fileID: 8239414, guid: 3646394ab4e530144bc8b81fd3340217, type: 2}
       propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11422838, guid: 3646394ab4e530144bc8b81fd3340217, type: 2}
+      propertyPath: gravityModifier
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}

@@ -6307,12 +6307,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1a05fdbb5b152642b023a72a31b395c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  voxelsX: 3
-  voxelsY: 3
-  voxelsZ: 3
-  voxelsYDownMod: 3
-  centerOfMassYOffset: 2
-  buoyancyLimit: 70
+  voxelsX: 5
+  voxelsY: 5
+  voxelsZ: 5
+  voxelsShiftY: 4
+  centerOfMassShiftY: 5
+  gravityModifier: 2
 --- !u!114 &11415596
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6559,7 +6559,7 @@ MonoBehaviour:
   - {fileID: 193654, guid: cffcceacc3f5c1f4b998adedaa55a4ce, type: 2}
   - {fileID: 193654, guid: 3105119ba9c560945ba4ca03348f9cd7, type: 2}
   - {fileID: 193654, guid: 4c8fb58df81565d458680f1dbe4c2f9a, type: 2}
-  cannonRecoil: 80000
+  cannonRecoil: 50000
 --- !u!114 &11453000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -80133,7 +80133,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: cannonRecoil
-      value: 80000
+      value: 50000
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: _fmodSounds.Array.data[0]
@@ -80190,6 +80190,26 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: cureInfoSendRate
       value: .200000003
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: voxelsZ
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: voxelsY
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: centerOfMassShiftY
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: voxelsShiftY
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: voxelsX
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

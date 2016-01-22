@@ -48,7 +48,7 @@ public class TutorialHull : MonoBehaviour
 		
 		currentHealth -= damage;
         Instantiate(debrisRamming, position, new Quaternion(0f, Random.rotation.y, 0f, 0f));
-        //buoyancy.DamageVoxels(position, damage, radius);
+        buoyancy.DamageVoxels(position, damage, radius);
 
         if (currentHealth <= Mathf.Epsilon)
 		{

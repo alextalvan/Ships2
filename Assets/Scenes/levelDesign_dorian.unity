@@ -86,6 +86,21 @@ NavMeshSettings:
     cellSize: .166666672
     manualCellSize: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &265807375 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 148964, guid: 4abd272968e9df449af88bc5f7b3af21, type: 2}
+  m_PrefabInternal: {fileID: 673237393}
+--- !u!114 &265807377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 265807375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1c57fb48a8d6f248800a8ae57053f28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &447702678
 GameObject:
   m_ObjectHideFlags: 0
@@ -151,6 +166,10 @@ Prefab:
     - target: {fileID: 484242, guid: 4abd272968e9df449af88bc5f7b3af21, type: 2}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 472040, guid: 4abd272968e9df449af88bc5f7b3af21, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -111
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4abd272968e9df449af88bc5f7b3af21, type: 2}
@@ -226,8 +245,8 @@ GameObject:
   - 20: {fileID: 1065147563}
   - 92: {fileID: 1065147562}
   - 124: {fileID: 1065147561}
-  - 81: {fileID: 1065147560}
   - 114: {fileID: 1065147565}
+  - 114: {fileID: 1065147560}
   m_Layer: 0
   m_Name: Main Camera(online)
   m_TagString: MainCamera
@@ -235,13 +254,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &1065147560
-AudioListener:
+--- !u!114 &1065147560
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1065147559}
   m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f8336b22d6d3af4da2712827e9ad333, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pluginPaths: []
 --- !u!124 &1065147561
 Behaviour:
   m_ObjectHideFlags: 0

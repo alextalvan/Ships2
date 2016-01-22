@@ -246,7 +246,7 @@ public class TutorialShipScript : MonoBehaviour
 				leftLR.enabled = true;
 				
 				Vector3 backwardDirection = new Vector3(-transform.forward.x, 0f, -transform.forward.z).normalized * shipAttributes.RangeMultiplier;
-				Vector3 force = (Vector3.up * upwardsModifier + (backwardDirection * 500f)) * projectileMass;
+				Vector3 force = (Vector3.up * upwardsModifier + (backwardDirection * 500f));
 				
 				float shotDist = GetTrajectoryDistance(transform.position - transform.forward * objBounds.extents.z, force);
 				leftCannons.DrawArea(shotPowerLeft, shotDist, false, currentProjIndex);

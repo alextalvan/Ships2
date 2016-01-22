@@ -2944,7 +2944,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 173014}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 381.944763, y: 444.32312, z: -415.270203}
+  m_LocalPosition: {x: 0, y: 1.74000001, z: 47.2200012}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 423084}
@@ -6155,12 +6155,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 008dc8fccd27ffa44a3b6577f3ebff61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  voxelsX: 3
-  voxelsY: 3
-  voxelsZ: 3
-  voxelsYDownMod: 3
-  centerOfMassYOffset: 7
-  buoyancyLimit: 70
+  voxelsX: 5
+  voxelsY: 5
+  voxelsZ: 5
+  voxelsShiftY: 4
+  centerOfMassShiftY: 5
+  gravityModifier: 2
 --- !u!114 &11424364
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6192,7 +6192,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 37b8672789f8d22458012053d19d804b, type: 3}
   - {fileID: 8300000, guid: 01dd4d06ac0ea5b49a2c70e3351d6495, type: 3}
   - {fileID: 8300000, guid: 74de37961a486b64d9cbb1b9cf6bbaee, type: 3}
-  - {fileID: 8300000, guid: 599e703f1999a4f49a325d76c3fd0710, type: 3}
+  - {fileID: 8300000, guid: 8b9112720e106b145894f8e27cd2534b, type: 3}
   - {fileID: 8300000, guid: 90fd4d823ab663f44bebafc2d4f67d7c, type: 3}
   - {fileID: 8300000, guid: 31bd9ef0970206f41b851bc35b761c72, type: 3}
   - {fileID: 8300000, guid: 84026aff8f931384ab67b6dfcd835d6e, type: 3}
@@ -6377,7 +6377,7 @@ MonoBehaviour:
   - {fileID: 193654, guid: 2307a7d0bdb04ca4991635d252d016d5, type: 2}
   - {fileID: 193654, guid: 5943df4f44113f047903042ed7807b6c, type: 2}
   - {fileID: 193654, guid: 55b575f24faa9604aaebd7f39953e163, type: 2}
-  cannonRecoil: 100000
+  cannonRecoil: 50000
   MovementLock: 1
   CombatLock: 1
   ammoIconsParent: {fileID: 0}
@@ -6408,6 +6408,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cureisCarriedByAPlayer: 0
   currentCureCarrier: {fileID: 0}
+  cureInfoSendRate: .25
   cureCarryTimeLeft: 60
   IndividualColor: {r: 1, g: 1, b: 1, a: 1}
   IndividualName: Player
@@ -47318,7 +47319,7 @@ ParticleSystem:
         m_PostInfinity: 2
       minMaxState: 0
     startSpeed:
-      scalar: 200
+      scalar: 0
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -47510,7 +47511,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
       minMaxState: 0
-    gravityModifier: 10000
+    gravityModifier: 0
     inheritVelocity: 0
     maxNumParticles: 1
   ShapeModule:
@@ -47988,7 +47989,7 @@ ParticleSystem:
     enabled: 0
     multiplier: 1
   ClampVelocityModule:
-    enabled: 1
+    enabled: 0
     x:
       scalar: 1
       maxCurve:
@@ -58771,7 +58772,7 @@ ParticleSystem:
         m_PostInfinity: 2
       minMaxState: 0
     startSpeed:
-      scalar: 200
+      scalar: 0
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -58963,7 +58964,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
       minMaxState: 0
-    gravityModifier: 10000
+    gravityModifier: 0
     inheritVelocity: 0
     maxNumParticles: 1
   ShapeModule:
@@ -59441,7 +59442,7 @@ ParticleSystem:
     enabled: 0
     multiplier: 1
   ClampVelocityModule:
-    enabled: 1
+    enabled: 0
     x:
       scalar: 1
       maxCurve:

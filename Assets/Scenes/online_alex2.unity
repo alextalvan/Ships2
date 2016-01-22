@@ -20,9 +20,9 @@ RenderSettings:
   m_FogDensity: .00999999978
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: .698529422, g: .513624549, b: .513624549, a: 1}
-  m_AmbientEquatorColor: {r: .477941155, g: .295198947, b: .295198947, a: 1}
-  m_AmbientGroundColor: {r: .371593833, g: .52026087, b: .580882311, a: 1}
+  m_AmbientSkyColor: {r: 0, g: 0, b: 0, a: 1}
+  m_AmbientEquatorColor: {r: .191176474, g: .191176474, b: .191176474, a: 1}
+  m_AmbientGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
@@ -15847,8 +15847,9 @@ MonoBehaviour:
   voxelsX: 5
   voxelsY: 2
   voxelsZ: 2
-  voxelsYDownMod: 1
-  centerOfMassYOffset: 2
+  voxelsShiftY: 2
+  centerOfMassShiftY: 2
+  gravityModifier: 2
   buoyancyLimit: 70
 --- !u!54 &1164424232
 Rigidbody:
