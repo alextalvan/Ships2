@@ -38,7 +38,7 @@ public class WaterHelper : MonoBehaviour {
 	void Update ()
 	{
 		_mat.SetFloat ("_CustomTime", Time.time + _delta);
-		_mat.SetFloat ("_Panner", (Time.time + _delta) * 0.2f);
+		_mat.SetFloat ("_Panner", (Time.time + _delta) * 0.1f);
         //_mat.SetVector("_WaveScale", new Vector4 (waveScale.x, waveScale.y, waveScale.z, 0f));
 	}
 
