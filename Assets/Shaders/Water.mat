@@ -61,23 +61,23 @@ Material:
       data:
         first:
           name: _Reflection
-        second: .200000003
+        second: 0.2
       data:
         first:
           name: _Cutoff
-        second: .5
+        second: 0.5
       data:
         first:
           name: _CustomTime
-        second: 65.8739395
+        second: 21.023745
       data:
         first:
           name: _Glossiness
-        second: .5
+        second: 0.5
       data:
         first:
           name: _Metallic
-        second: .600000024
+        second: 0.6
       data:
         first:
           name: _Wave_amount
@@ -85,7 +85,7 @@ Material:
       data:
         first:
           name: _Panner
-        second: 13.1747885
+        second: 4.204749
       data:
         first:
           name: _Lerp
@@ -93,7 +93,7 @@ Material:
       data:
         first:
           name: _Power
-        second: .600000024
+        second: 0.6
       data:
         first:
           name: _Angle
@@ -101,11 +101,11 @@ Material:
       data:
         first:
           name: _Transparancy
-        second: .850000024
+        second: 0.85
       data:
         first:
           name: _Edge
-        second: .300000012
+        second: 0.3
       data:
         first:
           name: _RefelectionBlur
@@ -113,32 +113,32 @@ Material:
       data:
         first:
           name: _Refelcetion_Int
-        second: .300000012
+        second: 0.3
       data:
         first:
           name: _Fresnel
-        second: 1.55999994
+        second: 1.56
       data:
         first:
           name: _F_Intensity
-        second: 2.79999995
+        second: 2.8
       data:
         first:
           name: _Reflection_Move_amount
-        second: .200000003
+        second: 0.2
     m_Colors:
       data:
         first:
           name: _Color
-        second: {r: .0955882072, g: .0955882072, b: .0955882072, a: 1}
+        second: {r: 0.09558821, g: 0.09558821, b: 0.09558821, a: 1}
       data:
         first:
           name: _GAmplitude
-        second: {r: .140000001, g: .389999986, b: .174999997, a: .224999994}
+        second: {r: 0.14, g: 0.39, b: 0.175, a: 0.225}
       data:
         first:
           name: _GFrequency
-        second: {r: .5, g: .379999995, b: .589999974, a: .600000024}
+        second: {r: 0.5, g: 0.38, b: 0.59, a: 0.6}
       data:
         first:
           name: _GSteepness
@@ -150,11 +150,11 @@ Material:
       data:
         first:
           name: _GDirectionAB
-        second: {r: .469999999, g: .354999989, b: -.200000003, a: .100000001}
+        second: {r: 0.47, g: 0.355, b: -0.2, a: 0.1}
       data:
         first:
           name: _GDirectionCD
-        second: {r: .699999988, g: -.680000007, b: .709999979, a: -.200000003}
+        second: {r: 0.7, g: -0.68, b: 0.71, a: -0.2}
       data:
         first:
           name: _Color2
@@ -162,11 +162,11 @@ Material:
       data:
         first:
           name: _Color_lerp
-        second: {r: .117248058, g: 1, b: 0, a: 1}
+        second: {r: 0.11724806, g: 1, b: 0, a: 1}
       data:
         first:
           name: _Deep_Color
-        second: {r: 0, g: .75, b: .59523809, a: 1}
+        second: {r: 0, g: 0.75, b: 0.5952381, a: 1}
       data:
         first:
           name: _FresnelColor

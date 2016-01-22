@@ -161,7 +161,7 @@ Shader "Shader Forge/SailDamage" {
                 float VdotH = max(0.0,dot( viewDirection, halfDirection ));
                 float visTerm = SmithBeckmannVisibilityTerm( NdotL, NdotV, 1.0-gloss );
                 float normTerm = max(0.0, NDFBlinnPhongNormalizedTerm(NdotH, RoughnessToSpecPower(1.0-gloss)));
-                float specularPBL = max(0, (NdotL*visTerm*normTerm) * unity_LightGammaCorrectionConsts_PIDiv4 );
+                float specularPBL = max(0, NdotL*visTerm*normTerm);// * unity_LightGammaCorrectionConsts_PIDiv4 );
                 float3 directSpecular = (floor(attenuation) * _LightColor0.xyz) * pow(max(0,dot(halfDirection,normalDirection)),specPow)*specularPBL*lightColor*FresnelTerm(specularColor, LdotH);
                 float3 specular = directSpecular;
 /////// Diffuse:
@@ -297,7 +297,7 @@ Shader "Shader Forge/SailDamage" {
                 float VdotH = max(0.0,dot( viewDirection, halfDirection ));
                 float visTerm = SmithBeckmannVisibilityTerm( NdotL, NdotV, 1.0-gloss );
                 float normTerm = max(0.0, NDFBlinnPhongNormalizedTerm(NdotH, RoughnessToSpecPower(1.0-gloss)));
-                float specularPBL = max(0, (NdotL*visTerm*normTerm) * unity_LightGammaCorrectionConsts_PIDiv4 );
+                float specularPBL = max(0, (NdotL*visTerm*normTerm));// * unity_LightGammaCorrectionConsts_PIDiv4 );
                 float3 directSpecular = attenColor * pow(max(0,dot(halfDirection,normalDirection)),specPow)*specularPBL*lightColor*FresnelTerm(specularColor, LdotH);
                 float3 specular = directSpecular;
 /////// Diffuse:
