@@ -3,7 +3,12 @@ using UnityEngine.Networking;
 
 public class ProjectileType2 : Projectile
 {
-	protected override void DealDamage(Collision collision)
+
+    /// <summary>
+    /// damage corresponding ship component
+    /// </summary>
+    /// <param name="collision"></param>
+    protected override void DealDamage(Collision collision)
 	{
 		HullOnline hull = collision.collider.GetComponent<HullOnline>();
 		SailOnline sails = collision.collider.GetComponent<SailOnline>();

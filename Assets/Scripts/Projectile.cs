@@ -91,7 +91,11 @@ public abstract class Projectile : NetworkBehaviour
         ProcessDeath();
     }
 
-
+    /// <summary>
+    /// rpc spawn splash
+    /// </summary>
+    /// <param name="pos"></param>
+    /// <param name="size"></param>
 	[ClientRpc]
 	protected void RpcSpawnSplash(Vector3 pos, float size)
 	{
@@ -100,7 +104,10 @@ public abstract class Projectile : NetworkBehaviour
 		splashGO.GetComponent<ParticleSystem>().startSize = size;
 	}
 
-
+    /// <summary>
+    /// spawn splash
+    /// </summary>
+    /// <param name="size"></param>
     protected void SpawnSplash(float size)
     {
         //GameObject splashGO = (GameObject)Instantiate(splashPrefab, transform.position, new Quaternion(0f, Random.rotation.y, 0f, 0f));
@@ -109,6 +116,11 @@ public abstract class Projectile : NetworkBehaviour
         splashGO.GetComponent<ParticleSystem>().startSize = size;
     }
 
+    /// <summary>
+    /// explosion sound
+    /// </summary>
+    /// <param name="pos"></param>
+    /// <param name="type"></param>
     [ClientRpc]
     protected void RpcExplode(Vector3 pos, ImpactSoundType type)
     {
@@ -119,6 +131,10 @@ public abstract class Projectile : NetworkBehaviour
 		AudioHelper.PlayAt (_impactSounds [(int)type], pos);
     }
 
+    /// <summary>
+    /// do damage
+    /// </summary>
+    /// <param name="collision"></param>
     [ServerCallback]
     protected virtual void DealDamage(Collision collision)
     {
@@ -147,6 +163,12 @@ public abstract class Projectile : NetworkBehaviour
         NetworkServer.Spawn(debrisObj);
     }
 
+    /// <summary>
+    /// spawn debris at point
+    /// </summary>
+    /// <param name="point"></param>
+    /// <param name="normal"></param>
+    /// <param name="owner"></param>
 	[ServerCallback]
 	protected void SpawnDebrisAt(Vector3 point, Vector3 normal, CustomOnlinePlayer owner)
 	{
@@ -180,6 +202,9 @@ public abstract class Projectile : NetworkBehaviour
         DealDamage(collision);
     }
 
+    /// <summary>
+    /// death timer
+    /// </summary>
     [ServerCallback]
     protected virtual void ProcessDeath()
     {
@@ -187,6 +212,10 @@ public abstract class Projectile : NetworkBehaviour
             Delete();
     }
 
+    /// <summary>
+    /// process splash
+    /// </summary>
+    /// <param name="size"></param>
     [ClientCallback]
     protected virtual void ProcessSplash(float size = 5f)
     {
@@ -198,18 +227,29 @@ public abstract class Projectile : NetworkBehaviour
 		}
     }
 
+    /// <summary>
+    /// destroy gameobject
+    /// </summary>
     [ServerCallback]
     protected virtual void Delete()
     {
         NetworkServer.Destroy(gameObject);
     }
 
+    /// <summary>
+    /// respawn wrecks
+    /// </summary>
+    /// <param name="pos"></param>
     [ClientRpc]
     protected void RpcSpawnWrecks(Vector3 pos)
     {
         Instantiate(debrisPrefab, pos, new Quaternion(0f, Random.rotation.y, 0f, 0f));
     }
 
+    /// <summary>
+    /// apply local rigidbody force
+    /// </summary>
+    /// <param name="force"></param>
 	[ClientRpc]
 	public void RpcApplyLocalRigidbodyForce(Vector3 force)
 	{

@@ -57,6 +57,9 @@ public class CameraScript : MonoBehaviour
         UpdateObjPosition();
     }
 
+    /// <summary>
+    /// make camera to follow target object
+    /// </summary>
     void FollowCurrentObject()
     {
         if (currentObject)
@@ -64,6 +67,9 @@ public class CameraScript : MonoBehaviour
 			_parent.transform.position = currentObject.position + orbitDistance;
     }
 
+    /// <summary>
+    /// camera rotation calculation
+    /// </summary>
     void RotateCamera()
     {
         if (Mathf.Abs(rotation) < rotationSpeedLimit)
@@ -78,12 +84,18 @@ public class CameraScript : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// reserved pos update
+    /// </summary>
     private void UpdateObjPosition()
     {
         if (currentObject)
             currentPos = currentObject.position;
     }
 
+    /// <summary>
+    /// reset relative position after rotate
+    /// </summary>
     private void ResetOrbit()
     {
         if (currentObject)
@@ -91,17 +103,30 @@ public class CameraScript : MonoBehaviour
 			orbitDistance = _parent.transform.position - currentObject.position;
     }
 
+    /// <summary>
+    /// rotate camera about object according to mouse input
+    /// </summary>
+    /// <param name="point"></param>
+    /// <param name="axis"></param>
+    /// <param name="rotationSpeed"></param>
     void RotateCameraAround(Vector3 point, Vector3 axis, float rotationSpeed)
     {
 		_parent.transform.RotateAround(point, axis, Mathf.SmoothStep(rotationSpeed, 0f, Time.deltaTime));
         FadeRotation();
     }
 
+    /// <summary>
+    /// fade rotation speed
+    /// </summary>
     void FadeRotation()
     {
         rotation = Mathf.Lerp(rotation, 0f, rotationSpeed / 2f * Time.deltaTime);
     }
 
+    /// <summary>
+    /// attach camera to object
+    /// </summary>
+    /// <param name="obj"></param>
     public void AttachCameraTo(Transform obj)
     {
         currentObject = obj;
@@ -109,12 +134,19 @@ public class CameraScript : MonoBehaviour
         InitializeSettings(obj);
     }
 
+    /// <summary>
+    /// detach camera from current object
+    /// </summary>
     public void DetachCamera()
     {
         currentPos = currentObject.position;
         currentObject = null;
     }
 
+    /// <summary>
+    /// set up settings
+    /// </summary>
+    /// <param name="obj"></param>
     private void InitializeSettings(Transform obj)
     {
         if (obj)

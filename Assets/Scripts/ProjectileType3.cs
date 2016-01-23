@@ -56,6 +56,9 @@ public class ProjectileType3 : Projectile
 		Delete ();
 	}
 
+    /// <summary>
+    /// damage area
+    /// </summary>
 	void DoAreaDamage()
 	{
 		Vector3 myPos = GetComponent<Rigidbody> ().position;
@@ -80,7 +83,9 @@ public class ProjectileType3 : Projectile
 		}
 	}
 
-
+    /// <summary>
+    /// destroy projectile
+    /// </summary>
     [ServerCallback]
     protected override void Delete()
     {

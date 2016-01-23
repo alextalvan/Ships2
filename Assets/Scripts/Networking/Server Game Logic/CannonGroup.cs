@@ -42,6 +42,9 @@ public class CannonGroup : MonoBehaviour
         ReloadCannons();
     }
 
+    /// <summary>
+    /// reload cannos
+    /// </summary>
     //[Server]
     private void ReloadCannons()
     {
@@ -50,6 +53,13 @@ public class CannonGroup : MonoBehaviour
             currentCharge = cannonsCount;
     }
 
+    /// <summary>
+    /// draw aiming cone
+    /// </summary>
+    /// <param name="charge"></param>
+    /// <param name="distance"></param>
+    /// <param name="side"></param>
+    /// <param name="matIndex"></param>
     //[Client]
     public void DrawArea(float charge, float distance, bool side, int matIndex)
     {
