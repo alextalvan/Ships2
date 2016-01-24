@@ -39,6 +39,9 @@ public class HullOnline : NetworkBehaviour
         set { currentHealth = value; }
     }
 
+    /// <summary>
+    /// reset properties
+    /// </summary>
     public void Reset()
     {
         rb = shipAttributes.GetRigidBody;
@@ -52,6 +55,13 @@ public class HullOnline : NetworkBehaviour
         velocity = shipAttributes.GetCurrentSpeed;
     }
 
+    /// <summary>
+    /// damage hull
+    /// </summary>
+    /// <param name="position"></param>
+    /// <param name="damage"></param>
+    /// <param name="radius"></param>
+    /// <param name="source"></param>
     public void Damage(Vector3 position, float damage, float radius, GameObject source = null)
     {
         if (currentHealth < Mathf.Epsilon)
@@ -85,6 +95,10 @@ public class HullOnline : NetworkBehaviour
         SendHealthBarRefresh();
     }
 
+    /// <summary>
+    /// repair hull
+    /// </summary>
+    /// <param name="amount"></param>
     public void Repair(float amount)
     {
         if (currentHealth < shipAttributes.HullMaxHealth)
@@ -99,6 +113,12 @@ public class HullOnline : NetworkBehaviour
         }
     }
 
+    /// <summary>
+    /// explosion spawn
+    /// </summary>
+    /// <param name="pos"></param>
+    /// <param name="size"></param>
+    /// <param name="duration"></param>
     [ClientRpc]
     private void RpcExplode(Vector3 pos, float size, float duration)
     {
@@ -110,7 +130,10 @@ public class HullOnline : NetworkBehaviour
         Instantiate(explosionPrefab, pos, new Quaternion(0f, Random.rotation.y, 0f, 0f));
     }
 
-    //Rammimg
+    /// <summary>
+    /// collision damage etc (ramming)
+    /// </summary>
+    /// <param name="collision"></param>
     void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.GetComponent<Projectile>() || collision.collider.GetComponent<SailOnline>())
@@ -141,18 +164,29 @@ public class HullOnline : NetworkBehaviour
         SendHealthBarRefresh();
     }
 
+    /// <summary>
+    /// update healthbar
+    /// </summary>
     [ServerCallback]
     public void SendHealthBarRefresh()
     {
         RpcUpdateHP(currentHealth / shipAttributes.HullMaxHealth);
     }
 
+    /// <summary>
+    /// update shader hp
+    /// </summary>
+    /// <param name="healthRatio"></param>
     [ClientRpc]
     void RpcUpdateHP(float healthRatio)
     {
         hpRend.material.SetFloat("_Health", healthRatio);
     }
 
+    /// <summary>
+    /// spawn wrecks
+    /// </summary>
+    /// <param name="pos"></param>
     [ClientRpc]
     protected void RpcSpawnWrecks(Vector3 pos)
     {

@@ -15,6 +15,10 @@ public class SailOnline : MonoBehaviour
         set { currentHealth = value; }
     }
 
+    /// <summary>
+    /// damage sails
+    /// </summary>
+    /// <param name="damage"></param>
     public void Damage(float damage)
     {
         currentHealth -= damage;
@@ -30,6 +34,10 @@ public class SailOnline : MonoBehaviour
         shipAttributes.UpdateSailsState();
     }
 
+    /// <summary>
+    /// repart sails
+    /// </summary>
+    /// <param name="amount"></param>
     public void Repair(float amount)
     {
         if (currentHealth < shipAttributes.SailMaxHealth)
@@ -45,12 +53,18 @@ public class SailOnline : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// update shader
+    /// </summary>
     private void SendShaderUpdate()
     {
         int myIndex = shipAttributes.GetSailsList.IndexOf(this);
         shipAttributes.RpcChangeSailDissolve(myIndex, 1f - currentHealth / shipAttributes.SailMaxHealth);
     }
 
+    /// <summary>
+    /// reset sails state
+    /// </summary>
     public void Reset()
     {
         currentHealth = shipAttributes.SailMaxHealth;

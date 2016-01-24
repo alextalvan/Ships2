@@ -149,6 +149,9 @@ public class ShipAttributesOnline : NetworkBehaviour
         Reset();
     }
 
+    /// <summary>
+    /// reset ship properties
+    /// </summary>
     [Server]
     public void Reset()
     {
@@ -163,6 +166,9 @@ public class ShipAttributesOnline : NetworkBehaviour
         UpdateSailsState();
     }
 
+    /// <summary>
+    /// update sails state
+    /// </summary>
     [ServerCallback]
     public void UpdateSailsState()
     {
@@ -181,6 +187,10 @@ public class ShipAttributesOnline : NetworkBehaviour
         ChangeSailsShaking();
     }
 
+    /// <summary>
+    /// do damage to sails
+    /// </summary>
+    /// <param name="damage"></param>
     [ServerCallback]
     public void DamageAllSails(float damage)
     {
@@ -192,6 +202,10 @@ public class ShipAttributesOnline : NetworkBehaviour
         }
     }
 
+    /// <summary>
+    /// repart sails
+    /// </summary>
+    /// <param name="amount"></param>
     [ServerCallback]
     public void RepairAllSails(float amount)
     {
@@ -201,6 +215,9 @@ public class ShipAttributesOnline : NetworkBehaviour
         }
     }
 
+    /// <summary>
+    /// change shader sail state
+    /// </summary>
     [ClientCallback]
     private void ChangeSailsShaking()
     {
@@ -216,12 +233,20 @@ public class ShipAttributesOnline : NetworkBehaviour
         }
     }
 
+    /// <summary>
+    /// visual sails destruction
+    /// </summary>
+    /// <param name="index"></param>
+    /// <param name="amount"></param>
     [ClientRpc]
     public void RpcChangeSailDissolve(int index, float amount)
     {
         sails[index].GetComponent<Renderer>().material.SetFloat("_Dissolveamount", amount);
     }
 
+    /// <summary>
+    /// dealth func
+    /// </summary>
     [ServerCallback]
     public void OnDeath()
     {

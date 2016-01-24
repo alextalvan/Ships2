@@ -14,7 +14,6 @@ public class ShipScript : NetworkBehaviour
     private const float SPHERE_GIZMOS_SIZE = 0.1f;
 
     [SyncVar]
-    //[SerializeField]
     private float sailState = 0f;
     [SerializeField]
     float sailAccelerationPerFrame = 0.01f;
@@ -121,6 +120,9 @@ public class ShipScript : NetworkBehaviour
         ResetShootAndMovement();
     }
 
+    /// <summary>
+    /// set up camera
+    /// </summary>
     [ClientCallback]
     public void SetupCamera()
     {
@@ -131,6 +133,10 @@ public class ShipScript : NetworkBehaviour
         _camera.GetComponent<CameraScript>().AttachCameraTo(transform);
     }
 
+    /// <summary>
+    /// attach/detach camera
+    /// </summary>
+    /// <param name="attached"></param>
     [ClientRpc]
     public void RpcChangeCameraState(bool attached)
     {
@@ -145,6 +151,9 @@ public class ShipScript : NetworkBehaviour
             _camera.GetComponent<CameraScript>().DetachCamera();
     }
 
+    /// <summary>
+    /// reset ship properties
+    /// </summary>
     [ServerCallback]
     public void ResetShootAndMovement()
     {
@@ -171,6 +180,11 @@ public class ShipScript : NetworkBehaviour
         Rotate();
     }
 
+    /// <summary>
+    /// change ammo type
+    /// </summary>
+    /// <param name="m"></param>
+    /// <param name="dir"></param>
     private void ChangeAmmoType(OnlinePlayerInput.PlayerControlMessage m, Vector3 dir)
     {
         if (m == OnlinePlayerInput.PlayerControlMessage.SWITCH_START_HOLD_DOWN)
@@ -182,6 +196,9 @@ public class ShipScript : NetworkBehaviour
         }
     }
 
+    /// <summary>
+    /// switch ammo type on client
+    /// </summary>
     [ClientCallback]
     private void SwitchClientAmmoType()
     {
@@ -198,6 +215,10 @@ public class ShipScript : NetworkBehaviour
         }
     }
 
+    /// <summary>
+    /// freeze rigidbody
+    /// </summary>
+    /// <param name="state"></param>
 	public void SetFreeze(bool state)
 	{
 		if (state) 
@@ -212,6 +233,9 @@ public class ShipScript : NetworkBehaviour
 		}
 	}
 
+    /// <summary>
+    /// sails control
+    /// </summary>
     [ServerCallback]
     private void ControlSails()
     {
@@ -224,12 +248,18 @@ public class ShipScript : NetworkBehaviour
         if (onlineInput.GetInputValue(OnlinePlayerInput.PlayerControls.BACK))
             sailState -= sailAccelerationPerFrame;
 
-        sailState = Mathf.Clamp(sailState,-0.35f,1f);
+        if (onlineInput.GetInputValue(OnlinePlayerInput.PlayerControls.FORWARD) && sailState > 1.0f)
+            sailState = Mathf.Clamp(sailState,-0.35f, 1.5f);
+        else
+            sailState = Mathf.Clamp(sailState, -0.35f, 1f);
 
-		if (sailState < 0.0f)
+        if (sailState < 0.0f)
 			sailState *= 0.99f;
     }
 
+    /// <summary>
+    /// ship movement control
+    /// </summary>
     private void Move()
     {
         if (shipAttributes.IsDead || frozen)
@@ -243,10 +273,12 @@ public class ShipScript : NetworkBehaviour
 
         float totalSpeed = (baseWeight + sailWeight * shipAttributes.SailSpeedModifier) * cureMod * sailState;
 
-
         objRigidBody.AddForce(forward * objRigidBody.mass * totalSpeed);
     }
 
+    /// <summary>
+    /// ship rotation control
+    /// </summary>
     [ServerCallback]
     private void Rotate()
     {
@@ -268,6 +300,9 @@ public class ShipScript : NetworkBehaviour
         }
     }
 
+    /// <summary>
+    /// aiming trajectory drawing
+    /// </summary>
     [ClientCallback]
     private void PreviewTrajectory()
     {
@@ -342,6 +377,12 @@ public class ShipScript : NetworkBehaviour
         }
     }
 
+    /// <summary>
+    /// calculate shot distance
+    /// </summary>
+    /// <param name="startPos"></param>
+    /// <param name="force"></param>
+    /// <returns></returns>
     [ClientCallback]
     float GetTrajectoryDistance(Vector3 startPos, Vector3 force)
     {
@@ -367,6 +408,11 @@ public class ShipScript : NetworkBehaviour
         return 0f;
     }
 
+    /// <summary>
+    /// shooting input handling
+    /// </summary>
+    /// <param name="m"></param>
+    /// <param name="dir"></param>
     private void HandleShootInput(OnlinePlayerInput.PlayerControlMessage m, Vector3 dir)
     {
         if (playerRespawn.IsDead || frozen)
@@ -422,6 +468,9 @@ public class ShipScript : NetworkBehaviour
         }
     }
 
+    /// <summary>
+    /// cannons reloading
+    /// </summary>
     [ServerCallback]
     private void UpdateShootState()
     {
@@ -442,6 +491,11 @@ public class ShipScript : NetworkBehaviour
             barrelCoolDown -= chargingSpeed;
     }
 
+    /// <summary>
+    /// shoot with appropriate projectile type
+    /// </summary>
+    /// <param name="side"></param>
+    /// <param name="shotPower"></param>
     [ServerCallback]
     private void Shoot(Transform side, float shotPower)
     {
@@ -522,6 +576,9 @@ public class ShipScript : NetworkBehaviour
         }
     }
 
+    /// <summary>
+    /// update UI
+    /// </summary>
     [ClientCallback]
     void UpdateUI()
     {
