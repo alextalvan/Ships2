@@ -116,8 +116,8 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 128, y: 128}
-  m_SizeDelta: {x: 256, y: 256}
+  m_AnchoredPosition: {x: 128, y: 981}
+  m_SizeDelta: {x: 175, y: 154}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &5056826
 MonoBehaviour:
@@ -138,7 +138,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 8dc7cb02f6c1b5b4ab56ea1e1d4b3b1c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3c278cdbabb0c4c0ab7e781329ba6edc, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -24948,8 +24948,8 @@ RectTransform:
   m_RootOrder: 2
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 128, y: 128}
-  m_SizeDelta: {x: 256, y: 256}
+  m_AnchoredPosition: {x: 159, y: 980}
+  m_SizeDelta: {x: 174, y: 156}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1814093077
 MonoBehaviour:
@@ -24970,8 +24970,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: e7484d9a9626ecd49907866472c670fb, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: 137ec7184f50a41d191a0bc5cf28d49f, type: 3}
+  m_Type: 3
   m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
@@ -29311,8 +29311,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 128, y: 128}
-  m_SizeDelta: {x: 256, y: 256}
+  m_AnchoredPosition: {x: 99, y: 981}
+  m_SizeDelta: {x: 176, y: 156}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2091705654
 MonoBehaviour:
@@ -29333,13 +29333,13 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 02423ab94a7e31341849b59016a85cee, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9e1d89004adb843e8a7afd3a224e154e, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
-  m_FillMethod: 4
+  m_FillMethod: 3
   m_FillAmount: 1
-  m_FillClockwise: 1
+  m_FillClockwise: 0
   m_FillOrigin: 0
 --- !u!222 &2091705655
 CanvasRenderer:
