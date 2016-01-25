@@ -21,7 +21,7 @@ Shader "Custom/Water_gerstner" {
         _Reflection ("Reflection", Range(-10, 10)) = 0.25
         _Normalforrefl ("Normal for refl", 2D) = "bump" {}
         _Edge ("Edge", Range(-10, 10)) = 0.13
-        _RefelectionBlur ("RefelectionBlur", Range(0.1, 8)) = 2.37
+        _RefelectionBlur ("RefelectionBlur", Float) = 2.37
         _Refelcetion_Int ("Refelcetion_Int", Range(0, 1)) = 0.3006639
         _Fresnel ("Fresnel", Range(-5, 5)) = 1.56
         _F_Intensity ("F_Intensity", Range(0, 5)) = 1.758879

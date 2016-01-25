@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Water
-  m_Shader: {fileID: 4800000, guid: c56e8a073bdfb485eac5d5ec3958c3c1, type: 3}
+  m_Shader: {fileID: 4800000, guid: ac3fccaa2b030474783c12d1ee741115, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
   m_CustomRenderQueue: 2000
@@ -26,22 +26,22 @@ Material:
         first:
           name: _AlphaWave2
         second:
-          m_Texture: {fileID: 2800000, guid: ed808f527d800b64297ec575a9556f65, type: 3}
+          m_Texture: {fileID: 2800000, guid: 830884c18cf5e7a4895ee02c2dcd8e12, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
         first:
           name: _AlphaWave
         second:
-          m_Texture: {fileID: 2800000, guid: cee2491bf9f104825a5ca3ffd00453aa, type: 3}
-          m_Scale: {x: 1, y: 1}
+          m_Texture: {fileID: 2800000, guid: fb6566c21f717904f83743a5a76dd0b0, type: 3}
+          m_Scale: {x: 1.52, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
         first:
           name: _WaveTexture
         second:
-          m_Texture: {fileID: 2800000, guid: cee2491bf9f104825a5ca3ffd00453aa, type: 3}
-          m_Scale: {x: 1, y: 1}
+          m_Texture: {fileID: 2800000, guid: fb6566c21f717904f83743a5a76dd0b0, type: 3}
+          m_Scale: {x: 0.6, y: 0.6}
           m_Offset: {x: 0, y: 0}
       data:
         first:
@@ -61,7 +61,7 @@ Material:
       data:
         first:
           name: _Reflection
-        second: 0.6
+        second: 0.2
       data:
         first:
           name: _Cutoff
@@ -77,23 +77,23 @@ Material:
       data:
         first:
           name: _CustomTime
-        second: 7.037209
+        second: 306.98776
       data:
         first:
           name: _Wave_amount
-        second: 2
+        second: 4.2
       data:
         first:
           name: _Panner
-        second: 0.7037209
+        second: 30.698776
       data:
         first:
           name: _Lerp
-        second: 1
+        second: 0
       data:
         first:
           name: _Power
-        second: 1.95
+        second: 2.18
       data:
         first:
           name: _Angle
@@ -101,31 +101,31 @@ Material:
       data:
         first:
           name: _Transparancy
-        second: 0.95
+        second: 0.96
       data:
         first:
           name: _Edge
-        second: 0.3
+        second: 0.9
       data:
         first:
           name: _RefelectionBlur
-        second: 4
+        second: 1000
       data:
         first:
           name: _Refelcetion_Int
-        second: 0.3
+        second: 0.693
       data:
         first:
           name: _Fresnel
-        second: 1.56
+        second: 1.75
       data:
         first:
           name: _F_Intensity
-        second: 2.8
+        second: 0.37
       data:
         first:
           name: _Reflection_Move_amount
-        second: 0.2
+        second: 0.15
     m_Colors:
       data:
         first:
@@ -166,7 +166,7 @@ Material:
       data:
         first:
           name: _Deep_Color
-        second: {r: 0, g: 0.75, b: 0.5952381, a: 1}
+        second: {r: 0, g: 0.60294116, b: 0.47852477, a: 1}
       data:
         first:
           name: _FresnelColor
