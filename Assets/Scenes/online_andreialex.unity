@@ -51,7 +51,7 @@ LightmapSettings:
     m_TemporalCoherenceThreshold: 1
     m_EnvironmentLightingMode: 0
     m_EnableBakedLightmaps: 0
-    m_EnableRealtimeLightmaps: 1
+    m_EnableRealtimeLightmaps: 0
   m_LightmapEditorSettings:
     serializedVersion: 3
     m_Resolution: 2
@@ -4606,7 +4606,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &331280636
 Transform:
   m_ObjectHideFlags: 0
@@ -5550,6 +5550,18 @@ Prefab:
     - target: {fileID: 133084, guid: fd9ae811597c86145b0cce2244ca66d4, type: 2}
       propertyPath: m_Name
       value: tile (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2356504, guid: fd9ae811597c86145b0cce2244ca66d4, type: 2}
+      propertyPath: m_ReceiveShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2356504, guid: fd9ae811597c86145b0cce2244ca66d4, type: 2}
+      propertyPath: m_UseLightProbes
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2356504, guid: fd9ae811597c86145b0cce2244ca66d4, type: 2}
+      propertyPath: m_ReflectionProbeUsage
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11400278, guid: fd9ae811597c86145b0cce2244ca66d4, type: 2}
@@ -9075,6 +9087,18 @@ Prefab:
       propertyPath: m_Name
       value: tile (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 2356504, guid: fd9ae811597c86145b0cce2244ca66d4, type: 2}
+      propertyPath: m_ReceiveShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2356504, guid: fd9ae811597c86145b0cce2244ca66d4, type: 2}
+      propertyPath: m_UseLightProbes
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2356504, guid: fd9ae811597c86145b0cce2244ca66d4, type: 2}
+      propertyPath: m_ReflectionProbeUsage
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11400278, guid: fd9ae811597c86145b0cce2244ca66d4, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: fd9ae811597c86145b0cce2244ca66d4, type: 2}
@@ -11753,6 +11777,18 @@ Prefab:
     - target: {fileID: 133084, guid: fd9ae811597c86145b0cce2244ca66d4, type: 2}
       propertyPath: m_Name
       value: tile (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2356504, guid: fd9ae811597c86145b0cce2244ca66d4, type: 2}
+      propertyPath: m_ReceiveShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2356504, guid: fd9ae811597c86145b0cce2244ca66d4, type: 2}
+      propertyPath: m_UseLightProbes
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2356504, guid: fd9ae811597c86145b0cce2244ca66d4, type: 2}
+      propertyPath: m_ReflectionProbeUsage
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11400278, guid: fd9ae811597c86145b0cce2244ca66d4, type: 2}
@@ -17356,6 +17392,18 @@ Prefab:
       propertyPath: m_Name
       value: tile (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 2356504, guid: fd9ae811597c86145b0cce2244ca66d4, type: 2}
+      propertyPath: m_ReceiveShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2356504, guid: fd9ae811597c86145b0cce2244ca66d4, type: 2}
+      propertyPath: m_UseLightProbes
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2356504, guid: fd9ae811597c86145b0cce2244ca66d4, type: 2}
+      propertyPath: m_ReflectionProbeUsage
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11400278, guid: fd9ae811597c86145b0cce2244ca66d4, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: fd9ae811597c86145b0cce2244ca66d4, type: 2}
@@ -21741,6 +21789,18 @@ Prefab:
       propertyPath: m_Name
       value: tile (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 2356504, guid: fd9ae811597c86145b0cce2244ca66d4, type: 2}
+      propertyPath: m_ReceiveShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2356504, guid: fd9ae811597c86145b0cce2244ca66d4, type: 2}
+      propertyPath: m_UseLightProbes
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2356504, guid: fd9ae811597c86145b0cce2244ca66d4, type: 2}
+      propertyPath: m_ReflectionProbeUsage
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11400278, guid: fd9ae811597c86145b0cce2244ca66d4, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: fd9ae811597c86145b0cce2244ca66d4, type: 2}
@@ -23528,6 +23588,18 @@ Prefab:
     - target: {fileID: 133084, guid: fd9ae811597c86145b0cce2244ca66d4, type: 2}
       propertyPath: m_Name
       value: tile (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2356504, guid: fd9ae811597c86145b0cce2244ca66d4, type: 2}
+      propertyPath: m_ReceiveShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2356504, guid: fd9ae811597c86145b0cce2244ca66d4, type: 2}
+      propertyPath: m_UseLightProbes
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2356504, guid: fd9ae811597c86145b0cce2244ca66d4, type: 2}
+      propertyPath: m_ReflectionProbeUsage
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11400278, guid: fd9ae811597c86145b0cce2244ca66d4, type: 2}
@@ -25918,6 +25990,18 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2356504, guid: fd9ae811597c86145b0cce2244ca66d4, type: 2}
+      propertyPath: m_UseLightProbes
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2356504, guid: fd9ae811597c86145b0cce2244ca66d4, type: 2}
+      propertyPath: m_ReceiveShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2356504, guid: fd9ae811597c86145b0cce2244ca66d4, type: 2}
+      propertyPath: m_ReflectionProbeUsage
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11400278, guid: fd9ae811597c86145b0cce2244ca66d4, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: fd9ae811597c86145b0cce2244ca66d4, type: 2}
@@ -26444,6 +26528,18 @@ Prefab:
     - target: {fileID: 133084, guid: fd9ae811597c86145b0cce2244ca66d4, type: 2}
       propertyPath: m_Name
       value: tile (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2356504, guid: fd9ae811597c86145b0cce2244ca66d4, type: 2}
+      propertyPath: m_ReceiveShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2356504, guid: fd9ae811597c86145b0cce2244ca66d4, type: 2}
+      propertyPath: m_UseLightProbes
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2356504, guid: fd9ae811597c86145b0cce2244ca66d4, type: 2}
+      propertyPath: m_ReflectionProbeUsage
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11400278, guid: fd9ae811597c86145b0cce2244ca66d4, type: 2}
@@ -29401,6 +29497,18 @@ Prefab:
     - target: {fileID: 133084, guid: fd9ae811597c86145b0cce2244ca66d4, type: 2}
       propertyPath: m_Name
       value: tile (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2356504, guid: fd9ae811597c86145b0cce2244ca66d4, type: 2}
+      propertyPath: m_ReceiveShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2356504, guid: fd9ae811597c86145b0cce2244ca66d4, type: 2}
+      propertyPath: m_UseLightProbes
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2356504, guid: fd9ae811597c86145b0cce2244ca66d4, type: 2}
+      propertyPath: m_ReflectionProbeUsage
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11400278, guid: fd9ae811597c86145b0cce2244ca66d4, type: 2}
