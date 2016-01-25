@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine.Networking;
 using System.Collections.Generic;
 
+//simple object that is used to sync the lobby state for all players
 [NetworkSettings(channel = 0, sendInterval = 0.5f)]
 public class LobbyPlayerInfo : NetworkBehaviour {
 

@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine.Networking;
 
+
+//this is a central delivery of references for all "static" objects in the offline scene
+//instantiated objects must use this in order to have correct references
 public class OfflineSceneReferences : MonoBehaviour {
 
 	public string tutorialScene;
@@ -135,5 +138,11 @@ public class OfflineSceneReferences : MonoBehaviour {
 		int time;
 		if (int.TryParse (changeHiddenTimeField.text, out time) && time > 0f)
 			GameManager.initialPhase1Time = time;
+	}
+
+
+	public void ExitApplication()
+	{
+		Application.Quit ();
 	}
 }

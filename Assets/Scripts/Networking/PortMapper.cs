@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.Networking;
 using Mono.Nat;
 
+//utility wrapper of Mono.NAT that attempts to detect the NAT device and use its UPNP function to enable port forwarding
 [RequireComponent(typeof(CustomNetManager))]
 public class PortMapper : MonoBehaviour 
 {

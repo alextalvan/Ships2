@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+//used on the server to spectate and enable/disable audio,rendering
 public class ServerControlPanel : MonoBehaviour {
 
 	[SerializeField]

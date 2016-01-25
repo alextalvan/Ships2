@@ -3,12 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Networking;
 
+//component that handles ALL audio, particles, camera shakes, and other feedbacks that the server invokes on the client
 [NetworkSettings(channel = 0, sendInterval = 1e+6f)]
 public class PlayerFX : NetworkBehaviour
 {
-    //[SerializeField]
-    //private List<string> _audioEvents = new List<string>();
-
+   
 	[SerializeField]
 	private List<AudioClip> _clipList = new List<AudioClip> ();
 

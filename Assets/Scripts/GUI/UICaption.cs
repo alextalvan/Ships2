@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 
+//note: caption supports rich text
 [RequireComponent(typeof(Text),typeof(CanvasRenderer))]
 public class UICaption : MonoBehaviour 
 {

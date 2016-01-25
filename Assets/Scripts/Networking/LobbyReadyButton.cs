@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 
+//interface that is used for the HUD buttons to trigger networked ready/unready message sending
 public class LobbyReadyButton : MonoBehaviour {
 
 	[SerializeField]

@@ -4,12 +4,15 @@ using UnityEngine.UI;
 
 public class UIConsole : MonoBehaviour 
 {
+	//hardcoded textsize and rectangle, i don't care.
 	public int charSize = 16;
 	public Rect containerInfo = new Rect(0,Screen.height - 256,768,256);
 
 	string _mainText = "";
 	GUIStyle _consoleStyle = new GUIStyle();
 
+
+	//UIConsole is a singleton gameobject
 	static UIConsole _instance = null;
 	bool hide = true;
 
@@ -49,9 +52,7 @@ public class UIConsole : MonoBehaviour
 
 	void OnGUI()
 	{
-		if (hide)
-			return;
-
+		
 		_consoleStyle = GUI.skin.box;
 		_consoleStyle.alignment = TextAnchor.UpperLeft;
 		_consoleStyle.fontSize = charSize;
@@ -77,7 +78,11 @@ public class UIConsole : MonoBehaviour
 
 			_mainText = newMainText;
 		}
-		 
+
+		//let the huge string get clamped to max lines before returning in case of hide being enabled
+		if (hide)
+			return;
+
 		GUI.Box (containerInfo, _mainText, _consoleStyle);
 	}
 

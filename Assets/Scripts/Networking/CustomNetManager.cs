@@ -6,8 +6,7 @@ using UnityEngine.UI;
 
 public class CustomNetManager : NetworkLobbyManager {
 
-	//bool isClient = true;
-	//bool startedServer = false;
+	//flag whether to reset the list of respawn points next time the scene changes to the online one
 	bool resetSpawnPointsOnSceneChange = false;
 
 	[SerializeField]
@@ -15,7 +14,9 @@ public class CustomNetManager : NetworkLobbyManager {
 	[SerializeField]
 	int portField = 7777;
 	public bool isHudEnabled;
-	
+
+
+	//important prefabs
 	[SerializeField]
 	GameObject onlinePlayerPrefab;
 
@@ -28,6 +29,7 @@ public class CustomNetManager : NetworkLobbyManager {
 	public bool clientAutoReconnect = false;
 	public bool serverAutoRestart = false;
 
+	//nicknames stored by the server and passed to the online player prefabs
 	public Dictionary<int,string> nicknames; 
 
 	void SetAddress(string ip)
@@ -47,6 +49,7 @@ public class CustomNetManager : NetworkLobbyManager {
 		return false;
 	}
 
+	//this is called by the menu HUD port input field
 	public void SetPort()
 	{
 
@@ -60,6 +63,7 @@ public class CustomNetManager : NetworkLobbyManager {
 		}
 	}
 
+	//this is called by the menu HUD IP input field
 	public void SetSocketInfo()
 	{
 		InputField socketInputField = GameObject.Find("OfflineSceneReferences").GetComponent<OfflineSceneReferences>().socketInputField;
@@ -101,6 +105,7 @@ public class CustomNetManager : NetworkLobbyManager {
 		//isClient = false;
 	}
 
+	//disable the "auto restart mesage" dialog
 	public override void OnLobbyStartServer ()
 	{
 		GameObject.Find ("OfflineSceneReferences").GetComponent<OfflineSceneReferences> ().autoRestartMessage.Disable ();
@@ -115,7 +120,8 @@ public class CustomNetManager : NetworkLobbyManager {
 		resetSpawnPointsOnSceneChange = true;
 	}
 
-
+	//callback for a new client connecting to the server in lobby state
+	//this is executed on the client, it sends a request to the server to instantiate a lobby player object for it
 	public override void OnLobbyClientConnect (NetworkConnection conn)
 	{
 		//TryToAddPlayer ();
@@ -124,7 +130,8 @@ public class CustomNetManager : NetworkLobbyManager {
 
 	}
 	
-
+	//callback for a new client changing scene to the online one
+	//this is executed on the client, it sends a request to the server to swap the lobby player object with an online one (the ship)
 	public override void OnClientSceneChanged (NetworkConnection conn)
 	{
 		//UIConsole.Log ("OnClientSceneChanged " + Application.loadedLevelName);
@@ -132,6 +139,8 @@ public class CustomNetManager : NetworkLobbyManager {
 		ClientScene.Ready(conn);
 		//ClientScene.AddPlayer(0);
 
+		//delayed respawn to ensure that over LAN networks, the message does not arrive before the scene change finishes
+		//(internally, the network manager changes networked scenes asynchronously)
 		StartCoroutine (SpawnPlayerWithDelay (6f));
 
 	}
@@ -141,7 +150,7 @@ public class CustomNetManager : NetworkLobbyManager {
 		//base.OnServerSceneChanged (sceneName);
 	}
 
-
+	//the message sent from client to the server to spawn its player object results in this callback on the server
 	public override void OnServerAddPlayer (NetworkConnection conn, short playerControllerId)
 	{
 		//remove previous player objects for the connection, if they exist
@@ -196,6 +205,9 @@ public class CustomNetManager : NetworkLobbyManager {
 		base.OnServerRemovePlayer (conn, player);
 	}
 
+
+	//callback executed on the server when it starts
+	//dialog disabling and activation of NAT punchthrough (via NAT device detection and UPNP)
 	public override void OnStartServer ()
 	{
 		base.OnStartServer ();
@@ -214,6 +226,7 @@ public class CustomNetManager : NetworkLobbyManager {
 
 	}
 
+	//callback executed on the server when it stops for any reason
 	public override void OnStopServer ()
 	{
 
@@ -233,6 +246,7 @@ public class CustomNetManager : NetworkLobbyManager {
 
 
 	}
+
 
 	public override void OnStartClient (NetworkClient lobbyClient)
 	{
@@ -282,13 +296,14 @@ public class CustomNetManager : NetworkLobbyManager {
 		//test
 	}
 
-	//lobby information handling
+
 
 	void Update()
 	{
 		//if (_lobbyInfo == null)
 		//	_lobbyInfo = GameObject.Find ("LobbyInfo").GetComponent<LobbyPlayerInfo> ();
 
+		//lobby information handling
 		if(_lobbyInfo!=null && CheckIfLobbyScene() && !this.IsClientConnected() && this.isNetworkActive)
 		{
 			NetworkLobbyPlayer[] players = this.lobbySlots;
@@ -305,7 +320,8 @@ public class CustomNetManager : NetworkLobbyManager {
 
 		}
 
-
+		//forced disconnect by pressing K+L
+		//intended to be used by developers only
 		if (Input.GetKey (KeyCode.K) && Input.GetKeyDown (KeyCode.L)) 
 		{
 			Disconnect();
@@ -325,11 +341,10 @@ public class CustomNetManager : NetworkLobbyManager {
 
 	}
 
-
+	//callback on a client when it connects to the lobby
 	public override void OnLobbyClientEnter ()
 	{
 		ShowLobbyInterface ();
-
 	}
 
 	IEnumerator SpawnPlayerWithDelay(float delay)

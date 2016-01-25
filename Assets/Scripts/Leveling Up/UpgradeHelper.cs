@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
+//how exactly an upgrade changes the ship is decoupled and held in this class
 public class UpgradeHelper  {
 
 	public static void ApplyUpgrade(LevelUser.UPGRADES up, ShipAttributesOnline target)

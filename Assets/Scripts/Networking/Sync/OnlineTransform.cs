@@ -2,14 +2,19 @@
 using System.Collections;
 using UnityEngine.Networking;
 
+//interpolation of the transform over the network
 [NetworkSettings(channel = 0, sendInterval = 1e+6f)]
 public class OnlineTransform : NetworkBehaviour {
 
+	//send rate of snapshots in seconds
 	[SerializeField]
 	float _sendRate = 0.05f;
+
+	//value used in the lerp functions
 	[SerializeField]
 	float _interpRate = 0.1f;
 
+	//the threshold at which interpolation is not executed and the transform is hard-set instead
 	[SerializeField]
 	float _snapThreshold = 20f;
 
@@ -38,6 +43,7 @@ public class OnlineTransform : NetworkBehaviour {
 		_interpRate = value;
 	}
 
+	//on the clients the collider and rigidbody are generally disabled to prevent interference with the networked data
 	void Awake()
 	{
 		
@@ -65,12 +71,6 @@ public class OnlineTransform : NetworkBehaviour {
 	{
 		PushSnapshot ();
 		UpdateTransform ();
-	}
-	
-	// Update 
-	void FixedUpdate () 
-	{
-		//UpdateTransform ();
 	}
 
 	[ClientCallback]
@@ -100,14 +100,7 @@ public class OnlineTransform : NetworkBehaviour {
 			_timeAccumulator %= _sendRate;
 			SendSnapshot();
 		}
-
-		/*
-		if (nextTime < Time.time) 
-		{
-			SendSnapshot ();
-			nextTime = Time.time + _sendRate;
-		}
-		*/
+			
 	}
 
 	[Server]

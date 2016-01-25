@@ -66,6 +66,9 @@ public class LevelUser : NetworkBehaviour
         }
     }
 
+
+	//this is used in case the player does not send the level up skill pick insantly.
+	//all level up choices are buffered by both clients and the server
     private Queue<LevelUpChoice> _choicesBuffer = new Queue<LevelUpChoice>();
 
 	public Queue<LevelUpChoice> ChoicesBuffer

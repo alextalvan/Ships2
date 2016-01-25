@@ -8,8 +8,10 @@ using UnityEngine.UI;
 public class CustomOnlinePlayer : NetworkBehaviour
 {
 
+	//each map piece owned increases the radius at which the player can see the cure
     public static float distancePerMapPiece = 25f;
 
+	//when the client is told it cannot see the cure, this is the position where it puts it
     static Vector3 hiddenLocation = new Vector3(100000, 100000, 100000);
 
     //[SyncVar]
@@ -24,6 +26,7 @@ public class CustomOnlinePlayer : NetworkBehaviour
     //[SyncVar]
     public NetworkIdentity currentCureCarrier = null;
 
+	//syncvars dropped in favor of manual info transmission, every 250ms. this is for network performance
 	[SerializeField]
 	float cureInfoSendRate = 0.25f;
 
@@ -31,6 +34,7 @@ public class CustomOnlinePlayer : NetworkBehaviour
 
     private int mapPieces = 1;
 
+	//wrapper get/set is used to easily calculate when to RPC a specific particle effect on a player
 	public int MapPieces {
 		get {
 			return mapPieces;
@@ -43,23 +47,28 @@ public class CustomOnlinePlayer : NetworkBehaviour
 		}
 	}
 
+	//internal game server logic
     public float cureCarryTimeLeft;
 
-
+	//individual player info
     public Color IndividualColor = Color.white;
     public string IndividualName = "Player";
 
+	//objects which will have their material use a tint of the individual color
     [SerializeField]
     List<Renderer> _objectsToColor = new List<Renderer>();
 
+	//the nickname shown over the ship
 	[SerializeField]
 	TextMesh _overHeadText;
 
+	//the arrow that shows the enarest enemy/the cure
     [SerializeField]
     GameObject arrow;
 
     OnlineSceneReferences onlineRef;
 
+	//pool of colors used
 	private static List<Color> _playerColors;
 
 	public static void ResetColorList()
@@ -123,6 +132,7 @@ public class CustomOnlinePlayer : NetworkBehaviour
 		
     }
 
+	//server side setup for the player
 	public void SetupInfo()
 	{
 		//color first
@@ -147,6 +157,7 @@ public class CustomOnlinePlayer : NetworkBehaviour
 		_overHeadText.color = IndividualColor;
 	}
 
+	//synchronizes name and color for every other player using rpcs
 	public void SyncIndividualInfoForAll()
 	{
 		foreach (CustomOnlinePlayer p in onlineRef.allOnlinePlayers) 
@@ -206,6 +217,7 @@ public class CustomOnlinePlayer : NetworkBehaviour
 		}
 	}
 
+	//this calculates how the cure should be displayed(or not) for the current player and then updates him over the entwork
     //[ServerCallback]
     void CalculateIfCanSeeCure()
     {
@@ -235,6 +247,7 @@ public class CustomOnlinePlayer : NetworkBehaviour
         return;
     }
 
+	//various RPCs for game logic
     [ClientCallback]
     void UpdateArrow()
     {
@@ -315,10 +328,11 @@ public class CustomOnlinePlayer : NetworkBehaviour
 
     void OnDestroy()
     {
-        OnDestroyedOnServer();
+        OnDestroyedOnServer();//this wrapper is used because it is only called on the server
         onlineRef.allOnlinePlayers.Remove(this);
     }
 
+	//extremely important, if a player that is carrying the cure dies, we must be sure it doesn't sink the cure with him
     [ServerCallback]
     void OnDestroyedOnServer()
     {
