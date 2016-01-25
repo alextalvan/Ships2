@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+//can be attached to any sort of UI game object to enable clean interface for disable/enable/push to top
 public class GUIDialog : MonoBehaviour 
 {
 

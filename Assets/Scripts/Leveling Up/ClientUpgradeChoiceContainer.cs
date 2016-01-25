@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 
+//simple behaviour for the sprites on the upgrade HUD
 [RequireComponent(typeof(Image))]
 public class ClientUpgradeChoiceContainer : MonoBehaviour {
 
@@ -19,7 +20,7 @@ public class ClientUpgradeChoiceContainer : MonoBehaviour {
 		Unhighlight ();
 	}
 
-
+	//these are accessed as sprite hover/leave UnityEvents
 	public void Highlight()
 	{
 		GetComponent<Image> ().sprite = _highlighted;

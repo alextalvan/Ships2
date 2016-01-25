@@ -6,6 +6,7 @@ public class ClientUpgradeScreen : MonoBehaviour {
 
 	CustomOnlinePlayer _target;
 
+	//on screen sprite references
 	public ClientUpgradeChoiceContainer choiceContainer1;
 	public ClientUpgradeChoiceContainer choiceContainer2;
 	public ClientUpgradeChoiceContainer choiceContainer3;
@@ -28,6 +29,7 @@ public class ClientUpgradeScreen : MonoBehaviour {
 		_target = p;
 	}
 
+	//these are UnityEvent callbacks triggered by the user interacting with the HUD sprites
 	public void SendChoice1()
 	{
 		_target.GetComponent<LevelUser> ().CmdSendUpgradeChoice (1);

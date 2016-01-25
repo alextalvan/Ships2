@@ -3,10 +3,12 @@ using System.Collections;
 
 public class WaterHelper : MonoBehaviour {
 
+	//shared material and statics will be sued for performance reasons
 	private Material _mat;
     private static float _delta = 0.0f;
     private static Vector3 waveScale;
 
+	//this is set by the time synchronizer in order to sync the water shader time with the server time
 	public static float Delta
 	{
         get { return _delta; }
@@ -46,31 +48,7 @@ public class WaterHelper : MonoBehaviour {
 
 	static Vector4 steepness, amplitude, frequency, speed, dirAB, dirCD;
 
-
-	public static float GetOceanHeightAt_OLD(Vector2 coord)
-	{
-
-		Vector4 dots = new Vector4(Vector2.Dot(new Vector2(dirAB.x,dirAB.y),coord),
-		                           Vector2.Dot(new Vector2(dirAB.z,dirAB.w),coord),
-		                           Vector2.Dot(new Vector2(dirCD.x,dirCD.y),coord),
-		            			   Vector2.Dot(new Vector2(dirCD.z,dirCD.w),coord));
-
-		Vector4 dotABCD = new Vector4(dots.x * frequency.x,
-		                              dots.y * frequency.y,
-		                              dots.z * frequency.z,
-		                              dots.w * frequency.w);
-
-		float time = Time.time + _delta;
-
-		Vector4 sin = new Vector4(Mathf.Sin(dotABCD.x + time * speed.x),
-		                          Mathf.Sin(dotABCD.y + time * speed.y),
-		                          Mathf.Sin(dotABCD.z + time * speed.z),
-		                          Mathf.Sin(dotABCD.w + time * speed.w));
-
-		return Vector4.Dot(sin,amplitude);
-	}
-
-
+	//very slow but accurate sampling of the ocean height used by the shader
 	public static float GetOceanHeightAt(Vector2 coord)
 	{
 		//first, transform the coord by getting rid of the cos sums in the gerstner displacement

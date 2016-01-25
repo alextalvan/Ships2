@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using UnityEngine.Networking;
 
 //this special dropdown is made specifically to clamp another one's max options to this one's.
+//the need for this arrises when you have a dropdown of minimum players that cannot display more than the dropdown for choosing maximum players
 public class SpecialDropdown : MonoBehaviour {
 
 

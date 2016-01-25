@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
+//this is a central delivery of references for all "static" objects in the online scene
+//instantiated objects must use this in order to have correct references
 public class OnlineSceneReferences : MonoBehaviour {
 
 	public GameObject harbor;

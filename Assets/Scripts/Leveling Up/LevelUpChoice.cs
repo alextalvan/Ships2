@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
+//generation of random level up skills which are mutually exclusive
 public struct LevelUpChoice 
 {
 	public int choice1;

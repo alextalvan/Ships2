@@ -2,6 +2,8 @@
 using System.Collections;
 using UnityEngine.Networking;
 
+
+//utility for synchronizing the unity time for clients. used to synchronize the water shader
 [NetworkSettings(channel = 0, sendInterval = 1e+6f)]
 public class TimeSynchronizer : NetworkBehaviour {
 	

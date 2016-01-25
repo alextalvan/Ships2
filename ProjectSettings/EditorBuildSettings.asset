@@ -6,8 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/offline_alex.unity
+    path: Assets/Scenes/offline_andreialex.unity
   - enabled: 1
-    path: Assets/Scenes/online_alex2.unity
+    path: Assets/Scenes/online_andreialex.unity
   - enabled: 1
     path: Assets/Scenes/realTut.unity

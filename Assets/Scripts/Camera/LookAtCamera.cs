@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+//a simple lookat used by text meshes to correctly show up straight on the user's screen(for their nicknames etc)
 public class LookAtCamera : MonoBehaviour {
 
 	// Use this for initialization

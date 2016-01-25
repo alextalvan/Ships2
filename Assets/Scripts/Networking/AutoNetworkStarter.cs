@@ -2,6 +2,8 @@
 using System.Collections;
 using UnityEngine.Networking;
 
+//convenience script that is enabled by default on the server to make it auto-restart if it drops connection or the game ends
+//on the client it handles the end game "auto connect to server again" functionality
 [RequireComponent(typeof(CustomNetManager))]
 public class AutoNetworkStarter : MonoBehaviour 
 {

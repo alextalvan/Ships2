@@ -6,6 +6,7 @@ public class CustomLobbyPlayer : NetworkLobbyPlayer
 {
 	//const int maxNickLength = 20;
 
+	//executed on server
 	[Command]
 	public void CmdSendNickname(string nickname)
 	{

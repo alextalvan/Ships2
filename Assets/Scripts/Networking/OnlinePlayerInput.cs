@@ -2,7 +2,8 @@
 using UnityEngine.Networking;
 using System.Collections;
 
-
+//networked input for each player
+//this component logs every Keydown and Keyup event with optinal Camera direction 
 [NetworkSettings(channel = 0, sendInterval = 1e+6f)]
 public class OnlinePlayerInput : NetworkBehaviour {
 

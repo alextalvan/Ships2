@@ -8,10 +8,6 @@ public class CureScript : MonoBehaviour {
 	OnlineSceneReferences onlineRef;
 	Transform holder = null;
 
-	//safety for disconnects and other unpredictable events
-	//bool wasHeldPrevFrame;
-	//Vector3 lastPos;
-
 	public static float cureCarrierSpeedDebuff = 0.65f;
 
 	void Start()
@@ -57,6 +53,7 @@ public class CureScript : MonoBehaviour {
 		//transform.localPosition = new Vector3 (0, 6, 0);
     }
 
+	//update() used to not make the rendering look bad
 	void Update()
 	{
 		if (holder != null) 

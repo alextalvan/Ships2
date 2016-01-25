@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+//note that the camera needs to be a child of a container for this script to work
 public class CameraShake : MonoBehaviour
 {
 	// How long the object should shake for.
