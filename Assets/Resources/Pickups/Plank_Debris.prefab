@@ -29,8 +29,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 185838}
-  m_LocalRotation: {x: -.0390161499, y: -.100114115, z: -.00392884435, w: .994202912}
-  m_LocalPosition: {x: 1.04925537, y: -.953049362, z: .140930176}
+  m_LocalRotation: {x: -0.03901615, y: -0.100114115, z: -0.0039288444, w: 0.9942029}
+  m_LocalPosition: {x: -353.29575, y: -110, z: 129.38466}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -53,8 +53,10 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_AutoUVMaxDistance: .5
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
@@ -75,7 +77,7 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 5
   m_Drag: 0
-  m_AngularDrag: .0500000007
+  m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -119,8 +121,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 716f183b3c96e994eaabcbfb2ff9ac5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sendRate: .100000001
-  _interpRate: .100000001
+  _sendRate: 0.1
+  _interpRate: 0.1
   _snapThreshold: 20
   syncRotation: 1
   disableRigidbody: 1
@@ -174,7 +176,6 @@ MonoBehaviour:
   voxelsShiftY: 1
   centerOfMassShiftY: 1
   gravityModifier: 2
-  buoyancyLimit: 100
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

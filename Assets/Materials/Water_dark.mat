@@ -78,7 +78,11 @@ Material:
       data:
         first:
           name: _CustomTime
-        second: 45.435806
+        second: 22.649921
+      data:
+        first:
+          name: _Fresnel
+        second: 0
       data:
         first:
           name: _Wave_amount
@@ -86,7 +90,7 @@ Material:
       data:
         first:
           name: _Panner
-        second: 4.5435805
+        second: 2.2649922
       data:
         first:
           name: _Lerp
@@ -117,10 +121,6 @@ Material:
         second: 0.161
       data:
         first:
-          name: _Fresnel
-        second: 0
-      data:
-        first:
           name: _F_Intensity
         second: 4.4
       data:
@@ -134,16 +134,12 @@ Material:
         second: {r: 1, g: 1, b: 1, a: 1}
       data:
         first:
-          name: _Color2
-        second: {r: 1, g: 1, b: 1, a: 1}
-      data:
-        first:
           name: _GAmplitude
-        second: {r: 0, g: 0, b: 0, a: 0}
+        second: {r: 0.15, g: 0.75, b: 0.15, a: 0.25}
       data:
         first:
           name: _GFrequency
-        second: {r: 0.5, g: 0.38, b: 0.59, a: 0.6}
+        second: {r: 0.25, g: 0.18, b: 0.39, a: 0.6}
       data:
         first:
           name: _GSteepness
@@ -151,7 +147,7 @@ Material:
       data:
         first:
           name: _GSpeed
-        second: {r: -3, g: 2, b: 1, a: 3}
+        second: {r: -1.5, g: 1, b: 1, a: 3}
       data:
         first:
           name: _GDirectionAB
@@ -160,6 +156,10 @@ Material:
         first:
           name: _GDirectionCD
         second: {r: 0.7, g: -0.68, b: 0.71, a: -0.2}
+      data:
+        first:
+          name: _Color2
+        second: {r: 1, g: 1, b: 1, a: 1}
       data:
         first:
           name: _Color_lerp

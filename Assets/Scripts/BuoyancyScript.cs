@@ -360,6 +360,6 @@ public class Voxel
     public void Sink()
     {
         if (buoyancyState > 0f)
-            buoyancyState -= 1f;
+            buoyancyState -= 0.1f;
     }
 }
