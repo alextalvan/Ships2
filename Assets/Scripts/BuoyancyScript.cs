@@ -302,6 +302,12 @@ public class BuoyancyScript : NetworkBehaviour
     /// </summary>
     private void OnDrawGizmos()
     {
+        DrawGizmos();
+    }
+
+    [ServerCallback]
+    void DrawGizmos()
+    {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(objRigidBody.worldCenterOfMass, SPHERE_GIZMOS_SIZE * 5f);
 

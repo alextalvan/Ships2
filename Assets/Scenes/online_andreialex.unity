@@ -2502,7 +2502,7 @@ Light:
     m_NormalBias: 0.4
     m_NearPlane: 0.2
   m_Cookie: {fileID: 0}
-  m_DrawHalo: 1
+  m_DrawHalo: 0
   m_Flare: {fileID: 0}
   m_RenderMode: 0
   m_CullingMask:
@@ -8437,15 +8437,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 434170342ea6804448e847a8fb233c0a, type: 3}
       propertyPath: m_LocalScale.x
-      value: .125
+      value: 0.125
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 434170342ea6804448e847a8fb233c0a, type: 3}
       propertyPath: m_LocalScale.y
-      value: .125
+      value: 0.125
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 434170342ea6804448e847a8fb233c0a, type: 3}
       propertyPath: m_LocalScale.z
-      value: .125
+      value: 0.125
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 434170342ea6804448e847a8fb233c0a, type: 3}
       propertyPath: m_ReflectionProbeUsage
@@ -8496,13 +8496,13 @@ Light:
     m_NormalBias: 0.4
     m_NearPlane: 0.2
   m_Cookie: {fileID: 0}
-  m_DrawHalo: 1
+  m_DrawHalo: 0
   m_Flare: {fileID: 0}
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_Lightmapping: 4
+  m_Lightmapping: 1
   m_BounceIntensity: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -24668,7 +24668,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1848034368}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -366, y: 0, z: 120}
+  m_LocalPosition: {x: -366, y: 3.41, z: 120}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 323877765}

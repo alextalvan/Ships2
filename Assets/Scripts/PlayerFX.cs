@@ -57,6 +57,7 @@ public class PlayerFX : NetworkBehaviour
 
 	public void PlaySound(PLAYER_SOUNDS s, bool _3d)
     {  
+
 		if (_3d)
 			_source.spatialBlend = 1.0f;
 		else
@@ -68,6 +69,10 @@ public class PlayerFX : NetworkBehaviour
 		_source.Play ();
 		*/
 		_source.PlayOneShot (_clipList [(int)s]);
+
+        _source.clip = null;
+
+       // UIConsole.Log(s);
     }
 
 

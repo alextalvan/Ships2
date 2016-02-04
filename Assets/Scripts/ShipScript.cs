@@ -113,11 +113,17 @@ public class ShipScript : NetworkBehaviour
 
         SetupCamera();
 
+        SetupControls();
+
+        ResetShootAndMovement();
+    }
+
+    [ServerCallback]
+    void SetupControls()
+    {
         onlinePlayerInput = GetComponent<OnlinePlayerInput>();
         onlinePlayerInput.OnServerReceiveRawInput += ChangeAmmoType;
         onlinePlayerInput.OnServerReceiveRawInput += HandleShootInput;
-
-        ResetShootAndMovement();
     }
 
     /// <summary>
