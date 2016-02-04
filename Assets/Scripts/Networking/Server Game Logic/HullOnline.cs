@@ -136,6 +136,9 @@ public class HullOnline : NetworkBehaviour
     /// <param name="collision"></param>
     void OnCollisionEnter(Collision collision)
     {
+        if (shipAttributes.IsDead)
+            return;
+        
         if (collision.collider.GetComponent<Projectile>() || collision.collider.GetComponent<SailOnline>())
             return;
 

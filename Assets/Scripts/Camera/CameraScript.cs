@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class CameraScript : MonoBehaviour
 {
+    enum CamState { Attached, Free };
+    CamState currentCamState = CamState.Attached;
     //[SerializeField]
     //Transform debug;
 
@@ -21,6 +23,9 @@ public class CameraScript : MonoBehaviour
     private float rotation;
 
 	private GameObject _parent;
+
+    float rotX;
+    float rotY;
 
 	/*bool isRotationEnabled = true;
 
@@ -47,14 +52,60 @@ public class CameraScript : MonoBehaviour
         //    AttachCameraTo(debug);
         //if (Input.GetKeyDown(KeyCode.D))
         //    DetachCamera();
+        ChangeCamState();
     }
 
     void LateUpdate()
     {
-        FollowCurrentObject();
-        RotateCamera();
-        ResetOrbit();
-        UpdateObjPosition();
+        if (currentCamState == CamState.Attached)
+        {
+            FollowCurrentObject();
+            RotateCamera();
+            ResetOrbit();
+            UpdateObjPosition();
+        }
+        else
+        {
+            FreeCameraBehaviour();
+        }
+    }
+
+    private void ChangeCamState()
+    {
+        if (Input.GetKeyDown("1") && currentCamState == CamState.Free)
+        {
+            if (currentObject != null)
+            {
+                currentCamState = CamState.Attached;
+                InitializeSettings(currentObject);
+            }
+        }
+        else if(Input.GetKeyDown("2") && currentCamState == CamState.Attached)
+        {
+            currentCamState = CamState.Free;
+            _parent.transform.rotation = Quaternion.identity;
+            transform.rotation = Quaternion.identity;
+        }
+    }
+
+    private void FreeCameraBehaviour()
+    {
+        //Mouse input
+        rotX += Input.GetAxis("Mouse X");
+        rotY -= Input.GetAxis("Mouse Y");
+        rotY = Mathf.Clamp(rotY, -90f, 90f);
+
+        _parent.transform.rotation = Quaternion.Euler(rotY, rotX, 0);
+
+        //Key input
+        if (Input.GetKey(KeyCode.UpArrow))
+            _parent.transform.Translate(_parent.transform.forward, Space.World);
+        if (Input.GetKey(KeyCode.DownArrow))
+            _parent.transform.Translate(-_parent.transform.forward, Space.World);
+        if (Input.GetKey(KeyCode.RightArrow))
+            _parent.transform.Translate(_parent.transform.right, Space.World);
+        if (Input.GetKey(KeyCode.LeftArrow))
+            _parent.transform.Translate(-_parent.transform.right, Space.World);
     }
 
     /// <summary>

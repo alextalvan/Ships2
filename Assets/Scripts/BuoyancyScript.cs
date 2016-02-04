@@ -24,15 +24,14 @@ public class BuoyancyScript : NetworkBehaviour
     /// Voxels properties
     /// </summary>
     [SerializeField]
-    private int voxelsX = 1;
-    [SerializeField]
-    private int voxelsY = 1;
-    [SerializeField]
-    private int voxelsZ = 1;
+    private int voxelsPerAxis = 1;
+    [Range(1, 10)]
     [SerializeField]
     private float voxelsShiftY = 2f; //Voxels downwards shift
+    [Range(1, 10)]
     [SerializeField]
     private float centerOfMassShiftY = 2f; //Center of mass downwards shift
+    [Range(1, 5)]
     [SerializeField]
     private float gravityModifier = 2f;
 
@@ -72,13 +71,13 @@ public class BuoyancyScript : NetworkBehaviour
         Quaternion initialRotation = transform.rotation;
 
         //Reset object's position and rotation
-        transform.position = Vector3.zero; 
+        transform.position = Vector3.zero;
         transform.rotation = Quaternion.identity;
 
         Bounds bounds = GetComponent<Collider>().bounds;
 
         GenerateVoxels(bounds); //Generate buoyancy points
-        
+
         objRigidBody.centerOfMass = FindCenterPoint(bounds, centerOfMassShiftY); //Get bounding box center, with applied Y axis offset and assign it as center of mass
         boundingBoxCenter = FindCenterPoint(bounds, 1f); //Get bounding box center
 
@@ -86,7 +85,7 @@ public class BuoyancyScript : NetworkBehaviour
         objDensity = objRigidBody.mass / objVolume; //Calculate it's density
 
         //Set initial position and rotation back
-        transform.position = initialPosition; 
+        transform.position = initialPosition;
         transform.rotation = initialRotation;
 
         buoyancyMagnitude = (objRigidBody.mass * Mathf.Abs(Physics.gravity.y * gravityModifier));
@@ -100,33 +99,37 @@ public class BuoyancyScript : NetworkBehaviour
     /// <returns>List of voxels</returns>
     private void GenerateVoxels(Bounds bounds)
     {
-        //Safe check (minimum 1 voxel is required)
-        voxelsX = voxelsX < 1 ? 1 : voxelsX;
-        voxelsY = voxelsY < 1 ? 1 : voxelsY;
-        voxelsZ = voxelsZ < 1 ? 1 : voxelsZ;
+        voxelsPerAxis = voxelsPerAxis < 1 ? 1 : voxelsPerAxis;
 
-        //Calculate offset between voxels
-        float offsetX = bounds.size.x / (voxelsX + 1);
-        float offsetY = bounds.size.y / (voxelsY + 1);
-        float offsetZ = bounds.size.z / (voxelsZ + 1);
-
-        //Generate voxels
-        for (float ix = offsetX; ix < bounds.size.x; ix += offsetX)
+        if (voxelsPerAxis > 1)
         {
-            for (float iy = offsetY; iy < bounds.size.y; iy += offsetY)
+            //Calculate offset between voxels
+            float offsetX = bounds.size.x / (voxelsPerAxis - 1);
+            float offsetY = bounds.size.y / (voxelsPerAxis - 1);
+            float offsetZ = bounds.size.z / (voxelsPerAxis - 1);
+
+            //Generate voxels
+            for (int ix = 0; ix < voxelsPerAxis; ix++)
             {
-                for (float iz = offsetZ; iz < bounds.size.z; iz += offsetZ)
+                for (int iy = 0; iy < voxelsPerAxis; iy++)
                 {
-                    float x = bounds.min.x + ix;
-                    float y = bounds.min.y + iy / voxelsShiftY;
-                    float z = bounds.min.z + iz;
+                    for (int iz = 0; iz < voxelsPerAxis; iz++)
+                    {
+                        float x = bounds.min.x + (offsetX * ix);
+                        float y = bounds.min.y + ((offsetY * iy) / voxelsShiftY);
+                        float z = bounds.min.z + (offsetZ * iz);
 
-                    Vector3 point = transform.InverseTransformPoint(new Vector3(x, y, z));
-                    Voxel newVoxel = new Voxel(point, Vector3.zero, 100f, Color.white);
+                        Vector3 point = transform.InverseTransformPoint(new Vector3(x, y, z));
+                        Voxel newVoxel = new Voxel(point, Vector3.zero, 100f, Color.white);
 
-                    voxels.Add(newVoxel);
+                        voxels.Add(newVoxel);
+                    }
                 }
             }
+        } else {
+            Vector3 point = FindCenterPoint(bounds, voxelsShiftY);
+            Voxel newVoxel = new Voxel(point, Vector3.zero, 100f, Color.white);
+            voxels.Add(newVoxel);
         }
     }
 
@@ -360,6 +363,6 @@ public class Voxel
     public void Sink()
     {
         if (buoyancyState > 0f)
-            buoyancyState -= 0.1f;
+            buoyancyState -= BuoyancyModifier;
     }
 }
