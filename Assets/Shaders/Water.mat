@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Water
-  m_Shader: {fileID: 4800000, guid: ac3fccaa2b030474783c12d1ee741115, type: 3}
+  m_Shader: {fileID: 4800000, guid: c56e8a073bdfb485eac5d5ec3958c3c1, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
   m_CustomRenderQueue: 2000
@@ -80,6 +80,10 @@ Material:
         second: 306.98776
       data:
         first:
+          name: _Fresnel
+        second: 1.75
+      data:
+        first:
           name: _Wave_amount
         second: 4.2
       data:
@@ -114,10 +118,6 @@ Material:
         first:
           name: _Refelcetion_Int
         second: 0.693
-      data:
-        first:
-          name: _Fresnel
-        second: 1.75
       data:
         first:
           name: _F_Intensity

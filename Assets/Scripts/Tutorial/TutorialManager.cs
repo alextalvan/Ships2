@@ -56,6 +56,7 @@ public class TutorialManager : MonoBehaviour {
 	{
 		GRABBED_CHART,
 		GRABBED_CURE,
+		PRESSED_TAB,
 		LEVELED_UP,
 		UPGRADED
 	}
@@ -65,7 +66,7 @@ public class TutorialManager : MonoBehaviour {
 	{
 		StartCoroutine (StartShip ());
 		ship = player.GetComponent<TutorialShipScript> ();
-		SetText("Welcome to the Cursed Waters tutorial.");
+		SetText("Welcome aboard, Captain! Press <color=red>Continue</color> to proceed" );
 		ship.CombatLock = true;
 	}
 	
@@ -85,14 +86,14 @@ public class TutorialManager : MonoBehaviour {
 		switch (s) 
 		{
 		case TUTORIAL_STATES.WINCOND_EXPLAIN:
-			SetText("In Cursed Waters, the primary objective is to grab the <color=yellow>CURE</color> " +
-			        " to your curse and hold it for 2 minutes. The first player to do this wins the game!");
+			SetText("The Goal of this game is to find" + " <color=red>the CURE</color> and hold it on your ship for  <color=red>2 minutes</color>");
 			continueButton.gameObject.SetActive(true);
 			break;
 
 		case TUTORIAL_STATES.WASD:
-			SetText("Use the keys W, A, S, and D to move. Pick up the <color=orange>CHART PIECE</color> to continue.");
+			SetText("Use <color=red> W, A, S, and D </color> to move you ship. Pick up the <color=white> CHART PIECE</color> to go further");
 			//Instantiate(curePrefab);
+			tutorialDialog.transform.localPosition = new Vector3(587,-350,0);
 			continueButton.gameObject.SetActive(false);
 			ship.MovementLock = false;
 			chart.SetActive(true);
@@ -100,7 +101,7 @@ public class TutorialManager : MonoBehaviour {
 			break;
 
 		case TUTORIAL_STATES.SCROLL_INTRO:
-			SetText("The chart pieces increase the detection distance for the <color=yellow>CURE</color>. Find the cure to continue.");
+			SetText("Nice Job, Cap! Now you can detect <color=red>the CURE</color>. Find <color=red>the CURE</color> in this area.\nThe <color=yellow>Yellow Arrow</color> will show you the way");
 			ship.Freeze();
 			ship.MovementLock = false;
 			arrow.currentState = TutorialArrow.TUTORIAL_ARROW_STATE.CURE;
@@ -109,16 +110,14 @@ public class TutorialManager : MonoBehaviour {
 
 
 		case TUTORIAL_STATES.COMBAT_INTRO:
-			SetText("In order to defend the cure(if you have it) and take it from other players, you will have to engage in <color=red>COMBAT</color>");
-			continueButton.gameObject.SetActive(true);
+			SetText("Enemy ships on a horizon, Cap! Press <color=red>TAB</color> to switch ammo type!");
+			//continueButton.gameObject.SetActive(true);
 			ship.CombatLock = true;
 			ship.Freeze();
 			break;
 
 		case TUTORIAL_STATES.COMBAT_AIMING:
-			SetText("The camera orientation decides which side you shoot from. Hold then release <color=cyan>SPACE</color> to fire. " +
-					"Use <color=cyan>TAB</color> to switch ammo type. Use <color=cyan>Q</color> to cancel the charge." +
-					" Destroy the two enemy ships to continue");
+			SetText("Destroy <color=red>Enemy Ships</color>! <color=white> Hold and then release </color> <color=red> SPACE </color> to shoot!");
 			continueButton.gameObject.SetActive(false);
 			ship.MovementLock = false;
 			ship.CombatLock = false;
@@ -128,13 +127,13 @@ public class TutorialManager : MonoBehaviour {
 			break;
 
 		case TUTORIAL_STATES.LEVEL_INTRO:
-			SetText("You just leveled up. Right click to toggle the upgrade overlay. Choose wisely.");
+			SetText("Good Fight, Cap! We've just got leveled up! Click <color=red>Right Mouse Button</color> and hover it to upgrade your ship!");
 			arrow.currentState = TutorialArrow.TUTORIAL_ARROW_STATE.OFF;
 			screen.locked = false;
 			break;
 
 		case TUTORIAL_STATES.END:
-			SetText("This concludes the Cursed Waters tutorial. Good luck and have fun playing.");
+			SetText("Now you ready for a real fight, Cap! Good luck!");
 			continueButton.gameObject.SetActive(true);
 			break;
 		default:
@@ -163,6 +162,12 @@ public class TutorialManager : MonoBehaviour {
 		case TUTORIAL_EVENTS.UPGRADED:
 			SetState(TUTORIAL_STATES.END);
 			break;
+
+		case TUTORIAL_EVENTS.PRESSED_TAB:
+			if (currentState == TUTORIAL_STATES.COMBAT_INTRO)
+				SetState (TUTORIAL_STATES.COMBAT_AIMING);
+			break;
+
 		default:
 			break;
 		}
@@ -179,9 +184,9 @@ public class TutorialManager : MonoBehaviour {
 			SetState(TUTORIAL_STATES.WASD);
 			return;
 
-		case TUTORIAL_STATES.COMBAT_INTRO:
-			SetState(TUTORIAL_STATES.COMBAT_AIMING);
-			return;
+		//case TUTORIAL_STATES.COMBAT_INTRO:
+		//	SetState(TUTORIAL_STATES.COMBAT_AIMING);
+		//	return;
 
 		case TUTORIAL_STATES.END:
 			Application.LoadLevel(menuScene);

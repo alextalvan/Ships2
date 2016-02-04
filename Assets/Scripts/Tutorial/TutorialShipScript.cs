@@ -148,8 +148,8 @@ public class TutorialShipScript : MonoBehaviour
 
 		ammoIconsParent.SetActive (!CombatLock);
 
-		if (CombatLock)
-			return;
+		//if (CombatLock)
+		//	return;
 
 		if (Input.GetKeyDown(KeyCode.Tab))
 		{
@@ -161,6 +161,8 @@ public class TutorialShipScript : MonoBehaviour
 				currentProjIndex = 0;
 			
 			onlineRef.AmmoIcons[currentProjIndex].SetActive(true);
+
+			GameObject.Find ("TutorialManager").GetComponent<TutorialManager> ().GetMessage(TutorialManager.TUTORIAL_EVENTS.PRESSED_TAB);
 		}
 	}
 
