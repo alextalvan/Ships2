@@ -21,8 +21,9 @@ public class HullOnline : NetworkBehaviour
     private float currentHealth;
     private float velocity;
 
-    public Rigidbody GetRigidBody
+    public Rigidbody RB
     {
+        set { rb = value; }
         get { return rb; }
     }
     public BuoyancyScript SetBuoyancy
@@ -44,7 +45,6 @@ public class HullOnline : NetworkBehaviour
     /// </summary>
     public void Reset()
     {
-        rb = shipAttributes.GetRigidBody;
         currentHealth = shipAttributes.HullMaxHealth;
         buoyancy.Reset();
         SendHealthBarRefresh();

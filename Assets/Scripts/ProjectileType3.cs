@@ -70,7 +70,7 @@ public class ProjectileType3 : Projectile
 			{
 				hull.Damage(myPos, hullDamage, damageRadius, gameObject);
 				hull.GetComponent<ShipAttributesOnline>().DamageAllSails(sailDamage);
-				hull.GetRigidBody.AddExplosionForce(explosionForce, myPos, damageRadius);
+				hull.RB.AddExplosionForce(explosionForce, myPos, damageRadius);
 				RpcSpawnWrecks(myPos);
 				SpawnDebrisAt(myPos,(myPos-hull.transform.position).normalized,hull.GetComponent<CustomOnlinePlayer>());
 			}

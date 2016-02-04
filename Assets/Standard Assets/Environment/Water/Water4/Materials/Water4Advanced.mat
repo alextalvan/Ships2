@@ -107,7 +107,7 @@ Material:
       data:
         first:
           name: _WorldLightDir
-        second: {r: -0.30046874, g: -0.8048939, b: -0.51172715, a: 0}
+        second: {r: 0, g: 0, b: 1, a: 0}
       data:
         first:
           name: _Foam
