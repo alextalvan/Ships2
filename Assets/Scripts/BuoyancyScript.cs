@@ -46,6 +46,8 @@ public class BuoyancyScript : NetworkBehaviour
     private float objVolume;
     private float objDensity;
 
+    private Vector3 centerOfMass;
+
     void Awake()
     {
         if (NetworkManager.singleton != null && NetworkManager.singleton.isNetworkActive && !NetworkServer.active)
@@ -79,6 +81,7 @@ public class BuoyancyScript : NetworkBehaviour
         GenerateVoxels(bounds); //Generate buoyancy points
 
         objRigidBody.centerOfMass = FindCenterPoint(bounds, centerOfMassShiftY); //Get bounding box center, with applied Y axis offset and assign it as center of mass
+        centerOfMass = objRigidBody.centerOfMass;
         boundingBoxCenter = FindCenterPoint(bounds, 1f); //Get bounding box center
 
         objVolume = GetObjectVolume(bounds); //Calculate approximate volume of an object
@@ -158,6 +161,7 @@ public class BuoyancyScript : NetworkBehaviour
 
     private void FixedUpdate()
     {
+        objRigidBody.centerOfMass = centerOfMass;
         CalculatePhysics();
 
         if (shipAttributes)
