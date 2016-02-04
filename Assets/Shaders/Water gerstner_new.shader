@@ -40,6 +40,7 @@ Shader "Custom/Water_gerstner_new" {
     }
     SubShader {
         Tags {
+         	"Queue"="Geometry"
             "IgnoreProjector"="True"
         }
         GrabPass{ "Refraction" }
