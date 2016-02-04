@@ -17,7 +17,7 @@ public class ProjectileType2 : Projectile
 		if (hull)
 		{
 			hull.Damage(collision.contacts[0].point, hullDamage, damageRadius, gameObject);
-			hull.GetRigidBody.AddExplosionForce(explosionForce, collision.contacts[0].point, damageRadius);
+			hull.RB.AddExplosionForce(explosionForce, collision.contacts[0].point, damageRadius);
 			RpcSpawnWrecks(collision.contacts[0].point);
 			RpcExplode(transform.position, ImpactSoundType.SHIP_HULL);
 			base.DealDamage(collision);
@@ -27,7 +27,7 @@ public class ProjectileType2 : Projectile
 		if (sails)
 		{
 			collision.gameObject.GetComponent<ShipAttributesOnline>().DamageAllSails(sailDamage);
-			sails.transform.root.gameObject.GetComponent<HullOnline>().GetRigidBody.AddExplosionForce(explosionForce/2f, collision.contacts[0].point, damageRadius);
+			sails.transform.root.gameObject.GetComponent<HullOnline>().RB.AddExplosionForce(explosionForce/2f, collision.contacts[0].point, damageRadius);
 			RpcSpawnWrecks(collision.contacts[0].point);
 			hitShip = true;
 		}

@@ -144,6 +144,7 @@ public class ShipAttributesOnline : NetworkBehaviour
         pfx = GetComponent<PlayerFX>();
         playerRespawn = GetComponent<PlayerRespawn>();
         hullOnline = GetComponent<HullOnline>();
+        hullOnline.RB = rb;
         hullOnline.SetBuoyancy = GetComponent<BuoyancyScript>();
 
         Reset();

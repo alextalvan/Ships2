@@ -298,7 +298,6 @@ public class BuoyancyScript : NetworkBehaviour
     /// </summary>
     private void OnDrawGizmos()
     {
-        /*
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(objRigidBody.worldCenterOfMass, SPHERE_GIZMOS_SIZE * 5f);
 
@@ -309,7 +308,6 @@ public class BuoyancyScript : NetworkBehaviour
             Gizmos.DrawWireCube(voxelWorldPos, new Vector3(CUBE_GIZMOS_SIZE, CUBE_GIZMOS_SIZE, CUBE_GIZMOS_SIZE));
             Gizmos.DrawLine(voxelWorldPos, voxelWorldPos + voxel.Force / objRigidBody.mass);
         }
-        */
     }
 }
 
