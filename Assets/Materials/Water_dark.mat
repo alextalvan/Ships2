@@ -78,7 +78,7 @@ Material:
       data:
         first:
           name: _CustomTime
-        second: 121.061424
+        second: 87.008026
       data:
         first:
           name: _Fresnel
@@ -90,7 +90,7 @@ Material:
       data:
         first:
           name: _Panner
-        second: 12.106143
+        second: 8.700803
       data:
         first:
           name: _Lerp
@@ -118,7 +118,7 @@ Material:
       data:
         first:
           name: _Refelcetion_Int
-        second: 0.161
+        second: 0.014
       data:
         first:
           name: _F_Intensity
@@ -131,10 +131,6 @@ Material:
       data:
         first:
           name: _Color
-        second: {r: 1, g: 1, b: 1, a: 1}
-      data:
-        first:
-          name: _Color2
         second: {r: 1, g: 1, b: 1, a: 1}
       data:
         first:
@@ -160,6 +156,10 @@ Material:
         first:
           name: _GDirectionCD
         second: {r: 0.7, g: -0.68, b: 0.71, a: -0.2}
+      data:
+        first:
+          name: _Color2
+        second: {r: 1, g: 1, b: 1, a: 1}
       data:
         first:
           name: _Color_lerp
