@@ -145,4 +145,9 @@ public class OfflineSceneReferences : MonoBehaviour {
 	{
 		Application.Quit ();
 	}
+
+	public void Disconnect()
+	{
+		GameObject.Find ("NetworkManager").GetComponent<CustomNetManager> ().Disconnect ();
+	}
 }

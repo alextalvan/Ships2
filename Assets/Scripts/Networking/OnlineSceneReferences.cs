@@ -123,4 +123,11 @@ public class OnlineSceneReferences : MonoBehaviour {
 
 	public GUIDialog GameEndMessage;
 	public Text GameEndText;
+
+
+	void Update()
+	{
+		if (Input.GetKeyDown (KeyCode.Escape))
+			Disconnect ();
+	}
 }
