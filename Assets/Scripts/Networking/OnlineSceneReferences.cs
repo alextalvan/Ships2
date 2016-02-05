@@ -38,7 +38,7 @@ public class OnlineSceneReferences : MonoBehaviour {
 		ambience = FMOD_StudioSystem.instance.GetEvent ("event:/Ambient");
 		ambience.setVolume (0.25f);
 		ambience.start();
-		MusicManager.Singleton.Music.setParameterValue ("Menu", 0f);
+		//MusicManager.Singleton.Music.setParameterValue ("Menu", 0f);
 		//temp disabled cause annoying
 		//Cursor.visible = false;
 	}

@@ -262,6 +262,7 @@ GameObject:
   - 4: {fileID: 493942}
   - 198: {fileID: 19880548}
   - 199: {fileID: 19957792}
+  - 114: {fileID: 11470864}
   m_Layer: 0
   m_Name: LevelUp
   m_TagString: Untagged
@@ -1465,7 +1466,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &165770
 GameObject:
   m_ObjectHideFlags: 1
@@ -4047,7 +4048,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 170488}
   m_LocalRotation: {x: 0, y: 0, z: 0.028738882, w: 0.999587}
-  m_LocalPosition: {x: -370.7, y: 5.8, z: 152}
+  m_LocalPosition: {x: 48.3313, y: 10.6, z: 343.83514}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 460718}
@@ -4114,7 +4115,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 110044}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -5}
+  m_LocalPosition: {x: 0, y: 1, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 465346}
@@ -5937,13 +5938,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _clipList:
-  - {fileID: 8300000, guid: 7ddf51d4315e39b4bbf4a4655e84f2e0, type: 3}
-  - {fileID: 8300000, guid: 5cb535f554d1d644383c5b6d8acebb8e, type: 3}
+  - {fileID: 8300000, guid: d4b6c985bd9031f4588f009d67bb7c29, type: 3}
+  - {fileID: 8300000, guid: 66ded9aeedc4cd24bb04c42b2b6769af, type: 3}
   - {fileID: 8300000, guid: 072c78eea027b384091e0ba4d9329b4c, type: 3}
   - {fileID: 8300000, guid: 13ffb50079d66ab408999657df1d5893, type: 3}
   - {fileID: 8300000, guid: 433b904f3e9714442b5e695f229d9212, type: 3}
   - {fileID: 8300000, guid: 37b8672789f8d22458012053d19d804b, type: 3}
-  - {fileID: 8300000, guid: 01dd4d06ac0ea5b49a2c70e3351d6495, type: 3}
+  - {fileID: 0}
   - {fileID: 8300000, guid: 74de37961a486b64d9cbb1b9cf6bbaee, type: 3}
   - {fileID: 8300000, guid: 8b9112720e106b145894f8e27cd2534b, type: 3}
   - {fileID: 8300000, guid: 90fd4d823ab663f44bebafc2d4f67d7c, type: 3}
@@ -6032,6 +6033,17 @@ MonoBehaviour:
   - {fileID: 2349744}
   _overHeadText: {fileID: 10281072}
   arrow: {fileID: 117796}
+--- !u!114 &11470864
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 110044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dc35bd140f9cf24099c6d4e001db387, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11474812
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -108768,8 +108780,8 @@ ParticleSystemRenderer:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 182966}
   m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
   m_Materials:
   - {fileID: 2100000, guid: 1e4e1239052f68c409eae9551e003288, type: 2}
   m_SubsetIndices: 
@@ -108973,8 +108985,8 @@ ParticleSystemRenderer:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 110044}
   m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
   m_Materials:
   - {fileID: 2100000, guid: 8854f1d361c1a324bb54a6f7de80a5d4, type: 2}
   m_SubsetIndices: 
@@ -110163,6 +110175,14 @@ Prefab:
       propertyPath: _clipList.Array.data[6]
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _clipList.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: d4b6c985bd9031f4588f009d67bb7c29, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 170488}

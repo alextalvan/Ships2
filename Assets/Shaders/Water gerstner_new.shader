@@ -50,6 +50,7 @@ Shader "Custom/Water_gerstner_new" {
                 "LightMode"="ForwardBase" 
             }
             Blend SrcAlpha OneMinusSrcAlpha
+            Zwrite off
             
             
             CGPROGRAM
@@ -219,7 +220,7 @@ Shader "Custom/Water_gerstner_new" {
                 "LightMode"="ForwardAdd"
             }
             Blend One One
-            
+            Zwrite off
             
             CGPROGRAM
             #pragma vertex vert

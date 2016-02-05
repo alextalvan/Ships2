@@ -57,20 +57,23 @@ public class PlayerFX : NetworkBehaviour
 
 	public void PlaySound(PLAYER_SOUNDS s, bool _3d)
     {  
-
+		/*
 		if (_3d)
 			_source.spatialBlend = 1.0f;
 		else
 			_source.spatialBlend = 0.0f;
+			*/
 
 		/*
 		_source.Stop ();
 		_source.clip = _clipList [(int)s];
 		_source.Play ();
 		*/
-		_source.PlayOneShot (_clipList [(int)s]);
+		if(_clipList [(int)s] != null)
+			_source.PlayOneShot (_clipList [(int)s]);
 
-        _source.clip = null;
+
+        //
 
        // UIConsole.Log(s);
     }
@@ -193,13 +196,13 @@ public class PlayerFX : NetworkBehaviour
 		if (onlineRefs.whale != null) 
 		{
 			float whaleParam = ((onlineRefs.whale.transform.position - this.transform.position).magnitude <= whaleSoundDistanceThreshold) ? 1f : 0f;
-			onlineRefs.ambience.setParameterValue ("Whale", whaleParam);
+			//onlineRefs.ambience.setParameterValue ("Whale", whaleParam);
 		}
 
 		if (onlineRefs.harbor != null) 
 		{
 			float harborParam = Mathf.Clamp01(1f- (onlineRefs.harbor.transform.position - this.transform.position).magnitude / harborSoundDistanceThreshold) * 10f;
-			onlineRefs.ambience.setParameterValue("HarborDistance",harborParam);
+			//onlineRefs.ambience.setParameterValue("HarborDistance",harborParam);
 		}
 	}
 
